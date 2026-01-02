@@ -343,7 +343,11 @@
                 // 4. Download Final PDF
                 log("Finalizing document...");
                 const pdfBytes = await finalPdfDoc.save();
-                downloadBlob(pdfBytes, 'searchable-output.pdf');
+                
+                // --- NEW FILENAME LOGIC HERE ---
+                const originalName = selectedFile.name.replace(/\.[^/.]+$/, "");
+                const newFileName = `${originalName}-searchable-pdfmechanic.pdf`;
+                downloadBlob(pdfBytes, newFileName);
 
                 log("Success! Download started.");
                 progressBar.style.width = '100%';
