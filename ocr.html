@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Free OCR PDF Online | Convert Scanned PDF to Searchable Text - The PDF Mechanic</title>
+    <meta name="description" content="Convert scanned PDFs and images into searchable, selectable text documents (PDF/Text) instantly. 100% Free, Secure Client-side OCR tool." />
+    <meta name="keywords" content="ocr pdf, image to text, scanned pdf to text, make pdf searchable, free online ocr, client-side ocr, hindi ocr" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.pdfmechanic.com/ocr.html" />
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: '#0ea5e9', bg: '#F3F4F6' }, // Blue Theme for OCR
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+    <style>
+        /* Smooth Animations */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(-5px); } 100% { opacity: 1; transform: translateY(0); } }
+        
+        .loader-bar {
+            background: linear-gradient(90deg, #0ea5e9 0%, #3b82f6 50%, #0ea5e9 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+<body class="font-sans bg-bg text-gray-900 flex flex-col min-h-screen">
+
+    <nav class="w-full bg-gray-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="index.html" class="text-xl font-bold flex items-center gap-2 hover:text-brand transition">
+                    <i class="fa-solid fa-wrench text-brand"></i> The PDF Mechanic
+                </a>
+                <a href="index.html" class="text-sm font-medium hover:text-brand transition">Back to Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+        
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">OCR PDF Tool</h1>
+            <p class="text-gray-600 text-lg">Make Scanned PDFs & Images Searchable and Selectable.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 border-t-4 border-brand">
+            
+            <div id="uploadArea" class="border-2 border-dashed border-gray-300 rounded-xl p-10 text-center hover:bg-blue-50 hover:border-brand transition cursor-pointer group" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="application/pdf, image/*" class="hidden">
+                <div class="w-20 h-20 bg-blue-100 text-brand rounded-full flex items-center justify-center text-4xl mx-auto mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700">Click to Upload Scanned PDF or Image</h3>
+                <p class="text-sm text-gray-500 mt-2">Supports: PDF, JPG, PNG (Max 50MB)</p>
+            </div>
+
+            <div id="settingsArea" class="hidden mt-6">
+                <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg mb-6 border border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-file-pdf text-brand text-2xl"></i>
+                        <span id="fileName" class="font-semibold text-gray-800 text-sm truncate max-w-[200px]">filename.pdf</span>
+                    </div>
+                    <button onclick="location.reload()" class="text-gray-400 hover:text-red-500 transition"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Document Language</label>
+                        <select id="langSelect" class="w-full border border-gray-300 rounded-lg p-3 bg-white focus:ring-2 focus:ring-brand outline-none">
+                            <option value="eng">English</option>
+                            <option value="hin">Hindi (हिन्दी)</option>
+                            <option value="spa">Spanish</option>
+                            <option value="fra">French</option>
+                            <option value="deu">German</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Action</label>
+                        <button id="convertBtn" class="w-full bg-brand text-white font-bold p-3 rounded-lg shadow hover:bg-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-bolt mr-2"></i> Start OCR Process
+                        </button>
+                    </div>
+                </div>
+
+                <div id="statusArea" class="hidden">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Live Processing Logs</span>
+                        <span id="percentBadge" class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">0%</span>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-lg p-4 font-mono text-xs h-32 overflow-y-auto text-green-400 shadow-inner mb-2" id="logs">
+                        <p>> System Ready.</p>
+                    </div>
+                    
+                    <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                        <div id="progressBar" class="loader-bar h-full w-0 transition-all duration-300"></div>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">Processing happens locally. Please do not close this tab.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">How to make PDF Searchable?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-blue-50 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+                    <h3 class="font-bold mb-2">Upload File</h3>
+                    <p class="text-sm text-gray-600">Select your scanned PDF or image from your device.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-blue-50 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+                    <h3 class="font-bold mb-2">Select Language</h3>
+                    <p class="text-sm text-gray-600">Choose the language of your document (e.g., English, Hindi).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-blue-50 text-brand rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+                    <h3 class="font-bold mb-2">Download</h3>
+                    <p class="text-sm text-gray-600">Get a new PDF where text can be selected, copied, and searched.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-16 bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+            <span class="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Guide</span>
+            <h2 class="text-2xl font-bold text-gray-900 mt-3 mb-6">Why Convert Scanned PDF to Searchable Text?</h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-4">
+                <p>
+                    Scanned documents are essentially images. You cannot select text, search for keywords (Ctrl+F), or copy content from them. This is where <strong>OCR (Optical Character Recognition)</strong> comes in.
+                </p>
+                <h3 class="text-lg font-bold text-gray-900">What is OCR?</h3>
+                <p>
+                    OCR is a technology that recognizes text within a digital image. It is commonly used to recognize text in scanned documents and images. Our tool uses advanced browser-based OCR to create an invisible text layer over your image, making it look exactly like the original but with functional text.
+                </p>
+                <h3 class="text-lg font-bold text-gray-900">Benefits of Searchable PDFs</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Searchability:</strong> Find specific words or phrases instantly using search functions.</li>
+                    <li><strong>Accessibility:</strong> Screen readers can read the text aloud for visually impaired users.</li>
+                    <li><strong>Copy & Paste:</strong> Easily extract quotes or data without retyping manually.</li>
+                    <li><strong>Small Size:</strong> Often reduces file size compared to high-res raw scans.</li>
+                </ul>
+                <p class="text-sm text-gray-500 italic mt-4">
+                    Note: This tool runs entirely in your browser. Your sensitive documents are never uploaded to our servers, ensuring 100% privacy.
+                </p>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white p-5 rounded-lg border border-gray-200 shadow-sm cursor-pointer">
+                    <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
+                        <span>Is this OCR tool free?</span>
+                        <span class="transition group-open:rotate-180 text-brand"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">Yes, The PDF Mechanic OCR tool is 100% free to use for all users. No registration required.</p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-lg border border-gray-200 shadow-sm cursor-pointer">
+                    <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
+                        <span>Does it support handwriting?</span>
+                        <span class="transition group-open:rotate-180 text-brand"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">OCR works best with printed text (books, invoices, papers). Handwriting recognition may vary depending on clarity.</p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-lg border border-gray-200 shadow-sm cursor-pointer">
+                    <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
+                        <span>Which languages are supported?</span>
+                        <span class="transition group-open:rotate-180 text-brand"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">Currently, we support English, Hindi, Spanish, French, and German. Select your language from the dropdown for best accuracy.</p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-lg border border-gray-200 shadow-sm cursor-pointer">
+                    <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
+                        <span>Is my document safe?</span>
+                        <span class="transition group-open:rotate-180 text-brand"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">Absolutely. We use <strong>Client-side OCR</strong>. Your file is processed by your own computer's browser and is never sent to any external server.</p>
+                </details>
+
+                <details class="group bg-white p-5 rounded-lg border border-gray-200 shadow-sm cursor-pointer">
+                    <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
+                        <span>What file formats can I upload?</span>
+                        <span class="transition group-open:rotate-180 text-brand"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm">You can upload PDF files (scanned) or Image files (JPG, PNG, BMP). The output will always be a Searchable PDF.</p>
+                </details>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-solid fa-wrench text-brand"></i> The PDF Mechanic
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-2 max-w-xs">Secure, client-side PDF tools. Your files never leave your browser.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-200">Popular Tools</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="compressor.html" class="hover:text-white transition">Compress PDF</a></li>
+                        <li><a href="merger.html" class="hover:text-white transition">Merge PDF</a></li>
+                        <li><a href="ocr.html" class="hover:text-white transition">OCR PDF</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-200">Convert</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="images-to-pdf.html" class="hover:text-white transition">JPG to PDF</a></li>
+                        <li><a href="pdf-to-images.html" class="hover:text-white transition">PDF to JPG</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-200">Edit</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="splitter.html" class="hover:text-white transition">Split PDF</a></li>
+                        <li><a href="delete-pages.html" class="hover:text-white transition">Delete Pages</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-200">Support</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; <span id="year"></span> The PDF Mechanic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+        // Setup PDF.js Worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const logs = document.getElementById('logs');
+        const progressBar = document.getElementById('progressBar');
+        const percentBadge = document.getElementById('percentBadge');
+        const statusArea = document.getElementById('statusArea');
+        const settingsArea = document.getElementById('settingsArea');
+        const uploadArea = document.getElementById('uploadArea');
+        const langSelect = document.getElementById('langSelect');
+        const fileName = document.getElementById('fileName');
+
+        let selectedFile = null;
+
+        // Logging Helper
+        const log = (msg) => {
+            const p = document.createElement('p');
+            p.innerText = `> ${msg}`;
+            logs.appendChild(p);
+            logs.scrollTop = logs.scrollHeight;
+        };
+
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files[0]) {
+                selectedFile = e.target.files[0];
+                fileName.innerText = selectedFile.name;
+                
+                // Show Settings, Hide Upload
+                uploadArea.classList.add('hidden');
+                settingsArea.classList.remove('hidden');
+                convertBtn.disabled = false;
+            }
+        });
+
+        convertBtn.addEventListener('click', async () => {
+            if(!selectedFile) return;
+
+            // UI Reset
+            convertBtn.disabled = true;
+            statusArea.classList.remove('hidden');
+            logs.innerHTML = '';
+            progressBar.style.width = '0%';
+            percentBadge.innerText = '0%';
+            
+            log("Initializing Application...");
+
+            try {
+                // 1. Initialize Tesseract
+                const lang = langSelect.value;
+                const worker = await Tesseract.createWorker();
+                log(`Loading Language Data (${lang})...`);
+                await worker.loadLanguage(lang);
+                await worker.initialize(lang);
+
+                // 2. Prepare for PDF Merging (using pdf-lib)
+                const { PDFDocument } = PDFLib;
+                const finalPdfDoc = await PDFDocument.create();
+
+                // 3. Check File Type
+                if (selectedFile.type === 'application/pdf') {
+                    log("Detected PDF Input.");
+                    await processScannedPDF(selectedFile, worker, finalPdfDoc);
+                } else {
+                    log("Detected Image Input.");
+                    await processImage(selectedFile, worker, finalPdfDoc);
+                }
+
+                // 4. Download Final PDF
+                log("Finalizing document...");
+                const pdfBytes = await finalPdfDoc.save();
+                downloadBlob(pdfBytes, 'searchable-output.pdf');
+
+                log("Success! Download started.");
+                progressBar.style.width = '100%';
+                percentBadge.innerText = 'Done';
+                await worker.terminate();
+
+            } catch (err) {
+                console.error(err);
+                log("ERROR: " + err.message);
+                alert("Error occurred. Please try again or check console.");
+            } finally {
+                convertBtn.disabled = false;
+            }
+        });
+
+        // --- Logic: Process Single Image ---
+        async function processImage(file, worker, finalPdfDoc) {
+            log("Recognizing text & Layout...");
+            const { data } = await worker.recognize(file); // OCR Pass 1
+            const { data: pdfData } = await worker.getPDF('Page'); // Generate PDF Overlay
+
+            // Merge this page into final doc
+            await mergePageToDoc(pdfData, finalPdfDoc);
+        }
+
+        // --- Logic: Process Scanned PDF (Multi-page) ---
+        async function processScannedPDF(file, worker, finalPdfDoc) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+            const totalPages = pdf.numPages;
+
+            log(`Found ${totalPages} pages in document.`);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const percent = Math.round((i / totalPages) * 100);
+                progressBar.style.width = `${percent}%`;
+                percentBadge.innerText = `${percent}%`;
+                
+                log(`Processing Page ${i}/${totalPages}...`);
+
+                // A. Render Page to High-Res Canvas
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({ scale: 2.0 }); // High scale for better OCR
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                // B. Convert Canvas to Blob (Image)
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
+
+                // C. Run OCR on this Page Image
+                await worker.recognize(blob);
+                const { data: pdfData } = await worker.getPDF('Page');
+
+                // D. Add to Final PDF
+                await mergePageToDoc(pdfData, finalPdfDoc);
+            }
+        }
+
+        // --- Helper: Merge OCR'd Page into Final Doc ---
+        async function mergePageToDoc(pdfDataBytes, finalPdfDoc) {
+            const { PDFDocument } = PDFLib;
+            // Load the single page PDF generated by Tesseract
+            const tempDoc = await PDFDocument.load(pdfDataBytes);
+            // Copy it to our main document
+            const [copiedPage] = await finalPdfDoc.copyPages(tempDoc, [0]);
+            finalPdfDoc.addPage(copiedPage);
+        }
+
+        // --- Helper: Trigger Download ---
+        function downloadBlob(bytes, filename) {
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
