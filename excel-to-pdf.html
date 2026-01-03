@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Excel to PDF Converter | Convert XLSX to PDF Free - The PDF Mechanic</title>
+    <meta name="description" content="Convert Excel spreadsheets (XLSX/XLS) to PDF documents online. Maintains table formatting. 100% Free & Secure client-side conversion." />
+    <meta name="keywords" content="excel to pdf, convert xlsx to pdf, xls to pdf, spreadsheet to pdf, excel converter, online pdf tools, free excel to pdf" />
+    <meta name="author" content="The PDF Mechanic" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.pdfmechanic.com/excel-to-pdf.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.pdfmechanic.com/excel-to-pdf.html" />
+    <meta property="og:title" content="Excel to PDF - Free & Secure" />
+    <meta property="og:description" content="Convert Excel sheets to PDF instantly in your browser." />
+    <meta property="og:image" content="https://www.pdfmechanic.com/og-excel.png" />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: '#10b981', brandDark: '#047857', bg: '#F3F4F6' }, // Emerald Green Theme
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Excel to PDF Converter",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A free online tool to convert Excel spreadsheets to PDF format securely."
+    }
+    </script>
+
+    <style>
+        /* Table Styling for Preview & Print */
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        .excel-table th, .excel-table td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: left;
+        }
+        .excel-table th {
+            background-color: #f3f4f6;
+            font-weight: bold;
+        }
+        
+        /* Print Styles - Hides UI, Shows Table */
+        @media print {
+            body * { visibility: hidden; }
+            #print-area, #print-area * { visibility: visible; }
+            #print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                background: white;
+            }
+            /* Remove shadows/borders for cleaner print */
+            #sheet-preview { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-bg text-gray-900 flex flex-col min-h-screen">
+
+    <nav class="w-full bg-brand text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-xl flex items-center gap-2 hover:opacity-90 transition">
+                <i class="fa-solid fa-file-excel"></i> The PDF Mechanic
+            </a>
+            <a href="index.html" class="text-sm bg-white/10 px-3 py-1 rounded hover:bg-white/20 transition">Back to Tools</a>
+        </div>
+    </nav>
+
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <nav class="flex text-sm text-gray-500">
+                <ol class="inline-flex items-center space-x-1">
+                    <li><a href="index.html" class="hover:text-brand">Home</a></li>
+                    <li><i class="fa-solid fa-chevron-right text-xs mx-2"></i></li>
+                    <li class="text-gray-800 font-medium">Excel to PDF</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 w-full">
+        
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Convert Excel to PDF</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Transform your spreadsheets into professional PDF documents. Supports XLSX and XLS formats.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border-t-8 border-brand overflow-hidden">
+            
+            <div class="p-8 md:p-12">
+                
+                <div id="uploadArea" class="border-3 border-dashed border-gray-300 rounded-2xl p-12 text-center hover:bg-green-50 hover:border-brand transition duration-300 cursor-pointer group relative" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" class="hidden">
+                    <div class="absolute top-4 right-4 bg-green-100 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Free</div>
+                    <div class="text-brand text-7xl mb-6 group-hover:scale-110 transition duration-300 drop-shadow-sm">
+                        <i class="fa-solid fa-file-csv"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Select Excel File</h3>
+                    <p class="text-gray-500">or drop XLSX here</p>
+                </div>
+
+                <div id="previewArea" class="hidden">
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-center bg-gray-50 p-4 rounded-lg mb-6 border border-gray-200 gap-4">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <i class="fa-solid fa-file-excel text-brand text-2xl flex-shrink-0"></i>
+                            <span id="fileName" class="font-semibold text-gray-800 text-sm truncate">file.xlsx</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="location.reload()" class="text-gray-500 hover:text-brand font-medium text-sm px-3 py-2">Cancel</button>
+                            <button onclick="window.print()" class="bg-brand text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-brandDark transition flex items-center gap-2">
+                                <i class="fa-solid fa-print"></i> Save as PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 text-sm text-blue-700">
+                        <p><i class="fa-solid fa-circle-info mr-2"></i> <strong>Tip:</strong> In the print window, change <strong>Destination</strong> to "Save as PDF". Use <strong>Landscape</strong> mode for wide tables.</p>
+                    </div>
+
+                    <div id="print-area">
+                        <div id="sheet-preview" class="overflow-x-auto bg-white border border-gray-200 p-8 shadow-sm min-h-[400px]">
+                            </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-center items-center gap-6 text-sm text-gray-500 flex-wrap">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand"></i> Secure Client-Side</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand"></i> Instant Render</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-brand"></i> No Uploads</span>
+            </div>
+        </div>
+
+        <section class="mt-16 bg-white py-12 px-8 rounded-2xl shadow-sm border border-gray-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-brand"></i> How to Convert?
+                    </h2>
+                    <ol class="space-y-4">
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-green-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Upload Excel</h4>
+                                <p class="text-gray-600 text-sm">Select your .xlsx or .xls file. We parse it instantly.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-green-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Preview Data</h4>
+                                <p class="text-gray-600 text-sm">Check the table preview to ensure all data is loaded correctly.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-green-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Save as PDF</h4>
+                                <p class="text-gray-600 text-sm">Click the button and choose "Save as PDF" in the printer settings.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice text-brand"></i> Why Excel to PDF?
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Sending Excel sheets can be risky—formulas can break, and formatting changes on different devices. Converting to PDF "freezes" your data.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        This is perfect for sharing <strong>invoices, balance sheets, and inventory lists</strong> where you want the data to remain uneditable and professional.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Does it support multiple sheets?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Currently, this tool extracts the <strong>first sheet</strong> of your workbook. We are working on multi-sheet support.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Is my data private?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes. Your financial data is processed in your browser and never sent to any server.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Can I convert wide tables?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes! When saving as PDF, choose "Landscape" orientation in the print window to fit more columns.</p>
+                </details>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-wrench text-brand"></i> The PDF Mechanic</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Secure, privacy-focused online PDF tools. Process your documents locally without uploading them to servers.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Convert</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="pdf-to-word.html" class="hover:text-brand transition">PDF to Word</a></li>
+                        <li><a href="word-to-pdf.html" class="hover:text-brand transition">Word to PDF</a></li>
+                        <li><a href="excel-to-pdf.html" class="text-white font-bold">Excel to PDF</a></li>
+                        <li><a href="pdf-to-excel.html" class="hover:text-brand transition">PDF to Excel</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Organize</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="merger.html" class="hover:text-brand transition">Merge PDF</a></li>
+                        <li><a href="splitter.html" class="hover:text-brand transition">Split PDF</a></li>
+                        <li><a href="add-page-numbers.html" class="hover:text-brand transition">Add Page Numbers</a></li>
+                        <li><a href="watermark.html" class="hover:text-brand transition">Watermark PDF</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Edit & Sign</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="compressor.html" class="hover:text-brand transition">Compress PDF</a></li>
+                        <li><a href="ocr.html" class="hover:text-brand transition">OCR PDF</a></li>
+                        <li><a href="pdf-editor.html" class="hover:text-brand transition">PDF Editor</a></li>
+                        <li><a href="esign.html" class="hover:text-brand transition">eSign PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© <span id="year"></span> The PDF Mechanic. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const previewArea = document.getElementById('previewArea');
+        const fileNameDisp = document.getElementById('fileName');
+        const sheetPreview = document.getElementById('sheet-preview');
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const file = e.target.files[0];
+                fileNameDisp.innerText = file.name;
+
+                // Read the file
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+
+                    // Get First Sheet
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+
+                    // Convert to HTML
+                    const htmlStr = XLSX.utils.sheet_to_html(worksheet);
+
+                    // Inject into Preview
+                    sheetPreview.innerHTML = htmlStr;
+
+                    // Style the injected table (Add class to raw table)
+                    const table = sheetPreview.querySelector('table');
+                    if(table) {
+                        table.classList.add('excel-table');
+                    }
+
+                    // Show UI
+                    uploadArea.classList.add('hidden');
+                    previewArea.classList.remove('hidden');
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+    </script>
+</body>
+</html>
