@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Word to PDF Converter | Free Docx to PDF Online - The PDF Mechanic</title>
+    <meta name="description" content="Convert Word documents (Docx) to PDF instantly online. 100% Free, Secure Client-side conversion. Maintains formatting, tables, and fonts. No file uploads." />
+    <meta name="keywords" content="word to pdf, docx to pdf, convert word to pdf free, online word converter, client-side word to pdf, secure pdf tool, no upload converter, word document to pdf, doc to pdf, change word to pdf" />
+    <meta name="author" content="The PDF Mechanic" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.pdfmechanic.com/word-to-pdf.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.pdfmechanic.com/word-to-pdf.html" />
+    <meta property="og:title" content="Word to PDF Converter - Free & Secure" />
+    <meta property="og:description" content="Convert Word docs to PDF directly in your browser. Best quality, no server uploads required." />
+    <meta property="og:image" content="https://www.pdfmechanic.com/og-word.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Word to PDF Converter - Free & Secure" />
+    <meta name="twitter:description" content="Convert Word docs to PDF directly in your browser. Best quality, no server uploads required." />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: '#2b5797', brandDark: '#1e3a8a', bg: '#F3F4F6' }, // MS Word Blue Theme
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+    <script src="https://unpkg.com/docx-preview/dist/docx-preview.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Word to PDF Converter",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A free online tool to convert Word documents (.docx) to PDF format securely within the browser."
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is this Word to PDF converter free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, The PDF Mechanic Word to PDF tool is 100% free with no limits on the number of files."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is my document secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We use client-side technology. Your Word file is processed locally on your device and never uploaded to our servers."
+        }
+      },{
+        "@type": "Question",
+        "name": "Does it keep the formatting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we use advanced rendering to keep tables, images, and fonts as close to the original as possible."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I use this on Mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it works on Android and iOS devices directly in the browser."
+        }
+      },{
+        "@type": "Question",
+        "name": "Do I need to install Microsoft Word?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, you do not need Microsoft Word installed to use this converter."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        /* Smooth Animations */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(-5px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        /* Document Container Styling */
+        #doc-container {
+            background: white;
+            min-height: 297mm; /* A4 Height */
+            padding: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 0 auto;
+        }
+
+        /* PRINT STYLES - CRITICAL FOR FUNCTIONALITY */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #doc-container, #doc-container * {
+                visibility: visible;
+            }
+            #doc-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                overflow: visible !important;
+            }
+            /* Hide UI Elements */
+            nav, footer, .no-print, #uploadArea, #action-bar {
+                display: none !important;
+            }
+            /* Layout Fixes */
+            .docx-wrapper {
+                padding: 0 !important;
+                background: white !important;
+            }
+            @page {
+                size: auto;
+                margin: 0mm;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-bg text-gray-900 flex flex-col min-h-screen">
+
+    <nav class="w-full bg-brand text-white shadow-lg sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-xl flex items-center gap-2 hover:opacity-90 transition">
+                <i class="fa-solid fa-file-word"></i> The PDF Mechanic
+            </a>
+            <a href="index.html" class="text-sm bg-white/10 px-3 py-1 rounded hover:bg-white/20 transition">Back to Tools</a>
+        </div>
+    </nav>
+
+    <div class="bg-white border-b border-gray-200 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <nav class="flex text-sm text-gray-500">
+                <ol class="inline-flex items-center space-x-1">
+                    <li><a href="index.html" class="hover:text-brand">Home</a></li>
+                    <li><i class="fa-solid fa-chevron-right text-xs mx-2"></i></li>
+                    <li class="text-gray-800 font-medium">Word to PDF</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 w-full">
+        
+        <div class="text-center mb-10 no-print">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Convert Word to PDF Online</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Turn your DOCX files into high-quality PDFs instantly. 100% Free, Secure & Private.</p>
+        </div>
+
+        <div class="bg-gray-100 rounded-2xl shadow-xl border-t-8 border-brand overflow-hidden min-h-[400px]">
+            
+            <div class="p-8 md:p-12">
+                
+                <div id="uploadArea" class="border-3 border-dashed border-gray-300 bg-white rounded-2xl p-12 text-center hover:bg-blue-50 hover:border-brand transition duration-300 cursor-pointer group relative" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" accept=".docx" class="hidden">
+                    
+                    <div class="absolute top-4 right-4 bg-blue-100 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Free</div>
+
+                    <div class="text-brand text-7xl mb-6 group-hover:scale-110 transition duration-300 drop-shadow-sm">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Select Word File</h3>
+                    <p class="text-gray-500">or drop DOCX here</p>
+                    <p class="mt-4 text-xs text-gray-400">Supports .docx files (Reports, Resumes, Letters)</p>
+                </div>
+
+                <div id="action-bar" class="hidden flex flex-col md:flex-row items-center justify-between bg-white p-4 rounded-xl shadow-md mb-6 border border-gray-200 no-print">
+                    <div class="flex items-center gap-3 mb-4 md:mb-0">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-file-word"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">Preview Mode</p>
+                            <p id="fileName" class="text-xs text-gray-500">document.docx</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="location.reload()" class="px-4 py-2 text-gray-500 hover:text-brand text-sm font-medium">Cancel</button>
+                        <button onclick="printDoc()" class="bg-brand text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-brandDark transition flex items-center gap-2">
+                            <i class="fa-solid fa-download"></i> Save as PDF
+                        </button>
+                    </div>
+                </div>
+
+                <div id="doc-container" class="hidden"></div>
+                
+                <div id="print-instruction" class="hidden text-center mt-4 text-sm text-gray-500 bg-yellow-50 p-2 rounded border border-yellow-200 no-print">
+                    <i class="fa-solid fa-circle-info mr-1 text-yellow-600"></i> Click <b>"Save as PDF"</b> and select <b>"Save as PDF"</b> in the destination options.
+                </div>
+
+            </div>
+            
+            <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-center items-center gap-6 text-sm text-gray-500 flex-wrap no-print">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand"></i> Secure Client-Side Processing</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand"></i> High Fidelity Rendering</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-brand"></i> No Server Uploads</span>
+            </div>
+        </div>
+
+        <section class="mt-16 bg-white py-12 px-8 rounded-2xl shadow-sm border border-gray-200 no-print">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol text-brand"></i> How to Convert Word to PDF?
+                    </h2>
+                    <ol class="space-y-4">
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-blue-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Upload Docx</h4>
+                                <p class="text-gray-600 text-sm">Select your Microsoft Word (.docx) file from your computer or mobile.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-blue-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Preview Document</h4>
+                                <p class="text-gray-600 text-sm">Our tool renders your document instantly. Check if everything looks correct.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="bg-blue-100 text-brand font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Save as PDF</h4>
+                                <p class="text-gray-600 text-sm">Click the download button and choose "Save as PDF" to finish.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-brand"></i> How It Works
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        The PDF Mechanic uses a unique <strong>Browser-Based Rendering Engine</strong>. Unlike other tools that send your file to a remote server, we process the `.docx` XML structure directly on your device.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        We convert the Word styles into a printable web format and leverage the browser's native high-quality PDF generator. This ensures your data remains 100% private and the text remains sharp and selectable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-12 no-print">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Why Convert Word to PDF?</h2>
+            <div class="prose max-w-none text-gray-700 bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <p class="mb-4">
+                    Microsoft Word is great for editing, but when it comes to sharing, PDF is the king. Converting your documents ensures that the receiver sees exactly what you see.
+                </p>
+                <ul class="list-disc pl-5 space-y-2 mb-4">
+                    <li><strong>Universal Compatibility:</strong> PDFs open on any device (Phone, Tablet, PC) without needing specific fonts installed.</li>
+                    <li><strong>Security:</strong> PDFs are harder to accidentally edit, maintaining the integrity of your contracts or resumes.</li>
+                    <li><strong>Professionalism:</strong> Sending a resume or invoice in PDF format looks much more professional than a raw Word file.</li>
+                    <li><strong>File Size:</strong> PDFs are often more optimized for email attachments.</li>
+                </ul>
+                <p>
+                    With <strong>The PDF Mechanic</strong>, you get all these benefits without risking your privacy by uploading sensitive data to the cloud.
+                </p>
+            </div>
+        </section>
+
+        <section class="mt-12 no-print">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Is this tool free to use?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes, it is completely free. You can convert resumes, essays, and legal documents without paying a cent.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Is my data safe?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes. We use <strong>Client-side Processing</strong>. Your file never leaves your computer. It is processed by your browser, making it safe for confidential documents.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Can I convert PDF back to Word?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes! Check out our <a href="pdf-to-word.html" class="text-brand underline">PDF to Word</a> tool in the footer to do the reverse operation.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Why does the print window open?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">We use the browser's native print engine to generate the PDF. This ensures the highest quality text and vectors compared to other JavaScript libraries.</p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-xl border border-gray-200 cursor-pointer transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-gray-800">
+                        Does it support images in Word?
+                        <span class="text-brand transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">Yes, images, tables, and lists are supported and will appear in the final PDF file.</p>
+                </details>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-auto no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-wrench text-brand"></i> The PDF Mechanic</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Secure, privacy-focused online PDF tools. Process your documents locally without uploading them to servers.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Convert</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="pdf-to-word.html" class="hover:text-brand transition">PDF to Word</a></li>
+                        <li><a href="word-to-pdf.html" class="text-white font-bold">Word to PDF</a></li>
+                        <li><a href="images-to-pdf.html" class="hover:text-brand transition">JPG to PDF</a></li>
+                        <li><a href="pdf-to-images.html" class="hover:text-brand transition">PDF to JPG</a></li>
+                        <li><a href="pdf-to-excel.html" class="hover:text-brand transition">PDF to Excel</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Organize</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="merger.html" class="hover:text-brand transition">Merge PDF</a></li>
+                        <li><a href="splitter.html" class="hover:text-brand transition">Split PDF</a></li>
+                        <li><a href="delete-pages.html" class="hover:text-brand transition">Delete Pages</a></li>
+                        <li><a href="reorder-pages.html" class="hover:text-brand transition">Reorder Pages</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gray-200 border-b border-gray-700 pb-2">Edit & Sign</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="compressor.html" class="hover:text-brand transition">Compress PDF</a></li>
+                        <li><a href="ocr.html" class="hover:text-brand transition">OCR PDF</a></li>
+                        <li><a href="pdf-editor.html" class="hover:text-brand transition">PDF Editor</a></li>
+                        <li><a href="esign.html" class="hover:text-brand transition">eSign PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© <span id="year"></span> The PDF Mechanic. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const actionBar = document.getElementById('action-bar');
+        const container = document.getElementById('doc-container');
+        const printInstruction = document.getElementById('print-instruction');
+        const fileNameDisplay = document.getElementById('fileName');
+
+        // Logic (Print Method)
+        fileInput.addEventListener('change', function(e) {
+            if (fileInput.files.length === 0) return;
+
+            const file = fileInput.files[0];
+            fileNameDisplay.innerText = file.name;
+            
+            // UI Switch
+            uploadArea.classList.add('hidden');
+            actionBar.classList.remove('hidden');
+            container.classList.remove('hidden');
+            printInstruction.classList.remove('hidden');
+
+            const reader = new FileReader();
+
+            reader.onload = function(evt) {
+                const arrayBuffer = evt.target.result;
+                
+                // Rendering Options
+                const options = {
+                    className: "docx_content", 
+                    inWrapper: true, 
+                    ignoreWidth: false, 
+                    breakPages: true // Page breaks support
+                };
+
+                // Render Docx
+                container.innerHTML = ""; // Clear previous
+                docx.renderAsync(arrayBuffer, container, null, options)
+                    .then(() => {
+                        console.log("Render Success");
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("Error reading file! Please try a standard .docx file.");
+                        location.reload();
+                    });
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+
+        function printDoc() {
+            window.print();
+        }
+    </script>
+
+</body>
+</html>
