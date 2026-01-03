@@ -71,16 +71,71 @@
 
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: '#b91c1c', brandDark: '#991b1b', bg: '#F3F4F6' },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
+  <script>
+const { PDFDocument } = PDFLib;
+
+async function protectPDF() {
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const errorMsg = document.getElementById("errorMsg");
+  const protectBtn = document.getElementById("protectBtn");
+
+  if (!selectedFile) {
+    alert("Please select a PDF first.");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    errorMsg.classList.remove("hidden");
+    return;
+  } else {
+    errorMsg.classList.add("hidden");
+  }
+
+  const originalText = protectBtn.innerHTML;
+  protectBtn.innerHTML = "Processing...";
+  protectBtn.disabled = true;
+
+  try {
+    const bytes = await selectedFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+
+    const encryptedPdf = await pdfDoc.save({
+      userPassword: password,
+      ownerPassword: password,
+      permissions: {
+        printing: 'none',
+        modifying: false,
+        copying: false,
+        annotating: false,
+      }
+    });
+
+    const blob = new Blob([encryptedPdf], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+
+    document.getElementById("passwordArea").classList.add("hidden");
+    document.getElementById("resultArea").classList.remove("hidden");
+
+    const downloadLink = document.getElementById("downloadLink");
+    downloadLink.href = url;
+    downloadLink.download =
+      selectedFile.name.replace(/\.pdf$/i, "") + "_protected.pdf";
+
+  } catch (err) {
+    console.error(err);
+    alert("Failed to protect PDF.");
+    protectBtn.innerHTML = originalText;
+    protectBtn.disabled = false;
+  }
+}
+</script>
+
 </head>
 <body class="font-sans bg-bg text-gray-900 flex flex-col min-h-screen">
 
@@ -414,3 +469,4 @@
 
 </body>
 </html>
+
