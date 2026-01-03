@@ -358,18 +358,19 @@ async function protectPDF() {
         </div>
     </footer>
 
-   <script>
+  <script>
     // Global variable to store the selected file
     let selectedFile = null;
 
-   // 1. File Selection Handle karne ke liye function
-   function handleFileSelect(event) {
-       const fileInput = event.target;
-       
-       if (fileInput.files.length > 0) {
+    // 1. File Selection Handle karne ke liye function
+    function handleFileSelect(event) {
+        const fileInput = event.target;
+        
+        if (fileInput.files.length > 0) {
             setSelectedFile(fileInput.files[0]);
         }
     }
+
     function setSelectedFile(file) {
         selectedFile = file;
         document.getElementById('uploadArea').classList.add('hidden');
@@ -389,7 +390,10 @@ async function protectPDF() {
             input.type = "password";
         }
     }
+
     document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+    
+    // Drag and Drop Logic
     const uploadArea = document.getElementById('uploadArea');
     uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); });
     uploadArea.addEventListener('drop', (e) => { 
@@ -397,7 +401,7 @@ async function protectPDF() {
         const files = e.dataTransfer.files; 
         if (files && files.length > 0) { 
             const file = files[0]; 
-            if (/\\.pdf$/i.test(file.name)) { 
+            if (/\.pdf$/i.test(file.name)) { 
                 setSelectedFile(file); 
             } else { 
                 alert('Please select a PDF file.'); 
@@ -405,7 +409,7 @@ async function protectPDF() {
         } 
     });
 
-    // 2. Main Protect Function
+    // 2. Main Protect Function (Updated to use pdf-lib)
     async function protectPDF() {
         const password = document.getElementById("password").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
@@ -436,16 +440,30 @@ async function protectPDF() {
         protectBtn.disabled = true;
 
         try {
+            // Read the file as ArrayBuffer
             const arrayBuffer = await selectedFile.arrayBuffer();
-            const createModule = (await import('https://unpkg.com/@neslinesli93/qpdf-wasm@latest/dist/index.js')).default;
-            const qpdf = await createModule({ locateFile: () => 'https://unpkg.com/@neslinesli93/qpdf-wasm@latest/dist/qpdf.wasm', noInitialRun: true });
-            const inPath = '/in.pdf';
-            const outPath = '/out.pdf';
-            qpdf.FS.writeFile(inPath, new Uint8Array(arrayBuffer));
-            const args = ['--encrypt', password, password, '256', '--use-aes=y', '--modify=none', '--extract=n', '--print=none', '--', inPath, outPath];
-            qpdf.callMain(args);
-            const output = qpdf.FS.readFile(outPath);
-            const blob = new Blob([output], { type: 'application/pdf' });
+
+            // Load the PDF using pdf-lib (Available globally as PDFLib)
+            const { PDFDocument } = PDFLib;
+            const pdfDoc = await PDFDocument.load(arrayBuffer);
+
+            // Encrypt and Save
+            const encryptedPdfBytes = await pdfDoc.save({
+                userPassword: password,
+                ownerPassword: password, // Owner password (master key)
+                permissions: {
+                    printing: 'highResolution', // Allow printing
+                    modifying: false,           // Block modification
+                    copying: false,             // Block copying text
+                    annotating: false,          // Block comments
+                    fillingForms: false,
+                    contentAccessibility: false,
+                    documentAssembly: false,
+                }
+            });
+
+            // Create Blob and URL
+            const blob = new Blob([encryptedPdfBytes], { type: 'application/pdf' });
             const url = URL.createObjectURL(blob);
 
             // 3. Result Area Show karna
@@ -460,7 +478,8 @@ async function protectPDF() {
         } catch (err) {
             console.error(err);
             alert("Error: " + err.message);
-            // Reset button
+        } finally {
+             // Reset button (Always run this, even if success, to be safe or if user reloads)
             protectBtn.innerHTML = originalBtnText;
             protectBtn.disabled = false;
         }
@@ -469,4 +488,5 @@ async function protectPDF() {
 
 </body>
 </html>
+
 
