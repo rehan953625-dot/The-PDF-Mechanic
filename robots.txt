@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.pdfmechanic.com/sitemap.xml
+
+Sitemap: https://www.thepdfmechanic.com/sitemap.xml
