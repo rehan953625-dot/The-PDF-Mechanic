@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy Policy | The PDF Mechanic</title>
-    <meta name="description" content="Privacy Policy for The PDF Mechanic. We prioritize client-side security.">
+    <title>Privacy Policy | The PDF Mechanic - Secure Offline PDF Tools</title>
+    <meta name="description" content="Read the Privacy Policy for The PDF Mechanic. We guarantee 100% client-side security, zero server file uploads, and full compliance with third-party cloud integrations like Google Drive and Dropbox." />
+    <meta name="robots" content="index, follow" />
     
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -16,8 +17,10 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
 
-
+    <!-- Fonts & CDNs -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -58,19 +61,65 @@
     </nav>
 
     <main class="max-w-4xl mx-auto px-4 py-16 flex-grow">
-        <h1 class="font-display text-3xl md:text-4xl font-bold mb-8 text-brand-600">Privacy Policy</h1>
+        <div class="text-center md:text-left border-b border-slate-200 dark:border-slate-800 pb-8 mb-8">
+            <h1 class="font-display text-4xl font-extrabold mb-3 text-slate-900 dark:text-white">Privacy Policy</h1>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Last updated: January 2026</p>
+        </div>
         
-        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 space-y-6">
-            <p>Last updated: January 2026</p>
+        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 space-y-8">
             
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">1. No File Uploads</h3>
-            <p>Unlike other online PDF tools, <strong>The PDF Mechanic</strong> operates entirely in your browser ("client-side"). Your files are <strong>never</strong> uploaded to our servers. All processing (compression, merging, conversion) happens locally on your device.</p>
+            <section class="space-y-3">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">1.</span> No File Uploads
+                </h3>
+                <p>Unlike other online PDF utilities, <strong>The PDF Mechanic</strong> operates entirely inside your web browser ("client-side"). Your files are <strong>never</strong> uploaded to, processed on, or saved to our servers. All document processing—including merging, compression, and conversion—takes place strictly on your local device.</p>
+            </section>
 
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">2. Data Collection</h3>
-            <p>Since we do not store your files, we do not have access to your documents, bank statements, or personal data inside your PDFs. We use basic analytics (like Google Analytics) to understand website traffic, but this does not track individual file contents.</p>
+            <section class="space-y-3">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">2.</span> Data Collection & Processing
+                </h3>
+                <p>Because processing runs locally on your hardware, we have no mechanism to view or access your documents, invoices, bank statements, or any personal data contained within your PDFs. We do not collect, harvest, or store personal user information. We may utilize anonymized analytics (such as Google Analytics) to monitor general website traffic patterns, but this tracking never includes or associated with file contents.</p>
+            </section>
 
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white">3. Cookies</h3>
-            <p>We use local storage only to remember your theme preference (Dark/Light mode). No tracking cookies are used for advertising purposes.</p>
+            <section class="space-y-3">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">3.</span> Cookies & Local Storage
+                </h3>
+                <p>Our website utilizes browser local storage solely to remember your UI preference (Dark/Light mode). We do not deploy cross-site tracking cookies or use cookies for targeted behavioral advertising.</p>
+            </section>
+
+            <section class="space-y-3">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">4.</span> Google API & Third-Party Cloud Integrations
+                </h3>
+                <p>The PDF Mechanic provides optional, direct integration with external cloud storage services, specifically **Google Drive** and **Dropbox**, allowing you to seamlessly import files for processing. When you choose to use these features:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Explicit Consent:</strong> We only access specific user-selected files after you explicitly authenticate and choose a file via the official Google Picker or Dropbox Chooser systems.</li>
+                    <li><strong>No Server-side Transmission:</strong> The contents of any file retrieved from Google Drive or Dropbox are loaded directly into your browser's temporary sandbox memory (RAM). This data is never sent, uploaded, or saved to any external servers.</li>
+                    <li><strong>Google Limited Use Compliance:</strong> The PDF Mechanic's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" class="underline text-brand-600 hover:text-brand-700">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">5.</span> GDPR & CCPA Compliance
+                </h3>
+                <p>We respect international privacy frameworks, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA):</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>User Rights:</strong> Since we never collect, store, or transmit your private files or personal identifiers, there is no historical record of your data on our systems for us to delete, modify, or export. Your right to privacy is preserved by design.</li>
+                    <li><strong>Information Sharing:</strong> We do not lease, trade, sell, or otherwise transfer your private data or document contents to any third parties.</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3 border-t border-slate-200 dark:border-slate-800 pt-6">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-brand-600">6.</span> Contact Information
+                </h3>
+                <p>If you have questions, feedback, or concerns regarding our offline document processing architecture or this Privacy Policy, please reach out to our administration team at:</p>
+                <p class="font-semibold text-brand-600 text-lg">Email: <a href="mailto:rehan953625@gmail.com" class="hover:underline">rehan953625@gmail.com</a></p>
+            </section>
+
         </div>
     </main>
 
@@ -79,27 +128,31 @@
             <div class="text-xs text-slate-600">
                 &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
                 <div class="mt-2 space-x-4">
-                    <a href="index.html" class="hover:text-white">Home</a>
-                    <a href="privacy.html" class="text-white font-bold">Privacy Policy</a>
-                    <a href="terms.html" class="hover:text-white">Terms of Use</a>
+                    <a href="index.html" class="hover:text-white transition">Home</a>
+                    <a href="privacy.html" class="text-white font-bold transition">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition">Terms of Use</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-      // Theme Logic
+      // Theme Toggle Logic
       const themeToggle = document.getElementById('themeToggle');
       const html = document.documentElement;
+      
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
-      } else { html.classList.remove('dark'); }
+      } else { 
+        html.classList.remove('dark'); 
+      }
+      
       themeToggle.addEventListener('click', () => {
         html.classList.toggle('dark');
         localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
       });
+      
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </body>
 </html>
