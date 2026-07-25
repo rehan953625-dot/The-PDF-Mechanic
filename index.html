@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
     <title>Secure PDF Tools | Compress, Convert & Merge Files Offline (No Uploads)</title>
     <meta name="description" content="Process PDFs directly in your browser. Reduce PDF size to 100kb, merge files offline on Android, and convert PDF to Word. 100% client-side privacy.">
@@ -31,7 +32,7 @@
     <meta name="twitter:title" content="Secure PDF Tools – Work Offline in Your Browser">
     <meta name="twitter:description" content="Free PDF tools that work completely offline. Compress, merge, convert PDFs with full privacy.">
     <meta name="twitter:image" content="https://www.thepdfmechanic.com/The%20PDF%20Mechanic%202.4/og-home.png">
-
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -190,7 +191,7 @@
 
             <div class="max-w-lg mx-auto relative group z-10 mb-8">
                 <input type="text" id="toolSearch" 
-                    placeholder="What do you want to do? (compress to 100kb, merge, pdf to word)" 
+                    aria-label="Search for PDF tools" placeholder="What do you want to do? (compress to 100kb, merge, pdf to word)" 
                     class="w-full pl-6 pr-14 py-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-dark-card text-slate-800 dark:text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition text-base"
                     onkeyup="filterTools()">
                 <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-brand-500 text-xl">
@@ -479,11 +480,7 @@
       renderTools();
       function filterTools() { renderTools(document.getElementById('toolSearch').value); }
     </script>
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    media="print"
-    onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
