@@ -36,32 +36,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-392142348"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=AW-392142348";
+      document.head.appendChild(script);
 
-  gtag('config', 'AW-392142348');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-392142348');
+      
+      console.log("Analytics loaded after delay for performance");
+    }, 4000); // 4000ms = 4 seconds
+  });
 </script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
+   <script>
+  window.onload = function() {
+    tailwind.config = {
+      darkMode: 'class', 
+      theme: {
+        extend: {
+          colors: { 
+              brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
+              dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+          animation: { 'fade-in': 'fadeIn 0.5s ease-out' },
+          keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
         }
       }
-    </script>
+    }
+  }
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -155,7 +165,7 @@
                 <a href="#guides" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Guides</a>
                 <a href="#seo-content" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Why Us?</a>
             </div>
-            <button id="themeToggle" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle Theme">
+            <button id="themeToggle" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle Theme">
                 <i class="fa-solid fa-moon dark:hidden"></i>
                 <i class="fa-solid fa-sun hidden dark:block"></i>
             </button>
