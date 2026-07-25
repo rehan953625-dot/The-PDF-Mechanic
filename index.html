@@ -33,11 +33,20 @@
     <meta name="twitter:description" content="Free PDF tools that work completely offline. Compress, merge, convert PDFs with full privacy.">
     <meta name="twitter:image" content="https://www.thepdfmechanic.com/The%20PDF%20Mechanic%202.4/og-home.png">
     <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+  @font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
     <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
 <script>
   window.addEventListener('load', function() {
     setTimeout(function() {
@@ -480,7 +489,6 @@
       renderTools();
       function filterTools() { renderTools(document.getElementById('toolSearch').value); }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
