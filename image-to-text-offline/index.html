@@ -316,38 +316,78 @@
     </article>
   </section>
 
-  <footer class="bg-white border-t mt-12">
-    <div class="max-w-6xl mx-auto px-4 py-12">
-      <div class="grid md:grid-cols-4 gap-8 mb-8">
-        <div class="col-span-2">
-          <span class="text-xl font-display font-bold">The PDF Mechanic</span>
-          <p class="text-sm text-slate-500 mt-2 max-w-xs">
-            The secure, offline-first PDF tool suite. OCR, Merge, and Compress without internet.
-          </p>
+  <!-- Naya Professional Footer (merger.html se liya gaya) -->
+<footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+        <div class="col-span-1 sm:col-span-2 md:col-span-1">
+            <div class="flex items-center gap-2 mb-4 text-white">
+                <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-500 mb-4">
+                Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+            </p>
         </div>
+        
         <div>
-          <h4 class="font-semibold mb-4">Tools</h4>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li><a href="../extractor.html" class="hover:text-brand-600">Image to Text</a></li>
-            <li><a href="../compress-pdf-100kb/" class="hover:text-brand-600">Compress PDF</a></li>
-            <li><a href="../merger.html" class="hover:text-brand-600">Merge PDF</a></li>
-          </ul>
+            <h4 class="text-white font-bold text-sm mb-4">Organize & Edit</h4>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                <li><a href="../compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                <li><a href="../splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                <li><a href="../rotate-pdf.html" class="hover:text-brand-500 transition">Rotate PDF</a></li>
+            </ul>
         </div>
-        <div>
-          <h4 class="font-semibold mb-4">Legal</h4>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li><a href="#" class="hover:text-brand-600">Privacy Policy</a></li>
-            <li><a href="#" class="hover:text-brand-600">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="border-t pt-6 text-center text-sm text-slate-500">
-        © <span id="year"></span> The PDF Mechanic. All rights reserved.
-      </div>
-    </div>
-  </footer>
 
+        <div>
+            <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../extractor.html" class="hover:text-brand-500 transition text-brand-400">Image to Text</a></li>
+                <li><a href="../pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                <li><a href="../images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                <li><a href="../excel-to-pdf.html" class="hover:text-brand-500 transition">Excel to PDF</a></li>
+                <li><a href="../html-to-pdf.html" class="hover:text-brand-500 transition">HTML to PDF</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-white font-bold text-sm mb-4">Legal & More</h4>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                <li><a href="../terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+        &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+    </div>
+</footer>
+
+<!-- Dark Mode aur Year update karne ki Script -->
+<script>
+    // Theme Logic (Dark/Light mode switch)
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    // Check if user previously selected dark mode or their system is dark
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+    } else { 
+        html.classList.remove('dark'); 
+    }
+    
+    // Toggle button click listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+    }
+
+    // Dynamic Year setup
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
