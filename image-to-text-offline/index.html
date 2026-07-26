@@ -49,43 +49,53 @@
   </script>
 
   <script type="application/ld+json">
-  [
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Offline Image to Text Converter",
-      "operatingSystem": "Windows, Android, iOS",
-      "applicationCategory": "ProductivityApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+      "@type": "Question",
+      "name": "How does this offline image to text tool work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It uses advanced client-side processing (WebAssembly and JavaScript) to analyze and extract text from your images directly inside your browser, without needing a server." }
     },
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How to extract text from an image without uploading?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Use The PDF Mechanic's offline OCR tool. It scans your image locally in the browser and extracts text instantly without sending data to any server."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is this OCR tool free to use?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, our image-to-text converter is 100% free and has no usage limits."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "Is my data secure and private?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes! Your images never leave your device. Since there is zero data upload to any cloud server, this is the safest way to extract text from sensitive documents like ID cards or bank statements." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which image formats are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Currently, our tool supports standard image formats such as JPG, JPEG, PNG, and WebP." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an active internet connection?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Once you load this webpage, you can turn off your Wi-Fi or mobile data. The extractor functions 100% offline." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a file size limit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Because it runs locally, there are no server-side restrictions. However, processing exceptionally huge files depends on your device's RAM capacity." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it read handwritten text?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool is highly optimized for printed documents, books, and digital screenshots. Handwriting recognition may work but is generally less accurate than printed text." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on mobile devices?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely! You can use it natively in Google Chrome on Android or Safari on iOS without installing any bulky applications." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool completely free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, the Image to Text extractor by The PDF Mechanic is 100% free with no hidden charges and no daily usage limits." }
     }
   ]
-  </script>
+}
+</script>
 </head>
 
 <body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
@@ -174,7 +184,76 @@
       </ol>
     </div>
   </section>
+  <section class="max-w-4xl mx-auto px-4 py-12 mb-10">
+    <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6 font-display">Frequently Asked Questions</h2>
+    <div class="space-y-3">
+        
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>How does this offline image to text tool work?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">It uses advanced client-side processing (WebAssembly and JavaScript) to analyze and extract text from your images directly inside your browser, without needing a server.</p>
+        </details>
 
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Is my data secure and private?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes! Your images never leave your device. Since there is zero data upload to any cloud server, this is the safest way to extract text from sensitive documents like ID cards or bank statements.</p>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Which image formats are supported?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Currently, our tool supports standard image formats such as JPG, JPEG, PNG, and WebP.</p>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Do I need an active internet connection?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">No. Once you load this webpage, you can turn off your Wi-Fi or mobile data. The extractor functions 100% offline.</p>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Is there a file size limit?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Because it runs locally, there are no server-side restrictions. However, processing exceptionally huge files depends on your device's RAM capacity.</p>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Can it read handwritten text?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">The tool is highly optimized for printed documents, books, and digital screenshots. Handwriting recognition may work but is generally less accurate than printed text.</p>
+        </details>
+        
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Does it work on mobile devices?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Absolutely! You can use it natively in Google Chrome on Android or Safari on iOS without installing any bulky applications.</p>
+        </details>
+
+        <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                <span>Is this tool completely free?</span>
+                <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes, the Image to Text extractor by The PDF Mechanic is 100% free with no hidden charges and no daily usage limits.</p>
+        </details>
+
+    </div>
+</section>
   <section id="article" class="max-w-3xl mx-auto px-4 py-12 text-lg text-slate-700">
     <article>
       <h2 class="text-3xl font-display font-bold text-slate-900 mb-6">Why Use an Offline Image to Text Converter?</h2>
