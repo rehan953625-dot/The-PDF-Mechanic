@@ -28,7 +28,8 @@
   <meta name="twitter:title" content="Secure OCR – Image to Text Offline">
   <meta name="twitter:description" content="Convert screenshots and photos to text without internet. Privacy-focused OCR tool.">
   <meta name="twitter:image" content="https://www.thepdfmechanic.com/The%20PDF%20Mechanic%202.4/og-home.png">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -89,17 +90,29 @@
 
 <body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
 
-  <nav class="bg-white border-b sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../index.html" class="text-xl font-display font-bold text-slate-900 hover:text-brand-600 transition">
-        The PDF Mechanic
-      </a>
-      <div class="hidden sm:flex gap-6 text-sm font-medium text-slate-600">
-        <a href="#article" class="hover:text-brand-600">Read Article</a>
-        <a href="#how-to" class="hover:text-brand-600">How to Use</a>
+  <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-4">
+              <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+              </a>
+          </div>
+          <div class="flex items-center gap-4">
+             <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition hidden md:block">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Back Home
+             </a>
+             <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:block"></i>
+             </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <header class="text-center py-20 px-4 bg-gradient-to-b from-white to-slate-50">
     <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 rounded-full">
@@ -116,7 +129,7 @@
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="../ocr.html"
+      <a href="../extractor.html"
          class="inline-flex items-center justify-center bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 hover:shadow-lg hover:-translate-y-0.5 transition duration-200">
         Open OCR Tool
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,7 +249,7 @@
         <div>
           <h4 class="font-semibold mb-4">Tools</h4>
           <ul class="space-y-2 text-sm text-slate-600">
-            <li><a href="../ocr.html" class="hover:text-brand-600">Image to Text</a></li>
+            <li><a href="../extractor.html" class="hover:text-brand-600">Image to Text</a></li>
             <li><a href="../compress-pdf-100kb/" class="hover:text-brand-600">Compress PDF</a></li>
             <li><a href="../merger.html" class="hover:text-brand-600">Merge PDF</a></li>
           </ul>
