@@ -203,5 +203,11 @@
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
+   <url>
+      <loc>https://www.thepdfmechanic.com/blog/how-to-split-pdf-offline.html</loc>
+      <lastmod>2026-07-28</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
 
 </urlset>
