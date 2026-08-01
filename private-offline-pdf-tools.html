@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Applies saved theme before first paint to avoid a light/dark flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>PDF Tools That Never Upload Your File: The Complete Guide | The PDF Mechanic</title>
+    <meta name="description" content="How client-side PDF processing actually works, how to verify any tool is telling the truth about privacy in 60 seconds, and why it matters for job seekers, students, immigrants, and professionals worldwide.">
+    <meta name="author" content="The PDF Mechanic" />
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.thepdfmechanic.com/private-offline-pdf-tools.html" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="PDF Tools That Never Upload Your File — And You Can Prove It">
+    <meta property="og:description" content="How client-side PDF processing works, how to verify it yourself in 60 seconds, and why it matters worldwide — for job seekers, students, immigrants, and confidential documents.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/private-offline-pdf-tools.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF Tools That Never Upload Your File — And You Can Prove It">
+    <meta name="twitter:description" content="A complete guide to client-side PDF processing: how it works, how to verify it, and who it matters for.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PDF Tools That Never Upload Your File \u2014 And You Can Prove It",
+  "description": "How client-side PDF processing actually works, how to verify any tool is telling the truth about privacy, and why it matters for job seekers, students, immigrants, and professionals worldwide.",
+  "author": { "@type": "Organization", "name": "The PDF Mechanic", "url": "https://www.thepdfmechanic.com/" },
+  "publisher": { "@type": "Organization", "name": "The PDF Mechanic", "url": "https://www.thepdfmechanic.com/" },
+  "mainEntityOfPage": "https://www.thepdfmechanic.com/private-offline-pdf-tools.html",
+  "image": "https://www.thepdfmechanic.com/og-home.png"
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is a browser-based PDF tool actually safe to use for confidential documents?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, provided it genuinely processes files client-side rather than uploading them, which you can confirm yourself using the Network-tab check. Once confirmed, the file never leaves your device, so the usual risks of server storage, breaches, and third-party access don't apply." } },
+    { "@type": "Question", "name": "Do I need an internet connection to use these PDF tools?", "acceptedAnswer": { "@type": "Answer", "text": "Only for the first page load. After that, compressing, merging, converting, and editing all run locally and continue working with the connection switched off." } },
+    { "@type": "Question", "name": "How is a free tool with no account sustainable?", "acceptedAnswer": { "@type": "Answer", "text": "Because the processing happens on your device rather than a server, there's no per-file infrastructure cost to cover, which is what makes an uncapped free tier realistic rather than a loss-leader that needs a paid tier to subsidize it." } },
+    { "@type": "Question", "name": "What's the difference between \"encrypted\" and \"client-side\"?", "acceptedAnswer": { "@type": "Answer", "text": "Encryption protects data in transit or in storage but says nothing about whether the file was transmitted to a server at all. Client-side means the file was never sent anywhere in the first place, a stronger guarantee for anyone who wants to avoid a third party ever possessing the document, even briefly." } },
+    { "@type": "Question", "name": "Can I use these tools on a phone with limited mobile data?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The page itself loads once, using a small amount of data, and every operation after that runs locally without sending the file anywhere, so processing multiple documents doesn't consume additional data." } },
+    { "@type": "Question", "name": "Are client-side PDF tools as capable as desktop software like Adobe Acrobat?", "acceptedAnswer": { "@type": "Answer", "text": "For merging, splitting, compressing, converting, watermarking, signing, and basic editing, the tasks most people actually need, yes. Advanced features like preflight checking or complex form design still tend to favour dedicated desktop software." } },
+    { "@type": "Question", "name": "Does closing the browser tab delete my file?", "acceptedAnswer": { "@type": "Answer", "text": "The original file was never copied anywhere except your own device's memory during processing, so closing the tab simply ends that in-memory session. Nothing needs to be deleted from a server because nothing was ever sent to one." } },
+    { "@type": "Question", "name": "Is this suitable for GDPR or HIPAA-relevant documents?", "acceptedAnswer": { "@type": "Answer", "text": "Because the file is never transmitted to or processed by a third-party server, many of the data-processor obligations that apply to upload-based tools don't apply in the same way here. This isn't formal legal advice for your specific organisation, but the underlying technical fact of no transmission and no third-party processing is exactly what those regulations are concerned with." } },
+    { "@type": "Question", "name": "Is there a file size limit?", "acceptedAnswer": { "@type": "Answer", "text": "There's no artificial cap imposed by the tool itself. The practical ceiling is your own device's available memory, since the whole file is held in browser memory during processing, which on most modern devices comfortably covers everyday documents, including large scanned files running into hundreds of pages." } },
+    { "@type": "Question", "name": "Do these tools work the same way on mobile as on desktop?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WebAssembly runs the same way in a mobile browser as a desktop one, so the same compression, merging, and conversion operations work on Android and iOS, including with the connection switched off after the page has loaded." } },
+    { "@type": "Question", "name": "Can my employer or network administrator see what I'm processing?", "acceptedAnswer": { "@type": "Answer", "text": "A network administrator can typically see that a connection to the site was made, the same as for any website, but since the file itself is never transmitted, there's no document content for them to intercept or log, unlike an upload-based tool where the file passes across the network in full." } },
+    { "@type": "Question", "name": "What happens if I lose my internet connection mid-task?", "acceptedAnswer": { "@type": "Answer", "text": "Once the page has loaded, an in-progress compression, merge, or conversion isn't depending on the network at all, so losing the connection partway through doesn't interrupt it, the operation completes locally regardless." } },
+    { "@type": "Question", "name": "Why doesn't this tool ask me to sign up or verify my email?", "acceptedAnswer": { "@type": "Answer", "text": "An account mainly exists to sync files across devices, restore purchase history, or gate a paid tier, none of which apply here, since there's no cloud storage involved and every operation is free. Skipping accounts also means there's no email address or password of yours to eventually appear in a breach somewhere else." } },
+    { "@type": "Question", "name": "Is a tool open source more trustworthy than one that isn't?", "acceptedAnswer": { "@type": "Answer", "text": "Open-source code lets anyone read exactly what a tool does, which is a stronger guarantee than a written promise. It isn't the only way to verify behaviour though, the Network-tab check works on any tool, open source or not, since it observes actual behaviour rather than reading source code." } }
+  ]
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+    { "@type": "ListItem", "position": 2, "name": "PDF Tools That Never Upload Your File", "item": "https://www.thepdfmechanic.com/private-offline-pdf-tools.html" }
+  ]
+}
+</script>
+
+    <style>
+
+/* ===== Preflight (minimal reset, mirrors Tailwind base) ===== */
+*,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+html{-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.5}
+body{margin:0;line-height:inherit}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:inherit}
+b,strong{font-weight:bolder}
+button,input{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
+button{text-transform:none;-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+input::placeholder{opacity:1;color:#94a3b8}
+ul,ol{list-style:none;margin:0;padding:0}
+svg{display:block;vertical-align:middle}
+[hidden]{display:none}
+img,svg{max-width:100%;height:auto}
+:focus:not(:focus-visible){outline:none}
+
+/* ===== Keyframes ===== */
+@keyframes fadeIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes tw-pulse{50%{opacity:.5}}
+
+/* ===== Group marker (no own styles; enables group-hover children) ===== */
+.group{}
+
+/* ===== Base utilities (unprefixed) ===== */
+.-mx-4 { margin-left:-1rem;margin-right:-1rem; }
+.absolute { position:absolute; }
+.animate-fade-in { animation:fadeIn 0.5s ease-out; }
+.animate-pulse { animation:tw-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+.backdrop-blur-sm { backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px); }
+.bg-blue-100 { background-color:#dbeafe; }
+.bg-blue-50 { background-color:#eff6ff; }
+.bg-brand-100 { background-color:#dbeafe; }
+.bg-brand-50 { background-color:#eff6ff; }
+.bg-brand-600 { background-color:#2563eb; }
+.bg-cyan-50 { background-color:#ecfeff; }
+.bg-emerald-50 { background-color:#ecfdf5; }
+.bg-gray-100 { background-color:#f3f4f6; }
+.bg-green-50 { background-color:#f0fdf4; }
+.bg-green-500 { background-color:#22c55e; }
+.bg-indigo-50 { background-color:#eef2ff; }
+.bg-orange-50 { background-color:#fff7ed; }
+.bg-pink-50 { background-color:#fdf2f8; }
+.bg-purple-50 { background-color:#faf5ff; }
+.bg-red-100 { background-color:#fee2e2; }
+.bg-red-50 { background-color:#fef2f2; }
+.bg-rose-50 { background-color:#fff1f2; }
+.bg-sky-50 { background-color:#f0f9ff; }
+.bg-slate-100 { background-color:#f1f5f9; }
+.bg-slate-50 { background-color:#f8fafc; }
+.bg-slate-50\/90 { background-color:rgb(248 250 252 / 0.9); }
+.bg-slate-700 { background-color:#334155; }
+.bg-slate-950 { background-color:#020617; }
+.bg-violet-50 { background-color:#f5f3ff; }
+.bg-white { background-color:#ffffff; }
+.bg-yellow-50 { background-color:#fefce8; }
+.border { border-width:1px; }
+.border-b { border-bottom-width:1px; }
+.border-brand-100 { border-color:#dbeafe; }
+.border-slate-100 { border-color:#f1f5f9; }
+.border-slate-200 { border-color:#e2e8f0; }
+.border-slate-800 { border-color:#1e293b; }
+.border-slate-900 { border-color:#0f172a; }
+.border-t { border-top-width:1px; }
+.border-transparent { border-color:transparent; }
+.border-y { border-top-width:1px;border-bottom-width:1px; }
+.col-span-1 { grid-column:span 1 / span 1; }
+.cursor-not-allowed { cursor:not-allowed; }
+.cursor-pointer { cursor:pointer; }
+.dark .dark\:bg-blue-800\/20 { background-color:rgb(30 64 175 / 0.2); }
+.dark .dark\:bg-blue-900\/20 { background-color:rgb(30 58 138 / 0.2); }
+.dark .dark\:bg-brand-900\/30 { background-color:rgb(30 58 138 / 0.3); }
+.dark .dark\:bg-cyan-900\/20 { background-color:rgb(22 78 99 / 0.2); }
+.dark .dark\:bg-dark-bg { background-color:#0f172a; }
+.dark .dark\:bg-dark-bg\/90 { background-color:rgb(15 23 42 / 0.9); }
+.dark .dark\:bg-dark-card { background-color:#1e293b; }
+.dark .dark\:bg-emerald-900\/20 { background-color:rgb(6 78 59 / 0.2); }
+.dark .dark\:bg-gray-800 { background-color:#1f2937; }
+.dark .dark\:bg-green-900\/20 { background-color:rgb(20 83 45 / 0.2); }
+.dark .dark\:bg-indigo-900\/20 { background-color:rgb(49 46 129 / 0.2); }
+.dark .dark\:bg-orange-900\/20 { background-color:rgb(124 45 18 / 0.2); }
+.dark .dark\:bg-pink-900\/20 { background-color:rgb(131 24 67 / 0.2); }
+.dark .dark\:bg-purple-900\/20 { background-color:rgb(88 28 135 / 0.2); }
+.dark .dark\:bg-red-900\/20 { background-color:rgb(127 29 29 / 0.2); }
+.dark .dark\:bg-rose-900\/20 { background-color:rgb(136 19 55 / 0.2); }
+.dark .dark\:bg-sky-900\/20 { background-color:rgb(12 74 110 / 0.2); }
+.dark .dark\:bg-slate-800 { background-color:#1e293b; }
+.dark .dark\:bg-violet-900\/20 { background-color:rgb(76 29 149 / 0.2); }
+.dark .dark\:bg-yellow-900\/20 { background-color:rgb(113 63 18 / 0.2); }
+.dark .dark\:block { display:block; }
+.dark .dark\:border-dark-border { border-color:#334155; }
+.dark .dark\:border-slate-700 { border-color:#334155; }
+.dark .dark\:border-slate-800 { border-color:#1e293b; }
+.dark .dark\:hidden { display:none; }
+.dark .dark\:hover\:bg-slate-700:hover { background-color:#334155; }
+.dark .dark\:text-brand-500 { color:#3b82f6; }
+.dark .dark\:text-dark-text { color:#f8fafc; }
+.dark .dark\:text-slate-200 { color:#e2e8f0; }
+.dark .dark\:text-slate-300 { color:#cbd5e1; }
+.dark .dark\:text-slate-400 { color:#94a3b8; }
+.dark .dark\:text-slate-600 { color:#475569; }
+.dark .dark\:text-white { color:#ffffff; }
+.dark .dark\:text-yellow-400 { color:#facc15; }
+.duration-300 { transition-duration:300ms; }
+.ease-out { transition-timing-function:cubic-bezier(0,0,0.2,1); }
+.flex { display:flex; }
+.flex-col { flex-direction:column; }
+.flex-grow { flex-grow:1; }
+.flex-wrap { flex-wrap:wrap; }
+.focus\:outline-none:focus { outline:2px solid transparent;outline-offset:2px; }
+.focus\:ring-2:focus { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.focus\:ring-brand-500:focus { --tw-ring-color:#3b82f6; }
+.font-bold { font-weight:700; }
+.font-display { font-family:Outfit,ui-sans-serif,system-ui,sans-serif; }
+.font-extrabold { font-weight:800; }
+.font-medium { font-weight:500; }
+.font-sans { font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+.font-semibold { font-weight:600; }
+.gap-1\.5 { gap:0.375rem; }
+.gap-10 { gap:2.5rem; }
+.gap-2 { gap:0.5rem; }
+.gap-4 { gap:1rem; }
+.gap-5 { gap:1.25rem; }
+.gap-6 { gap:1.5rem; }
+.gap-x-12 { column-gap:3rem; }
+.gap-x-8 { column-gap:2rem; }
+.gap-y-12 { row-gap:3rem; }
+.gap-y-4 { row-gap:1rem; }
+.grayscale { filter:grayscale(100%); }
+.grid { display:grid; }
+.grid-cols-1 { grid-template-columns:repeat(1,minmax(0,1fr)); }
+.group:hover .group-hover\:bg-brand-700 { background-color:#1d4ed8; }
+.group:hover .group-hover\:scale-110 { transform:scale(1.1); }
+.group:hover .group-hover\:text-brand-600 { color:#2563eb; }
+.h-10 { height:2.5rem; }
+.h-12 { height:3rem; }
+.h-16 { height:4rem; }
+.h-2 { height:0.5rem; }
+.h-9 { height:2.25rem; }
+.h-\[1px\] { height:1px; }
+.hidden { display:none; }
+.hover\:-translate-y-1:hover { transform:translateY(-0.25rem); }
+.hover\:bg-brand-700:hover { background-color:#1d4ed8; }
+.hover\:bg-slate-100:hover { background-color:#f1f5f9; }
+.hover\:ring-2:hover { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.hover\:shadow-lg:hover { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.hover\:text-blue-500:hover { color:#3b82f6; }
+.hover\:text-brand-500:hover { color:#3b82f6; }
+.hover\:text-brand-600:hover { color:#2563eb; }
+.hover\:text-brand-700:hover { color:#1d4ed8; }
+.hover\:text-pink-500:hover { color:#ec4899; }
+.inline-flex { display:inline-flex; }
+.inset-0 { top:0;right:0;bottom:0;left:0; }
+.inset-y-0 { top:0;bottom:0; }
+.items-center { align-items:center; }
+.items-start { align-items:flex-start; }
+.justify-between { justify-content:space-between; }
+.justify-center { justify-content:center; }
+.leading-relaxed { line-height:1.625; }
+.leading-tight { line-height:1.25; }
+.line-clamp-2 { overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2; }
+.max-w-2xl { max-width:42rem; }
+.max-w-4xl { max-width:56rem; }
+.max-w-5xl { max-width:64rem; }
+.max-w-7xl { max-width:80rem; }
+.max-w-lg { max-width:32rem; }
+.max-w-xl { max-width:36rem; }
+.mb-1 { margin-bottom:0.25rem; }
+.mb-10 { margin-bottom:2.5rem; }
+.mb-14 { margin-bottom:3.5rem; }
+.mb-2 { margin-bottom:0.5rem; }
+.mb-3 { margin-bottom:0.75rem; }
+.mb-4 { margin-bottom:1rem; }
+.mb-5 { margin-bottom:1.25rem; }
+.mb-6 { margin-bottom:1.5rem; }
+.mb-7 { margin-bottom:1.75rem; }
+.mb-8 { margin-bottom:2rem; }
+.min-h-screen { min-height:100vh; }
+.ml-1 { margin-left:0.25rem; }
+.mt-1 { margin-top:0.25rem; }
+.mt-10 { margin-top:2.5rem; }
+.mt-4 { margin-top:1rem; }
+.mt-5 { margin-top:1.25rem; }
+.mt-6 { margin-top:1.5rem; }
+.mt-8 { margin-top:2rem; }
+.mx-auto { margin-left:auto;margin-right:auto; }
+.opacity-100 { opacity:1; }
+.opacity-60 { opacity:0.6; }
+.opacity-90 { opacity:0.9; }
+.overflow-hidden { overflow:hidden; }
+.overflow-x-auto { overflow-x:auto; }
+.p-5 { padding:1.25rem; }
+.p-6 { padding:1.5rem; }
+.pb-12 { padding-bottom:3rem; }
+.pb-16 { padding-bottom:4rem; }
+.pb-20 { padding-bottom:5rem; }
+.pb-24 { padding-bottom:6rem; }
+.pb-8 { padding-bottom:2rem; }
+.pl-5 { padding-left:1.25rem; }
+.pl-6 { padding-left:1.5rem; }
+.pointer-events-none { pointer-events:none; }
+.pr-14 { padding-right:3.5rem; }
+.pt-16 { padding-top:4rem; }
+.pt-20 { padding-top:5rem; }
+.pt-4 { padding-top:1rem; }
+.pt-8 { padding-top:2rem; }
+.px-2 { padding-left:0.5rem;padding-right:0.5rem; }
+.px-4 { padding-left:1rem;padding-right:1rem; }
+.px-5 { padding-left:1.25rem;padding-right:1.25rem; }
+.px-6 { padding-left:1.5rem;padding-right:1.5rem; }
+.py-0\.5 { padding-top:0.125rem;padding-bottom:0.125rem; }
+.py-1\.5 { padding-top:0.375rem;padding-bottom:0.375rem; }
+.py-16 { padding-top:4rem;padding-bottom:4rem; }
+.py-2 { padding-top:0.5rem;padding-bottom:0.5rem; }
+.py-20 { padding-top:5rem;padding-bottom:5rem; }
+.py-3 { padding-top:0.75rem;padding-bottom:0.75rem; }
+.py-4 { padding-top:1rem;padding-bottom:1rem; }
+.relative { position:relative; }
+.right-4 { right:1rem; }
+.right-5 { right:1.25rem; }
+.ring-brand-500 { --tw-ring-color:#3b82f6; }
+.rounded-2xl { border-radius:1rem; }
+.rounded-full { border-radius:9999px; }
+.rounded-lg { border-radius:0.5rem; }
+.rounded-xl { border-radius:0.75rem; }
+.scroll-smooth { scroll-behavior:smooth; }
+.selection\:bg-brand-500::selection { background-color:#3b82f6; }
+.selection\:text-white::selection { color:#ffffff; }
+.shadow-lg { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-md { box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.shadow-sm { box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.shadow-xl { box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.5rem; }
+.space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+.sticky { position:sticky; }
+.text-2xl { font-size:1.5rem;line-height:2rem; }
+.text-4xl { font-size:2.25rem;line-height:2.5rem; }
+.text-5xl { font-size:3rem;line-height:1; }
+.text-\[10px\] { font-size:10px; }
+.text-base { font-size:1rem;line-height:1.5rem; }
+.text-blue-500 { color:#3b82f6; }
+.text-blue-600 { color:#2563eb; }
+.text-blue-700 { color:#1d4ed8; }
+.text-brand-100 { color:#dbeafe; }
+.text-brand-500 { color:#3b82f6; }
+.text-brand-600 { color:#2563eb; }
+.text-brand-700 { color:#1d4ed8; }
+.text-center { text-align:center; }
+.text-cyan-500 { color:#06b6d4; }
+.text-emerald-600 { color:#059669; }
+.text-gray-600 { color:#4b5563; }
+.text-green-500 { color:#22c55e; }
+.text-green-600 { color:#16a34a; }
+.text-indigo-500 { color:#6366f1; }
+.text-indigo-600 { color:#4f46e5; }
+.text-lg { font-size:1.125rem;line-height:1.75rem; }
+.text-orange-500 { color:#f97316; }
+.text-pink-500 { color:#ec4899; }
+.text-pink-600 { color:#db2777; }
+.text-purple-500 { color:#a855f7; }
+.text-purple-600 { color:#9333ea; }
+.text-red-500 { color:#ef4444; }
+.text-red-600 { color:#dc2626; }
+.text-rose-500 { color:#f43f5e; }
+.text-sky-500 { color:#0ea5e9; }
+.text-slate-300 { color:#cbd5e1; }
+.text-slate-400 { color:#94a3b8; }
+.text-slate-500 { color:#64748b; }
+.text-slate-600 { color:#475569; }
+.text-slate-800 { color:#1e293b; }
+.text-slate-900 { color:#0f172a; }
+.text-sm { font-size:0.875rem;line-height:1.25rem; }
+.text-violet-500 { color:#8b5cf6; }
+.text-white { color:#ffffff; }
+.text-xl { font-size:1.25rem;line-height:1.75rem; }
+.text-xs { font-size:0.75rem;line-height:1rem; }
+.text-yellow-500 { color:#eab308; }
+.top-0 { top:0; }
+.top-20 { top:5rem; }
+.top-4 { top:1rem; }
+.tracking-tight { letter-spacing:-0.025em; }
+.tracking-wider { letter-spacing:0.05em; }
+.transition { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-all { transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-colors { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-transform { transition-property:transform;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.underline { text-decoration-line:underline; }
+.underline-offset-2 { text-underline-offset:2px; }
+.uppercase { text-transform:uppercase; }
+.w-10 { width:2.5rem; }
+.w-12 { width:3rem; }
+.w-2 { width:0.5rem; }
+.w-8 { width:2rem; }
+.w-9 { width:2.25rem; }
+.w-full { width:100%; }
+.whitespace-nowrap { white-space:nowrap; }
+.z-10 { z-index:10; }
+.z-40 { z-index:40; }
+.z-50 { z-index:50; }
+
+/* ===== sm: (640px+) ===== */
+@media (min-width: 640px) {
+.sm\:col-span-2 { grid-column:span 2 / span 2; }
+.sm\:flex-row { flex-direction:row; }
+.sm\:gap-8 { gap:2rem; }
+.sm\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.sm\:justify-center { justify-content:center; }
+.sm\:mx-0 { margin-left:0;margin-right:0; }
+.sm\:px-0 { padding-left:0;padding-right:0; }
+.sm\:px-6 { padding-left:1.5rem;padding-right:1.5rem; }
+.sm\:text-3xl { font-size:1.875rem;line-height:2.25rem; }
+.sm\:text-5xl { font-size:3rem;line-height:1; }
+.sm\:text-sm { font-size:0.875rem;line-height:1.25rem; }
+}
+
+
+/* ===== md: (768px+) ===== */
+@media (min-width: 768px) {
+.md\:col-span-1 { grid-column:span 1 / span 1; }
+.md\:flex { display:flex; }
+.md\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.md\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.md\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.md\:text-6xl { font-size:3.75rem;line-height:1; }
+}
+
+
+/* ===== lg: (1024px+) ===== */
+@media (min-width: 1024px) {
+.lg\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.lg\:px-8 { padding-left:2rem;padding-right:2rem; }
+}
+
+
+/* ===== xl: (1280px+) ===== */
+@media (min-width: 1280px) {
+.xl\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+
+/* ===== Additional utilities used in guide sections ===== */
+.list-disc { list-style-type: disc; }
+.list-decimal { list-style-type: decimal; }
+.marker\:text-brand-500::marker { color: #3b82f6; }
+.marker\:text-brand-600::marker { color: #2563eb; }
+.marker\:font-bold::marker { font-weight: 700; }
+.max-w-none { max-width: none; }
+.hover\:bg-brand-700:hover { background-color: #1d4ed8; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+.spec-table-wrap { overflow-x: auto; border-radius: 1rem; border: 1px solid #e2e8f0; -webkit-overflow-scrolling: touch; }
+.dark .spec-table-wrap { border-color: #334155; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.spec-table th { background: #eff6ff; color: #1d4ed8; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(30,58,138,0.35); color: #93c5fd; }
+.spec-table td { padding: 0.75rem 1rem; border-top: 1px solid #e2e8f0; color: #475569; }
+.dark .spec-table td { border-top-color: #334155; color: #cbd5e1; }
+.spec-table tbody tr:hover { background: #f8fafc; }
+.dark .spec-table tbody tr:hover { background: rgba(30,41,59,0.6); }
+.faq-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; overflow: hidden; }
+.dark .faq-item { background: #1e293b; border-color: #334155; }
+.faq-item summary { cursor: pointer; list-style: none; padding: 1.1rem 1.25rem; font-weight: 600; color: #0f172a; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.dark .faq-item summary { color: #f8fafc; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.35rem; line-height: 1; color: #2563eb; flex-shrink: 0; transition: transform 0.2s ease; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-answer { padding: 0 1.25rem 1.15rem; color: #475569; font-size: 0.9rem; line-height: 1.65; }
+.dark .faq-answer { color: #94a3b8; }
+.cta-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 1rem; background: #2563eb; color: #fff; font-weight: 600; font-size: 0.95rem; transition: background-color 0.15s ease, transform 0.15s ease; box-shadow: 0 10px 15px -3px rgb(37 99 235 / 0.25); }
+.cta-btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+.cta-btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 1rem; background: transparent; color: #2563eb; font-weight: 600; font-size: 0.95rem; border: 1.5px solid #bfdbfe; transition: background-color 0.15s ease; }
+.cta-btn-secondary:hover { background: #eff6ff; }
+.dark .cta-btn-secondary { color: #93c5fd; border-color: #1e3a8a; }
+.dark .cta-btn-secondary:hover { background: rgba(30,58,138,0.25); }
+.cta-btn-white { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border-radius: 1rem; background: #fff; color: #1d4ed8; font-weight: 700; font-size: 0.95rem; transition: transform 0.15s ease; }
+.cta-btn-white:hover { transform: translateY(-1px); }
+.cta-banner { background: linear-gradient(135deg, #2563eb, #1d4ed8); padding: 3.5rem 0; margin: 3rem 0; }
+.callout-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(30,58,138,0.18); border-color: #1e3a8a; border-left-color: #3b82f6; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #1d4ed8; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.dark .callout-box-title { color: #93c5fd; }
+.kbd { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 0.375rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-bottom-width: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem; color: #334155; }
+.dark .kbd { background: #1e293b; border-color: #475569; color: #e2e8f0; }
+code.kbd { font-style: normal; }
+.persona-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+.persona-card:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08); transform: translateY(-2px); }
+.dark .persona-card { background: #1e293b; border-color: #334155; }
+.persona-icon { width: 2.75rem; height: 2.75rem; border-radius: 0.75rem; background: #eff6ff; color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; margin-bottom: 0.9rem; }
+.dark .persona-icon { background: rgba(37,99,235,0.18); color: #60a5fa; }
+.persona-card h3 { font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+.dark .persona-card h3 { color: #f8fafc; }
+.persona-card p { font-size: 0.875rem; line-height: 1.55; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+    </style>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .dark .glass-nav { background: rgba(15, 23, 42, 0.9); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'AW-392142348');
+
+      function loadGtagScript() {
+        if (window.__gtagScriptLoaded) return;
+        window.__gtagScriptLoaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=AW-392142348";
+        document.head.appendChild(script);
+      }
+      window.addEventListener('load', function () {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGtagScript, { timeout: 4000 });
+        } else {
+          setTimeout(loadGtagScript, 2000);
+        }
+      });
+    </script>
+
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight">The PDF Mechanic</span>
+          </a>
+
+          <div class="flex items-center gap-5">
+             <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="index.html#tools-section" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Tools</a>
+                <a href="index.html#guides" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Guides</a>
+                <a href="index.html#govt-guide" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Govt. Forms</a>
+                <a href="private-offline-pdf-tools.html" class="text-brand-600 dark:text-brand-500 transition">Privacy Guide</a>
+            </div>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="relative pt-20 pb-16 text-center px-4 overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-xs font-semibold mb-6 border border-brand-100 dark:border-brand-800">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Client-Side &amp; Verifiable
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-slate-900 dark:text-white">
+                PDF Tools That Never <span class="text-brand-600">Leave Your Device</span> &mdash; And You Can Prove It
+            </h1>
+
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                A complete guide to how browser-based PDF processing actually works, how to verify any tool is telling the truth about privacy, and why it matters more on a slow connection than a fast one.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="index.html#tools-section" class="cta-btn-primary">
+                    <i class="fa-solid fa-wrench" aria-hidden="true"></i> Try The Tools Free &mdash; No Upload
+                </a>
+                <a href="#verify-it-yourself" class="cta-btn-secondary">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> See How to Verify It
+                </a>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium opacity-90 mt-10">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-green-500" aria-hidden="true"></i> Zero File Uploads</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-blue-500" aria-hidden="true"></i> Works With No Internet</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-purple-500" aria-hidden="true"></i> Open to Inspection</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-check-circle text-brand-500" aria-hidden="true"></i> Forever Free</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="prose-content max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+        <div>
+            <p>Type "PDF compressor" into Google and you'll get a dozen results within a second, all free, all polished, most of them claiming to be safe and private. What almost none of them will show you is <em>what actually happens</em> to your file the moment you drop it onto the page. Does it stay on your device, or does it travel to a server somewhere before it comes back? It's a question worth asking about every tool you've ever used without thinking twice.</p>
+            <p class="mt-4">For a birthday invitation, that question barely matters. For a signed contract, a client's tax return, a patient chart, or a passport scan, it's the only question that matters. This guide explains what "client-side processing" actually means at a technical level, walks through how to check &mdash; in about thirty seconds, using tools already built into your browser &mdash; whether any PDF site is telling the truth about it, and gives a complete tour of what a fully offline-capable PDF toolkit like <a href="index.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">The PDF Mechanic</a> can actually do.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-ruler text-brand-600"></i> Common File Size Limits You'll Actually Hit
+            </h2>
+            <p>Almost every "why won't this upload" moment traces back to one of a small set of limits that show up again and again, worldwide, regardless of what the document actually is. Knowing the number before you hit it saves a resubmission later.</p>
+            <div class="mt-5 spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Where you'll hit it</th>
+                            <th>Typical limit</th>
+                            <th>What usually blows past it</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gmail attachment</td>
+                            <td>25 MB</td>
+                            <td>Multiple scanned documents in one email</td>
+                        </tr>
+                        <tr>
+                            <td>Outlook / Microsoft 365 attachment</td>
+                            <td>20&ndash;25 MB</td>
+                            <td>Same, plus embedded high-res images</td>
+                        </tr>
+                        <tr>
+                            <td>Job application / ATS portal</td>
+                            <td>2&ndash;10 MB, often per file</td>
+                            <td>A resume exported with a full-bleed background image</td>
+                        </tr>
+                        <tr>
+                            <td>University / study-abroad portal</td>
+                            <td>Often 5 MB per document</td>
+                            <td>A colour-scanned transcript or bound certificate</td>
+                        </tr>
+                        <tr>
+                            <td>Visa or immigration portal</td>
+                            <td>Commonly 1&ndash;6 MB per file</td>
+                            <td>Bank statement bundles, photo evidence sets</td>
+                        </tr>
+                        <tr>
+                            <td>Government / public-sector portal</td>
+                            <td>Frequently under 1 MB, sometimes under 200 KB</td>
+                            <td>Any document scanned in colour at high DPI</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-5">The fix is almost always the same regardless of which limit you've hit: compress the images inside the document rather than the document as a whole, since images are what actually drive file size in the overwhelming majority of real-world PDFs. If several files need to travel together, <a href="compressor.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">compress each one individually first</a>, then <a href="merger.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">merge them</a> — merging first and compressing afterward tends to give a worse, less predictable result across pages.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-server text-brand-600"></i> Where Does Your File Actually Go?
+            </h2>
+            <p>Every "online PDF tool" falls into one of three categories, and the marketing copy on most of their homepages doesn't make the difference obvious.</p>
+            <div class="mt-5 spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>What happens to your file</th>
+                            <th>Works with no internet?</th>
+                            <th>Risk window</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Upload &amp; keep</td>
+                            <td>Sent to a server, stored indefinitely or until you delete it</td>
+                            <td>No</td>
+                            <td>Ongoing</td>
+                        </tr>
+                        <tr>
+                            <td>Upload &amp; auto-delete</td>
+                            <td>Sent to a server, processed, deleted after 1&ndash;24 hours</td>
+                            <td>No</td>
+                            <td>The deletion window itself</td>
+                        </tr>
+                        <tr>
+                            <td>Client-side (in-browser)</td>
+                            <td>Never sent anywhere &mdash; processed on your own device</td>
+                            <td>Yes, after the page has loaded once</td>
+                            <td>None</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-5">The middle category is where most of the confusion lives. "We delete your file after 24 hours" is a genuinely better policy than keeping it forever, and plenty of reputable tools operate this way. But between the upload and the deletion, the file exists on someone else's infrastructure: it can appear in server logs, temporary caches, or backups, and a breach during that window is still a breach. Only the third category removes the file from that equation entirely, because the file is never transmitted in the first place.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-microchip text-brand-600"></i> How a Browser Compresses, Merges &amp; Converts a PDF Without a Server
+            </h2>
+            <p>This sounds like it should be impossible &mdash; PDF processing has traditionally been "real software's" job, the kind that needs a desktop app or a beefy server. What changed is a browser technology called <strong class="text-slate-800 dark:text-slate-200">WebAssembly (WASM)</strong>, a low-level format that lets code originally written in fast languages like C++ or Rust run inside a web page at close to native speed, instead of the slower JavaScript most sites are built with.</p>
+            <p class="mt-4">Libraries built for exactly this purpose &mdash; reading, rewriting, and re-encoding PDF structure, or re-compressing the images inside a page &mdash; get compiled to WebAssembly once, shipped as part of the page, and then run entirely inside your browser's sandbox. In practice, that looks like this:</p>
+            <ol class="mt-4 space-y-3 list-decimal pl-5 marker:text-brand-600 marker:font-bold">
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">You select a file.</span> The browser's File API reads it into memory on your own device &mdash; nothing has been transmitted yet.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">The WebAssembly module processes it.</span> Whether that's re-compressing embedded images, rewriting the page tree to merge documents, or extracting text for OCR, the computation happens on your device's own CPU.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">The result is written back to memory.</span> A new file (a Blob, in browser terminology) is assembled locally.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Your browser triggers a download.</span> The finished file is handed to you directly from memory to disk, with no network request involved in that step at all.</li>
+            </ol>
+            <p class="mt-4">The only network request in the entire flow happens once, at the very start, when the page itself and the WebAssembly module load. After that, the browser can be switched to airplane mode and every one of those four steps still completes, because none of them depend on a connection.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-leaf text-brand-600"></i> The Energy Side of This Nobody Mentions
+            </h2>
+            <p>Every time a file uploads to a server-based tool, that server — usually sitting in a data centre, cooled and powered around the clock — spins up to do the work, then transmits the result back across the network. Multiply that by the millions of PDFs compressed and converted every day across every tool on the internet, and it adds up to a genuinely large, largely invisible amount of electricity, cooling, and network traffic for tasks that are individually tiny.</p>
+            <p class="mt-4">Client-side processing doesn't eliminate energy use — your own device still has to do the computation — but it removes the data-centre step and the two network trips entirely. The work happens on a device that, in almost every case, was already switched on and idle a moment before you opened the tool, rather than waking up dedicated server infrastructure to handle a single small file. For an individual PDF, the difference is negligible. Across the volume the web actually processes, it's one more reason the architecture matters beyond privacy alone.</p>
+        </div>
+
+        <div id="verify-it-yourself">
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-magnifying-glass text-brand-600"></i> How to Verify Any PDF Tool Is Actually Private
+            </h2>
+            <p>Don't take a privacy claim on faith &mdash; not from this site, not from any other. Every modern browser ships with a way to watch exactly what a web page sends over the network, and checking takes about thirty seconds. Here's the walkthrough, and it works on any website, for any file type, not just PDFs.</p>
+            <div class="callout-box mt-5">
+                <div class="callout-box-title"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> The DevTools Network Check</div>
+                <ol class="space-y-3 list-decimal pl-5 marker:font-bold" style="margin-top:0.75rem">
+                    <li>Open the PDF tool's page, then open your browser's Developer Tools &mdash; press <code class="kbd">F12</code>, or <code class="kbd">Ctrl+Shift+I</code> (Windows/Linux) / <code class="kbd">Cmd+Option+I</code> (Mac).</li>
+                    <li>Click the <strong>Network</strong> tab. It will likely be empty or show only a handful of requests for the page itself.</li>
+                    <li>Optional but conclusive: switch your device to airplane mode, or disconnect Wi-Fi.</li>
+                    <li>Now use the tool as normal &mdash; select your file and run the compression, merge, or conversion.</li>
+                    <li>Watch the Network panel while it processes. If a new request appears carrying data anywhere close to your file's size, it's being uploaded. If the panel stays quiet and the operation still completes &mdash; especially with no internet connection at all &mdash; the processing happened entirely on your device.</li>
+                </ol>
+            </div>
+            <p class="mt-5">This is worth doing once on any tool you plan to use regularly for sensitive documents. It takes less time than reading a privacy policy, and unlike a privacy policy, it can't be worded around &mdash; the Network tab shows you what the code actually does, not what the marketing page says it does.</p>
+        </div>
+
+      </div>
+    </article>
+
+    <section class="cta-banner">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-3">Run the Check Yourself &mdash; It Takes One File</h2>
+            <p class="text-brand-100 max-w-xl mx-auto mb-7">Open any tool below, switch on airplane mode, and watch it work anyway.</p>
+            <a href="index.html#tools-section" class="cta-btn-white">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Open The Full Toolkit
+            </a>
+        </div>
+    </section>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 pt-20">
+      <div class="prose-content max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-toolbox text-brand-600"></i> A Complete Tour of The PDF Mechanic's Toolkit
+            </h2>
+            <p>Every tool below runs on the same architecture described above &mdash; loaded once, then usable offline, with the file staying on your device throughout. Here's what each group actually does.</p>
+
+            <h3 class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white mt-8 mb-2">
+                <i class="fa-solid fa-compress text-rose-500"></i> Compress
+            </h3>
+            <p><a href="compressor.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Compress PDF</a> and <a href="image-compressor.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Compress Image</a> re-encode the images inside a document at a lower resolution or quality setting, which is what actually drives PDF file size in the vast majority of real-world files &mdash; the text itself takes up almost nothing. You can target a specific size, and the compressor works iteratively until it lands close to it.</p>
+
+            <h3 class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white mt-8 mb-2">
+                <i class="fa-solid fa-object-group text-indigo-500"></i> Organize
+            </h3>
+            <p><a href="merger.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Merge PDF</a> combines multiple files into one, in whatever order you choose. <a href="splitter.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Split PDF</a> and <a href="delete-pages.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Delete Pages</a> do the reverse &mdash; pulling pages out or removing the ones you don't need. <a href="reorder-pages.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Reorder Pages</a> handles drag-and-drop resequencing, <a href="rotate-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Rotate PDF</a> fixes pages scanned sideways or upside down, and <a href="add-page-numbers.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Page Numbers</a> stamps sequential numbering across a document.</p>
+
+            <h3 class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white mt-8 mb-2">
+                <i class="fa-solid fa-arrows-rotate text-blue-500"></i> Convert
+            </h3>
+            <p>Format conversion runs in both directions: <a href="pdf-to-word.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">PDF to Word</a>, <a href="pdf-to-excel.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">PDF to Excel</a>, and <a href="pdf-to-images.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">PDF to JPG</a> pull content out of a PDF into an editable format, while <a href="word-to-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Word to PDF</a>, <a href="excel-to-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Excel to PDF</a>, <a href="images-to-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">JPG to PDF</a>, and <a href="html-to-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">HTML to PDF</a> go the other way, packaging other formats into a shareable PDF.</p>
+
+            <h3 class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white mt-8 mb-2">
+                <i class="fa-solid fa-pen-to-square text-violet-500"></i> Edit &amp; Sign
+            </h3>
+            <p><a href="pdf-editor.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">PDF Editor</a> adds text, shapes, and annotations directly onto a page. <a href="esign-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">eSign PDF</a> places a drawn or typed signature without a third-party signing service seeing the document first. <a href="watermark.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Watermark PDF</a> stamps a logo, text, or copyright notice across every page.</p>
+
+            <h3 class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white mt-8 mb-2">
+                <i class="fa-solid fa-eye text-sky-500"></i> Extract &amp; Read
+            </h3>
+            <p><a href="extractor.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">PDF Extractor</a> and <a href="ocr.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">OCR PDF</a> pull text out of a document, including scanned pages that don't contain selectable text at all &mdash; useful for turning a photographed page into something you can search or copy from.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-users text-brand-600"></i> Who Actually Needs This
+            </h2>
+            <p>"Privacy" sounds abstract until it's your document. Here's what client-side processing changes for specific kinds of work.</p>
+
+            <div class="grid sm:grid-cols-2 gap-5 mt-6">
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div>
+                    <h3>Legal &amp; contracts</h3>
+                    <p>Signed agreements, NDAs, and case files often carry explicit confidentiality obligations. Running them through a server you don't control &mdash; even one that promises deletion &mdash; can be a breach of that obligation on its own, independent of whether anything ever actually leaks.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-notes-medical" aria-hidden="true"></i></div>
+                    <h3>Healthcare records</h3>
+                    <p>Patient charts, lab results, and insurance forms are governed by strict handling rules in most countries. A tool that never receives the file sidesteps the question of whether a third-party processor agreement is even needed.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+                    <h3>Freelancers &amp; consultants</h3>
+                    <p>Client contracts and invoices frequently contain another company's confidential terms, not just your own. Uploading them to a random compressor to hit an email size limit can quietly violate a client NDA you signed without reading closely.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></div>
+                    <h3>HR &amp; recruiting</h3>
+                    <p>Resumes, offer letters, and background check documents carry names, addresses, and salary figures for people who never agreed to have their data pass through a stranger's server.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+                    <h3>Students &amp; researchers</h3>
+                    <p>Transcripts, ID documents, and application materials are exactly the kind of file people are told to be careful with &mdash; and exactly the kind that gets rushed through the first free tool in a search result under deadline pressure.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-plane" aria-hidden="true"></i></div>
+                    <h3>Travelers &amp; remote workers</h3>
+                    <p>Airport Wi-Fi, in-flight networks, and shared connections in co-working spaces are exactly where you don't want a sensitive file leaving your device. Offline capability and privacy end up being the same feature here.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></div>
+                    <h3>NGO &amp; field workers</h3>
+                    <p>Field surveys, beneficiary records, and grant reports are often prepared in locations with no reliable connectivity at all, and frequently contain personal data about vulnerable people that deserves extra care in how it's handled.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-passport" aria-hidden="true"></i></div>
+                    <h3>Visa &amp; immigration applicants</h3>
+                    <p>Passport scans, bank statements, and invitation letters are exactly the bundle a visa portal asks for, and exactly the bundle you'd least want sitting on an unfamiliar server while an application is still pending.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-newspaper" aria-hidden="true"></i></div>
+                    <h3>Journalists &amp; researchers</h3>
+                    <p>Source documents and leaked material sometimes need converting or resizing before publication, and running them through a third-party server first can undermine the confidentiality a source was promised.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon"><i class="fa-solid fa-shop" aria-hidden="true"></i></div>
+                    <h3>Small business &amp; e-commerce</h3>
+                    <p>Invoices, supplier contracts, and customer order records add up fast for a small team without a dedicated IT department to vet which cloud tools are actually safe to paste sensitive paperwork into.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-signal text-brand-600"></i> Built for More Than Fast, Unlimited Wi-Fi
+            </h2>
+            <p>Most of the PDF tools built in the last decade were designed around an assumption: fast, cheap, always-on broadband. That assumption doesn't hold for most of the world's internet users. Mobile data is billed by the megabyte across large parts of Africa, South Asia, and Latin America. Rural connections drop mid-task. Office networks in some regions throttle or block cloud file-sharing domains outright.</p>
+            <p class="mt-4">A tool that uploads your file, waits for a server to process it, and downloads the result needs a stable connection for every single operation, and it re-spends that data allowance every time. A tool that loads once and then runs locally needs a connection only for that first visit. Compress twenty files in a row on a train, in a basement office, or on a data plan you're rationing until month's end &mdash; the tool doesn't know the difference, because after the first load, it isn't asking the network for anything.</p>
+            <p class="mt-4">This isn't a workaround or a "lite mode" with fewer features. It's the same full toolkit, and it's simply a side effect of how the processing works: local computation doesn't care how fast, slow, expensive, or absent your connection is once the page is open.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-circle-question text-brand-600"></i> "If It's Free and Private, What's the Catch?"
+            </h2>
+            <p>It's a fair question, and worth answering directly instead of dodging it. Client-side tools are genuinely cheaper to run than upload-based ones: there's no server farm processing millions of files, no storage bill, no bandwidth cost for receiving and returning large documents. The processing cost is paid by your own device's CPU for the second or two it takes to run, not by a company's cloud infrastructure. That's what makes a genuinely unlimited free tier sustainable in a way it usually isn't for upload-based competitors, several of which cap free users at a handful of tasks per day specifically because every task costs them real server money.</p>
+            <p class="mt-4">The trade-off, if there is one, is that processing speed depends partly on your own device rather than a data-center server &mdash; a ten-year-old laptop will compress a file more slowly than a new one. For the overwhelming majority of everyday documents, that difference is a fraction of a second and never noticeable.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-triangle-exclamation text-brand-600"></i> Myths Worth Retiring
+            </h2>
+            <ul class="space-y-3 list-disc pl-5 marker:text-brand-500">
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">"HTTPS means my file is safe."</span> HTTPS encrypts the connection between your device and whichever server you're talking to &mdash; it says nothing about what that server does with the file once it arrives, or how long it keeps it. A tool can be fully HTTPS-encrypted and still upload, store, and mine your document.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">"A privacy policy proves a tool doesn't upload files."</span> A policy is a written promise, not a technical constraint. The Network-tab check earlier in this guide verifies behaviour directly, which a policy document can't do.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">"Browser-based tools must be less capable than desktop software."</span> WebAssembly runs at speeds close to native code, and the libraries built on it now handle compression, format conversion, OCR, and page manipulation to a standard that covers what the vast majority of users need from a desktop PDF editor.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">"Deleting a file after 24 hours is basically the same as never uploading it."</span> It's a real improvement over indefinite storage, but the file still exists on someone else's server for that window, which is 24 hours longer than a tool that never received it in the first place.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-earth-americas text-brand-600"></i> Data Residency: Why "Where Is the Server?" Stops Being a Question
+            </h2>
+            <p>A growing number of countries restrict where certain categories of citizen data are allowed to be processed or stored &mdash; rules that fall under the general banner of data residency or data localisation. For a business operating across borders, this turns a simple task like compressing a customer's PDF into a compliance question: which country is the server in, does that jurisdiction meet the requirement, and can the vendor even confirm the answer reliably as their infrastructure changes over time.</p>
+            <p class="mt-4">Client-side processing sidesteps the question rather than answering it. There is no server processing the file, in any country, at any point &mdash; the computation happens on the device the data already legally resides on. For teams that operate internationally and would otherwise need to audit a vendor's server locations for every new market they enter, that's a meaningfully simpler starting position than negotiating a data processing agreement for a task as small as merging two PDFs.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-circle-info text-brand-600"></i> Where Client-Side Tools Aren't the Right Fit
+            </h2>
+            <p>A fair guide points out the edges, not just the strengths. Client-side processing isn't the better choice for every situation:</p>
+            <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Very large batch jobs.</span> Processing a few thousand files in one pass is realistically a server or desktop-automation job, not something to run one browser tab at a time.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Team collaboration on one shared file.</span> If several people need to see live edits to the same document at once, that inherently needs a synced, server-hosted copy somewhere.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Very old or low-memory devices.</span> WebAssembly needs a reasonably modern browser and enough free memory to hold the file being processed; it will still work on most hardware from the last decade, but an extremely large file on a very constrained device may be slower than a server would be.</li>
+            </ul>
+            <p class="mt-4">For the everyday task most people actually have — compress this, merge these, convert that — none of these edge cases apply, which is why they're worth naming rather than glossing over.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-list-check text-brand-600"></i> Getting Started
+            </h2>
+            <p>There's no account to create and nothing to install, so the fastest way to see how this works is to try it on a real file:</p>
+            <ol class="mt-4 space-y-3 list-decimal pl-5 marker:text-brand-600 marker:font-bold">
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Open the <a href="index.html#tools-section" class="text-brand-600 underline decoration-brand-200 underline-offset-2">tools page</a></span> and pick the operation you need &mdash; compress, merge, convert, or one of the others covered above.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Open your browser's Network tab</span> first, if you want to watch the verification described earlier in real time.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Drop in a file</span> you don't mind testing with, and run the operation once to see the result and confirm the quality meets your needs.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Switch to airplane mode</span> and run it again on a second file, to see the offline claim hold up for yourself rather than take it on trust.</li>
+            </ol>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-weight-hanging text-brand-600"></i> Why PDFs Get So Large (and What Actually Shrinks Them)
+            </h2>
+            <p>A one-page PDF of typed text is a few kilobytes. The same page scanned on a phone can be five megabytes. The gap almost never comes from the text itself &mdash; it comes from what's embedded alongside it.</p>
+            <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Embedded images at full camera resolution.</span> A modern phone camera captures 12+ megapixels per photo. A printed page only needs a few hundred pixels per inch to look sharp, so most of that resolution is invisible weight.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Scanned pages saved as images rather than text.</span> A scanning app usually saves each page as a photograph of the page, not as actual selectable text, which is far heavier for the same visible content.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Uncompressed or lightly compressed embedded fonts and colour profiles.</span> Especially common in PDFs exported from design software, which favours print-quality fidelity over file size by default.</li>
+                <li><span class="font-semibold text-slate-800 dark:text-slate-200">Leftover edit history and metadata.</span> Some PDF editors retain revision data and thumbnails inside the file even after you've flattened the visible content.</li>
+            </ul>
+            <p class="mt-4">A compressor's real job, then, is mostly image work: re-sampling embedded images to a lower resolution and re-encoding them with a higher compression ratio, then stripping unnecessary metadata. Text and vector content barely need touching, which is why a well-built compressor can cut a scanned document to a fraction of its size with the text still perfectly sharp &mdash; the loss, if any, shows up in image detail, not in the words on the page.</p>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-laptop text-brand-600"></i> Browser &amp; Device Compatibility
+            </h2>
+            <p>WebAssembly is supported by every browser released in the last several years &mdash; Chrome, Edge, Firefox, and Safari all run it natively, on Windows, macOS, Linux, Chromebooks, Android, and iOS alike. In practice that means:</p>
+            <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                <li>No installation, admin rights, or app-store download required &mdash; useful on locked-down work laptops where installing new software isn't an option.</li>
+                <li>The same tool works identically whether you're on a desktop, a budget Android phone, or a school-issued Chromebook.</li>
+                <li>Processing speed scales with your device's own hardware. A typical document processes in a second or two even on modest hardware; extremely large files (several hundred megabytes) may take longer on older devices simply because more data has to move through memory.</li>
+                <li>Because nothing installs and nothing is stored on the device beyond browser memory during the session, there's nothing left behind to uninstall afterward either.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-4 font-display">
+                <i class="fa-solid fa-book text-brand-600"></i> A Short Glossary
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">Client-side processing</h3>
+                    <p class="text-sm mt-1">Any computation that happens on the user's own device rather than a remote server. The opposite of server-side or "cloud" processing.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">WebAssembly (WASM)</h3>
+                    <p class="text-sm mt-1">A binary format that lets code written in languages like C++ or Rust run inside a browser at near-native speed, which is what makes heavy tasks like PDF compression practical without a server.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">OCR (Optical Character Recognition)</h3>
+                    <p class="text-sm mt-1">The process of detecting and extracting text from an image, such as a scanned page, so it becomes selectable and searchable rather than just a picture of text.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">Metadata</h3>
+                    <p class="text-sm mt-1">Hidden information attached to a file &mdash; author name, software version, edit history, sometimes even GPS location for scanned photos &mdash; that isn't visible on the page itself but travels with the file unless stripped out.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">Lossy vs. lossless compression</h3>
+                    <p class="text-sm mt-1">Lossy compression discards some detail to save space (used for photos inside a PDF); lossless compression shrinks a file without discarding any information (used for text and simple graphics).</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">Blob (in a browser)</h3>
+                    <p class="text-sm mt-1">A chunk of binary data held in a browser's memory. The finished, compressed or converted PDF exists as a Blob for a moment before being handed to your device as a download.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                <i class="fa-solid fa-circle-question text-brand-600"></i> Frequently Asked Questions
+            </h2>
+            <div class="space-y-3">
+                <details class="faq-item">
+                    <summary>Is a browser-based PDF tool actually safe to use for confidential documents?</summary>
+                    <div class="faq-answer">Yes, provided it genuinely processes files client-side rather than uploading them &mdash; which you can confirm yourself using the Network-tab check described above. Once confirmed, the file never leaves your device, so the usual risks of server storage, breaches, and third-party access don't apply.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do I need an internet connection to use these PDF tools?</summary>
+                    <div class="faq-answer">Only for the first page load. After that, compressing, merging, converting, and editing all run locally and continue working with the connection switched off.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How is a free tool with no account sustainable?</summary>
+                    <div class="faq-answer">Because the processing happens on your device rather than a server, there's no per-file infrastructure cost to cover, which is what makes an uncapped free tier realistic rather than a loss-leader that needs a paid tier to subsidize it.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What's the difference between "encrypted" and "client-side"?</summary>
+                    <div class="faq-answer">Encryption protects data in transit or in storage but says nothing about whether the file was transmitted to a server at all. Client-side means the file was never sent anywhere in the first place &mdash; a stronger guarantee for anyone who wants to avoid a third party ever possessing the document, even briefly.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I use these tools on a phone with limited mobile data?</summary>
+                    <div class="faq-answer">Yes. The page itself loads once, using a small amount of data, and every operation after that runs locally without sending the file anywhere, so processing multiple documents doesn't consume additional data.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Are client-side PDF tools as capable as desktop software like Adobe Acrobat?</summary>
+                    <div class="faq-answer">For merging, splitting, compressing, converting, watermarking, signing, and basic editing &mdash; the tasks most people actually need &mdash; yes. Advanced features like preflight checking or complex form design still tend to favour dedicated desktop software.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Does closing the browser tab delete my file?</summary>
+                    <div class="faq-answer">The original file was never copied anywhere except your own device's memory during processing, so closing the tab simply ends that in-memory session. Nothing needs to be "deleted" from a server because nothing was ever sent to one.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is this suitable for GDPR or HIPAA-relevant documents?</summary>
+                    <div class="faq-answer">Because the file is never transmitted to or processed by a third-party server, many of the data-processor obligations that apply to upload-based tools don't apply in the same way here. This isn't formal legal advice for your specific organisation, but the underlying technical fact &mdash; no transmission, no third-party processing &mdash; is exactly what those regulations are concerned with.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a file size limit?</summary>
+                    <div class="faq-answer">There's no artificial cap imposed by the tool itself. The practical ceiling is your own device's available memory, since the whole file is held in browser memory during processing &mdash; on most modern devices that comfortably covers everyday documents, including large scanned files running into hundreds of pages.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do these tools work the same way on mobile as on desktop?</summary>
+                    <div class="faq-answer">Yes. WebAssembly runs the same way in a mobile browser as a desktop one, so the same compression, merging, and conversion operations work on Android and iOS, including with the connection switched off after the page has loaded.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can my employer or network administrator see what I'm processing?</summary>
+                    <div class="faq-answer">A network administrator can typically see that a connection to the site was made, the same as for any website, but since the file itself is never transmitted, there's no document content for them to intercept or log, unlike an upload-based tool where the file passes across the network in full.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What happens if I lose my internet connection mid-task?</summary>
+                    <div class="faq-answer">Once the page has loaded, an in-progress compression, merge, or conversion isn't depending on the network at all, so losing the connection partway through doesn't interrupt it &mdash; the operation completes locally regardless.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Why doesn't this tool ask me to sign up or verify my email?</summary>
+                    <div class="faq-answer">An account mainly exists to sync files across devices, restore purchase history, or gate a paid tier &mdash; none of which apply here, since there's no cloud storage involved and every operation is free. Skipping accounts also means there's no email address or password of yours to eventually appear in a breach somewhere else.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is a tool open source more trustworthy than one that isn't?</summary>
+                    <div class="faq-answer">Open-source code lets anyone read exactly what a tool does, which is a stronger guarantee than a written promise. It isn't the only way to verify behaviour, though &mdash; the Network-tab check described above works on any tool, open source or not, since it observes actual behaviour rather than reading source code.</div>
+                </details>
+            </div>
+        </div>
+
+        <div class="text-center pt-4">
+            <p class="max-w-2xl mx-auto">The easiest way to trust a privacy claim is to stop trusting it and check instead. Open the Network tab, load a PDF tool, switch off your connection, and watch what happens &mdash; then use whichever one actually holds up. Whether the document in question is a resume, a visa bundle, a client contract, or a scanned transcript, the underlying question is the same one this whole guide has been answering: does the file leave your device, or doesn't it. Now you have a way to check for yourself, on any tool, not just this one.</p>
+            <a href="index.html#tools-section" class="cta-btn-primary mt-6">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i> Open The PDF Mechanic Toolkit
+            </a>
+        </div>
+
+      </div>
+    </article>
+    </main>
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+
+                <div class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+                   <span class="w-8 h-[1px] bg-slate-700"></span> Meet the Creator
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/dreamerboyrehu" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-pink-500 transition text-xl" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/rehan-saifi-97769020a" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-500 transition text-xl" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Tools</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="ocr.html" class="hover:text-brand-500 transition">OCR Scans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                    <li><a href="excel-to-pdf.html" class="hover:text-brand-500 transition">Excel to PDF</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                    <li><a href="sitemap.xml" class="hover:text-brand-500 transition">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+      var themeToggle = document.getElementById('themeToggle');
+      var htmlEl = document.documentElement;
+      themeToggle.addEventListener('click', function () {
+        htmlEl.classList.toggle('dark');
+        try { localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, (err) => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
