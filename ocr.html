@@ -3,13 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <title>Free OCR PDF Online | Convert Scanned PDF to Searchable Text | The PDF Mechanic</title>
-    <meta name="description" content="Convert scanned PDFs and images into searchable text using free online OCR. 100% secure client-side tool. Supports English, Hindi, and more." />
-    <meta name="keywords" content="ocr pdf online free, scanned pdf to text, image to text converter, make pdf searchable, client-side ocr, extract text from pdf, tesseract js ocr" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Applies saved theme before first paint to avoid a light/dark flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Free OCR PDF Online | Convert Scanned PDF to Searchable Text - The PDF Mechanic</title>
+    <meta name="description" content="Convert scanned PDFs and images into searchable text, a copyable text box, or a Word document — entirely in your browser. Free, private, no uploads." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.thepdfmechanic.com/ocr.html" />
-       <!-- Favicon & PWA -->
+
+    <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -20,65 +33,38 @@
     <meta name="theme-color" content="#2563eb">
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Free OCR Tool - Make PDF Searchable" />
-    <meta property="og:description" content="Convert scanned documents into searchable text instantly in your browser. No uploads." />
+    <meta property="og:title" content="Free OCR Tool - Make PDF Searchable, Copy Text, or Export to Word" />
+    <meta property="og:description" content="Convert scanned documents into searchable text instantly in your browser. No uploads, ever." />
     <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/ocr.html" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free OCR Tool - Make PDF Searchable, Copy Text, or Export to Word" />
+    <meta name="twitter:description" content="Client-side OCR: searchable PDF, copyable text, or .docx export. Nothing is ever uploaded." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-image.png" />
 
-    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
 
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'bounce-slow': 'bounce 3s infinite', 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
-        }
-      }
-    </script>
-    <style>
-        .loader-bar {
-            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-        
-        /* Custom Scrollbar for Logs */
-        .log-scrollbar::-webkit-scrollbar { width: 6px; }
-        .log-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .log-scrollbar::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 20px; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Free OCR PDF to Text",
+      "name": "Free OCR PDF to Text - The PDF Mechanic",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "Convert scanned PDFs and images into searchable text using free online OCR. 100% secure client-side tool. Supports English, Hindi, and more.",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.6",
-        "ratingCount": "820"
-      }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Convert scanned PDFs and images into a searchable PDF, copyable text, or a Word document using free client-side OCR. 100% private, no uploads.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "820" }
     }
     </script>
 
@@ -86,54 +72,400 @@
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How accurate is this free OCR?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our tool uses the Tesseract.js engine which is highly accurate for clear printed text. Since it runs in your browser, accuracy depends on the quality of your image."
-        }
-      },{
-        "@type": "Question",
-        "name": "Can I convert Hindi scanned documents?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, The PDF Mechanic supports multiple languages including English and Hindi. Just select the language from the dropdown before starting."
-        }
-      }]
+      "mainEntity": [
+        { "@type": "Question", "name": "Which output format should I choose by default?", "acceptedAnswer": { "@type": "Answer", "text": "If you need to keep the document looking like the original scan while making it searchable, use the PDF. If you need to edit or reformat the text, use the .docx. If you just need to paste a paragraph somewhere quickly, the copy box is fastest." } },
+        { "@type": "Question", "name": "Do I need to run OCR three times to get all three formats?", "acceptedAnswer": { "@type": "Answer", "text": "No. Recognition runs once; all three outputs are generated from that same pass, so you can download the PDF, download the .docx, and copy the text without waiting for the process to repeat." } },
+        { "@type": "Question", "name": "Why does the first conversion in a new language take longer?", "acceptedAnswer": { "@type": "Answer", "text": "That language's trained recognition data has to download the first time it's used. Your browser caches it afterward, so switching back to the same language later skips that wait entirely." } },
+        { "@type": "Question", "name": "Can OCR read handwriting?", "acceptedAnswer": { "@type": "Answer", "text": "Reasonably neat, well-separated handwriting can produce usable results, but cursive or inconsistent handwriting is a genuinely difficult problem for any OCR engine, this one included. Printed and typed text remains far more reliable." } },
+        { "@type": "Question", "name": "Will the .docx file preserve the original formatting, like bold text or columns?", "acceptedAnswer": { "@type": "Answer", "text": "No, the .docx contains the recognised text as plain paragraphs, in reading order, without attempting to reconstruct bold styling, columns, or exact spacing from the original image. For a result that visually matches the original, the searchable PDF is the right choice instead." } },
+        { "@type": "Question", "name": "Is there a limit on how many pages I can process?", "acceptedAnswer": { "@type": "Answer", "text": "No hard limit is enforced, but since every page is processed on your own device, very long documents take proportionally longer and depend on your device's available memory. Keep the tab open and active until the progress log shows completion." } },
+        { "@type": "Question", "name": "Is it safe to run OCR on ID documents or medical records?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Recognition runs entirely in your browser using WebAssembly, and the document is never uploaded anywhere, which you can verify yourself using your browser's developer tools Network tab." } }
+      ]
     }
     </script>
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-392142348">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-392142348');
-</script> 
+    <style>
+
+/* ===== Preflight (minimal reset, mirrors Tailwind base) ===== */
+*,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+html{-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.5}
+body{margin:0;line-height:inherit}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:inherit}
+b,strong{font-weight:bolder}
+button,input{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
+button{text-transform:none;-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+input::placeholder{opacity:1;color:#94a3b8}
+ul,ol{list-style:none;margin:0;padding:0}
+svg{display:block;vertical-align:middle}
+[hidden]{display:none}
+img,svg{max-width:100%;height:auto}
+:focus:not(:focus-visible){outline:none}
+
+/* ===== Keyframes ===== */
+@keyframes fadeIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tw-pulse{50%{opacity:.5}}
+
+/* ===== Group marker (no own styles; enables group-hover children) ===== */
+.group{}
+
+/* ===== Base utilities (unprefixed) ===== */
+.absolute { position:absolute; }
+.animate-fade-in { animation:fadeIn 0.5s ease-out; }
+.appearance-none { -webkit-appearance:none;-moz-appearance:none;appearance:none; }
+.backdrop-blur-md { backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px); }
+.bg-blue-100 { background-color:#dbeafe; }
+.bg-brand-100 { background-color:#dbeafe; }
+.bg-brand-50 { background-color:#eff6ff; }
+.bg-brand-600 { background-color:#2563eb; }
+.bg-green-100 { background-color:#dcfce7; }
+.bg-red-100 { background-color:#fee2e2; }
+.bg-slate-100 { background-color:#f1f5f9; }
+.bg-slate-200 { background-color:#e2e8f0; }
+.bg-slate-50 { background-color:#f8fafc; }
+.bg-slate-900 { background-color:#0f172a; }
+.bg-slate-950 { background-color:#020617; }
+.bg-white { background-color:#ffffff; }
+.bg-white\/90 { background-color:rgb(255 255 255 / 0.9); }
+.block { display:block; }
+.border { border-width:1px; }
+.border-2 { border-width:2px; }
+.border-b { border-bottom-width:1px; }
+.border-brand-100 { border-color:#dbeafe; }
+.border-brand-500 { border-color:#3b82f6; }
+.border-l-2 { border-left-width:2px; }
+.border-slate-100 { border-color:#f1f5f9; }
+.border-slate-200 { border-color:#e2e8f0; }
+.border-slate-300 { border-color:#cbd5e1; }
+.border-slate-800 { border-color:#1e293b; }
+.border-slate-900 { border-color:#0f172a; }
+.border-t { border-top-width:1px; }
+.col-span-1 { grid-column:span 1 / span 1; }
+.cursor-pointer { cursor:pointer; }
+.dark .dark\:bg-blue-900\/20 { background-color:rgb(30 58 138 / 0.2); }
+.dark .dark\:bg-blue-900\/30 { background-color:rgb(30 58 138 / 0.3); }
+.dark .dark\:bg-brand-900\/20 { background-color:rgb(30 58 138 / 0.2); }
+.dark .dark\:bg-brand-900\/30 { background-color:rgb(30 58 138 / 0.3); }
+.dark .dark\:bg-dark-bg { background-color:#0f172a; }
+.dark .dark\:bg-dark-bg\/90 { background-color:rgb(15 23 42 / 0.9); }
+.dark .dark\:bg-dark-card { background-color:#1e293b; }
+.dark .dark\:bg-green-900\/20 { background-color:rgb(20 83 45 / 0.2); }
+.dark .dark\:bg-green-900\/30 { background-color:rgb(20 83 45 / 0.3); }
+.dark .dark\:bg-red-900\/20 { background-color:rgb(127 29 29 / 0.2); }
+.dark .dark\:bg-slate-700 { background-color:#334155; }
+.dark .dark\:bg-slate-800 { background-color:#1e293b; }
+.dark .dark\:bg-slate-800\/50 { background-color:rgb(30 41 59 / 0.5); }
+.dark .dark\:block { display:block; }
+.dark .dark\:border-brand-700 { border-color:#1d4ed8; }
+.dark .dark\:border-dark-border { border-color:#334155; }
+.dark .dark\:border-slate-600 { border-color:#475569; }
+.dark .dark\:border-slate-700 { border-color:#334155; }
+.dark .dark\:border-slate-800 { border-color:#1e293b; }
+.dark .dark\:hidden { display:none; }
+.dark .dark\:hover\:bg-slate-700:hover { background-color:#334155; }
+.dark .dark\:text-brand-500 { color:#3b82f6; }
+.dark .dark\:text-dark-text { color:#f8fafc; }
+.dark .dark\:text-slate-200 { color:#e2e8f0; }
+.dark .dark\:text-slate-300 { color:#cbd5e1; }
+.dark .dark\:text-slate-400 { color:#94a3b8; }
+.dark .dark\:text-white { color:#ffffff; }
+.dark .dark\:text-yellow-400 { color:#facc15; }
+.disabled\:cursor-not-allowed:disabled { cursor:not-allowed; }
+.disabled\:opacity-50:disabled { opacity:0.5; }
+.duration-300 { transition-duration:300ms; }
+.flex { display:flex; }
+.flex-col { flex-direction:column; }
+.flex-grow { flex-grow:1; }
+.flex-wrap { flex-wrap:wrap; }
+.focus\:outline-none:focus { outline:2px solid transparent;outline-offset:2px; }
+.focus\:ring-2:focus { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.focus\:ring-brand-500:focus { --tw-ring-color:#3b82f6; }
+.focus\:ring-offset-2:focus { box-shadow:0 0 0 2px var(--tw-ring-offset-color, #fff), 0 0 0 4px var(--tw-ring-color, currentColor); }
+.font-bold { font-weight:700; }
+.font-display { font-family:Outfit,ui-sans-serif,system-ui,sans-serif; }
+.font-extrabold { font-weight:800; }
+.font-medium { font-weight:500; }
+.font-mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+.font-sans { font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+.font-semibold { font-weight:600; }
+.gap-1\.5 { gap:0.375rem; }
+.gap-10 { gap:2.5rem; }
+.gap-12 { gap:3rem; }
+.gap-2 { gap:0.5rem; }
+.gap-3 { gap:0.75rem; }
+.gap-4 { gap:1rem; }
+.gap-6 { gap:1.5rem; }
+.gap-8 { gap:2rem; }
+.grid { display:grid; }
+.grid-cols-1 { grid-template-columns:repeat(1,minmax(0,1fr)); }
+.group:hover .group-hover\:bg-brand-700 { background-color:#1d4ed8; }
+.group:hover .group-hover\:scale-110 { transform:scale(1.1); }
+.group[open] .group-open\:rotate-180 { transform:rotate(180deg); }
+.h-10 { height:2.5rem; }
+.h-12 { height:3rem; }
+.h-16 { height:4rem; }
+.h-2\.5 { height:0.625rem; }
+.h-24 { height:6rem; }
+.h-40 { height:10rem; }
+.h-9 { height:2.25rem; }
+.h-full { height:100%; }
+.hidden { display:none; }
+.hover\:bg-brand-50:hover { background-color:#eff6ff; }
+.hover\:bg-brand-700:hover { background-color:#1d4ed8; }
+.hover\:ring-2:hover { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.hover\:text-brand-500:hover { color:#3b82f6; }
+.hover\:text-brand-600:hover { color:#2563eb; }
+.hover\:text-brand-700:hover { color:#1d4ed8; }
+.hover\:text-red-500:hover { color:#ef4444; }
+.inline-block { display:inline-block; }
+.inline-flex { display:inline-flex; }
+.inset-y-0 { top:0;bottom:0; }
+.items-center { align-items:center; }
+.items-end { align-items:flex-end; }
+.justify-between { justify-content:space-between; }
+.justify-center { justify-content:center; }
+.leading-relaxed { line-height:1.625; }
+.m-6 { margin:1.5rem; }
+.marker\:text-brand-500 { color:#3b82f6; }
+.max-w-2xl { max-width:42rem; }
+.max-w-3xl { max-width:48rem; }
+.max-w-4xl { max-width:56rem; }
+.max-w-6xl { max-width:72rem; }
+.max-w-7xl { max-width:80rem; }
+.max-w-xl { max-width:36rem; }
+.mb-1 { margin-bottom:0.25rem; }
+.mb-10 { margin-bottom:2.5rem; }
+.mb-12 { margin-bottom:3rem; }
+.mb-2 { margin-bottom:0.5rem; }
+.mb-20 { margin-bottom:5rem; }
+.mb-3 { margin-bottom:0.75rem; }
+.mb-4 { margin-bottom:1rem; }
+.mb-5 { margin-bottom:1.25rem; }
+.mb-6 { margin-bottom:1.5rem; }
+.mb-8 { margin-bottom:2rem; }
+.min-h-\[400px\] { min-height:400px; }
+.min-h-screen { min-height:100vh; }
+.mr-1 { margin-right:0.25rem; }
+.mt-0\.5 { margin-top:0.125rem; }
+.mt-1 { margin-top:0.25rem; }
+.mt-2 { margin-top:0.5rem; }
+.mt-3 { margin-top:0.75rem; }
+.mt-4 { margin-top:1rem; }
+.mt-5 { margin-top:1.25rem; }
+.mt-8 { margin-top:2rem; }
+.mt-auto { margin-top:auto; }
+.mx-auto { margin-left:auto;margin-right:auto; }
+.outline-none { outline:2px solid transparent;outline-offset:2px; }
+.overflow-hidden { overflow:hidden; }
+.overflow-y-auto { overflow-y:auto; }
+.p-3 { padding:0.75rem; }
+.p-4 { padding:1rem; }
+.p-6 { padding:1.5rem; }
+.p-8 { padding:2rem; }
+.pb-8 { padding-bottom:2rem; }
+.pl-2 { padding-left:0.5rem; }
+.pl-4 { padding-left:1rem; }
+.pl-5 { padding-left:1.25rem; }
+.pointer-events-none { pointer-events:none; }
+.pt-16 { padding-top:4rem; }
+.pt-4 { padding-top:1rem; }
+.pt-8 { padding-top:2rem; }
+.px-2 { padding-left:0.5rem;padding-right:0.5rem; }
+.px-3 { padding-left:0.75rem;padding-right:0.75rem; }
+.px-4 { padding-left:1rem;padding-right:1rem; }
+.px-6 { padding-left:1.5rem;padding-right:1.5rem; }
+.px-8 { padding-left:2rem;padding-right:2rem; }
+.py-1 { padding-top:0.25rem;padding-bottom:0.25rem; }
+.py-1\.5 { padding-top:0.375rem;padding-bottom:0.375rem; }
+.py-12 { padding-top:3rem;padding-bottom:3rem; }
+.py-16 { padding-top:4rem;padding-bottom:4rem; }
+.py-3 { padding-top:0.75rem;padding-bottom:0.75rem; }
+.py-3\.5 { padding-top:0.875rem;padding-bottom:0.875rem; }
+.relative { position:relative; }
+.resize-y { resize:vertical; }
+.right-0 { right:0; }
+.ring-brand-500 { --tw-ring-color:#3b82f6; }
+.rounded { border-radius:0.25rem; }
+.rounded-2xl { border-radius:1rem; }
+.rounded-3xl { border-radius:1.5rem; }
+.rounded-full { border-radius:9999px; }
+.rounded-lg { border-radius:0.5rem; }
+.rounded-xl { border-radius:0.75rem; }
+.scroll-smooth { scroll-behavior:smooth; }
+.selection\:bg-brand-500::selection { background-color:#3b82f6; }
+.selection\:text-white::selection { color:#ffffff; }
+.shadow-brand-500\/20 { --tw-shadow-color:rgb(59 130 246 / 0.2);box-shadow:0 10px 15px -3px rgb(59 130 246 / 0.2),0 4px 6px -4px rgb(59 130 246 / 0.2); }
+.shadow-brand-500\/30 { --tw-shadow-color:rgb(59 130 246 / 0.3);box-shadow:0 10px 15px -3px rgb(59 130 246 / 0.3),0 4px 6px -4px rgb(59 130 246 / 0.3); }
+.shadow-inner { box-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05); }
+.shadow-lg { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-md { box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.shadow-sm { box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.shadow-xl { box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.shrink-0 { flex-shrink:0; }
+.space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.5rem; }
+.space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+.sticky { position:sticky; }
+.text-2xl { font-size:1.5rem;line-height:2rem; }
+.text-4xl { font-size:2.25rem;line-height:2.5rem; }
+.text-blue-600 { color:#2563eb; }
+.text-brand-500 { color:#3b82f6; }
+.text-brand-600 { color:#2563eb; }
+.text-brand-700 { color:#1d4ed8; }
+.text-center { text-align:center; }
+.text-green-400 { color:#4ade80; }
+.text-green-600 { color:#16a34a; }
+.text-lg { font-size:1.125rem;line-height:1.75rem; }
+.text-red-600 { color:#dc2626; }
+.text-slate-400 { color:#94a3b8; }
+.text-slate-500 { color:#64748b; }
+.text-slate-600 { color:#475569; }
+.text-slate-800 { color:#1e293b; }
+.text-slate-900 { color:#0f172a; }
+.text-sm { font-size:0.875rem;line-height:1.25rem; }
+.text-white { color:#ffffff; }
+.text-xl { font-size:1.25rem;line-height:1.75rem; }
+.text-xs { font-size:0.75rem;line-height:1rem; }
+.top-0 { top:0; }
+.tracking-tight { letter-spacing:-0.025em; }
+.tracking-wider { letter-spacing:0.05em; }
+.transition { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-all { transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-colors { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.truncate { overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+.uppercase { text-transform:uppercase; }
+.w-0 { width:0; }
+.w-10 { width:2.5rem; }
+.w-12 { width:3rem; }
+.w-16 { width:4rem; }
+.w-24 { width:6rem; }
+.w-9 { width:2.25rem; }
+.w-full { width:100%; }
+.z-50 { z-index:50; }
+
+/* ===== sm: (640px+) ===== */
+@media (min-width: 640px) {
+.sm\:block { display:block; }
+.sm\:col-span-2 { grid-column:span 2 / span 2; }
+.sm\:flex-row { flex-direction:row; }
+.sm\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.sm\:mb-14 { margin-bottom:3.5rem; }
+.sm\:px-6 { padding-left:1.5rem;padding-right:1.5rem; }
+.sm\:py-20 { padding-top:5rem;padding-bottom:5rem; }
+.sm\:text-3xl { font-size:1.875rem;line-height:2.25rem; }
+.sm\:text-sm { font-size:0.875rem;line-height:1.25rem; }
+}
+
+
+/* ===== md: (768px+) ===== */
+@media (min-width: 768px) {
+.md\:block { display:block; }
+.md\:col-span-1 { grid-column:span 1 / span 1; }
+.md\:col-span-2 { grid-column:span 2 / span 2; }
+.md\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.md\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.md\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.md\:p-16 { padding:4rem; }
+.md\:p-8 { padding:2rem; }
+.md\:text-5xl { font-size:3rem;line-height:1; }
+}
+
+
+/* ===== lg: (1024px+) ===== */
+@media (min-width: 1024px) {
+.lg\:px-8 { padding-left:2rem;padding-right:2rem; }
+}
+
+
+/* ===== xl: (1280px+) ===== */
+@media (min-width: 1280px) {
+
+}
+
+/* ===== Original custom styles (carried over verbatim) ===== */
+.loader-bar {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+@keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.log-scrollbar::-webkit-scrollbar { width: 6px; }
+.log-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.log-scrollbar::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+#uploadArea.drag-active { background-color: #eff6ff; }
+.dark #uploadArea.drag-active { background-color: rgba(37,99,235,0.12); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.inline-alert-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+.dark .inline-alert-warn { background: rgba(120,53,15,0.2); border-color: #92400e; color: #fcd34d; }
+.inline-alert-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.dark .inline-alert-error { background: rgba(127,29,29,0.2); border-color: #991b1b; color: #fca5a5; }
+.spec-table-wrap { overflow-x: auto; border-radius: 1rem; border: 1px solid #e2e8f0; }
+.dark .spec-table-wrap { border-color: #334155; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.spec-table th { background: #eff6ff; color: #1d4ed8; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(30,58,138,0.35); color: #93c5fd; }
+.spec-table td { padding: 0.75rem 1rem; border-top: 1px solid #e2e8f0; color: #475569; }
+.dark .spec-table td { border-top-color: #334155; color: #cbd5e1; }
+.callout-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(30,58,138,0.18); border-color: #1e3a8a; border-left-color: #3b82f6; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #1d4ed8; font-size: 0.95rem; }
+.dark .callout-box-title { color: #93c5fd; }
+.list-disc { list-style-type: disc; }
+.marker\:text-brand-500::marker { color: #3b82f6; }
+#extractedText { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+    </style>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'AW-392142348');
+      function loadGtagScript() {
+        if (window.__gtagScriptLoaded) return;
+        window.__gtagScriptLoaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=AW-392142348";
+        document.head.appendChild(script);
+      }
+      window.addEventListener('load', function () {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGtagScript, { timeout: 4000 });
+        } else {
+          setTimeout(loadGtagScript, 2000);
+        }
+      });
+    </script>
+
 </head>
-<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen transition-colors duration-300">
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
 
-    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors" aria-label="Main navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <div class="flex items-center gap-4">
               <a href="index.html" class="flex items-center gap-2 group">
                 <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
-                    <i class="fa-solid fa-wrench"></i>
+                    <i class="fa-solid fa-wrench" aria-hidden="true"></i>
                 </div>
                 <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
               </a>
           </div>
           <div class="flex items-center gap-4">
              <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition hidden md:block">
-                <i class="fa-solid fa-arrow-left mr-1"></i> Back Home
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back Home
              </a>
-             <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
-                <i class="fa-solid fa-moon dark:hidden"></i>
-                <i class="fa-solid fa-sun hidden dark:block"></i>
+             <button id="themeToggle" type="button" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
              </button>
           </div>
         </div>
@@ -141,47 +473,60 @@
     </nav>
 
     <main class="flex-grow max-w-6xl mx-auto px-4 py-12 w-full">
-        
+
         <div class="text-center mb-10">
             <span class="inline-block py-1 px-3 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-300 text-xs font-bold uppercase tracking-wider mb-3">Offline Tool</span>
             <h1 class="font-display text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 dark:text-white">Free OCR PDF Tool</h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                Make scanned PDFs and images searchable. Convert text instantly in your browser without uploading.
+                Make scanned PDFs and images searchable. Get a searchable PDF, a Word document, or copyable text — instantly in your browser.
             </p>
         </div>
 
         <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden min-h-[400px] transition-colors relative mb-20">
-            
-            <div id="uploadArea" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" onclick="document.getElementById('fileInput').click()">
-                <input type="file" id="fileInput" accept="application/pdf, image/*" class="hidden">
-                
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error m-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadArea"
+                 class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                 role="button" tabindex="0"
+                 aria-label="Click or drag a PDF or image file here for OCR"
+                 onclick="document.getElementById('fileInput').click()"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf, image/*" class="hidden" aria-label="Choose a scanned PDF or image file">
+
                 <div class="w-24 h-24 bg-brand-50 dark:bg-brand-900/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
-                    <i class="fa-solid fa-eye text-4xl text-brand-600"></i>
+                    <i class="fa-solid fa-eye text-4xl text-brand-600" aria-hidden="true"></i>
                 </div>
-                
+
                 <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Upload Scanned File</h3>
-                <p class="text-slate-500 dark:text-slate-400 mb-6">PDF, JPG, PNG supported. Processed Locally.</p>
-                
-                <button class="bg-brand-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30">
+                <p class="text-slate-500 dark:text-slate-400 mb-6">PDF, JPG, PNG supported. Or drag &amp; drop a file here. Processed locally.</p>
+
+                <button type="button" class="bg-brand-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30">
                     Choose File
                 </button>
             </div>
 
             <div id="settingsArea" class="hidden p-6 md:p-8 animate-fade-in">
-                
+
                 <div class="flex flex-col sm:flex-row items-center justify-between bg-slate-50 dark:bg-slate-800 p-4 rounded-xl mb-6 border border-slate-200 dark:border-slate-700 gap-4">
                     <div class="flex items-center gap-3 overflow-hidden w-full">
                         <div class="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/20 text-red-600 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-file-pdf"></i>
+                            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
                         </div>
                         <span id="fileName" class="font-semibold text-slate-800 dark:text-white text-sm truncate">filename.pdf</span>
                     </div>
-                    <button onclick="location.reload()" class="text-slate-500 hover:text-red-500 transition px-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    <button onclick="resetTool()" type="button" class="text-slate-500 hover:text-red-500 transition px-2" aria-label="Remove file"><i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i></button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Document Language</label>
+                        <label for="langSelect" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Document Language</label>
                         <div class="relative">
                             <select id="langSelect" class="w-full appearance-none border border-slate-300 dark:border-slate-600 rounded-xl p-3 pl-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-brand-500 outline-none transition">
                                 <option value="eng">English</option>
@@ -191,14 +536,14 @@
                                 <option value="deu">German</option>
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-500">
-                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                                <i class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Action</label>
-                        <button id="convertBtn" class="w-full bg-brand-600 text-white font-bold p-3 rounded-xl shadow-lg shadow-brand-500/20 hover:bg-brand-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-bolt"></i> Start OCR Process
+                        <button id="convertBtn" type="button" class="w-full bg-brand-600 text-white font-bold p-3 rounded-xl shadow-lg shadow-brand-500/20 hover:bg-brand-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i> Start OCR Process
                         </button>
                     </div>
                 </div>
@@ -208,24 +553,59 @@
                         <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Processing Logs</span>
                         <span id="percentBadge" class="bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-xs font-bold px-2 py-1 rounded">0%</span>
                     </div>
-                    
-                    <div class="bg-slate-900 rounded-xl p-4 font-mono text-xs h-40 overflow-y-auto text-green-400 shadow-inner mb-4 log-scrollbar border border-slate-800" id="logs">
-                        <p>> System Ready.</p>
+
+                    <div class="bg-slate-900 rounded-xl p-4 font-mono text-xs h-40 overflow-y-auto text-green-400 shadow-inner mb-4 log-scrollbar border border-slate-800" id="logs" role="log" aria-live="polite">
+                        <p>&gt; System Ready.</p>
                     </div>
-                    
+
                     <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
                         <div id="progressBar" class="loader-bar h-full w-0 transition-all duration-300 rounded-full"></div>
                     </div>
                     <p class="text-center text-xs text-slate-500 dark:text-slate-400 mt-3">
-                        <i class="fa-solid fa-shield-halved mr-1"></i> Processing locally. Do not close this tab.
+                        <i class="fa-solid fa-shield-halved mr-1" aria-hidden="true"></i> Processing locally. Do not close this tab.
                     </p>
                 </div>
             </div>
 
+            <div id="resultArea" class="hidden p-6 md:p-8 animate-fade-in">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Text Extracted Successfully</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Choose how you'd like to use the result.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 max-w-xl mx-auto">
+                    <button id="downloadPdfBtn" type="button" class="bg-brand-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-500/20 hover:bg-brand-700 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download OCR File
+                    </button>
+                    <button id="downloadDocxBtn" type="button" class="bg-white dark:bg-slate-800 text-brand-700 dark:text-brand-500 font-bold py-3.5 px-6 rounded-xl border-2 border-brand-100 dark:border-brand-700 hover:bg-brand-50 dark:hover:bg-slate-700 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-word" aria-hidden="true"></i> Download as .docx
+                    </button>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-2">
+                        <label for="extractedText" class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Extracted Text</label>
+                        <button id="copyTextBtn" type="button" class="text-xs font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-copy" aria-hidden="true"></i> <span id="copyBtnLabel">Copy to Clipboard</span>
+                        </button>
+                    </div>
+                    <textarea id="extractedText" readonly rows="10"
+                        class="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm leading-relaxed focus:ring-2 focus:ring-brand-500 outline-none resize-y"
+                        aria-label="Extracted OCR text, read-only, select to copy"></textarea>
+                </div>
+
+                <button onclick="resetTool()" type="button" class="block mx-auto mt-8 text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400">
+                    <i class="fa-solid fa-rotate-right mr-1" aria-hidden="true"></i> OCR Another File
+                </button>
+            </div>
+
             <div class="bg-slate-50 dark:bg-slate-800/50 p-4 border-t border-slate-200 dark:border-slate-700 flex justify-center items-center gap-6 text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex-wrap">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-lock text-brand-600"></i> Secure</span>
-                <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-600"></i> Fast Tesseract Engine</span>
-                <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-brand-600"></i> No Uploads</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-lock text-brand-600" aria-hidden="true"></i> Secure</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-600" aria-hidden="true"></i> Fast Tesseract Engine</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-brand-600" aria-hidden="true"></i> No Uploads</span>
             </div>
         </div>
 
@@ -235,7 +615,7 @@
                 <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">1</div>
                     <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Upload Scan</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Select your scanned PDF or image (JPG/PNG). We support heavy files too.</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Select your scanned PDF or image (JPG/PNG), or drag and drop it in.</p>
                 </div>
                 <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">2</div>
@@ -244,8 +624,8 @@
                 </div>
                 <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">3</div>
-                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Download</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Get a searchable PDF file where you can select, copy, and search text.</p>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Pick Your Format</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Download a searchable PDF, a .docx file, or copy the extracted text directly.</p>
                 </div>
             </div>
         </section>
@@ -255,68 +635,256 @@
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Why use our OCR Tool?</h2>
                 <div class="space-y-6">
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-eye"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white">Make PDFs Searchable</h3>
-                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Turn flat images into text-selectable documents. Perfect for archiving and searching through old records.</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Three Ways to Use Your Text</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Get a searchable PDF, an editable Word document, or plain text ready to paste anywhere, from a single OCR pass.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-language"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-language" aria-hidden="true"></i></div>
                         <div>
                             <h3 class="font-bold text-slate-900 dark:text-white">Multilingual Support</h3>
-                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">We use the Tesseract engine which supports multiple languages including Hindi and English.</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">We use the Tesseract engine, which supports multiple languages including Hindi and English.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div>
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">FAQ</h2>
                 <div class="space-y-3">
                     <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
-                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                        <summary class="flex justify-between items-center gap-3 font-bold text-slate-800 dark:text-white">
                             <span>Is this OCR tool free?</span>
-                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                            <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
                         </summary>
                         <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes, it is 100% free and runs entirely in your browser. No limits on usage.</p>
                     </details>
                     <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
-                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
-                            <span>Is my document safe?</span>
-                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                        <summary class="flex justify-between items-center gap-3 font-bold text-slate-800 dark:text-white">
+                            <span>What output formats can I get?</span>
+                            <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
                         </summary>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Absolutely. We use <strong>Client-side OCR</strong>. Your file is processed by your own computer and never uploaded to any server.</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">A searchable PDF with your original scan, a .docx Word document, or a copyable text box — all generated from the same OCR pass.</p>
                     </details>
                 </div>
             </div>
         </section>
 
-        <section class="border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
-            <article class="prose dark:prose-invert max-w-none">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6 font-display">Free OCR PDF Online: Convert Scanned Documents to Text</h2>
-                
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                    In the digital age, having documents in a "flat" image format is a productivity killer. You can't search for keywords, you can't copy text, and screen readers can't read them. The PDF Mechanic offers a powerful <strong>Free OCR PDF Online</strong> tool that solves this problem instantly. Using advanced Optical Character Recognition (OCR) technology, we convert your scanned PDFs and images into fully searchable text documents.
-                </p>
-
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">What is Client-Side OCR?</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                    Most online OCR tools ask you to upload your sensitive documents to their cloud servers for processing. This creates a security risk. Our tool is different. We utilize <strong>Tesseract.js</strong>, a powerful OCR engine that runs directly inside your web browser. This means when you use our <strong>image to text converter</strong>, your data never leaves your device. It is the safest way to digitize bank statements, legal contracts, and personal ID proofs.
-                </p>
-
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Extract Text from Images and Scans</h3>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                    Whether you have a photo of a book page (JPG/PNG) or a multi-page scanned PDF, our tool handles it all. It overlays a transparent text layer on top of your original image. This preserves the visual look of the document while allowing you to use <strong>Ctrl+F</strong> to find information instantly. We support multiple languages including English, Hindi, Spanish, and more, making it a versatile tool for students and professionals alike.
-                </p>
-
-                <div class="bg-brand-50 dark:bg-brand-900/20 p-6 rounded-2xl mb-6">
-                    <h4 class="font-bold text-brand-700 dark:text-brand-400 mb-2"><i class="fa-solid fa-lightbulb mr-2"></i>Performance Tip</h4>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">
-                        Since the processing happens on your device, the speed depends on your computer's power. For very large documents (50+ pages), it might take a few minutes. Please keep the tab open until the process completes.
-                    </p>
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="ocr-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 border border-brand-100">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i> The Complete Guide
                 </div>
-            </article>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    How OCR Actually Works, and Which Output Format to Choose
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    What happens between uploading a scan and getting text back, why three different output formats exist, and how to get the cleanest possible result.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>A scanned page and a typed page look identical to a human eye, but to a computer they're completely different things. A typed PDF stores actual letters and words as data. A scan is just a grid of coloured dots — as far as the file format is concerned, it has no more "text" in it than a photograph of a sunset does. Optical Character Recognition is the process of looking at that grid of dots and working out, pixel pattern by pixel pattern, which letters it's actually looking at.</p>
+                    <p class="mt-4">This guide covers how that recognition actually happens, why this tool can now hand you back three different kinds of result instead of just one, how to get the most accurate text out of a difficult scan, and where OCR shows up as a genuinely useful step in everyday work far beyond just old paper archives. None of it requires any technical background — just an understanding of what's actually happening so you can pick the right settings and the right output format for what you're trying to do.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-brain text-brand-600" aria-hidden="true"></i> How Recognition Actually Happens
+                    </h3>
+                    <p>This tool runs on Tesseract, an open-source OCR engine originally developed at HP and now maintained by Google, compiled to WebAssembly so it can run at near-native speed directly inside your browser tab rather than on a server. Modern Tesseract uses a neural network trained on enormous volumes of text in different fonts, sizes, and levels of image quality, which is a meaningfully different approach from older, simpler OCR that tried to match each character against a fixed template shape.</p>
+                    <p class="mt-4">The process happens in stages: the page image is analysed to find where lines and blocks of text sit, each line is segmented into individual words and characters, and the neural network evaluates each character region against everything it learned during training to produce its best guess, along with a confidence score. Put enough correct guesses together in the right order, and what comes out the other end is exactly what you'd have typed had you retyped the page yourself.</p>
+                    <div class="callout-box mt-5">
+                        <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why It Runs Entirely on Your Device</div>
+                        <p class="mt-2 text-sm">Because the whole model is compiled to WebAssembly and shipped as part of the page, no image or scan you feed it ever needs to travel to a server for recognition. The first time you use a language, its trained data downloads once and is cached by your browser — after that, everything happens locally, even offline.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-layer-group text-brand-600" aria-hidden="true"></i> Three Outputs From One OCR Pass
+                    </h3>
+                    <p>Running OCR only gets you halfway — what you actually do with the recognised text depends on what you're trying to accomplish next, which is why this tool hands back three different formats rather than picking one for you.</p>
+                    <div class="mt-5 spec-table-wrap">
+                        <table class="spec-table">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>What it is</th>
+                                    <th>Best for</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Searchable PDF</td>
+                                    <td>Your original scan, with invisible recognised text placed precisely over it</td>
+                                    <td>Archiving, Ctrl+F search, keeping the original look</td>
+                                </tr>
+                                <tr>
+                                    <td>.docx (Word)</td>
+                                    <td>Just the extracted text, in an editable document</td>
+                                    <td>Rewriting, formatting, quoting into a report</td>
+                                </tr>
+                                <tr>
+                                    <td>Copyable text box</td>
+                                    <td>Plain text shown directly on the page</td>
+                                    <td>A quick copy-paste into an email, chat, or form</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-5">The searchable PDF is the odd one out technically: it doesn't just contain text, it contains your original scanned image with a layer of invisible, precisely-positioned text sitting on top of it at exactly the coordinates each recognised word occupied on the page. Open it and it looks exactly like the scan you uploaded; press Ctrl+F and search, and it behaves like a normal digital document, because as far as your PDF reader is concerned, it is one. The .docx and copyable text, by contrast, discard the original image entirely and give you back only the words themselves, ready to be worked with rather than just archived. Neither approach is more "correct" than the other — they simply answer different questions about what you actually need the document to do next.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-image text-brand-600" aria-hidden="true"></i> Getting the Most Accurate Text
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Scan at a reasonable resolution.</span> Somewhere around 300 DPI is the sweet spot — much lower and characters blur together; much higher rarely improves accuracy further but does slow processing down.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Good, even lighting matters more than most people expect.</span> A photo taken at an angle under a single overhead light, with a shadow falling across half the page, will consistently produce worse results than a flat, evenly-lit scan, even at the same resolution.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Straighten the page before uploading if you can.</span> A skewed or rotated scan makes it harder for the engine to correctly identify text lines, especially with dense paragraphs.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Select the correct language before starting.</span> Recognition is tuned against the character shapes and common word patterns of the selected language — running an English document through Hindi recognition, or vice versa, meaningfully hurts accuracy even though both use readable text.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Clean, printed text outperforms handwriting significantly.</span> Tesseract and engines like it are trained overwhelmingly on printed fonts; neat handwriting can work reasonably well, but cursive or inconsistent handwriting remains a genuinely hard problem for any OCR engine, not a limitation specific to this one.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Avoid heavy compression artifacts.</span> A screenshot or a heavily compressed JPEG can introduce blocky noise around character edges that a normal scan wouldn't have, which quietly degrades recognition even when the image still looks acceptable at a glance.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Crop out irrelevant page content where practical.</span> A photo that includes the desk, a hand, or a large margin around the actual document adds nothing to recognition and simply gives the engine more non-text area to process.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-language text-brand-600" aria-hidden="true"></i> Working With Multiple Languages
+                    </h3>
+                    <p>Each language uses its own trained recognition data, downloaded once per language and then cached by your browser for future use. This matters for documents that mix languages in predictable ways — an English form with Hindi annotations, for instance — since a single recognition pass is tuned for one language at a time.</p>
+                    <p class="mt-4">For a genuinely mixed document, running it twice, once per language, and combining the results by hand tends to produce more accurate text overall than forcing a single pass to guess between two very different character sets at once. For documents that are consistently in one language throughout, simply selecting that language up front is all that's needed.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-brand-600" aria-hidden="true"></i> Why Privacy Matters for OCR Specifically
+                    </h3>
+                    <p>People run OCR on exactly the kind of documents they'd least want to hand to an unfamiliar server: scanned ID cards, signed contracts, medical records, old certificates, handwritten notes containing account numbers. The whole point of digitising a paper document is usually to make it easier to store, search, or share — which makes it worth asking where that digitisation actually happens before you start.</p>
+                    <p class="mt-4">Because recognition runs entirely inside your browser using WebAssembly, the image never needs to leave your device to become text. You can verify this yourself with your browser's developer tools Network tab: open it, run a conversion, and confirm no request containing your file goes out while OCR is running — the only network activity you'll see is the one-time language-data download, which contains no information about your document at all.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-triangle-exclamation text-brand-600" aria-hidden="true"></i> Troubleshooting Common OCR Issues
+                    </h3>
+                    <p class="mt-1"><span class="font-semibold text-slate-800 dark:text-slate-200">Recognition is slow or seems stuck.</span> The first run in a language downloads and initialises that language's trained data, which can take a moment depending on your connection. Subsequent conversions in the same language are noticeably faster since the data is already cached.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Text comes out with obvious character mistakes.</span> Usually a resolution or lighting issue rather than a language problem — check the source image at full zoom; if small text is genuinely blurry to your own eye, the engine is working from the same blurry input.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Numbers and letters get confused (0/O, 1/l, 5/S).</span> A known, genuinely hard problem in OCR generally, worse at low resolution or with certain fonts. A quick manual proofread of numeric fields — account numbers, dates, amounts — is worth doing on anything important regardless of which OCR tool produced it.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">The searchable PDF's invisible text doesn't line up with a resized view.</span> The text is positioned to match the page at its original scanned resolution; this doesn't affect selecting or searching text, only how precisely a copy-paste selection outline visually traces the words underneath.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">The .docx or copied text has lost the original page layout.</span> This is expected — both formats extract the words themselves, in reading order, but don't attempt to preserve exact visual positioning, tables, or columns the way the searchable PDF does, since a Word document or plain text box isn't built to hold pixel-precise layout information.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-earth-americas text-brand-600" aria-hidden="true"></i> Where OCR Comes Up Beyond Old Archives
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Students and researchers</span> digitising photographed textbook pages or handwritten lecture notes into searchable, editable study material.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">HR and admin teams</span> converting scanned ID documents, certificates, or signed forms into records that can be searched by name or date instead of opened one by one.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Small businesses</span> turning photographed receipts and supplier invoices into text that can be copied straight into a bookkeeping spreadsheet.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Journalists and researchers</span> extracting quotable text from a photographed document or printed report without retyping it by hand.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Translators</span> converting a foreign-language scan to text first, so it can be fed into a translation tool that only accepts typed input.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Libraries and archivists</span> making decades-old scanned newspapers or documents keyword-searchable for the first time, all without a specialist digitisation budget.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Legal assistants</span> converting scanned exhibits or old case files into searchable PDFs so a specific clause or name can be found instantly instead of read for manually.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Genealogists and family historians</span> extracting text from photographed birth, marriage, and immigration records held in family archives.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Remote and hybrid teams</span> turning a photographed whiteboard or handwritten meeting note into text that can be pasted directly into shared notes.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-brand-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Which output format should I choose by default?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">If you need to keep the document looking like the original scan while making it searchable, use the PDF. If you need to edit or reformat the text, use the .docx. If you just need to paste a paragraph somewhere quickly, the copy box is fastest.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Do I need to run OCR three times to get all three formats?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No. Recognition runs once; all three outputs are generated from that same pass, so you can download the PDF, download the .docx, and copy the text without waiting for the process to repeat.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why does the first conversion in a new language take longer?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">That language's trained recognition data has to download the first time it's used. Your browser caches it afterward, so switching back to the same language later skips that wait entirely.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can OCR read handwriting?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Reasonably neat, well-separated handwriting can produce usable results, but cursive or inconsistent handwriting is a genuinely difficult problem for any OCR engine, this one included. Printed and typed text remains far more reliable.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Will the .docx file preserve the original formatting, like bold text or columns?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No — the .docx contains the recognised text as plain paragraphs, in reading order, without attempting to reconstruct bold styling, columns, or exact spacing from the original image. For a result that visually matches the original, the searchable PDF is the right choice instead.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is there a limit on how many pages I can process?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No hard limit is enforced, but since every page is processed on your own device, very long documents take proportionally longer and depend on your device's available memory. Keep the tab open and active until the progress log shows completion.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is it safe to run OCR on ID documents or medical records?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Recognition runs entirely in your browser using WebAssembly, and the document is never uploaded anywhere, which you can verify yourself using your browser's developer tools Network tab.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-magnifying-glass-chart text-brand-600" aria-hidden="true"></i> Proofreading OCR Output Before You Rely on It
+                </h3>
+                <p>No OCR engine, however well trained, gets every character right on every scan — accuracy on a clean, well-lit printed page can exceed 99%, but that still means roughly one mistake in every couple of hundred characters, concentrated disproportionately in the hardest parts of the image: small print, faint ink, or a fold line running through a word.</p>
+                <p class="mt-4">For anything going into a report, a form, or a record that needs to be correct, a quick pass through the copyable text box is worth doing before trusting the .docx or PDF blindly. Numbers deserve particular attention, since a misread digit doesn't announce itself the way a misread letter often does — a wrong word usually looks obviously wrong, while a wrong digit in an account or reference number looks completely plausible until it fails to match anything.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-copy text-brand-600" aria-hidden="true"></i> Working Through Multiple Scans
+                </h3>
+                <p>Each file runs through the OCR process independently, one at a time. For a stack of similar documents — say, a folder of scanned receipts or a set of certificates — the fastest workflow is usually to settle on the right language once, then repeat upload-and-convert for each file without needing to reconfigure anything between them.</p>
+                <p class="mt-4">Because everything runs locally with no per-file cap or cooldown, there's no practical difference in speed or availability between converting one document and converting the twentieth one in the same session — each simply takes as long as your device needs to process that specific page count and image quality.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-file-word text-brand-600" aria-hidden="true"></i> What Actually Goes Into the .docx File
+                </h3>
+                <p>The Word document generated after OCR contains the recognised text laid out as ordinary paragraphs, matching the reading order Tesseract determined while scanning the page — generally top to bottom, left to right, the way most documents are naturally read. It opens in Microsoft Word, Google Docs, LibreOffice Writer, and Apple Pages without any conversion step of its own, since it's a genuine, standard .docx file rather than a renamed text file.</p>
+                <p class="mt-4">Because it's a real editable document from the moment it opens, it's the natural starting point for anything that needs further editing — correcting the handful of recognition errors a proofread turns up, reformatting into a different structure, or simply continuing to write from where the scanned original left off.</p>
+            </div>
+
+            <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">Turning a scan into usable text is really two separate steps that just happen to feel like one: recognising the words, and then deciding what to actually do with them. Whether that's keeping the original page searchable, getting an editable document, or just needing a paragraph to paste somewhere quickly, the recognition step underneath is identical — only the final shape of what comes out changes, and now you get to pick all three from a single pass, without your document ever leaving your device. Proofread the numbers, pick the format that matches what you're actually trying to do next, and the rest takes care of itself.</p>
+                </div>
+
+            </div>
         </section>
 
     </main>
@@ -325,16 +893,16 @@
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
         <div class="col-span-1 sm:col-span-2 md:col-span-1">
             <div class="flex items-center gap-2 mb-4 text-white">
-                <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
                 <span class="font-bold text-xl font-display">The PDF Mechanic</span>
             </div>
             <p class="text-sm leading-relaxed text-slate-500 mb-4">
                 Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
             </p>
-            </div>
-        
+        </div>
+
         <div>
-            <h4 class="text-white font-bold text-sm mb-4">Organize & Edit</h4>
+            <h4 class="text-white font-bold text-sm mb-4">Organize &amp; Edit</h4>
             <ul class="space-y-2 text-sm">
                 <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
                 <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
@@ -354,33 +922,38 @@
         </div>
 
         <div>
-            <h4 class="text-white font-bold text-sm mb-4">Legal & More</h4>
+            <h4 class="text-white font-bold text-sm mb-4">Security &amp; Legal</h4>
             <ul class="space-y-2 text-sm">
+                <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
                 <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
                 <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
             </ul>
         </div>
     </div>
-    
+
     <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
         &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
     </div>
 </footer>
 
+    <!-- OCR & PDF Core Libraries: moved to end of body (were render-blocking in <head>
+         before) so the page paints immediately without waiting for these to download. -->
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
+
     <script>
-        // Theme Logic
+        // Theme Logic (class already applied pre-paint by the inline head script)
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          html.classList.add('dark');
-        } else { html.classList.remove('dark'); }
         themeToggle.addEventListener('click', () => {
-          html.classList.toggle('dark');
-          localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            html.classList.toggle('dark');
+            try { localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
         });
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Setup PDF.js Worker (Original Logic Preserved)
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         const fileInput = document.getElementById('fileInput');
@@ -391,12 +964,15 @@
         const statusArea = document.getElementById('statusArea');
         const settingsArea = document.getElementById('settingsArea');
         const uploadArea = document.getElementById('uploadArea');
+        const resultArea = document.getElementById('resultArea');
         const langSelect = document.getElementById('langSelect');
-        const fileName = document.getElementById('fileName');
+        const fileNameEl = document.getElementById('fileName');
+        const extractedTextEl = document.getElementById('extractedText');
 
         let selectedFile = null;
+        let searchablePdfBlob = null;
+        let fullExtractedText = '';
 
-        // Logging Helper
         const log = (msg) => {
             const p = document.createElement('p');
             p.className = 'mb-1';
@@ -405,165 +981,332 @@
             logs.scrollTop = logs.scrollHeight;
         };
 
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            uploadArea.classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) selectFile(file);
+        }
+
         fileInput.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
-                selectedFile = e.target.files[0];
-                fileName.innerText = selectedFile.name;
-                
-                // Show Settings, Hide Upload
-                uploadArea.classList.add('hidden');
-                settingsArea.classList.remove('hidden');
-                convertBtn.disabled = false;
-            }
+            if (e.target.files[0]) selectFile(e.target.files[0]);
         });
 
-       convertBtn.addEventListener('click', async () => {
-    if(!selectedFile) return;
+        function selectFile(file) {
+            hideFileError();
+            const isPdf = file.type === 'application/pdf';
+            const isImage = file.type.startsWith('image/');
+            if (!isPdf && !isImage) {
+                showFileError(`"${file.name}" isn't a PDF or image file. Please choose a PDF, JPG, or PNG.`);
+                return;
+            }
+            selectedFile = file;
+            fileNameEl.innerText = file.name;
+            uploadArea.classList.remove('drag-active');
+            uploadArea.classList.add('hidden');
+            settingsArea.classList.remove('hidden');
+            convertBtn.disabled = false;
+        }
 
-    // UI Reset
-    convertBtn.disabled = true;
-    convertBtn.classList.add('opacity-70', 'cursor-not-allowed');
-    statusArea.classList.remove('hidden');
-    logs.innerHTML = '';
-    progressBar.style.width = '0%';
-    percentBadge.innerText = '0%';
-    
-    log("Initializing OCR Engine...");
+        function resetTool() {
+            selectedFile = null;
+            searchablePdfBlob = null;
+            fullExtractedText = '';
+            hideFileError();
+            fileInput.value = '';
+            extractedTextEl.value = '';
+            logs.innerHTML = '<p>&gt; System Ready.</p>';
+            progressBar.style.width = '0%';
+            percentBadge.innerText = '0%';
+            statusArea.classList.add('hidden');
+            settingsArea.classList.add('hidden');
+            resultArea.classList.add('hidden');
+            uploadArea.classList.remove('hidden');
+            convertBtn.disabled = true;
+            convertBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        }
 
-    let worker = null;
+        convertBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
 
-    try {
-        const lang = langSelect.value;
-        
-        // --- CHANGE START: Better Worker Creation with Logger ---
-        // Ye logger aapko batayega ki file download ho rahi hai ya nahi
-        worker = await Tesseract.createWorker(lang, 1, {
-            logger: m => {
-                // Sirf main status updates dikhayein
-                if(m.status.includes('loading') || m.status.includes('recognizing')) {
-                     log(`> ${m.status} (${(m.progress * 100).toFixed(0)}%)`);
-                     // Progress bar update sirf recognition ke waqt
-                     if(m.status === 'recognizing text') {
-                         const p = Math.round(m.progress * 100);
-                         progressBar.style.width = `${p}%`;
-                         percentBadge.innerText = `${p}%`;
-                     }
+            hideFileError();
+            convertBtn.disabled = true;
+            convertBtn.classList.add('opacity-70', 'cursor-not-allowed');
+            statusArea.classList.remove('hidden');
+            logs.innerHTML = '';
+            progressBar.style.width = '0%';
+            percentBadge.innerText = '0%';
+            fullExtractedText = '';
+
+            log("Initializing OCR Engine...");
+
+            let worker = null;
+
+            try {
+                const lang = langSelect.value;
+
+                worker = await Tesseract.createWorker(lang, 1, {
+                    logger: m => {
+                        if (m.status.includes('loading') || m.status.includes('recognizing')) {
+                            log(`> ${m.status} (${(m.progress * 100).toFixed(0)}%)`);
+                            if (m.status === 'recognizing text') {
+                                const p = Math.round(m.progress * 100);
+                                progressBar.style.width = `${p}%`;
+                                percentBadge.innerText = `${p}%`;
+                            }
+                        }
+                    }
+                });
+
+                log(`Language (${lang}) Loaded Successfully.`);
+
+                // jsPDF replaces the old worker.getPDF() call, which was removed in
+                // Tesseract.js v4/v5 ("getPDF function replaced by pdf recognize option").
+                // We build the searchable PDF ourselves: original page image as the
+                // visible layer, OCR'd text placed invisibly on top at each word's position.
+                const { jsPDF } = window.jspdf;
+                let pdfDoc = null;
+
+                if (selectedFile.type === 'application/pdf') {
+                    log("Detected PDF Input.");
+                    pdfDoc = await processScannedPDF(selectedFile, worker);
+                } else {
+                    log("Detected Image Input.");
+                    pdfDoc = await processImageFile(selectedFile, worker);
+                }
+
+                log("Finalizing searchable PDF...");
+                searchablePdfBlob = pdfDoc.output('blob');
+
+                extractedTextEl.value = fullExtractedText.trim();
+
+                log("Success! Your results are ready.");
+                progressBar.style.width = '100%';
+                percentBadge.innerText = 'Done';
+
+                settingsArea.classList.add('hidden');
+                resultArea.classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+                log("ERROR: " + err.message);
+                if (err.message && (err.message.includes('Network') || err.message.includes('load'))) {
+                    log("TIP: Check your internet connection. Language data needs to download the first time.");
+                }
+                showFileError("Something went wrong during OCR. Check the processing log below for details, or try a different file.");
+                convertBtn.disabled = false;
+                convertBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            } finally {
+                if (worker) {
+                    await worker.terminate();
                 }
             }
         });
-        // --- CHANGE END ---
 
-        log(`Language (${lang}) Loaded Successfully.`);
+        // --- Process a single image file ---
+        async function processImageFile(file, worker) {
+            log("Recognizing text & layout...");
+            const dims = await loadImageDimensions(file);
+            const { data } = await worker.recognize(file);
 
-        // 2. Prepare for PDF Merging (using pdf-lib)
-        const { PDFDocument } = PDFLib;
-        const finalPdfDoc = await PDFDocument.create();
+            fullExtractedText += (data.text || '') + '\n\n';
 
-        // 3. Check File Type
-        if (selectedFile.type === 'application/pdf') {
-            log("Detected PDF Input.");
-            await processScannedPDF(selectedFile, worker, finalPdfDoc);
-        } else {
-            log("Detected Image Input.");
-            await processImage(selectedFile, worker, finalPdfDoc);
+            const { jsPDF } = window.jspdf;
+            const pdfDoc = new jsPDF({ unit: 'pt', format: [dims.width, dims.height] });
+            addSearchablePage(pdfDoc, URL.createObjectURL(file), dims.width, dims.height, data, false, 1);
+            return pdfDoc;
         }
 
-        // 4. Download Final PDF
-        log("Finalizing document...");
-        const pdfBytes = await finalPdfDoc.save();
-        
-        const originalName = selectedFile.name.replace(/\.[^/.]+$/, "");
-        const newFileName = `${originalName}-searchable-pdfmechanic.pdf`;
-        downloadBlob(pdfBytes, newFileName);
-
-        log("Success! Download started.");
-        progressBar.style.width = '100%';
-        percentBadge.innerText = 'Done';
-
-    } catch (err) {
-        console.error(err);
-        log("ERROR: " + err.message);
-        // User ko batayein agar language load fail hui
-        if(err.message.includes('Network') || err.message.includes('load')) {
-             log("TIP: Check internet connection. Language data needs to download first time.");
-        }
-    } finally {
-        if (worker) {
-            await worker.terminate();
-        }
-        convertBtn.disabled = false;
-        convertBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-    }
-});
-
-        // --- Logic: Process Single Image ---
-        async function processImage(file, worker, finalPdfDoc) {
-            log("Recognizing text & Layout...");
-            await worker.recognize(file); // OCR Pass 1
-            const { data: pdfData } = await worker.getPDF('Page'); // Generate PDF Overlay
-
-            // Merge this page into final doc
-            await mergePageToDoc(pdfData, finalPdfDoc);
-        }
-
-        // --- Logic: Process Scanned PDF (Multi-page) ---
-        async function processScannedPDF(file, worker, finalPdfDoc) {
+        // --- Process a (possibly multi-page) scanned PDF ---
+        async function processScannedPDF(file, worker) {
             const arrayBuffer = await file.arrayBuffer();
             const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
             const totalPages = pdf.numPages;
 
             log(`Found ${totalPages} pages in document.`);
 
+            const RENDER_SCALE = 2.0; // higher resolution improves OCR accuracy
+            let pdfDoc = null;
+
             for (let i = 1; i <= totalPages; i++) {
                 const percent = Math.round((i / totalPages) * 100);
                 progressBar.style.width = `${percent}%`;
                 percentBadge.innerText = `${percent}%`;
-                
+
                 log(`Processing Page ${i}/${totalPages}...`);
 
-                // A. Render Page to High-Res Canvas
                 const page = await pdf.getPage(i);
-                const viewport = page.getViewport({ scale: 2.0 }); // High scale for better OCR
+                const viewport = page.getViewport({ scale: RENDER_SCALE });
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 canvas.width = viewport.width;
                 canvas.height = viewport.height;
                 await page.render({ canvasContext: ctx, viewport: viewport }).promise;
 
-                // B. Convert Canvas to Blob (Image)
-                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
+                const imgDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
 
-                // C. Run OCR on this Page Image
-                await worker.recognize(blob);
-                const { data: pdfData } = await worker.getPDF('Page');
+                const { data } = await worker.recognize(blob);
+                fullExtractedText += (data.text || '') + '\n\n';
 
-                // D. Add to Final PDF
-                await mergePageToDoc(pdfData, finalPdfDoc);
+                if (i === 1) {
+                    const { jsPDF } = window.jspdf;
+                    const pageWidthPt = canvas.width / RENDER_SCALE;
+                    const pageHeightPt = canvas.height / RENDER_SCALE;
+                    pdfDoc = new jsPDF({ unit: 'pt', format: [pageWidthPt, pageHeightPt] });
+                    addSearchablePage(pdfDoc, imgDataUrl, canvas.width, canvas.height, data, false, RENDER_SCALE);
+                } else {
+                    addSearchablePage(pdfDoc, imgDataUrl, canvas.width, canvas.height, data, true, RENDER_SCALE);
+                }
 
-                // E. Cleanup to save memory
                 page.cleanup();
                 canvas.remove();
             }
+            return pdfDoc;
         }
 
-        // --- Helper: Merge OCR'd Page into Final Doc (FIXED HERE) ---
-        async function mergePageToDoc(pdfDataBytes, finalPdfDoc) {
-            const { PDFDocument } = PDFLib;
-            
-            // FIX: Convert generic array to Uint8Array for pdf-lib
-            const uint8Array = new Uint8Array(pdfDataBytes);
-
-            // Load the single page PDF generated by Tesseract
-            const tempDoc = await PDFDocument.load(uint8Array);
-            
-            // Copy it to our main document
-            const [copiedPage] = await finalPdfDoc.copyPages(tempDoc, [0]);
-            finalPdfDoc.addPage(copiedPage);
+        function loadImageDimensions(file) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                const url = URL.createObjectURL(file);
+                img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+                img.onerror = reject;
+                img.src = url;
+            });
         }
 
-        // --- Helper: Trigger Download ---
-        function downloadBlob(bytes, filename) {
-            const blob = new Blob([bytes], { type: 'application/pdf' });
+        // --- Add one page (image + invisible OCR text overlay) to the jsPDF document ---
+        function addSearchablePage(pdfDoc, imgDataUrl, pxWidth, pxHeight, ocrData, isAdditionalPage, renderScale) {
+            const scale = renderScale || 1;
+            const pageWidthPt = pxWidth / scale;
+            const pageHeightPt = pxHeight / scale;
+
+            if (isAdditionalPage) {
+                pdfDoc.addPage([pageWidthPt, pageHeightPt], pageWidthPt > pageHeightPt ? 'l' : 'p');
+            }
+
+            try {
+                pdfDoc.addImage(imgDataUrl, 'JPEG', 0, 0, pageWidthPt, pageHeightPt);
+            } catch (e) {
+                console.error('Could not place page image, continuing with text only:', e);
+            }
+
+            overlayInvisibleText(pdfDoc, ocrData, scale, pageWidthPt, pageHeightPt);
+        }
+
+        // Places recognised text invisibly over the image so the PDF becomes searchable
+        // and selectable. Tries word-level positions first for the closest match to the
+        // original layout; falls back to line-level, then to one text block per page,
+        // so the PDF still ends up searchable even if finer position data isn't present.
+        function overlayInvisibleText(pdfDoc, ocrData, scale, pageWidthPt, pageHeightPt) {
+            try {
+                const words = (ocrData.words || []).filter(w => w.text && w.text.trim().length > 0 && w.bbox);
+                if (words.length > 0) {
+                    words.forEach(word => {
+                        const x = word.bbox.x0 / scale;
+                        const y = word.bbox.y1 / scale;
+                        const wordHeightPt = Math.max(1, (word.bbox.y1 - word.bbox.y0) / scale);
+                        const fontSize = Math.max(4, Math.min(72, wordHeightPt * 0.85));
+                        pdfDoc.setFontSize(fontSize);
+                        try {
+                            pdfDoc.text(word.text, x, y, { renderingMode: 'invisible' });
+                        } catch (e) { /* skip a word that fails to place, keep going */ }
+                    });
+                    return;
+                }
+            } catch (e) {
+                console.error('Word-level text placement failed, falling back:', e);
+            }
+
+            try {
+                const lines = (ocrData.lines || []).filter(l => l.text && l.text.trim().length > 0 && l.bbox);
+                if (lines.length > 0) {
+                    lines.forEach(line => {
+                        const x = line.bbox.x0 / scale;
+                        const y = line.bbox.y1 / scale;
+                        const lineHeightPt = Math.max(1, (line.bbox.y1 - line.bbox.y0) / scale);
+                        pdfDoc.setFontSize(Math.max(4, Math.min(72, lineHeightPt * 0.85)));
+                        try {
+                            pdfDoc.text(line.text, x, y, { renderingMode: 'invisible', maxWidth: pageWidthPt - x });
+                        } catch (e) {}
+                    });
+                    return;
+                }
+            } catch (e) {
+                console.error('Line-level text placement failed, falling back:', e);
+            }
+
+            // Last-resort fallback: place the whole page's text as one invisible block.
+            // Position accuracy is lost, but the page remains genuinely searchable.
+            if (ocrData.text && ocrData.text.trim().length > 0) {
+                pdfDoc.setFontSize(10);
+                try {
+                    pdfDoc.text(ocrData.text, 5, 12, { renderingMode: 'invisible', maxWidth: pageWidthPt - 10 });
+                } catch (e) { console.error('Fallback text placement failed:', e); }
+            }
+        }
+
+        // --- Download: searchable PDF ---
+        document.getElementById('downloadPdfBtn').addEventListener('click', () => {
+            if (!searchablePdfBlob) return;
+            const originalName = selectedFile.name.replace(/\.[^/.]+$/, "");
+            downloadBlob(searchablePdfBlob, `${originalName}-searchable-pdfmechanic.pdf`);
+        });
+
+        // --- Download: .docx ---
+        document.getElementById('downloadDocxBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('downloadDocxBtn');
+            const original = btn.innerHTML;
+            try {
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Preparing...';
+                btn.disabled = true;
+
+                const { Document, Packer, Paragraph } = docx;
+                const paragraphs = fullExtractedText
+                    .split('\n')
+                    .map(line => new Paragraph(line));
+
+                const doc = new Document({
+                    sections: [{ children: paragraphs.length ? paragraphs : [new Paragraph('')] }]
+                });
+
+                const blob = await Packer.toBlob(doc);
+                const originalName = selectedFile.name.replace(/\.[^/.]+$/, "");
+                downloadBlob(blob, `${originalName}-ocr-pdfmechanic.docx`);
+            } catch (err) {
+                console.error(err);
+                showFileError("Couldn't generate the Word document. Try downloading the PDF or copying the text instead.");
+            } finally {
+                btn.innerHTML = original;
+                btn.disabled = false;
+            }
+        });
+
+        // --- Copy extracted text to clipboard ---
+        document.getElementById('copyTextBtn').addEventListener('click', async () => {
+            const label = document.getElementById('copyBtnLabel');
+            try {
+                await navigator.clipboard.writeText(extractedTextEl.value);
+                label.innerText = 'Copied!';
+            } catch (e) {
+                // Fallback for browsers without Clipboard API permission
+                extractedTextEl.select();
+                document.execCommand('copy');
+                label.innerText = 'Copied!';
+            }
+            setTimeout(() => { label.innerText = 'Copy to Clipboard'; }, 2000);
+        });
+
+        function downloadBlob(blob, filename) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -588,4 +1331,3 @@
 </body>
 
 </html>
-
