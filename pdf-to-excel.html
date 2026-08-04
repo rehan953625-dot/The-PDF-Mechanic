@@ -3,16 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <title>Convert PDF to Excel Free (Offline) | Extract Tables to XLSX</title>
-    <meta name="description" content="Convert PDF to Excel (XLSX) instantly without uploading files. Best tool to extract tables from bank statements and invoices. 100% Secure & Client-side." />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Applies saved theme before first paint to avoid a light/dark flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Convert PDF to Excel Free (Offline) | Extract Tables to XLSX - The PDF Mechanic</title>
+    <meta name="description" content="Convert PDF to Excel (XLSX) instantly without uploading files. Extract tables from bank statements and invoices, entirely in your browser. 100% free and private." />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://www.thepdfmechanic.com/pdf-to-excel.html" />
-    
-    <!-- Core Web Vitals Optimization: Preconnects -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -26,113 +34,373 @@
     <!-- Open Graph (Social SEO) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Convert PDF to Excel Free & Secure (Offline)" />
-    <meta property="og:description" content="Convert PDF to Excel (XLSX) instantly in your browser. No files uploaded." />
+    <meta property="og:description" content="Convert PDF to Excel (XLSX) instantly in your browser. No files uploaded, ever." />
     <meta property="og:image" content="https://www.thepdfmechanic.com/og-pdf-to-excel.png" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/pdf-to-excel.html" />
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Convert PDF to Excel Free & Secure (Offline)" />
+    <meta name="twitter:description" content="Extract tables from PDFs to XLSX entirely client-side. No uploads, no signup." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-pdf-to-excel.png" />
 
-    <!-- External Assets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- PDF & Excel Core Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Core Web Vitals: Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://apis.google.com">
+    <link rel="preconnect" href="https://accounts.google.com">
 
-    <!-- Cloud Integration APIs (Async) -->
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-    <script async defer src="https://accounts.google.com/gsi/client"></script>
-    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="tmwsv5o70l5lndh"></script>
+    <!-- Fonts: loaded async (media=print swap trick) so they never block first paint.
+         Kept on Google's CSS2 endpoint rather than self-hosted, since both Outfit AND
+         Inter are genuinely used on this page (unlike some other tool pages) and this
+         guarantees the correct current font files without guessing static URLs. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                excel: { 50: '#f0fdf4', 100: '#dcfce7', 600: '#16a34a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
-        }
-      }
-    </script>
-    <style>
-        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
-        .dark .glass-nav { background: rgba(15, 23, 42, 0.9); }
-        
-        /* Layout Stability for Core Web Vitals (CLS Fix) */
-        #uploadStep { min-height: 320px; display: flex; flex-direction: column; justify-content: center; }
-        .font-display { font-display: swap; }
-        .font-sans { font-display: swap; }
-    </style>
-   <script type="application/ld+json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Convert PDF to Excel Offline",
+      "name": "Convert PDF to Excel Offline - The PDF Mechanic",
       "url": "https://www.thepdfmechanic.com/pdf-to-excel.html",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Any browser-based OS (Windows, macOS, Android, iOS, Linux)",
-      "author": {
-        "@type": "Organization",
-        "name": "The PDF Mechanic"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "Convert PDF to Excel (XLSX) instantly in your browser. Extract tables from bank statements securely without uploading your files."
+      "author": { "@type": "Organization", "name": "The PDF Mechanic" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Convert PDF to Excel (XLSX) instantly in your browser. Extract tables from bank statements and invoices securely without uploading your files."
     }
     </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Is it safe to convert bank statements?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, absolutely. This tool runs 100% locally in your browser. Your financial data is never uploaded to any server."
-        }
-      },{
-        "@type": "Question",
-        "name": "Does it support scanned PDFs?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Currently, this tool works best with text-based PDFs (selectable text). For scanned documents, please use our OCR tool first."
-        }
-      }]
+      "mainEntity": [
+        { "@type": "Question", "name": "Does this tool work on scanned PDFs or images?", "acceptedAnswer": { "@type": "Answer", "text": "This parser reads selectable text layouts. If your PDF is scanned or is an image, run it through an OCR tool first to make the text selectable before converting." } },
+        { "@type": "Question", "name": "Is there a strict page or file size limit?", "acceptedAnswer": { "@type": "Answer", "text": "Because processing runs natively on your own hardware, the practical limit depends on your device's memory. Standard multi-page statements, up to roughly 50 pages, typically process in a few seconds on most modern devices." } },
+        { "@type": "Question", "name": "Is it completely free to extract tables to XLSX?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The PDF Mechanic's PDF to Excel converter is 100% free with no hidden charges, trial limits, or email registration required." } },
+        { "@type": "Question", "name": "What spreadsheet software is compatible with the converted files?", "acceptedAnswer": { "@type": "Answer", "text": "The downloaded file is a standard .xlsx spreadsheet, fully compatible with Microsoft Excel, Google Sheets, Apple Numbers, and LibreOffice Calc." } },
+        { "@type": "Question", "name": "Why are some rows misaligned after conversion?", "acceptedAnswer": { "@type": "Answer", "text": "The parser clusters rows based on vertical text position. PDFs with complex nested borders or multi-line cell text can occasionally cause rows to shift. Source documents with standard, simple table structures convert most cleanly." } },
+        { "@type": "Question", "name": "Is it safe to convert bank statements with this tool?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Conversion runs entirely inside your browser using JavaScript. Your financial data is never uploaded to any server, including when importing from Google Drive or Dropbox." } },
+        { "@type": "Question", "name": "Why does the Google Drive or Dropbox import ask for account access?", "acceptedAnswer": { "@type": "Answer", "text": "That permission only lets your browser read the one file you pick from the picker window. The file is downloaded directly into your browser and processed there, the same as a local upload, and is never sent to this site's servers because it has none for file processing." } }
+      ]
     }
     </script>
+
+    <style>
+
+/* ===== Preflight (minimal reset, mirrors Tailwind base) ===== */
+*,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+html{-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.5}
+body{margin:0;line-height:inherit}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:inherit}
+b,strong{font-weight:bolder}
+button,input{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
+button{text-transform:none;-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+input::placeholder{opacity:1;color:#94a3b8}
+ul,ol{list-style:none;margin:0;padding:0}
+svg{display:block;vertical-align:middle}
+[hidden]{display:none}
+img,svg{max-width:100%;height:auto}
+:focus:not(:focus-visible){outline:none}
+
+/* ===== Keyframes ===== */
+@keyframes fadeIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tw-pulse{50%{opacity:.5}}
+
+/* ===== Group marker (no own styles; enables group-hover children) ===== */
+.group{}
+
+/* ===== Base utilities (unprefixed) ===== */
+.animate-pulse { animation:tw-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+.animate-spin { animation:spin 1s linear infinite; }
+.bg-brand-50 { background-color:#eff6ff; }
+.bg-brand-600 { background-color:#2563eb; }
+.bg-excel-50 { background-color:#f0fdf4; }
+.bg-excel-600 { background-color:#16a34a; }
+.bg-green-500 { background-color:#22c55e; }
+.bg-slate-100 { background-color:#f1f5f9; }
+.bg-slate-50 { background-color:#f8fafc; }
+.bg-slate-950 { background-color:#020617; }
+.bg-white { background-color:#ffffff; }
+.border { border-width:1px; }
+.border-4 { border-width:4px; }
+.border-b { border-bottom-width:1px; }
+.border-brand-100 { border-color:#dbeafe; }
+.border-excel-100 { border-color:#dcfce7; }
+.border-slate-100 { border-color:#f1f5f9; }
+.border-slate-200 { border-color:#e2e8f0; }
+.border-slate-800 { border-color:#1e293b; }
+.border-slate-900 { border-color:#0f172a; }
+.border-t { border-top-width:1px; }
+.border-t-excel-600 { border-top-color:#16a34a; }
+.col-span-1 { grid-column:span 1 / span 1; }
+.cursor-pointer { cursor:pointer; }
+.dark .dark\:bg-brand-900\/20 { background-color:rgb(30 58 138 / 0.2); }
+.dark .dark\:bg-dark-bg { background-color:#0f172a; }
+.dark .dark\:bg-dark-card { background-color:#1e293b; }
+.dark .dark\:bg-green-900\/10 { background-color:rgb(20 83 45 / 0.1); }
+.dark .dark\:bg-green-900\/20 { background-color:rgb(20 83 45 / 0.2); }
+.dark .dark\:bg-green-900\/30 { background-color:rgb(20 83 45 / 0.3); }
+.dark .dark\:bg-slate-800 { background-color:#1e293b; }
+.dark .dark\:block { display:block; }
+.dark .dark\:border-dark-border { border-color:#334155; }
+.dark .dark\:border-green-800 { border-color:#166534; }
+.dark .dark\:border-slate-700 { border-color:#334155; }
+.dark .dark\:border-slate-800 { border-color:#1e293b; }
+.dark .dark\:hidden { display:none; }
+.dark .dark\:hover\:bg-slate-700:hover { background-color:#334155; }
+.dark .dark\:text-dark-text { color:#f8fafc; }
+.dark .dark\:text-green-300 { color:#86efac; }
+.dark .dark\:text-slate-200 { color:#e2e8f0; }
+.dark .dark\:text-slate-300 { color:#cbd5e1; }
+.dark .dark\:text-slate-400 { color:#94a3b8; }
+.dark .dark\:text-white { color:#ffffff; }
+.dark .dark\:text-yellow-400 { color:#facc15; }
+.duration-300 { transition-duration:300ms; }
+.flex { display:flex; }
+.flex-col { flex-direction:column; }
+.flex-grow { flex-grow:1; }
+.flex-wrap { flex-wrap:wrap; }
+.focus\:outline-none:focus { outline:2px solid transparent;outline-offset:2px; }
+.focus\:ring-2:focus { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.focus\:ring-brand-500:focus { --tw-ring-color:#3b82f6; }
+.focus\:ring-offset-2:focus { box-shadow:0 0 0 2px var(--tw-ring-offset-color, #fff), 0 0 0 4px var(--tw-ring-color, currentColor); }
+.font-bold { font-weight:700; }
+.font-display { font-family:Outfit,ui-sans-serif,system-ui,sans-serif; }
+.font-extrabold { font-weight:800; }
+.font-medium { font-weight:500; }
+.font-sans { font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+.font-semibold { font-weight:600; }
+.gap-10 { gap:2.5rem; }
+.gap-2 { gap:0.5rem; }
+.gap-3 { gap:0.75rem; }
+.gap-4 { gap:1rem; }
+.gap-5 { gap:1.25rem; }
+.gap-6 { gap:1.5rem; }
+.grid { display:grid; }
+.grid-cols-1 { grid-template-columns:repeat(1,minmax(0,1fr)); }
+.group:hover .group-hover\:bg-brand-700 { background-color:#1d4ed8; }
+.group:hover .group-hover\:scale-110 { transform:scale(1.1); }
+.group[open] .group-open\:rotate-180 { transform:rotate(180deg); }
+.h-10 { height:2.5rem; }
+.h-12 { height:3rem; }
+.h-16 { height:4rem; }
+.h-2 { height:0.5rem; }
+.h-20 { height:5rem; }
+.h-5 { height:1.25rem; }
+.h-9 { height:2.25rem; }
+.hidden { display:none; }
+.hover\:-translate-y-1:hover { transform:translateY(-0.25rem); }
+.hover\:bg-green-700:hover { background-color:#15803d; }
+.hover\:bg-slate-50:hover { background-color:#f8fafc; }
+.hover\:ring-2:hover { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
+.hover\:text-brand-500:hover { color:#3b82f6; }
+.hover\:text-brand-600:hover { color:#2563eb; }
+.hover\:text-excel-600:hover { color:#16a34a; }
+.inline-flex { display:inline-flex; }
+.items-center { align-items:center; }
+.justify-between { justify-content:space-between; }
+.justify-center { justify-content:center; }
+.leading-relaxed { line-height:1.625; }
+.leading-tight { line-height:1.25; }
+.list-decimal { list-style-type:decimal; }
+.list-none { list-style-type:none; }
+.marker\:text-excel-600 { color:#16a34a; }
+.max-w-2xl { max-width:42rem; }
+.max-w-3xl { max-width:48rem; }
+.max-w-4xl { max-width:56rem; }
+.max-w-7xl { max-width:80rem; }
+.max-w-none { max-width:none; }
+.mb-10 { margin-bottom:2.5rem; }
+.mb-12 { margin-bottom:3rem; }
+.mb-2 { margin-bottom:0.5rem; }
+.mb-3 { margin-bottom:0.75rem; }
+.mb-4 { margin-bottom:1rem; }
+.mb-5 { margin-bottom:1.25rem; }
+.mb-6 { margin-bottom:1.5rem; }
+.mb-8 { margin-bottom:2rem; }
+.min-h-screen { min-height:100vh; }
+.mr-2 { margin-right:0.5rem; }
+.mt-0\.5 { margin-top:0.125rem; }
+.mt-1 { margin-top:0.25rem; }
+.mt-2 { margin-top:0.5rem; }
+.mt-3 { margin-top:0.75rem; }
+.mt-4 { margin-top:1rem; }
+.mt-5 { margin-top:1.25rem; }
+.mt-6 { margin-top:1.5rem; }
+.mt-8 { margin-top:2rem; }
+.mt-auto { margin-top:auto; }
+.mx-auto { margin-left:auto;margin-right:auto; }
+.my-6 { margin-top:1.5rem;margin-bottom:1.5rem; }
+.my-8 { margin-top:2rem;margin-bottom:2rem; }
+.overflow-hidden { overflow:hidden; }
+.p-10 { padding:2.5rem; }
+.p-12 { padding:3rem; }
+.p-4 { padding:1rem; }
+.p-6 { padding:1.5rem; }
+.pb-12 { padding-bottom:3rem; }
+.pb-16 { padding-bottom:4rem; }
+.pb-20 { padding-bottom:5rem; }
+.pb-4 { padding-bottom:1rem; }
+.pb-8 { padding-bottom:2rem; }
+.pl-5 { padding-left:1.25rem; }
+.pt-16 { padding-top:4rem; }
+.pt-4 { padding-top:1rem; }
+.pt-6 { padding-top:1.5rem; }
+.pt-8 { padding-top:2rem; }
+.px-10 { padding-left:2.5rem;padding-right:2.5rem; }
+.px-2 { padding-left:0.5rem;padding-right:0.5rem; }
+.px-4 { padding-left:1rem;padding-right:1rem; }
+.py-1\.5 { padding-top:0.375rem;padding-bottom:0.375rem; }
+.py-16 { padding-top:4rem;padding-bottom:4rem; }
+.py-2 { padding-top:0.5rem;padding-bottom:0.5rem; }
+.py-4 { padding-top:1rem;padding-bottom:1rem; }
+.relative { position:relative; }
+.ring-brand-500 { --tw-ring-color:#3b82f6; }
+.rounded-2xl { border-radius:1rem; }
+.rounded-3xl { border-radius:1.5rem; }
+.rounded-full { border-radius:9999px; }
+.rounded-lg { border-radius:0.5rem; }
+.rounded-xl { border-radius:0.75rem; }
+.scroll-smooth { scroll-behavior:smooth; }
+.selection\:bg-brand-500::selection { background-color:#3b82f6; }
+.selection\:text-white::selection { color:#ffffff; }
+.shadow-green-500\/30 { --tw-shadow-color:rgb(34 197 94 / 0.3);box-shadow:0 10px 15px -3px rgb(34 197 94 / 0.3),0 4px 6px -4px rgb(34 197 94 / 0.3); }
+.shadow-lg { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-sm { box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.shadow-xl { box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.shrink-0 { flex-shrink:0; }
+.space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.5rem; }
+.space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
+.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+.sticky { position:sticky; }
+.text-2xl { font-size:1.5rem;line-height:2rem; }
+.text-3xl { font-size:1.875rem;line-height:2.25rem; }
+.text-4xl { font-size:2.25rem;line-height:2.5rem; }
+.text-brand-500 { color:#3b82f6; }
+.text-brand-600 { color:#2563eb; }
+.text-brand-700 { color:#1d4ed8; }
+.text-center { text-align:center; }
+.text-excel-600 { color:#16a34a; }
+.text-lg { font-size:1.125rem;line-height:1.75rem; }
+.text-slate-400 { color:#94a3b8; }
+.text-slate-500 { color:#64748b; }
+.text-slate-600 { color:#475569; }
+.text-slate-700 { color:#334155; }
+.text-slate-800 { color:#1e293b; }
+.text-slate-900 { color:#0f172a; }
+.text-sm { font-size:0.875rem;line-height:1.25rem; }
+.text-white { color:#ffffff; }
+.text-xl { font-size:1.25rem;line-height:1.75rem; }
+.text-xs { font-size:0.75rem;line-height:1rem; }
+.top-0 { top:0; }
+.tracking-tight { letter-spacing:-0.025em; }
+.transition { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-all { transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.transition-colors { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
+.underline { text-decoration-line:underline; }
+.w-10 { width:2.5rem; }
+.w-12 { width:3rem; }
+.w-16 { width:4rem; }
+.w-2 { width:0.5rem; }
+.w-20 { width:5rem; }
+.w-5 { width:1.25rem; }
+.w-9 { width:2.25rem; }
+.z-50 { z-index:50; }
+
+/* ===== sm: (640px+) ===== */
+@media (min-width: 640px) {
+.sm\:col-span-2 { grid-column:span 2 / span 2; }
+.sm\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.sm\:mb-14 { margin-bottom:3.5rem; }
+.sm\:pb-20 { padding-bottom:5rem; }
+.sm\:px-6 { padding-left:1.5rem;padding-right:1.5rem; }
+.sm\:py-20 { padding-top:5rem;padding-bottom:5rem; }
+.sm\:text-3xl { font-size:1.875rem;line-height:2.25rem; }
+.sm\:text-5xl { font-size:3rem;line-height:1; }
+}
+
+
+/* ===== md: (768px+) ===== */
+@media (min-width: 768px) {
+.md\:col-span-1 { grid-column:span 1 / span 1; }
+.md\:flex { display:flex; }
+.md\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.md\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+
+
+/* ===== lg: (1024px+) ===== */
+@media (min-width: 1024px) {
+.lg\:px-8 { padding-left:2rem;padding-right:2rem; }
+}
+
+
+/* ===== xl: (1280px+) ===== */
+@media (min-width: 1280px) {
+
+}
+
+/* ===== Original custom styles (carried over verbatim) ===== */
+.glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
+.dark .glass-nav { background: rgba(15, 23, 42, 0.9); }
+#uploadStep { min-height: 320px; display: flex; flex-direction: column; justify-content: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+#uploadStep.drag-active { background-color: #f0fdf4; }
+.dark #uploadStep.drag-active { background-color: rgba(22,163,74,0.1); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; margin: 0 1.5rem 1.5rem; }
+.inline-alert-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+.dark .inline-alert-warn { background: rgba(120,53,15,0.2); border-color: #92400e; color: #fcd34d; }
+.inline-alert-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.dark .inline-alert-error { background: rgba(127,29,29,0.2); border-color: #991b1b; color: #fca5a5; }
+.spec-table-wrap { overflow-x: auto; border-radius: 1rem; border: 1px solid #e2e8f0; }
+.dark .spec-table-wrap { border-color: #334155; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.spec-table th { background: #f0fdf4; color: #15803d; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(22,101,52,0.3); color: #86efac; }
+.spec-table td { padding: 0.75rem 1rem; border-top: 1px solid #e2e8f0; color: #475569; }
+.dark .spec-table td { border-top-color: #334155; color: #cbd5e1; }
+.callout-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #16a34a; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(22,101,52,0.18); border-color: #166534; border-left-color: #22c55e; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #15803d; font-size: 0.95rem; }
+.dark .callout-box-title { color: #86efac; }
+.list-disc { list-style-type: disc; }
+.marker\:text-excel-600::marker { color: #16a34a; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+    </style>
+
 </head>
 <body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
 
-    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors">
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <a href="index.html" class="flex items-center gap-2 group">
             <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
-                <i class="fa-solid fa-wrench"></i>
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
             </div>
             <span class="font-display font-bold text-xl tracking-tight">The PDF Mechanic</span>
           </a>
-          
+
           <div class="flex items-center gap-5">
              <div class="hidden md:flex gap-6 text-sm font-medium">
                 <a href="index.html#tools-section" class="hover:text-brand-600 dark:hover:text-brand-400 transition">All Tools</a>
                 <a href="#how-to-use" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Guide</a>
             </div>
-            <button id="themeToggle" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
-                <i class="fa-solid fa-moon dark:hidden"></i>
-                <i class="fa-solid fa-sun hidden dark:block"></i>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -142,39 +410,53 @@
     <header class="relative pt-16 pb-12 text-center px-4">
         <div class="max-w-3xl mx-auto">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-excel-50 dark:bg-green-900/30 text-excel-600 dark:text-green-300 text-xs font-semibold mb-6 border border-excel-100 dark:border-green-800">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Offline Mode & Secure
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Offline Mode &amp; Secure
             </div>
             <h1 class="font-display text-4xl sm:text-5xl font-extrabold leading-tight mb-6 text-slate-900 dark:text-white">
                 Convert PDF to <span class="text-excel-600">Excel (XLSX)</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-                Extract tables from Bank Statements and Invoices directly in your browser. No file upload required.
+                Extract tables from bank statements and invoices directly in your browser. No file upload required.
             </p>
         </div>
     </header>
 
     <main class="flex-grow px-4 pb-20">
         <div class="max-w-4xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden">
-<div id="uploadStep" class="p-10 text-center border-b border-slate-100 dark:border-slate-800 relative group">
-                <input type="file" id="uploadInput" accept="application/pdf" class="hidden">
-                
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mt-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadStep"
+                 class="p-10 text-center border-b border-slate-100 dark:border-slate-800 relative group"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="uploadInput" accept="application/pdf" class="hidden" aria-label="Choose a PDF file to convert to Excel">
+
                 <!-- Main Drag & Drop Area -->
-                <div class="cursor-pointer" onclick="document.getElementById('uploadInput').click()">
+                <div class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-2xl"
+                     role="button" tabindex="0"
+                     aria-label="Click or drag a PDF file here to convert it to Excel"
+                     onclick="document.getElementById('uploadInput').click()"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('uploadInput').click();}">
                     <div class="w-20 h-20 bg-excel-50 dark:bg-green-900/20 text-excel-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Select PDF File</h3>
-                    <p class="text-slate-500 text-sm mb-6">We support Bank Statements, Invoices & Data Tables.</p>
+                    <p class="text-slate-500 text-sm mb-6">We support Bank Statements, Invoices &amp; Data Tables. Or drag &amp; drop a file here.</p>
                 </div>
 
                 <!-- Cloud Picker Integration -->
                 <div class="flex flex-wrap items-center justify-center gap-4 mt-2 border-t border-slate-100 dark:border-slate-800 pt-6">
                     <button type="button" onclick="handleAuthClick()" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg" class="w-5 h-5" alt="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg" class="w-5 h-5" alt="" width="20" height="20">
                         Google Drive
                     </button>
                     <button type="button" id="dropbox-chooser" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg" class="w-5 h-5" alt="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg" class="w-5 h-5" alt="" width="20" height="20">
                         Dropbox
                     </button>
                 </div>
@@ -187,140 +469,332 @@
 
             <div id="downloadStep" class="hidden p-10 text-center bg-excel-50 dark:bg-green-900/10">
                 <div class="w-16 h-16 bg-white dark:bg-dark-card text-excel-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
-                    <i class="fa-solid fa-check"></i>
+                    <i class="fa-solid fa-check" aria-hidden="true"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Conversion Successful!</h3>
                 <p class="text-slate-600 dark:text-slate-400 mb-8">Your spreadsheet is ready for download.</p>
-                
-                <button id="downloadBtn" class="bg-excel-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl shadow-xl shadow-green-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 mx-auto">
-                    <i class="fa-solid fa-download"></i> Download Excel File
+
+                <button id="downloadBtn" type="button" class="bg-excel-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl shadow-xl shadow-green-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 mx-auto">
+                    <i class="fa-solid fa-download" aria-hidden="true"></i> Download Excel File
                 </button>
                 <br>
-                <button onclick="location.reload()" class="text-sm text-slate-500 hover:text-excel-600 mt-6 underline">Convert Another File</button>
+                <button onclick="resetTool()" type="button" class="text-sm text-slate-500 hover:text-excel-600 mt-6 underline">Convert Another File</button>
             </div>
 
         </div>
     </main>
 
- <section id="how-to-use" class="max-w-4xl mx-auto px-4 pb-20">
-        <div class="prose prose-slate dark:prose-invert max-w-none">
-            
+    <section id="how-to-use" class="max-w-4xl mx-auto px-4 pb-4">
+        <div class="max-w-none">
+
             <h2 class="text-3xl font-display font-bold mb-6 text-slate-900 dark:text-white">How to Convert PDF to Excel Offline with Cloud Storage</h2>
             <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-400 mb-6">
-                Extracting tabular data from confidential financial files like **Bank Statements, Invoice ledgers, or Balance Sheets** requires maximum security. Traditional converters require uploading your raw files to remote cloud servers, which introduces a data privacy vulnerability.
+                Extracting tabular data from confidential financial files like bank statements, invoice ledgers, or balance sheets requires maximum security. Traditional converters require uploading your raw files to remote cloud servers, which introduces a data privacy vulnerability.
             </p>
             <p class="mb-6 text-slate-600 dark:text-slate-400">
-                <strong>The PDF Mechanic</strong> operates differently. Our client-side *PDF to Excel Converter* processes documents directly within your browser's runtime. Your files never leave your local environment. To speed up your workflow, we also support importing PDFs directly from **Google Drive** and **Dropbox**, processing them securely on your device before downloading.
+                <strong>The PDF Mechanic</strong> operates differently. Our client-side PDF to Excel converter processes documents directly within your browser's runtime. Your files never leave your local environment. To speed up your workflow, we also support importing PDFs directly from Google Drive and Dropbox, processing them securely on your device before downloading.
             </p>
 
             <h3 class="text-2xl font-bold mb-4 mt-8 text-slate-900 dark:text-white">Key Advantages of Secure Offline Conversion</h3>
             <div class="grid md:grid-cols-2 gap-6 my-6">
                 <div class="bg-white dark:bg-dark-card p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <h4 class="font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white"><i class="fa-solid fa-shield-halved text-excel-600"></i> No Data Transfer</h4>
+                    <h4 class="font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white"><i class="fa-solid fa-shield-halved text-excel-600" aria-hidden="true"></i> No Data Transfer</h4>
                     <p class="text-sm text-slate-500">Processing runs entirely via client-side libraries. Even if you turn off your Wi-Fi, the conversion to XLSX continues to work seamlessly.</p>
                 </div>
                 <div class="bg-white dark:bg-dark-card p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <h4 class="font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white"><i class="fa-solid fa-cloud text-brand-500"></i> Direct Cloud Import</h4>
+                    <h4 class="font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white"><i class="fa-solid fa-cloud text-brand-500" aria-hidden="true"></i> Direct Cloud Import</h4>
                     <p class="text-sm text-slate-500">Sync with your Google Drive or Dropbox accounts to load statements instantly without manually downloading them first.</p>
                 </div>
             </div>
 
             <h3 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Step-by-Step Instructions to Extract Data</h3>
             <ol class="list-decimal pl-5 space-y-3 mb-8 text-slate-700 dark:text-slate-300">
-                <li><strong>Choose Input Source:</strong> Click "Choose PDF Document" to select a file locally, or pick Google Drive/Dropbox for cloud statements.</li>
+                <li><strong>Choose Input Source:</strong> Click "Select PDF File" to choose a file locally, or pick Google Drive/Dropbox for cloud statements.</li>
                 <li><strong>Auto-Analysis:</strong> The local algorithm scans text coordinates to map cells, detecting grid patterns and row alignment based on baseline positioning.</li>
-                <li><strong>Save Spreadsheet:</strong> Click "Download Excel File" to get your clean `.xlsx` spreadsheet, ready for Excel, Google Sheets, or Numbers.</li>
+                <li><strong>Save Spreadsheet:</strong> Click "Download Excel File" to get your clean .xlsx spreadsheet, ready for Excel, Google Sheets, or Numbers.</li>
             </ol>
 
             <div class="bg-brand-50 dark:bg-brand-900/20 p-6 rounded-xl border border-brand-100 dark:border-brand-800 my-8">
                 <h4 class="font-bold text-brand-700 dark:text-brand-300 mb-2">Combine Utility Tools for Fast Results</h4>
                 <ul class="space-y-2 text-sm text-brand-800 dark:text-brand-200">
-                    <li><i class="fa-solid fa-arrow-right mr-2"></i> File too large? Shrink it with the <a href="compressor.html" class="underline font-semibold hover:text-brand-600">PDF Compressor (100kb limit)</a> first.</li>
-                    <li><i class="fa-solid fa-arrow-right mr-2"></i> Multiple files? Use the <a href="merger.html" class="underline font-semibold hover:text-brand-600">PDF Merger</a> to join them into a single spreadsheet.</li>
-                    <li><i class="fa-solid fa-arrow-right mr-2"></i> Add identification numbers using our <a href="add-page-numbers.html" class="underline font-semibold hover:text-brand-600">Add Page Numbers tool</a>.</li>
+                    <li><i class="fa-solid fa-arrow-right mr-2" aria-hidden="true"></i> File too large? Shrink it with the <a href="compressor.html" class="underline font-semibold hover:text-brand-600">PDF Compressor</a> first.</li>
+                    <li><i class="fa-solid fa-arrow-right mr-2" aria-hidden="true"></i> Multiple files? Use the <a href="merger.html" class="underline font-semibold hover:text-brand-600">PDF Merger</a> to join them into a single spreadsheet.</li>
+                    <li><i class="fa-solid fa-arrow-right mr-2" aria-hidden="true"></i> Add identification numbers using our <a href="add-page-numbers.html" class="underline font-semibold hover:text-brand-600">Add Page Numbers tool</a>.</li>
                 </ul>
-            </div>
-
- <h3 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Frequently Asked Questions</h3>
-            <div class="space-y-4">
-                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center">
-                        Does this tool work on Scanned PDFs or Images?
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
-                        This specific parser reads "selectable text" layouts. If your PDF is scanned or is an image, you will need to run it through an OCR engine (Optical Character Recognition) to extract editable data.
-                    </p>
-                </details>
-                
-                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center">
-                        Is there a strict page or file size limit?
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
-                        Because processing runs natively in your hardware sandbox, memory limitations depend on your device's capacity. Generally, standard multi-page statements (up to 50 pages) process easily in a few seconds on most modern setups.
-                    </p>
-                </details>
-
-                <!-- New SEO FAQ 1 -->
-                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center">
-                        Is it completely free to extract tables to XLSX?
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
-                        Yes, The PDF Mechanic's PDF to Excel converter is 100% free with no hidden charges, trial limits, or email registrations required.
-                    </p>
-                </details>
-
-                <!-- New SEO FAQ 2 -->
-                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center">
-                        What spreadsheet software is compatible with the converted files?
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
-                        The downloaded file is a standard `.xlsx` spreadsheet. It is fully compatible with Microsoft Excel, Google Sheets, Apple Numbers, and LibreOffice Calc.
-                    </p>
-                </details>
-
-                <!-- New SEO FAQ 3 -->
-                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center">
-                        Why are some rows misaligned after conversion?
-                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
-                    </summary>
-                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
-                        Our parser clusters rows based on vertical alignment. If a PDF has complex, nested borders or multi-line cell text, certain rows may shift. For clean results, ensure the source document has standard table structures.
-                    </p>
-                </details>
             </div>
 
         </div>
     </section>
 
-    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800">
+    <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="excel-guide">
+        <div class="text-center mb-12 sm:mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-excel-50 dark:bg-green-900/30 text-excel-600 text-xs font-semibold mb-5 border border-excel-100">
+                <i class="fa-solid fa-table-cells" aria-hidden="true"></i> The Complete Guide
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                How PDF-to-Excel Table Extraction Actually Works
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                What happens when a PDF table becomes a spreadsheet, why it works brilliantly on some documents and imperfectly on others, and how to get clean results whether you're pulling in a bank statement or an invoice.
+            </p>
+        </div>
+
+        <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+            <div>
+                <p>A table in a PDF isn't really a table at all, as far as the file format is concerned. There's no underlying grid, no cell references, no rows or columns the way a spreadsheet understands them — just individual pieces of text, each positioned at a precise coordinate on the page. What looks like a neat table to your eyes is, to the file itself, a scattered collection of numbers and words that happen to line up visually. Converting that back into an actual spreadsheet means reconstructing the grid from position alone, and understanding how that reconstruction works explains almost everything about when it goes right and when it needs a little help.</p>
+                <p class="mt-4">This guide covers exactly how that reconstruction happens, an honest comparison with the AI-powered, server-based converters you'll find elsewhere, how to get the cleanest possible results, and the much wider range of documents this approach handles well beyond just bank statements. None of it requires understanding PDF internals — just knowing what the tool is actually doing helps you predict, before you even upload a file, roughly how clean the result is going to be.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-ruler-combined text-excel-600" aria-hidden="true"></i> How the Conversion Actually Works
+                </h3>
+                <p>Every piece of text in a PDF carries an exact x and y coordinate — its horizontal and vertical position on the page. The conversion process reads every one of these text fragments along with their coordinates, then works through two passes to rebuild the table structure. Nothing about this involves recognizing what a table looks like visually; it's closer to reassembling a puzzle from the position each piece was originally placed at, without ever being told the picture on the box.</p>
+                <p class="mt-4">The first pass groups fragments into rows: text sitting at roughly the same vertical position gets clustered together, on the reasonable assumption that anything printed at the same height was meant to appear on the same line. The second pass sorts each row's fragments left to right by horizontal position, which is what turns a jumbled cluster of text into a sequence that reads the way a row of a table should. Stack enough correctly-ordered rows on top of each other, and what emerges is a spreadsheet that mirrors the visual table from the original PDF, without ever having "seen" a table in any structural sense — only positions, read and sorted twice over.</p>
+                <div class="callout-box mt-5">
+                    <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why This Needs Selectable Text</div>
+                    <p class="mt-2 text-sm">This entire process depends on the PDF having real, selectable text with real coordinates attached. A scanned page or a photo of a document is just a picture — there's no text position data to read at all, which is why scanned statements need an OCR pass first to create that text layer before this kind of extraction can work. Running OCR first and then this conversion is a two-step process, but both steps stay entirely on your own device the whole way through.</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-arrows-up-down text-excel-600" aria-hidden="true"></i> The Row-Clustering Tolerance, Explained
+                </h3>
+                <p>The step that groups text into rows relies on a tolerance value — a small vertical distance within which two pieces of text are considered "close enough" to belong to the same row, even if their exact coordinates differ by a pixel or two. Fonts rarely place every character on a perfectly identical baseline, so some tolerance is necessary; without it, nearly every row would incorrectly split into several fragments.</p>
+                <p class="mt-4">Set the tolerance too tight, and ordinary font rendering variation splits single rows into multiple ones. Set it too loose, and two genuinely different rows that happen to sit close together on a densely-packed page merge into one. The value used here is tuned as a reasonable middle ground for typical statement and invoice layouts — comfortable line spacing, standard font sizes — which is also exactly why unusually dense or tightly-spaced tables are the ones most likely to need a manual fix afterward. It's a real, inherent trade-off in any position-based approach, not a bug to be patched away entirely, and it's the same trade-off every simple table-extraction method has to make somewhere, whether that's disclosed to users or quietly hidden behind a marketing claim of "99% accuracy."</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-scale-balanced text-excel-600" aria-hidden="true"></i> Position-Based Extraction vs. AI-Powered Converters
+                </h3>
+                <p>Search for a bank statement converter and most results promise AI-driven accuracy in the high nineties, trained across hundreds of bank formats. Those claims are often genuine, and it's worth being direct about the honest trade-off between that approach and the one this tool uses.</p>
+                <p class="mt-4">AI-based converters typically work by sending the document to a server, where a trained model — sometimes combined with OCR for scanned pages — identifies table structures with a level of format-flexibility that plain coordinate clustering can't match. They can often handle a scanned statement, a rotated page, or a wildly inconsistent layout more gracefully. The trade-off is exactly what it sounds like: your bank statement or invoice, containing account numbers and transaction history, has to leave your device and reach a server to get that treatment, even briefly.</p>
+                <p class="mt-4">Position-based extraction, running entirely in your browser, makes the opposite trade-off. It won't rescue a scanned, skewed, or heavily stylised document the way a trained model might, but for the very common case of a clean, digitally-generated statement or invoice — the kind most banks and accounting software actually produce — it reconstructs the table just as accurately, instantly, without the file ever being transmitted anywhere. Neither approach is universally "better"; they're suited to different documents and different priorities, and it's worth choosing deliberately rather than assuming one tool should handle everything equally well.</p>
+                <p class="mt-4">There's also a speed dimension worth naming: because nothing has to travel to a server and back, a local conversion typically finishes as fast as your device can read the file, with no queue, no upload progress bar, and no dependency on your internet connection holding steady for the duration. For a single statement that's a minor convenience; for someone converting a stack of them back-to-back, it adds up to real time saved.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-layer-group text-excel-600" aria-hidden="true"></i> Handling Multi-Page Statements Correctly
+                </h3>
+                <p>Most bank statements and longer invoices span several pages, and each page gets processed independently before all the results are stacked together into one spreadsheet. This matters for a couple of practical reasons worth knowing upfront.</p>
+                <p class="mt-4">A blank row is deliberately inserted between each page's data, both to visually separate them in the output and to prevent a table header repeated at the top of every page from accidentally merging into the previous page's last row. If a statement's running balance or a multi-row summary happens to sit right at a page break, it's worth double-checking that section specifically, since a table split exactly at a page boundary is the one place page-by-page processing can occasionally separate data that was logically one continuous row in the source document.</p>
+                <p class="mt-4">Repeated column headers are another page-break artifact worth knowing about: many statement templates re-print the header row ("Date | Description | Amount | Balance") at the top of every page for readability. These headers convert along with everything else, so a long statement's spreadsheet will typically contain that header text several times throughout the sheet rather than only once at the very top — expected behaviour, easy to delete in bulk with a filter if a single clean header is what you need.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-magnifying-glass-chart text-excel-600" aria-hidden="true"></i> Verifying Accuracy Before You Rely on the Data
+                </h3>
+                <p>For anything going into a tax filing, a client report, or a reconciliation, a quick verification pass is worth the extra minute regardless of which conversion method produced the spreadsheet.</p>
+                <p class="mt-4">The fastest check is a totals comparison: sum the amount column in the converted spreadsheet and compare it against the statement's own printed total or closing balance. If they match, the extraction almost certainly captured every row correctly, since a dropped or duplicated row would throw the sum off immediately. If they don't match, scan for the specific row count expected against the row count received — most extraction errors show up as one obviously malformed or missing row rather than data scattered randomly throughout the sheet, which makes them quick to spot once you know to look.</p>
+                <p class="mt-4">This same totals check is worth building into a habit rather than treating it as optional, regardless of which converter produced the spreadsheet — AI-powered tools claiming 99% accuracy are still describing a rate at which errors occur, not their absence, and a one-minute sum comparison catches the outcome of that remaining percentage either way.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-broom text-excel-600" aria-hidden="true"></i> Getting the Cleanest Possible Results
+                </h3>
+                <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-excel-600">
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Start from the original digital file, not a scan.</span> A PDF exported directly from online banking or accounting software has precise, consistent text positions. A photographed or scanned copy of the same statement doesn't, even before you factor in the missing text layer entirely.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Avoid multi-line cells where possible.</span> A single table cell that wraps onto two lines can be read as two separate rows, since each line sits at a different vertical position. Simpler, single-line rows convert most predictably.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Check the first page of results before trusting the whole file.</span> If a statement is many pages of a consistent format, the first page tells you immediately whether the layout is converting cleanly, before you commit to reviewing the entire spreadsheet.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Simple table borders convert better than decorative ones.</span> Documents with heavy shading, merged cells, or nested sub-tables are harder for any position-based method to interpret correctly, this tool included.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Export directly to PDF rather than printing to PDF where possible.</span> A genuine digital export usually preserves cleaner, more consistent text positioning than a "print to PDF" pass through a printer driver, which can subtly alter spacing.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Convert one representative page before committing to a very long document.</span> If a 40-page annual statement uses the same layout throughout, testing with a single extracted page tells you what to expect from the rest before you invest time reviewing the full output.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-earth-americas text-excel-600" aria-hidden="true"></i> Well Beyond Bank Statements
+                </h3>
+                <p>Because the underlying method reads text position rather than recognising "this is a bank statement," it works identically on any PDF with a clean tabular layout, which covers a lot more ground than financial statements alone:</p>
+                <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-excel-600">
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Invoices and purchase orders,</span> turning line-item lists into spreadsheets for bookkeeping or expense tracking without retyping every line.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Price lists and product catalogues,</span> where a supplier's PDF price sheet becomes something you can actually sort, filter, and compare.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Class schedules and timetables,</span> exported from institutional systems as PDFs that are far more useful once searchable in a spreadsheet.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Research data tables</span> published as PDF appendices, where re-typing figures by hand is exactly the kind of tedious, error-prone work this replaces.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Government and utility billing statements,</span> which follow the same clean, repeated-layout pattern as bank statements and convert just as reliably.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Inventory and stock lists</span> exported from point-of-sale or warehouse systems as static PDF reports.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Event and conference schedules,</span> turning a printed agenda PDF into a spreadsheet that's easy to sort by time, track, or speaker.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Real estate listings and comparables,</span> where a batch of property data exported as PDF becomes something you can actually filter and rank.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Payroll summaries and expense reports,</span> especially combined multi-employee documents that need breaking down into a working spreadsheet for review.</li>
+                </ul>
+                <p class="mt-4">The common thread across all of these is a clean, digitally-generated table with simple row and column structure — the exact conditions where position-based extraction performs at its best, regardless of what kind of document it technically is.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-lock text-excel-600" aria-hidden="true"></i> Why Privacy Matters Specifically for Financial Documents
+                </h3>
+                <p>A bank statement is one of the most information-dense documents most people ever share: full account numbers, a complete transaction history, employer names from payroll deposits, and spending patterns that reveal far more than any single line item does on its own.</p>
+                <p class="mt-4">Server-based converters that promise to delete your file "after processing" are usually telling the truth, but that promise still requires trusting an unfamiliar company's deletion policy, retention practices, and security posture with a document that reveals this much. Client-side conversion removes that question entirely — there's no server-side copy to delete because none was ever created. For a single invoice, that distinction might not matter much. For a bank statement, it's often the more important choice than raw extraction accuracy.</p>
+                <p class="mt-4">This distinction matters just as much for the businesses handling these documents on someone else's behalf. An accountant processing dozens of clients' statements, or a lender reviewing income verification documents, is handling other people's financial data as a matter of routine work — exactly the situation where a data breach at a third-party conversion service becomes not just a personal inconvenience but a professional liability with real consequences for the people whose documents were involved.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-cloud-arrow-down text-excel-600" aria-hidden="true"></i> How Google Drive and Dropbox Import Stays Private
+                </h3>
+                <p>Importing directly from Google Drive or Dropbox understandably raises the question of whether that defeats the "nothing uploaded" promise. It doesn't, and the mechanism is worth explaining plainly.</p>
+                <p class="mt-4">When you use either picker, your browser authenticates directly with Google or Dropbox's own servers — not this site's — and downloads the chosen file straight into your browser's memory. That file then goes through exactly the same local conversion process as one selected from your computer; the only thing cloud import changes is where the file initially comes from, not how it's processed afterward. This site has no server for file processing to route anything through even if it wanted to — the account permission requested only lets your browser read the one file you pick, nothing more.</p>
+                <p class="mt-4">It's worth revoking that access afterward if you don't plan to use the cloud import feature again soon, which both Google and Dropbox let you do from their own account security settings — a good habit for any third-party integration, not specific to this tool.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-triangle-exclamation text-excel-600" aria-hidden="true"></i> Troubleshooting Common Conversion Issues
+                </h3>
+                <p class="mt-1"><span class="font-semibold text-slate-800 dark:text-slate-200">"No text found" on a document you can clearly read.</span> This means the PDF is an image, not real text, even if it looks sharp on screen. Run it through an OCR tool first to create a genuine text layer, then convert the result.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Columns that don't line up correctly.</span> Usually caused by a document where column spacing relies on visual alignment tricks rather than consistent horizontal positions — try a version of the source document exported at standard settings rather than a heavily formatted print layout.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">A single table row split across two spreadsheet rows.</span> Almost always a wrapped, multi-line cell in the original — a description field that ran onto a second line gets read as its own row, since it sits at a different vertical position than the rest of that row.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Extra blank rows in the output.</span> These are intentional page separators inserted between each page's data, making it easy to see where one page's table ends and the next begins — delete them if you're merging everything into one continuous range.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Numbers that imported as text instead of numbers.</span> Currency symbols, thousands separators, or footnote markers attached to a number can cause a spreadsheet to treat it as text. A quick find-and-replace to strip stray characters, then a re-format of the column, usually resolves it.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">The Google Drive or Dropbox picker doesn't open.</span> This usually means a browser extension or ad blocker is blocking the third-party picker script from loading. Temporarily disabling blockers for this page, or falling back to downloading the file locally first, resolves it in almost every case.</p>
+                <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">One page in a multi-page document converts differently from the rest.</span> This usually means that specific page has a genuinely different layout, orientation, or table structure from the others, rather than an inconsistency in the conversion itself — worth a quick visual comparison against the source page.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-briefcase text-excel-600" aria-hidden="true"></i> Where This Comes Up Around the World
+                </h3>
+                <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-excel-600">
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Freelancers and small business owners</span> reconciling monthly bank statements against invoices without paying for a full accounting suite.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Accountants and bookkeepers</span> pulling client-provided PDF statements into working spreadsheets ahead of tax season, across every country with a filing deadline.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Students and researchers</span> extracting data tables from published papers or reports instead of retyping figures by hand.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Procurement and operations teams</span> turning supplier price lists into comparable spreadsheets for sourcing decisions.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Landlords and property managers</span> converting utility or maintenance invoices into expense-tracking spreadsheets across multiple properties.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Personal finance and budgeting,</span> where pulling a full year of statements into one spreadsheet makes categorising spending dramatically faster than reading PDFs one at a time.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Non-profit and grant administrators</span> compiling donation records or expense documentation from PDF reports into spreadsheets for board reporting and audits.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">International remote workers and contractors</span> reconciling payments across multiple currencies and platforms, each exporting statements as PDFs in different formats.</li>
+                    <li><span class="font-semibold text-slate-800 dark:text-slate-200">Legal and compliance teams</span> extracting structured data from financial exhibits attached to case files, without a document management system flagging an external upload.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-file-csv text-excel-600" aria-hidden="true"></i> What Happens to Formatting You Can't See
+                </h3>
+                <p>A PDF table often carries visual formatting that has no real equivalent in a spreadsheet cell — background shading on alternating rows, a bold header style, a subtle border around a summary section. None of this is data in the way text and numbers are; it exists purely to make the PDF easier to read, and it doesn't carry across into the conversion.</p>
+                <p class="mt-4">What does transfer faithfully is everything that actually IS data: every number, every label, every date, in the same reading order they appeared in the source. If a spreadsheet needs its own visual formatting afterward — colour-coding negative balances, bolding totals — that's a deliberate, separate step in Excel or Google Sheets once the raw data is in place, rather than something the conversion could reasonably guess at from the PDF alone.</p>
+            </div>
+
+            <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-file-export text-excel-600" aria-hidden="true"></i> Working With the Spreadsheet Afterward
+                </h3>
+                <p>The output is a standard .xlsx file, which opens natively in Excel, imports cleanly into Google Sheets, and works in LibreOffice Calc and Apple Numbers without any conversion step of its own. From there, it behaves like any spreadsheet you built by hand — sortable, filterable, ready for formulas or a pivot table.</p>
+                <p class="mt-4">A common next step for financial data specifically is adding a category or tag column to each transaction row for budgeting purposes, or a formula column that calculates a running total independent of whatever the original PDF displayed, as a cross-check against the source document's own printed figures. Since the conversion preserves the original row order, both of these are straightforward additions rather than requiring any reordering first.</p>
+            </div>
+
+            <div class="text-center pt-4">
+                <p class="max-w-2xl mx-auto">A PDF table and a spreadsheet are separated by nothing more than position data and a bit of reconstruction logic — no magic, no guesswork, and for a clean, text-based document, no meaningful loss of accuracy either. Knowing that is what makes the trade-off against AI-powered, server-based converters an informed choice rather than a guess: faster, entirely private, and just as accurate for the documents most people actually need to convert, with OCR as the one extra step for anything that started life as a scan rather than a digital file. Whether it's a single invoice or a year of statements, the same underlying process handles it the same way every time, with nothing about the file ever leaving the device it started on.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 pb-16 sm:pb-20" id="faq">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-3">Frequently Asked Questions</h2>
+            <p class="text-slate-500 dark:text-slate-400">Everything else worth knowing before you convert a file.</p>
+        </div>
+        <div class="space-y-4">
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Does this tool work on scanned PDFs or images?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    This specific parser reads "selectable text" layouts. If your PDF is scanned or is an image, you will need to run it through an OCR engine (Optical Character Recognition) to extract editable data first.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Is there a strict page or file size limit?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    Because processing runs natively on your hardware, memory limitations depend on your device's capacity. Standard multi-page statements (up to around 50 pages) typically process in a few seconds on most modern setups.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Is it completely free to extract tables to XLSX?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    Yes, The PDF Mechanic's PDF to Excel converter is 100% free with no hidden charges, trial limits, or email registration required.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    What spreadsheet software is compatible with the converted files?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    The downloaded file is a standard .xlsx spreadsheet. It is fully compatible with Microsoft Excel, Google Sheets, Apple Numbers, and LibreOffice Calc.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Why are some rows misaligned after conversion?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    Our parser clusters rows based on vertical alignment. If a PDF has complex, nested borders or multi-line cell text, certain rows may shift. For clean results, ensure the source document has standard table structures.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Is it safe to convert bank statements with this tool?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    Yes. Conversion runs entirely inside your browser using JavaScript. Your financial data is never uploaded to any server, including when importing from Google Drive or Dropbox.
+                </p>
+            </details>
+
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center gap-3">
+                    Why does the Google Drive or Dropbox import ask for account access?
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm">
+                    That permission only lets your browser read the one file you pick from the picker window. The file is downloaded directly into your browser and processed there, the same as a local upload, and is never sent to this site's servers because it has none for file processing.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
             <div class="col-span-1 sm:col-span-2 md:col-span-1">
                 <div class="flex items-center gap-2 mb-4 text-white">
-                    <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
                     <span class="font-bold text-xl font-display">The PDF Mechanic</span>
                 </div>
                 <p class="text-sm leading-relaxed text-slate-500 mb-6">
                     Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
                 </p>
-                <div class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    
-                </div>
             </div>
-            
+
             <div>
                 <h4 class="text-white font-bold text-sm mb-4">Tools</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
                     <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
                     <li><a href="ocr.html" class="hover:text-brand-500 transition">OCR Scans</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
                 </ul>
             </div>
 
@@ -334,32 +808,50 @@
             </div>
 
             <div>
-                <h4 class="text-white font-bold text-sm mb-4">Legal</h4>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Legal</h4>
                 <ul class="space-y-2 text-sm">
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
                     <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
                     <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
-                    <li><a href="sitemap.xml" class="hover:text-brand-500 transition">Sitemap</a></li>
                 </ul>
             </div>
         </div>
-        
+
         <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
             &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
         </div>
     </footer>
 
+    <!-- PDF & Excel Core Libraries: moved to end of body (were render-blocking in <head>
+         before) so the page can paint immediately without waiting for these to download. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Cloud Integration APIs (async/defer, unchanged behaviour) -->
+    <script async defer src="https://apis.google.com/js/api.js"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"></script>
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="tmwsv5o70l5lndh"></script>
+
     <script>
-        // 1. Theme Logic
+        // 1. Theme Logic (class already applied pre-paint by the inline head script)
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        }
-themeToggle.addEventListener('click', () => {
+        themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            try { localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
         });
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
 
         // --- Cloud Integration Logic ---
         const CLIENT_ID = '104689911142-i79jteh5j2l631s3cr7bdq08sne0fr21.apps.googleusercontent.com';
@@ -367,19 +859,23 @@ themeToggle.addEventListener('click', () => {
         const SCOPES = 'https://www.googleapis.com/auth/drive.readonly';
         let tokenClient;
 
-        function gapiLoaded() { 
-            gapi.load('client:picker', () => gapi.client.init({apiKey: API_KEY, discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"]})); 
+        function gapiLoaded() {
+            gapi.load('client:picker', () => gapi.client.init({apiKey: API_KEY, discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"]}));
         }
-        function gisLoaded() { 
-            tokenClient = google.accounts.oauth2.initTokenClient({client_id: CLIENT_ID, scope: SCOPES, callback: ''}); 
+        function gisLoaded() {
+            tokenClient = google.accounts.oauth2.initTokenClient({client_id: CLIENT_ID, scope: SCOPES, callback: ''});
         }
         function handleAuthClick() {
+            if (!tokenClient) {
+                showFileError("Google Drive isn't ready yet. Please wait a moment and try again.");
+                return;
+            }
             tokenClient.callback = async (res) => { if (res.access_token) createPicker(res.access_token); };
             tokenClient.requestAccessToken({prompt: 'select_account'});
         }
         function createPicker(token) {
             new google.picker.PickerBuilder()
-                .addView(google.picker.ViewId.PDFs)
+                .addView(google.picker.ViewId.PDFS)
                 .setOAuthToken(token)
                 .setDeveloperKey(API_KEY)
                 .setCallback(async (data) => {
@@ -391,20 +887,36 @@ themeToggle.addEventListener('click', () => {
                     }
                 }).build().setVisible(true);
         }
-        document.getElementById('dropbox-chooser').onclick = () => {
-            Dropbox.choose({ 
-                success: async (fs) => { 
-                    const r = await fetch(fs[0].link); 
-                    const blob = await r.blob();
-                    const file = new File([blob], fs[0].name, {type: "application/pdf"});
-                    processPDF(file);
-                }, 
-                linkType: "direct", 
-                extensions: ['.pdf'] 
-            });
-        };
 
-        window.onload = () => { gapiLoaded(); gisLoaded(); };
+        // Defensive: cloud SDKs load async and may occasionally be blocked by an
+        // extension or a slow connection - a failure here should never break the
+        // core local-file conversion, which doesn't depend on any of this.
+        window.addEventListener('load', () => {
+            try { gapiLoaded(); } catch (e) { console.error('Google API init failed:', e); }
+            try { gisLoaded(); } catch (e) { console.error('Google Identity init failed:', e); }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dbxBtn = document.getElementById('dropbox-chooser');
+            if (dbxBtn) {
+                dbxBtn.onclick = () => {
+                    if (typeof Dropbox === 'undefined') {
+                        showFileError("Dropbox isn't ready yet. Please wait a moment and try again.");
+                        return;
+                    }
+                    Dropbox.choose({
+                        success: async (fs) => {
+                            const r = await fetch(fs[0].link);
+                            const blob = await r.blob();
+                            const file = new File([blob], fs[0].name, {type: "application/pdf"});
+                            processPDF(file);
+                        },
+                        linkType: "direct",
+                        extensions: ['.pdf']
+                    });
+                };
+            }
+        });
 
         // --- Optimized Converter Logic ---
         const uploadInput = document.getElementById('uploadInput');
@@ -417,37 +929,49 @@ themeToggle.addEventListener('click', () => {
         let excelWorkbook = null;
         let originalFileName = "";
 
-        // Event Listener for Local Files
         uploadInput.addEventListener('change', function(e) {
-            if(e.target.files.length === 0) return;
+            if (e.target.files.length === 0) return;
             processPDF(e.target.files[0]);
         });
 
-        // Common Processing Pipeline (Both Cloud & Local)
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadStep').classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processPDF(file);
+        }
+
+        // Common Processing Pipeline (Local, Google Drive & Dropbox all funnel through here)
         async function processPDF(file) {
-            originalFileName = file.name.replace('.pdf', '');
-            
-            // UI Switch
+            hideFileError();
+
+            if (file.type !== 'application/pdf') {
+                showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
+                return;
+            }
+
+            originalFileName = file.name.replace(/\.pdf$/i, '');
+
+            uploadStep.classList.remove('drag-active');
             uploadStep.classList.add('hidden');
             processingStep.classList.remove('hidden');
 
             try {
                 const arrayBuffer = await file.arrayBuffer();
                 const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                
+
                 let fullTableData = [];
                 const totalPages = pdf.numPages;
                 let hasText = false;
 
                 for (let i = 1; i <= totalPages; i++) {
                     progressText.innerText = `Analyzing Page ${i} of ${totalPages}...`;
-                    
+
                     const page = await pdf.getPage(i);
                     const textContent = await page.getTextContent();
-                    
+
                     if (textContent.items.length > 0) hasText = true;
 
-                    // Filter & Map Items
                     let items = textContent.items
                         .filter(item => item.str.trim().length > 0)
                         .map(item => ({
@@ -456,20 +980,17 @@ themeToggle.addEventListener('click', () => {
                             y: item.transform[5]
                         }));
 
-                    // Sort by Y (Top to Bottom)
                     items.sort((a, b) => b.y - a.y);
 
-                    // Row Clustering (Tolerance: 10px)
                     let currentRow = [];
                     let currentY = items.length > 0 ? items[0].y : 0;
                     let pageRows = [];
 
                     items.forEach(item => {
-                        if (Math.abs(item.y - currentY) < 10) { 
+                        if (Math.abs(item.y - currentY) < 10) {
                             currentRow.push(item);
                         } else {
                             if (currentRow.length > 0) {
-                                // Sort Row X (Left to Right)
                                 currentRow.sort((a, b) => a.x - b.x);
                                 pageRows.push(currentRow.map(c => c.text));
                             }
@@ -484,44 +1005,54 @@ themeToggle.addEventListener('click', () => {
                     }
 
                     fullTableData = fullTableData.concat(pageRows);
-                    fullTableData.push([]); // Empty row for spacing
+                    fullTableData.push([]);
                 }
 
                 if (!hasText) {
-                    alert("⚠️ No Text Found! This looks like a scanned PDF (Image). This tool works with text-based PDFs.");
-                    location.reload();
+                    processingStep.classList.add('hidden');
+                    uploadStep.classList.remove('hidden');
+                    uploadInput.value = '';
+                    showFileError("No selectable text found — this looks like a scanned PDF (image). Run it through an OCR tool first, then convert the result here.");
                     return;
                 }
 
-                // Generate Excel File
                 const wb = XLSX.utils.book_new();
                 const ws = XLSX.utils.aoa_to_sheet(fullTableData);
-                
-                // Set Column Widths (Pre-defined for CLS/LCP stability)
                 ws['!cols'] = [{wch: 25}, {wch: 25}, {wch: 25}, {wch: 25}, {wch: 25}];
 
                 XLSX.utils.book_append_sheet(wb, ws, "Converted Data");
                 excelWorkbook = wb;
 
-                // Show Success
                 processingStep.classList.add('hidden');
                 downloadStep.classList.remove('hidden');
                 downloadStep.classList.add('animate-fade-in');
 
             } catch (error) {
                 console.error(error);
-                alert("Error processing PDF: " + error.message);
-                location.reload();
+                processingStep.classList.add('hidden');
+                uploadStep.classList.remove('hidden');
+                uploadInput.value = '';
+                showFileError("Something went wrong while reading this PDF. It may be corrupted or password-protected. Try a different file, or unlock it first.");
             }
         }
 
         downloadBtn.addEventListener('click', function() {
-            if(excelWorkbook) {
+            if (excelWorkbook) {
                 XLSX.writeFile(excelWorkbook, `${originalFileName}_converted.xlsx`);
             }
         });
+
+        function resetTool() {
+            excelWorkbook = null;
+            originalFileName = "";
+            hideFileError();
+            uploadInput.value = '';
+            downloadStep.classList.add('hidden');
+            downloadStep.classList.remove('animate-fade-in');
+            processingStep.classList.add('hidden');
+            uploadStep.classList.remove('hidden');
+        }
     </script>
 </body>
 
 </html>
-
