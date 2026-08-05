@@ -117,357 +117,91 @@
     }
     </script>
 
+    <link rel="stylesheet" href="common.css">
     <style>
-
-/* ===== Preflight (minimal reset, mirrors Tailwind base) ===== */
-*,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
-html{-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.5}
-body{margin:0;line-height:inherit}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
-p{margin:0}
-a{color:inherit;text-decoration:inherit}
-b,strong{font-weight:bolder}
-button,input{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
-button{text-transform:none;-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
-input::placeholder{opacity:1;color:#94a3b8}
-ul,ol{list-style:none;margin:0;padding:0}
-svg{display:block;vertical-align:middle}
-[hidden]{display:none}
-img,svg{max-width:100%;height:auto}
-:focus:not(:focus-visible){outline:none}
-
-/* ===== Keyframes ===== */
-@keyframes fadeIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-@keyframes tw-pulse{50%{opacity:.5}}
-
-/* ===== Group marker (no own styles; enables group-hover children) ===== */
-.group{}
-
-/* ===== Base utilities (unprefixed) ===== */
+/* index.html-specific: wide tool-card icon color palette + FAQ accordion style */
 .-mx-4 { margin-left:-1rem;margin-right:-1rem; }
-.absolute { position:absolute; }
-.animate-fade-in { animation:fadeIn 0.5s ease-out; }
-.animate-pulse { animation:tw-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
 .backdrop-blur-sm { backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px); }
-.bg-blue-100 { background-color:#dbeafe; }
-.bg-blue-50 { background-color:#eff6ff; }
-.bg-brand-100 { background-color:#dbeafe; }
-.bg-brand-50 { background-color:#eff6ff; }
-.bg-brand-600 { background-color:#2563eb; }
 .bg-cyan-50 { background-color:#ecfeff; }
 .bg-emerald-50 { background-color:#ecfdf5; }
 .bg-gray-100 { background-color:#f3f4f6; }
 .bg-green-50 { background-color:#f0fdf4; }
-.bg-green-500 { background-color:#22c55e; }
 .bg-indigo-50 { background-color:#eef2ff; }
-.bg-orange-50 { background-color:#fff7ed; }
 .bg-pink-50 { background-color:#fdf2f8; }
 .bg-purple-50 { background-color:#faf5ff; }
-.bg-red-100 { background-color:#fee2e2; }
-.bg-red-50 { background-color:#fef2f2; }
-.bg-rose-50 { background-color:#fff1f2; }
 .bg-sky-50 { background-color:#f0f9ff; }
-.bg-slate-100 { background-color:#f1f5f9; }
-.bg-slate-50 { background-color:#f8fafc; }
 .bg-slate-50\/90 { background-color:rgb(248 250 252 / 0.9); }
 .bg-slate-700 { background-color:#334155; }
-.bg-slate-950 { background-color:#020617; }
 .bg-violet-50 { background-color:#f5f3ff; }
-.bg-white { background-color:#ffffff; }
 .bg-yellow-50 { background-color:#fefce8; }
-.border { border-width:1px; }
-.border-b { border-bottom-width:1px; }
-.border-brand-100 { border-color:#dbeafe; }
-.border-slate-100 { border-color:#f1f5f9; }
-.border-slate-200 { border-color:#e2e8f0; }
-.border-slate-800 { border-color:#1e293b; }
-.border-slate-900 { border-color:#0f172a; }
-.border-t { border-top-width:1px; }
-.border-transparent { border-color:transparent; }
 .border-y { border-top-width:1px;border-bottom-width:1px; }
-.col-span-1 { grid-column:span 1 / span 1; }
-.cursor-not-allowed { cursor:not-allowed; }
-.cursor-pointer { cursor:pointer; }
 .dark .dark\:bg-blue-800\/20 { background-color:rgb(30 64 175 / 0.2); }
-.dark .dark\:bg-blue-900\/20 { background-color:rgb(30 58 138 / 0.2); }
-.dark .dark\:bg-brand-900\/30 { background-color:rgb(30 58 138 / 0.3); }
 .dark .dark\:bg-cyan-900\/20 { background-color:rgb(22 78 99 / 0.2); }
-.dark .dark\:bg-dark-bg { background-color:#0f172a; }
-.dark .dark\:bg-dark-bg\/90 { background-color:rgb(15 23 42 / 0.9); }
-.dark .dark\:bg-dark-card { background-color:#1e293b; }
 .dark .dark\:bg-emerald-900\/20 { background-color:rgb(6 78 59 / 0.2); }
 .dark .dark\:bg-gray-800 { background-color:#1f2937; }
-.dark .dark\:bg-green-900\/20 { background-color:rgb(20 83 45 / 0.2); }
 .dark .dark\:bg-indigo-900\/20 { background-color:rgb(49 46 129 / 0.2); }
 .dark .dark\:bg-orange-900\/20 { background-color:rgb(124 45 18 / 0.2); }
 .dark .dark\:bg-pink-900\/20 { background-color:rgb(131 24 67 / 0.2); }
-.dark .dark\:bg-purple-900\/20 { background-color:rgb(88 28 135 / 0.2); }
-.dark .dark\:bg-red-900\/20 { background-color:rgb(127 29 29 / 0.2); }
 .dark .dark\:bg-rose-900\/20 { background-color:rgb(136 19 55 / 0.2); }
 .dark .dark\:bg-sky-900\/20 { background-color:rgb(12 74 110 / 0.2); }
-.dark .dark\:bg-slate-800 { background-color:#1e293b; }
 .dark .dark\:bg-violet-900\/20 { background-color:rgb(76 29 149 / 0.2); }
 .dark .dark\:bg-yellow-900\/20 { background-color:rgb(113 63 18 / 0.2); }
-.dark .dark\:block { display:block; }
-.dark .dark\:border-dark-border { border-color:#334155; }
-.dark .dark\:border-slate-700 { border-color:#334155; }
-.dark .dark\:border-slate-800 { border-color:#1e293b; }
-.dark .dark\:hidden { display:none; }
-.dark .dark\:hover\:bg-slate-700:hover { background-color:#334155; }
-.dark .dark\:text-dark-text { color:#f8fafc; }
-.dark .dark\:text-slate-200 { color:#e2e8f0; }
-.dark .dark\:text-slate-300 { color:#cbd5e1; }
-.dark .dark\:text-slate-400 { color:#94a3b8; }
 .dark .dark\:text-slate-600 { color:#475569; }
-.dark .dark\:text-white { color:#ffffff; }
-.dark .dark\:text-yellow-400 { color:#facc15; }
-.duration-300 { transition-duration:300ms; }
-.ease-out { transition-timing-function:cubic-bezier(0,0,0.2,1); }
-.flex { display:flex; }
-.flex-col { flex-direction:column; }
-.flex-grow { flex-grow:1; }
-.focus\:outline-none:focus { outline:2px solid transparent;outline-offset:2px; }
-.focus\:ring-2:focus { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
-.focus\:ring-brand-500:focus { --tw-ring-color:#3b82f6; }
-.font-bold { font-weight:700; }
-.font-display { font-family:Outfit,ui-sans-serif,system-ui,sans-serif; }
-.font-extrabold { font-weight:800; }
-.font-medium { font-weight:500; }
-.font-sans { font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
-.font-semibold { font-weight:600; }
-.gap-1\.5 { gap:0.375rem; }
-.gap-10 { gap:2.5rem; }
-.gap-2 { gap:0.5rem; }
-.gap-4 { gap:1rem; }
-.gap-5 { gap:1.25rem; }
-.gap-6 { gap:1.5rem; }
 .gap-x-12 { column-gap:3rem; }
 .gap-y-12 { row-gap:3rem; }
-.grayscale { filter:grayscale(100%); }
-.grid { display:grid; }
-.grid-cols-1 { grid-template-columns:repeat(1,minmax(0,1fr)); }
-.group:hover .group-hover\:bg-brand-700 { background-color:#1d4ed8; }
-.group:hover .group-hover\:scale-110 { transform:scale(1.1); }
 .group:hover .group-hover\:text-brand-600 { color:#2563eb; }
-.h-10 { height:2.5rem; }
-.h-12 { height:3rem; }
-.h-16 { height:4rem; }
-.h-2 { height:0.5rem; }
-.h-9 { height:2.25rem; }
 .h-\[1px\] { height:1px; }
-.hidden { display:none; }
-.hover\:-translate-y-1:hover { transform:translateY(-0.25rem); }
-.hover\:bg-brand-700:hover { background-color:#1d4ed8; }
 .hover\:bg-slate-100:hover { background-color:#f1f5f9; }
-.hover\:ring-2:hover { box-shadow:0 0 0 2px var(--tw-ring-color, currentColor); }
 .hover\:shadow-lg:hover { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
 .hover\:text-blue-500:hover { color:#3b82f6; }
-.hover\:text-brand-500:hover { color:#3b82f6; }
-.hover\:text-brand-600:hover { color:#2563eb; }
-.hover\:text-brand-700:hover { color:#1d4ed8; }
 .hover\:text-pink-500:hover { color:#ec4899; }
-.inline-flex { display:inline-flex; }
-.inset-0 { top:0;right:0;bottom:0;left:0; }
-.inset-y-0 { top:0;bottom:0; }
-.items-center { align-items:center; }
 .items-start { align-items:flex-start; }
-.justify-between { justify-content:space-between; }
-.justify-center { justify-content:center; }
-.leading-relaxed { line-height:1.625; }
-.leading-tight { line-height:1.25; }
 .line-clamp-2 { overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2; }
-.max-w-2xl { max-width:42rem; }
-.max-w-4xl { max-width:56rem; }
-.max-w-5xl { max-width:64rem; }
-.max-w-7xl { max-width:80rem; }
 .max-w-lg { max-width:32rem; }
-.mb-1 { margin-bottom:0.25rem; }
-.mb-10 { margin-bottom:2.5rem; }
-.mb-14 { margin-bottom:3.5rem; }
-.mb-2 { margin-bottom:0.5rem; }
-.mb-3 { margin-bottom:0.75rem; }
-.mb-4 { margin-bottom:1rem; }
-.mb-5 { margin-bottom:1.25rem; }
-.mb-6 { margin-bottom:1.5rem; }
-.mb-8 { margin-bottom:2rem; }
-.min-h-screen { min-height:100vh; }
 .ml-1 { margin-left:0.25rem; }
-.mt-4 { margin-top:1rem; }
-.mt-5 { margin-top:1.25rem; }
-.mt-6 { margin-top:1.5rem; }
-.mx-auto { margin-left:auto;margin-right:auto; }
 .opacity-100 { opacity:1; }
-.opacity-60 { opacity:0.6; }
 .opacity-90 { opacity:0.9; }
-.overflow-hidden { overflow:hidden; }
 .overflow-x-auto { overflow-x:auto; }
-.p-5 { padding:1.25rem; }
-.p-6 { padding:1.5rem; }
-.pb-12 { padding-bottom:3rem; }
-.pb-20 { padding-bottom:5rem; }
-.pb-8 { padding-bottom:2rem; }
-.pl-5 { padding-left:1.25rem; }
 .pl-6 { padding-left:1.5rem; }
-.pointer-events-none { pointer-events:none; }
 .pr-14 { padding-right:3.5rem; }
-.pt-16 { padding-top:4rem; }
 .pt-20 { padding-top:5rem; }
-.pt-4 { padding-top:1rem; }
-.pt-8 { padding-top:2rem; }
-.px-2 { padding-left:0.5rem;padding-right:0.5rem; }
-.px-4 { padding-left:1rem;padding-right:1rem; }
 .px-5 { padding-left:1.25rem;padding-right:1.25rem; }
-.px-6 { padding-left:1.5rem;padding-right:1.5rem; }
 .py-0\.5 { padding-top:0.125rem;padding-bottom:0.125rem; }
-.py-1\.5 { padding-top:0.375rem;padding-bottom:0.375rem; }
-.py-16 { padding-top:4rem;padding-bottom:4rem; }
-.py-2 { padding-top:0.5rem;padding-bottom:0.5rem; }
-.py-20 { padding-top:5rem;padding-bottom:5rem; }
-.py-3 { padding-top:0.75rem;padding-bottom:0.75rem; }
-.py-4 { padding-top:1rem;padding-bottom:1rem; }
-.relative { position:relative; }
 .right-4 { right:1rem; }
 .right-5 { right:1.25rem; }
-.ring-brand-500 { --tw-ring-color:#3b82f6; }
-.rounded-2xl { border-radius:1rem; }
-.rounded-full { border-radius:9999px; }
-.rounded-lg { border-radius:0.5rem; }
-.rounded-xl { border-radius:0.75rem; }
-.scroll-smooth { scroll-behavior:smooth; }
-.selection\:bg-brand-500::selection { background-color:#3b82f6; }
-.selection\:text-white::selection { color:#ffffff; }
-.shadow-lg { box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
-.shadow-md { box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-.shadow-sm { box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05); }
-.shadow-xl { box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
-.space-y-10 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.5rem; }
-.space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
-.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
-.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-.sticky { position:sticky; }
-.text-2xl { font-size:1.5rem;line-height:2rem; }
-.text-4xl { font-size:2.25rem;line-height:2.5rem; }
-.text-5xl { font-size:3rem;line-height:1; }
 .text-\[10px\] { font-size:10px; }
-.text-base { font-size:1rem;line-height:1.5rem; }
 .text-blue-500 { color:#3b82f6; }
-.text-blue-600 { color:#2563eb; }
 .text-blue-700 { color:#1d4ed8; }
-.text-brand-500 { color:#3b82f6; }
-.text-brand-600 { color:#2563eb; }
-.text-brand-700 { color:#1d4ed8; }
-.text-center { text-align:center; }
 .text-cyan-500 { color:#06b6d4; }
+.text-cyan-600 { color:#0891b2; }
 .text-emerald-600 { color:#059669; }
 .text-gray-600 { color:#4b5563; }
-.text-green-500 { color:#22c55e; }
-.text-green-600 { color:#16a34a; }
 .text-indigo-500 { color:#6366f1; }
 .text-indigo-600 { color:#4f46e5; }
-.text-lg { font-size:1.125rem;line-height:1.75rem; }
 .text-orange-500 { color:#f97316; }
 .text-pink-500 { color:#ec4899; }
 .text-pink-600 { color:#db2777; }
 .text-purple-500 { color:#a855f7; }
-.text-purple-600 { color:#9333ea; }
 .text-red-500 { color:#ef4444; }
-.text-red-600 { color:#dc2626; }
 .text-rose-500 { color:#f43f5e; }
 .text-sky-500 { color:#0ea5e9; }
-.text-slate-300 { color:#cbd5e1; }
-.text-slate-400 { color:#94a3b8; }
-.text-slate-500 { color:#64748b; }
-.text-slate-600 { color:#475569; }
-.text-slate-800 { color:#1e293b; }
-.text-slate-900 { color:#0f172a; }
-.text-sm { font-size:0.875rem;line-height:1.25rem; }
 .text-violet-500 { color:#8b5cf6; }
-.text-white { color:#ffffff; }
-.text-xl { font-size:1.25rem;line-height:1.75rem; }
-.text-xs { font-size:0.75rem;line-height:1rem; }
 .text-yellow-500 { color:#eab308; }
-.top-0 { top:0; }
 .top-20 { top:5rem; }
 .top-4 { top:1rem; }
-.tracking-tight { letter-spacing:-0.025em; }
-.tracking-wider { letter-spacing:0.05em; }
-.transition { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
-.transition-all { transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
-.transition-colors { transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
-.transition-transform { transition-property:transform;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms; }
-.underline { text-decoration-line:underline; }
 .underline-offset-2 { text-underline-offset:2px; }
-.uppercase { text-transform:uppercase; }
-.w-10 { width:2.5rem; }
-.w-12 { width:3rem; }
-.w-2 { width:0.5rem; }
 .w-8 { width:2rem; }
-.w-9 { width:2.25rem; }
-.w-full { width:100%; }
 .whitespace-nowrap { white-space:nowrap; }
-.z-10 { z-index:10; }
 .z-40 { z-index:40; }
-.z-50 { z-index:50; }
-
-/* ===== sm: (640px+) ===== */
-@media (min-width: 640px) {
-.sm\:col-span-2 { grid-column:span 2 / span 2; }
-.sm\:gap-8 { gap:2rem; }
-.sm\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .sm\:justify-center { justify-content:center; }
 .sm\:mx-0 { margin-left:0;margin-right:0; }
 .sm\:px-0 { padding-left:0;padding-right:0; }
-.sm\:px-6 { padding-left:1.5rem;padding-right:1.5rem; }
-.sm\:text-3xl { font-size:1.875rem;line-height:2.25rem; }
-.sm\:text-5xl { font-size:3rem;line-height:1; }
-.sm\:text-sm { font-size:0.875rem;line-height:1.25rem; }
-}
-
-
-/* ===== md: (768px+) ===== */
-@media (min-width: 768px) {
-.md\:col-span-1 { grid-column:span 1 / span 1; }
-.md\:flex { display:flex; }
-.md\:grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
-.md\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
-.md\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
 .md\:text-6xl { font-size:3.75rem;line-height:1; }
-}
-
-
-/* ===== lg: (1024px+) ===== */
-@media (min-width: 1024px) {
 .lg\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
-.lg\:px-8 { padding-left:2rem;padding-right:2rem; }
-}
-
-
-/* ===== xl: (1280px+) ===== */
-@media (min-width: 1280px) {
 .xl\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
-}
 
-/* ===== Additional utilities used only in the new guide section ===== */
-.list-disc { list-style-type: disc; }
-.list-decimal { list-style-type: decimal; }
-.marker\:text-brand-500::marker { color: #3b82f6; }
-.marker\:text-brand-600::marker { color: #2563eb; }
-.marker\:font-bold::marker { font-weight: 700; }
-.max-w-none { max-width: none; }
-.hover\:bg-brand-700:hover { background-color: #1d4ed8; }
-
-/* ===== Comparison table (govt exam guide) ===== */
-.spec-table-wrap { overflow-x: auto; border-radius: 1rem; border: 1px solid #e2e8f0; -webkit-overflow-scrolling: touch; }
-.dark .spec-table-wrap { border-color: #334155; }
-.spec-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
-.spec-table th { background: #eff6ff; color: #1d4ed8; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
-.dark .spec-table th { background: rgba(30,58,138,0.35); color: #93c5fd; }
-.spec-table td { padding: 0.75rem 1rem; border-top: 1px solid #e2e8f0; color: #475569; }
-.dark .spec-table td { border-top-color: #334155; color: #cbd5e1; }
-.spec-table tbody tr:hover { background: #f8fafc; }
-.dark .spec-table tbody tr:hover { background: rgba(30,41,59,0.6); }
-
-/* ===== FAQ accordion (native <details>/<summary>, zero JS) ===== */
+/* FAQ accordion (native <details>/<summary>, zero JS) - index.html's own style,
+   distinct from the chevron-icon accordion pattern used on individual tool pages */
 .faq-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; overflow: hidden; }
 .dark .faq-item { background: #1e293b; border-color: #334155; }
 .faq-item summary { cursor: pointer; list-style: none; padding: 1.1rem 1.25rem; font-weight: 600; color: #0f172a; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
@@ -477,23 +211,19 @@ img,svg{max-width:100%;height:auto}
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-answer { padding: 0 1.25rem 1.15rem; color: #475569; font-size: 0.9rem; line-height: 1.65; }
 .dark .faq-answer { color: #94a3b8; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.bg-amber-50 { background-color: #fffbeb; } .dark .dark\:bg-amber-900\/20 { background-color: rgba(120,53,15,0.2); }
+.text-amber-600 { color: #d97706; }
+.bg-teal-50 { background-color: #f0fdfa; } .dark .dark\:bg-teal-900\/20 { background-color: rgba(19,78,74,0.2); }
+.text-teal-600 { color: #0d9488; }
+.text-red-600 { color: #dc2626; }
+.text-purple-600 { color: #9333ea; }
+.text-orange-600 { color: #ea580c; }
+.decoration-brand-200 { text-decoration-color: #dbeafe; }
+.dark .group:hover .dark\:group-hover\:text-brand-500 { color: #3b82f6; }
+</style>
 
-/* ===== Respect reduced-motion preference ===== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-}
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
-
-    </style>
-    <style>
-        /* UI Polish (Page B Style) */
-        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .dark .glass-nav { background: rgba(15, 23, 42, 0.9); }
-
-        /* Mobile UX (Page D Style) */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
 
     <!-- Google Ads: lightweight queue defined immediately (cheap, no network cost),
          the actual gtag.js script loads later once the browser is idle so it never
@@ -538,11 +268,11 @@ img,svg{max-width:100%;height:auto}
 
           <div class="flex items-center gap-5">
              <div class="hidden md:flex gap-6 text-sm font-medium">
-                <a href="#tools-section" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Tools</a>
-                <a href="#guides" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Guides</a>
-                <a href="#seo-content" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Why Us?</a>
-                <a href="#govt-guide" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Govt. Forms</a>
-                <a href="private-offline-pdf-tools.html" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Privacy Guide</a>
+                <a href="#tools-section" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Tools</a>
+                <a href="#guides" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Guides</a>
+                <a href="#seo-content" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Why Us?</a>
+                <a href="#govt-guide" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Govt. Forms</a>
+                <a href="private-offline-pdf-tools.html" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Privacy Guide</a>
             </div>
             <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
                 <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
@@ -555,7 +285,7 @@ img,svg{max-width:100%;height:auto}
 
     <header class="relative pt-20 pb-12 text-center px-4 overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-xs font-semibold mb-6 border border-brand-100 dark:border-brand-800">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-500 text-xs font-semibold mb-6 border border-brand-100 dark:border-brand-700">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Offline-Ready &amp; Secure
             </div>
 
@@ -607,7 +337,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-compress" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Compress PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Reduce file size (100kb).</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="pdf extractor extract text & scan documents offline. ocr, extract, scan, text">
@@ -618,7 +348,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-eye" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF Extractor</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF Extractor</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Extract text & scan documents offline.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="merge pdf combine pdfs offline. combine, join, binder">
@@ -629,7 +359,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-object-group" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Merge PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Merge PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Combine PDFs offline.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="split pdf separate pdf pages. cut, divide">
@@ -639,7 +369,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-scissors" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Split PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Split PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Separate PDF pages.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="other" data-search="compress image reduce image file size. shrink, jpg, png">
@@ -649,7 +379,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-image" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress Image</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Compress Image</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Reduce image file size.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="ocr pdf extract text from scan. scan, recognize">
@@ -660,7 +390,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-eye" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">OCR PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">OCR PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Extract text from scan.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="jpg to pdf images to pdf document. image, picture, gallery">
@@ -670,7 +400,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-images" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">JPG to PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Images to PDF document.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="pdf to excel extract tables to xlsx. spreadsheet, table, convert, data">
@@ -680,7 +410,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-file-excel" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to Excel</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF to Excel</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Extract tables to XLSX.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="pdf to word convert pdf to editable word. docx, edit, convert">
@@ -690,7 +420,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-file-word" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to Word</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF to Word</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Convert PDF to editable Word.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="pdf to jpg convert pages to hd images. photo, gallery, picture, jpeg">
@@ -700,7 +430,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-file-image" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to JPG</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF to JPG</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Convert pages to HD Images.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="page numbers add numbers to pdf pages. paginate, number, count, header, footer">
@@ -710,7 +440,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-list-ol" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Page Numbers</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Page Numbers</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Add numbers to PDF pages.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="delete pages remove unwanted pages. remove, cut, delete, clean">
@@ -720,7 +450,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Delete Pages</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Delete Pages</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Remove unwanted pages.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="word to pdf create pdf from docx. doc, create pdf">
@@ -730,7 +460,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-file-word" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Word to PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Word to PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Create PDF from Docx.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="excel to pdf xlsx sheets to pdf. spreadsheet, xlsx, data">
@@ -740,7 +470,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-file-excel" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Excel to PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Excel to PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">XLSX sheets to PDF.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="watermark pdf stamp text or image. stamp, logo, protect, copyright">
@@ -750,7 +480,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-stamp" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Watermark PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Watermark PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Stamp text or image.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="reorder pages drag & drop to sort pages. sort, arrange, organize, move">
@@ -760,7 +490,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Reorder Pages</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Reorder Pages</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Drag & Drop to sort pages.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="esign pdf digital signature tool. sign, contract">
@@ -771,7 +501,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-signature" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">eSign PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">eSign PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Digital Signature tool.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="organize" data-search="rotate pdf fix page orientation. turn, flip">
@@ -781,7 +511,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Rotate PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Rotate PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Fix page orientation.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="pdf editor add text & shapes. annotate, modify">
@@ -791,7 +521,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF Editor</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF Editor</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Add text & shapes.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="html to pdf webpage to pdf. web, url">
@@ -801,7 +531,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-code" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">HTML to PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">HTML to PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Webpage to PDF.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="unlock pdf remove passwords. decrypt">
@@ -811,7 +541,7 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-unlock" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Unlock PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Unlock PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Remove passwords.</p>
         </div>
         <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="protect pdf encrypt with password. security">
@@ -821,8 +551,58 @@ img,svg{max-width:100%;height:auto}
               <i class="fa-solid fa-lock" aria-hidden="true"></i>
             </div>
           </div>
-          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Protect PDF</h3>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Protect PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Encrypt with password.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="crop pdf trim margins remove borders. crop, trim, margin">
+          <a href="crop-pdf.html" class="absolute inset-0 z-10" aria-label="Crop PDF – Trim margins and borders."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-crop-simple" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Crop PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Trim margins &amp; borders.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="other" data-search="extract images from pdf save as jpg. photos, pictures, pull out">
+          <a href="extract-images-from-pdf.html" class="absolute inset-0 z-10" aria-label="Extract Images – Pull photos out as JPG."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-images" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Extract Images</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Pull photos out as JPG.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="pdf to powerpoint pptx presentation slides. ppt, slides, presentation">
+          <a href="pdf-to-pptx.html" class="absolute inset-0 z-10" aria-label="PDF to PowerPoint – Turn pages into slides."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-file-powerpoint" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PDF to PowerPoint</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Turn pages into slides.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="convert" data-search="powerpoint to pdf pptx to pdf convert presentation. ppt, slides">
+          <a href="pptx-to-pdf.html" class="absolute inset-0 z-10" aria-label="PowerPoint to PDF – Convert a presentation."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">PowerPoint to PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Convert a presentation.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="translate pdf 200 languages ai offline. language, hindi, translation">
+          <a href="translate-pdf.html" class="absolute inset-0 z-10" aria-label="Translate PDF – 200 languages, on-device AI."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 dark:bg-teal-900/20 text-teal-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-language" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Translate PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">200 languages, on-device AI.</p>
         </div>      </div>
 
       <div id="noResults" class="hidden text-center py-16">
@@ -1077,6 +857,55 @@ img,svg{max-width:100%;height:auto}
 
         </div>
     </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20" id="new-tools">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-500 text-xs font-semibold mb-5 border border-brand-100 dark:border-brand-700">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Recently Added
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">New Tools: Translation, Images &amp; Presentations</h2>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Five new additions to the toolkit, all running the same way as everything else here — entirely in your browser, with nothing ever uploaded.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="translate-pdf.html" class="group flex gap-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-6 hover:shadow-lg transition hover:-translate-y-1">
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-teal-50 dark:bg-teal-900/20 text-teal-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-language" aria-hidden="true"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 transition">Translate PDF into 200 Languages</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Runs an on-device AI translation model right in your browser — unlike almost every other PDF translator, your document is never sent to a server to be translated.</p>
+                </div>
+            </a>
+            <a href="extract-images-from-pdf.html" class="group flex gap-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-6 hover:shadow-lg transition hover:-translate-y-1">
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-images" aria-hidden="true"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 transition">Extract Images from PDF as JPG</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Pull every embedded photo out of a PDF at its original quality, with automatic filtering for tiny icons and repeated logos, then save individually or as one ZIP.</p>
+                </div>
+            </a>
+            <a href="pdf-to-pptx.html" class="group flex gap-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-6 hover:shadow-lg transition hover:-translate-y-1">
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-file-powerpoint" aria-hidden="true"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 transition">PDF to PowerPoint</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Turns each page into a slide, pixel-accurate to the original, ready to present or build on top of in PowerPoint or Google Slides.</p>
+                </div>
+            </a>
+            <a href="pptx-to-pdf.html" class="group flex gap-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-6 hover:shadow-lg transition hover:-translate-y-1">
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 transition">PowerPoint to PDF</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Extracts a presentation's text content into a clean, searchable PDF — honestly built for reading and archiving the content, not a pixel copy of the slide design.</p>
+                </div>
+            </a>
+            <a href="crop-pdf.html" class="group flex gap-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-6 hover:shadow-lg transition hover:-translate-y-1 md:col-span-2">
+                <div class="w-12 h-12 shrink-0 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-crop-simple" aria-hidden="true"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 transition">Crop PDF Margins &amp; Borders</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Drag a visual selection box to trim scanner borders or excess whitespace, applied to every page at once — handy before uploading a scanned document to a government portal with strict size limits.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" id="guides">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white font-display">Latest Guides</h2>
@@ -1165,16 +994,6 @@ img,svg{max-width:100%;height:auto}
     </footer>
 
     <script>
-      // Theme toggle (the dark/light class itself is already applied pre-paint by the
-      // inline script in <head> — this just wires up the button and keeps localStorage in sync)
-      var themeToggle = document.getElementById('themeToggle');
-      var htmlEl = document.documentElement;
-      themeToggle.addEventListener('click', function () {
-        htmlEl.classList.toggle('dark');
-        try { localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
-      });
-      document.getElementById('year').textContent = new Date().getFullYear();
-
       // Tool search & category filter.
       // Cards are already rendered in the HTML (see #toolsGrid), so filtering just
       // shows/hides existing elements instead of rebuilding the DOM on every keystroke.
@@ -1210,18 +1029,7 @@ img,svg{max-width:100%;height:auto}
       function filterTools() { applyFilters(); }
     </script>
 
-    <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, (err) => {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-  }
-</script>
+    <script src="common.js" defer></script>
 
 </body>
 </html>
