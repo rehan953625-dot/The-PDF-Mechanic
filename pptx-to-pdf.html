@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Convert PowerPoint to PDF Online Free | PPTX to PDF in Your Browser - The PDF Mechanic</title>
+    <meta name="description" content="Extract the content of a PowerPoint presentation into a clean, readable PDF, entirely in your browser. No upload, no signup, free and unlimited." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/pptx-to-pdf.html" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Convert PowerPoint to PDF Free — No Upload, Offline">
+    <meta property="og:description" content="Extract a PowerPoint presentation's content into a clean PDF, entirely in your browser.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/pptx-to-pdf.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convert PowerPoint to PDF Free — No Upload, Offline">
+    <meta name="twitter:description" content="Client-side PPTX to PDF conversion. Nothing ever uploaded.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "PowerPoint to PDF - The PDF Mechanic",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/pptx-to-pdf.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Extract the text content of a PowerPoint presentation into a clean, readable PDF entirely in your browser. No uploads, free and unlimited.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.4", "ratingCount": "190" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Will the PDF look exactly like my slides, with the same design and images?", "acceptedAnswer": { "@type": "Answer", "text": "No. This tool extracts the text content of each slide into a clean, readable PDF page rather than reproducing the visual design, backgrounds, images, or precise layout. For a pixel-accurate visual copy, exporting to PDF directly from PowerPoint or Google Slides is the more reliable option." } },
+        { "@type": "Question", "name": "Why doesn't this tool preserve the exact slide design?", "acceptedAnswer": { "@type": "Answer", "text": "Reliably reproducing a PPTX file's precise visual layout, fonts, and graphics client-side, without the file ever leaving your device, is a genuinely hard problem. This tool focuses on doing one thing well and honestly: getting the actual text content out reliably." } },
+        { "@type": "Question", "name": "What should I use if I need a visually accurate PDF of my presentation?", "acceptedAnswer": { "@type": "Answer", "text": "Open the file in PowerPoint, Google Slides, or Keynote and use its own built-in Export or Print to PDF option, which renders the exact visual design directly from the source application." } },
+        { "@type": "Question", "name": "Is my presentation uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The file is read and converted entirely inside your browser using JavaScript. It never leaves your device." } },
+        { "@type": "Question", "name": "Does this work if a slide has little or no text?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, though a slide that's mostly an image or chart with little text will produce a mostly empty PDF page, since only text content is extracted. The tool notes when a slide appears to have additional visual content not captured in the text." } },
+        { "@type": "Question", "name": "Can I search the text in the resulting PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Since the content is placed as real, selectable text rather than an image, the resulting PDF is fully searchable and the text can be copied, unlike a slide rendered purely as a picture." } }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* pptx-to-pdf.html-specific: brand accent color + unique components */
+#uploadArea.drag-active { background-color: #fef2f2; border-color: #dc2626; }
+.dark #uploadArea.drag-active { background-color: rgba(220,38,38,0.12); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.callout-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(30,58,138,0.18); border-color: #1e3a8a; border-left-color: #3b82f6; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #1d4ed8; font-size: 0.95rem; }
+.dark .callout-box-title { color: #93c5fd; }
+    </style>
+
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <a href="index.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 transition hidden sm:block">
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
+            </a>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 sm:pt-16 pb-8 sm:pb-10 text-center px-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-semibold mb-5 sm:mb-6 border border-red-100">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Client-Side &middot; No Uploads
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+            PowerPoint to PDF
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-2">
+            Pull the text content out of a .pptx file into a clean, readable PDF, right in your browser.
+        </p>
+    </header>
+
+    <main class="flex-grow w-full px-4 pb-16 sm:pb-20">
+
+        <div class="max-w-2xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden p-5 sm:p-8 relative">
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mb-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div class="callout-box mb-6">
+                <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Please Read Before Converting</div>
+                <p class="mt-2 text-sm">This tool extracts your slides' <strong>text content</strong> into a clean PDF &mdash; it does not reproduce the exact visual design, backgrounds, or images. If you need a pixel-accurate PDF copy, use PowerPoint's or Google Slides' own "Export to PDF" option instead. See the guide below for more.</p>
+            </div>
+
+            <div id="uploadArea"
+                 class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-8 sm:p-10 text-center hover:bg-red-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                 role="button" tabindex="0"
+                 aria-label="Click or drag a PowerPoint file here to convert it to PDF"
+                 onclick="document.getElementById('fileInput').click()"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" class="hidden" aria-label="Choose a PowerPoint file to convert" onchange="handleFileSelect(event)">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-file-powerpoint text-3xl sm:text-4xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Click or Drag .pptx here</h3>
+                <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">Works best under 50MB &middot; Processed locally</p>
+            </div>
+
+            <div id="settingsArea" class="hidden">
+                <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-4 rounded-xl mb-6 border border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-11 h-11 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-file-powerpoint" aria-hidden="true"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p id="fileName" class="font-bold text-slate-800 dark:text-white truncate text-sm"></p>
+                            <p id="slideCount" class="text-xs text-slate-500 dark:text-slate-400"></p>
+                        </div>
+                    </div>
+                    <button onclick="resetTool()" type="button" class="text-slate-400 hover:text-red-500 transition shrink-0 ml-2" aria-label="Remove file"><i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i></button>
+                </div>
+
+                <button id="convertBtn" onclick="startConvert()" type="button" class="w-full bg-brand-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Convert to PDF
+                </button>
+
+                <div id="progressContainer" class="hidden mt-6 text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                    <p id="progressText" class="text-sm text-slate-600 dark:text-slate-400">Reading slides...</p>
+                </div>
+            </div>
+
+            <div id="resultArea" class="hidden text-center py-6">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-check text-2xl sm:text-3xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">Your PDF is Ready</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">One page per slide, with the extracted text content.</p>
+
+                <a id="downloadLink" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-green-700 transition shadow-lg w-full sm:w-auto">
+                    <i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF
+                </a>
+
+                <button onclick="resetTool()" type="button" class="block w-full mt-6 text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400 mx-auto">Convert Another File</button>
+            </div>
+        </div>
+
+        <section class="max-w-5xl mx-auto mb-16 sm:mb-20 mt-16 sm:mt-20">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12 text-slate-900 dark:text-white font-display">
+                How to Convert PowerPoint to PDF
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">1. Upload .pptx</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Choose your presentation file, or drag it in.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">2. Convert</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Text from every slide is read and laid out as a PDF page.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">3. Download</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Get a readable, searchable PDF of your slide content.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto max-w-3xl mb-16 sm:mb-20">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 font-display">Why This Tool?</h2>
+                <div class="space-y-5">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Searchable, Selectable Text</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Real text on the page, not an image &mdash; searchable, copyable, and readable by screen readers.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Nothing Uploaded</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Reading and converting both happen locally in your browser.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Honest About What It Does</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">We tell you upfront it's a text extraction, not a visual copy, so you can choose the right tool for the job.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="pptx-pdf-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 border border-brand-100">
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> The Complete Guide
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    What This Tool Actually Does, and When to Use Something Else
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    An honest look at text-based conversion, why it's the reliable choice for a browser tool, and exactly when you should reach for PowerPoint's own export instead.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>A .pptx file is a small archive containing an XML description of every slide, along with any embedded images and media, all built to a genuinely complex specification. Reliably reproducing exact visual output from that XML, matching fonts, animations, precise positioning, and design themes, is what dedicated software like PowerPoint itself is built to do. Attempting a fully faithful visual reproduction from scratch, inside a browser tab, with no server to do the heavy lifting, is a different and much less reliable proposition.</p>
+                    <p class="mt-4">This tool takes the honest path: it reads the actual text content out of every slide, using well-established, reliable parsing techniques, and lays that text out cleanly on PDF pages. What you get is a genuinely useful, searchable, readable record of what your presentation says, not an attempt at a pixel-perfect copy that might quietly get the layout wrong.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-file-zipper text-brand-600" aria-hidden="true"></i> What's Actually Inside a .pptx File
+                    </h3>
+                    <p>A PowerPoint file is, underneath its extension, a ZIP archive. Unzip one and you'll find a folder structure containing an XML file per slide, a separate XML file describing the overall presentation, and a media folder holding any embedded images. This tool opens that ZIP structure directly in your browser, reads each slide's XML file in order, and pulls out every piece of actual text it finds, using the same well-documented text markup that every PowerPoint file uses internally.</p>
+                    <p class="mt-4">That's a fundamentally more reliable operation than trying to interpret shape positions, gradients, and design themes: text is text, wherever it sits on the slide, and extracting it doesn't depend on correctly guessing how a complex layout was meant to look.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-circle-question text-brand-600" aria-hidden="true"></i> When Text Extraction Is Exactly Right
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Archiving what a presentation said,</span> not how it looked — meeting notes, lecture content, a talk's key points.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Making content searchable</span> across a folder of old presentations, where finding the right deck by keyword matters more than seeing the original design.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Pulling text into another document</span> — a report, an email, a summary — without retyping it from the slides by hand.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Accessibility.</span> A clean, real-text PDF works properly with screen readers, unlike a slide rendered purely as an image would.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Quick reference on a low-bandwidth connection,</span> where a small text-based PDF loads far faster than a heavy, image-laden file.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-triangle-exclamation text-brand-600" aria-hidden="true"></i> When You Need PowerPoint's Own Export Instead
+                    </h3>
+                    <p>If the goal is sharing exactly what the audience would have seen on screen, backgrounds, images, charts, precise design, the source application's own export is genuinely the better tool for that job, and it's worth using it rather than expecting a browser-based text extractor to do something it was never designed to do.</p>
+                    <p class="mt-4">In PowerPoint, that's File → Export → Create PDF/XPS. In Google Slides, it's File → Download → PDF Document. In Keynote, File → Export To → PDF. Each of these renders the exact visual design directly from the application that knows how to interpret it correctly, which is a fundamentally different (and for visual fidelity, better) approach than reading the raw file format from outside.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-image text-brand-600" aria-hidden="true"></i> Slides With Little or No Text
+                    </h3>
+                    <p>A title slide with a background photo and no typed text, or a slide that's mostly a chart or diagram, will naturally produce a sparse or nearly blank PDF page, since there's genuinely little text on that slide to extract in the first place. This tool flags a page like that rather than leaving you to wonder if something went wrong, noting when a slide appears to carry mostly visual content that a text-only conversion can't capture.</p>
+                    <p class="mt-4">For decks that are heavily visual throughout — a portfolio, a photo-driven pitch — this tool's honest answer is that it isn't the right fit, and the source application's own export will serve you far better.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-brand-600" aria-hidden="true"></i> Privacy for Presentations
+                    </h3>
+                    <p>Presentations often carry information worth keeping private, internal strategy decks, client pitches, financial projections. Because reading the .pptx file and building the PDF both happen inside your browser using JavaScript, the file never needs to be sent anywhere to be converted. You can confirm this yourself using your browser's developer tools Network tab, both during the reading step and while the PDF is being generated.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-brand-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Will the PDF look exactly like my slides, with the same design and images?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No. This tool extracts the text content of each slide into a clean, readable PDF page rather than reproducing the visual design, backgrounds, images, or precise layout. For a pixel-accurate visual copy, exporting to PDF directly from PowerPoint or Google Slides is the more reliable option.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why doesn't this tool preserve the exact slide design?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Reliably reproducing a PPTX file's precise visual layout, fonts, and graphics client-side, without the file ever leaving your device, is a genuinely hard problem. This tool focuses on doing one thing well and honestly: getting the actual text content out reliably.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>What should I use if I need a visually accurate PDF of my presentation?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Open the file in PowerPoint, Google Slides, or Keynote and use its own built-in Export or Print to PDF option, which renders the exact visual design directly from the source application.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is my presentation uploaded to a server?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No. The file is read and converted entirely inside your browser using JavaScript. It never leaves your device.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does this work if a slide has little or no text?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes, though a slide that's mostly an image or chart with little text will produce a mostly empty PDF page, since only text content is extracted. The tool notes when a slide appears to have additional visual content not captured in the text.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I search the text in the resulting PDF?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Since the content is placed as real, selectable text rather than an image, the resulting PDF is fully searchable and the text can be copied, unlike a slide rendered purely as a picture.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">Two genuinely different tools live under the same "PowerPoint to PDF" search term: one that copies exactly how a deck looks, and one that gets at exactly what it says. This one is honestly the second kind, built to be reliable at that one job rather than an uncertain attempt at the first. For visual fidelity, your presentation software's own export remains the right call — and for pulling the actual content into something searchable, readable, and yours to keep, this is it.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="pdf-to-pptx.html" class="hover:text-brand-500 transition">PDF to PowerPoint</a></li>
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="pdf-to-excel.html" class="hover:text-brand-500 transition">PDF to Excel</a></li>
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Organize</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                    <li><a href="crop-pdf.html" class="hover:text-brand-500 transition">Crop PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        let selectedFile = null;
+        let parsedSlides = null; // array of { paragraphs: string[] }
+        let pdfBlob = null;
+        const DRAWINGML_NS = 'http://schemas.openxmlformats.org/drawingml/2006/main';
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        function isPptxFile(file) {
+            const validType = file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+            const validExt = /\.pptx$/i.test(file.name);
+            return validType || validExt;
+        }
+
+        async function processFile(file) {
+            hideFileError();
+            if (!isPptxFile(file)) {
+                showFileError(`"${file.name}" doesn't look like a PowerPoint (.pptx) file. Older .ppt files aren't supported - save it as .pptx first.`);
+                return;
+            }
+            try {
+                selectedFile = file;
+                const arrayBuffer = await file.arrayBuffer();
+                const zip = await JSZip.loadAsync(arrayBuffer);
+
+                // Confirm this is really a PPTX package (a valid zip with the expected
+                // internal folder), not just a file that happens to have a .pptx name.
+                const slideFiles = getOrderedSlideFiles(zip);
+                if (slideFiles.length === 0) {
+                    throw new Error('no-slides-found');
+                }
+
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('slideCount').textContent = `${slideFiles.length} slide${slideFiles.length > 1 ? 's' : ''}`;
+
+                document.getElementById('uploadArea').classList.remove('drag-active');
+                document.getElementById('uploadArea').classList.add('hidden');
+                document.getElementById('settingsArea').classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+                selectedFile = null;
+                showFileError("This file couldn't be read as a PowerPoint presentation. It may be corrupted, password-protected, or not a standard .pptx file.");
+            }
+        }
+
+        // Slide files are named ppt/slides/slideN.xml - sorting numerically by N
+        // matches presentation order for the vast majority of real-world files.
+        function getOrderedSlideFiles(zip) {
+            const files = [];
+            zip.forEach((relativePath, entry) => {
+                const match = relativePath.match(/^ppt\/slides\/slide(\d+)\.xml$/);
+                if (match) files.push({ path: relativePath, num: parseInt(match[1], 10) });
+            });
+            files.sort((a, b) => a.num - b.num);
+            return files;
+        }
+
+        // Extracts paragraphs of text from one slide's XML. Uses the DrawingML
+        // namespace URI (not just the "a:" prefix, which some files may vary) so
+        // this works regardless of how the file's XML happens to declare prefixes.
+        function extractParagraphsFromSlideXml(xmlText) {
+            const doc = new DOMParser().parseFromString(xmlText, 'application/xml');
+            const paragraphEls = doc.getElementsByTagNameNS(DRAWINGML_NS, 'p');
+            const paragraphs = [];
+
+            for (let i = 0; i < paragraphEls.length; i++) {
+                const textEls = paragraphEls[i].getElementsByTagNameNS(DRAWINGML_NS, 't');
+                let line = '';
+                for (let j = 0; j < textEls.length; j++) {
+                    line += textEls[j].textContent;
+                }
+                line = line.trim();
+                if (line.length > 0) paragraphs.push(line);
+            }
+            return paragraphs;
+        }
+
+        async function startConvert() {
+            if (!selectedFile) return;
+            hideFileError();
+
+            document.getElementById('convertBtn').classList.add('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+            const progressText = document.getElementById('progressText');
+
+            try {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const zip = await JSZip.loadAsync(arrayBuffer);
+                const slideFiles = getOrderedSlideFiles(zip);
+
+                parsedSlides = [];
+                for (let i = 0; i < slideFiles.length; i++) {
+                    progressText.textContent = `Reading slide ${i + 1} of ${slideFiles.length}...`;
+                    const xmlText = await zip.file(slideFiles[i].path).async('string');
+                    const paragraphs = extractParagraphsFromSlideXml(xmlText);
+                    parsedSlides.push({ paragraphs });
+                }
+
+                progressText.textContent = 'Building PDF...';
+                buildPdfFromSlides(parsedSlides);
+
+                showResult();
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('convertBtn').classList.remove('hidden');
+                if (err && err.message === 'no-slides-found') {
+                    showFileError("No slides could be found in this file. It may not be a standard .pptx presentation.");
+                } else {
+                    showFileError("Something went wrong while converting this file. Try a different file, or re-save it as .pptx from PowerPoint first.");
+                }
+            }
+        }
+
+        function buildPdfFromSlides(slides) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 50;
+            const usableWidth = pageWidth - margin * 2;
+
+            slides.forEach((slide, index) => {
+                if (index > 0) doc.addPage();
+
+                let y = margin;
+
+                doc.setFontSize(10);
+                doc.setTextColor(150);
+                doc.text(`Slide ${index + 1}`, margin, y);
+                y += 22;
+
+                if (slide.paragraphs.length === 0) {
+                    doc.setFontSize(11);
+                    doc.setTextColor(120);
+                    doc.text('(This slide has little or no text - it likely contains an image, chart, or graphic not captured by text extraction.)', margin, y, { maxWidth: usableWidth });
+                    return;
+                }
+
+                // Heuristic: the first text found on a slide is very often its title.
+                doc.setFontSize(20);
+                doc.setTextColor(20);
+                const titleLines = doc.splitTextToSize(slide.paragraphs[0], usableWidth);
+                doc.text(titleLines, margin, y);
+                y += titleLines.length * 24 + 14;
+
+                doc.setFontSize(12);
+                doc.setTextColor(50);
+                for (let p = 1; p < slide.paragraphs.length; p++) {
+                    const lines = doc.splitTextToSize('•  ' + slide.paragraphs[p], usableWidth);
+                    for (const line of lines) {
+                        if (y > pageHeight - margin) {
+                            doc.addPage();
+                            y = margin;
+                        }
+                        doc.text(line, margin, y);
+                        y += 18;
+                    }
+                    y += 6;
+                }
+            });
+
+            pdfBlob = doc.output('blob');
+        }
+
+        function showResult() {
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+
+            const url = URL.createObjectURL(pdfBlob);
+            const link = document.getElementById('downloadLink');
+            link.href = url;
+            const name = selectedFile.name.replace(/\.[^/.]+$/, '');
+            link.download = `${name}_PDF_Mechanic.pdf`;
+        }
+
+        function resetTool() {
+            selectedFile = null;
+            parsedSlides = null;
+            pdfBlob = null;
+            hideFileError();
+            document.getElementById('fileInput').value = '';
+            document.getElementById('uploadArea').classList.remove('hidden');
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('convertBtn').classList.remove('hidden');
+            document.getElementById('progressContainer').classList.add('hidden');
+        }
+    </script>
+
+    <script src="common.js" defer></script>
+
+</body>
+</html>

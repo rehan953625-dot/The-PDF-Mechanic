@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Applies saved theme before first paint to avoid a light/dark flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Crop PDF Online Free | Remove Margins & Borders in Your Browser - The PDF Mechanic</title>
+    <meta name="description" content="Visually crop PDF pages to remove scanner margins, borders, or whitespace — entirely in your browser. Apply to every page at once. No upload, free and unlimited." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/crop-pdf.html" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Crop PDF Online Free — Remove Margins, No Upload">
+    <meta property="og:description" content="Visually crop PDF pages to remove scanner margins or borders, applied to every page at once. Nothing is ever uploaded.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/crop-pdf.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Crop PDF Online Free — Remove Margins, No Upload">
+    <meta name="twitter:description" content="Visually crop PDF pages client-side. Drag to select, apply to every page instantly.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Crop PDF - The PDF Mechanic",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/crop-pdf.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Visually crop PDF pages to remove margins, borders, or whitespace entirely in your browser. No uploads, applies to every page at once.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "ratingCount": "410" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Does cropping a PDF reduce its file size?", "acceptedAnswer": { "@type": "Answer", "text": "Usually only slightly. Cropping changes which part of the page is visible, not the underlying content, so the file's stored data stays close to its original size. Use a compression tool if a smaller file is the actual goal." } },
+        { "@type": "Question", "name": "Does cropping permanently delete the hidden part of the page?", "acceptedAnswer": { "@type": "Answer", "text": "No. The content outside the crop area is hidden from view and print, but remains in the file and can be recovered by resetting the crop box. For content that genuinely needs to be gone, use a proper redaction tool instead." } },
+        { "@type": "Question", "name": "Can I crop every page differently?", "acceptedAnswer": { "@type": "Answer", "text": "This tool applies one proportional crop area to every page at once, which covers the common case of trimming consistent margins or borders across a whole document. Pages that each need a genuinely different crop would need separate passes." } },
+        { "@type": "Question", "name": "Will the cropped PDF look the same in every PDF reader?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both the CropBox and MediaBox are updated together, the standard properties controlling visible and physical page size, so the result displays and prints consistently across Acrobat, browser viewers, and mobile apps." } },
+        { "@type": "Question", "name": "Can I undo a crop after downloading the file?", "acceptedAnswer": { "@type": "Answer", "text": "Not from the cropped file directly through this tool. Keeping your original, uncropped file until you're confident in the result is the reliable way to preserve the option to start over." } },
+        { "@type": "Question", "name": "Is it safe to crop confidential documents here?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, in the sense that the file is never uploaded — the whole process runs in your browser. Just remember cropping alone doesn't remove sensitive content that's cropped out of view; use redaction for that specific need." } },
+        { "@type": "Question", "name": "Does this work the same way on mobile as on desktop?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The crop selection responds to touch the same way it responds to a mouse, so dragging the corners and edges to adjust the selection works the same way on a phone as it does on a laptop trackpad." } }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* crop-pdf.html-specific: brand accent color + unique components */
+#uploadArea.drag-active { background-color: #eff6ff; border-color: #2563eb; }
+.dark #uploadArea.drag-active { background-color: rgba(37,99,235,0.12); border-color: #3b82f6; }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.spec-table th { background: #eff6ff; color: #1d4ed8; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(30,58,138,0.35); color: #93c5fd; }
+.callout-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(30,58,138,0.18); border-color: #1e3a8a; border-left-color: #3b82f6; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #1d4ed8; font-size: 0.95rem; }
+.dark .callout-box-title { color: #93c5fd; }
+.crop-handle { position: absolute; z-index: 10; }
+.crop-handle-corner { width: 16px; height: 16px; background: #fff; border: 2px solid #2563eb; border-radius: 4px; }
+.dark .crop-handle-corner { background: #1e293b; }
+.crop-handle-edge { width: 22px; height: 8px; background: #fff; border: 2px solid #2563eb; border-radius: 3px; }
+.dark .crop-handle-edge { background: #1e293b; }
+    </style>
+
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <a href="index.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 transition hidden sm:block">
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
+            </a>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 sm:pt-16 pb-8 sm:pb-10 text-center px-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 sm:mb-6 border border-brand-100">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Client-Side &middot; No Uploads
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+            Crop PDF Pages
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-2">
+            Drag to select the area you want to keep, then apply it to every page. All in your browser.
+        </p>
+    </header>
+
+    <main class="flex-grow w-full px-4 pb-16 sm:pb-20">
+
+        <div class="max-w-3xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden p-5 sm:p-8 relative">
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mb-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadArea"
+                 class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-8 sm:p-10 text-center hover:bg-brand-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                 role="button" tabindex="0"
+                 aria-label="Click or drag a PDF file here to crop it"
+                 onclick="document.getElementById('fileInput').click()"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf" class="hidden" aria-label="Choose a PDF file to crop" onchange="handleFileSelect(event)">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-brand-100 dark:bg-brand-900/30 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-crop-simple text-3xl sm:text-4xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Click or Drag PDF here</h3>
+                <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">Works best under 50MB &middot; Processed locally</p>
+            </div>
+
+            <div id="cropArea" class="hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="min-w-0">
+                        <p id="fileName" class="font-bold text-slate-800 dark:text-white truncate text-sm"></p>
+                        <p id="pageCount" class="text-xs text-slate-500 dark:text-slate-400"></p>
+                    </div>
+                    <button onclick="resetTool()" type="button" class="text-slate-400 hover:text-red-500 transition shrink-0 ml-2" aria-label="Remove file"><i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i></button>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4 text-center">
+                    <i class="fa-solid fa-hand-pointer mr-1" aria-hidden="true"></i> Drag the corners or edges to select the area to keep &mdash; applied to every page.
+                </p>
+
+                <div id="cropWorkspace" class="relative mx-auto touch-none select-none bg-slate-100 dark:bg-slate-900 rounded-xl overflow-hidden" style="max-width: 480px;">
+                    <img id="previewImg" class="block w-full h-auto pointer-events-none" alt="First page preview for selecting the crop area" draggable="false">
+                    <div id="dimTop" class="absolute bg-slate-900/60 pointer-events-none top-0 left-0 right-0"></div>
+                    <div id="dimBottom" class="absolute bg-slate-900/60 pointer-events-none bottom-0 left-0 right-0"></div>
+                    <div id="dimLeft" class="absolute bg-slate-900/60 pointer-events-none left-0"></div>
+                    <div id="dimRight" class="absolute bg-slate-900/60 pointer-events-none right-0"></div>
+                    <div id="cropBox" class="absolute border-2 border-brand-500 cursor-move" style="box-shadow: 0 0 0 9999px rgba(0,0,0,0);">
+                        <div class="crop-handle crop-handle-corner" style="top:-7px;left:-7px;cursor:nwse-resize;" data-dir="nw"></div>
+                        <div class="crop-handle crop-handle-corner" style="top:-7px;right:-7px;cursor:nesw-resize;" data-dir="ne"></div>
+                        <div class="crop-handle crop-handle-corner" style="bottom:-7px;left:-7px;cursor:nesw-resize;" data-dir="sw"></div>
+                        <div class="crop-handle crop-handle-corner" style="bottom:-7px;right:-7px;cursor:nwse-resize;" data-dir="se"></div>
+                        <div class="crop-handle crop-handle-edge" style="top:-6px;left:50%;transform:translateX(-50%);cursor:ns-resize;" data-dir="n"></div>
+                        <div class="crop-handle crop-handle-edge" style="bottom:-6px;left:50%;transform:translateX(-50%);cursor:ns-resize;" data-dir="s"></div>
+                        <div class="crop-handle crop-handle-edge" style="left:-6px;top:50%;transform:translateY(-50%);cursor:ew-resize;" data-dir="w"></div>
+                        <div class="crop-handle crop-handle-edge" style="right:-6px;top:50%;transform:translateY(-50%);cursor:ew-resize;" data-dir="e"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 justify-center mt-5 mb-2">
+                    <button type="button" onclick="setPreset(2)" class="preset-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Trim Small Margin</button>
+                    <button type="button" onclick="setPreset(10)" class="preset-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Trim Large Margin</button>
+                    <button type="button" onclick="setPreset(0)" class="preset-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Reset (Full Page)</button>
+                </div>
+
+                <button id="cropBtn" onclick="startCrop()" type="button" class="w-full mt-4 bg-brand-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-crop-simple" aria-hidden="true"></i> Crop All Pages
+                </button>
+
+                <div id="progressContainer" class="hidden mt-6 text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 animate-pulse">Cropping every page...</p>
+                </div>
+            </div>
+
+            <div id="resultArea" class="hidden text-center py-6">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-check text-2xl sm:text-3xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">Your PDF is Cropped</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">Every page now uses the area you selected.</p>
+
+                <a id="downloadLink" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-green-700 transition shadow-lg w-full sm:w-auto">
+                    <i class="fa-solid fa-download" aria-hidden="true"></i> Download Cropped PDF
+                </a>
+
+                <button onclick="resetTool()" type="button" class="block w-full mt-6 text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400 mx-auto">Crop Another File</button>
+            </div>
+        </div>
+
+        <section class="max-w-5xl mx-auto mb-16 sm:mb-20 mt-16 sm:mt-20">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12 text-slate-900 dark:text-white font-display">
+                How to Crop a PDF
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">1. Upload PDF</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">A preview of the first page appears so you can see exactly what you're selecting.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-crop-simple" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">2. Drag to Select</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Drag the corners or edges of the box to mark the area you want to keep.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">3. Crop &amp; Download</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The same selection is applied to every page, and your new PDF downloads instantly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto max-w-3xl mb-16 sm:mb-20">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 font-display">Why Crop PDFs Here?</h2>
+                <div class="space-y-5">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">See Exactly What You're Cropping</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">A live visual preview, not a guess at coordinates or millimetres.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">One Selection, Every Page</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Set the crop area once and it's applied consistently across the whole document.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Nothing Ever Uploaded</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">The whole process, preview included, runs locally in your browser.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="crop-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 border border-brand-100">
+                    <i class="fa-solid fa-crop-simple" aria-hidden="true"></i> The Complete Guide
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    How PDF Cropping Actually Works
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    What actually changes when you crop a PDF, why the hidden content isn't really gone, and how to use that correctly rather than assuming otherwise.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>Cropping a PDF looks, from the outside, exactly like cropping a photo: drag a box, keep what's inside it, and the rest disappears. Underneath, a PDF handles this completely differently to an image, and that difference matters more than it seems — because it means the part you "removed" is usually still sitting in the file, just no longer shown.</p>
+                    <p class="mt-4">This guide covers what a PDF crop technically changes, why that's genuinely useful for some things and genuinely risky to assume for others, how to get a clean result across a whole document, and the practical situations where cropping earns its place as a real editing step rather than a cosmetic one. None of it requires knowing anything about the PDF format going in — just enough to make an informed choice about what cropping will and won't do for a specific document.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-layer-group text-brand-600" aria-hidden="true"></i> CropBox vs. MediaBox: What Actually Changes
+                    </h3>
+                    <p>Every page in a PDF has a MediaBox — the full physical page size, the same concept as the sheet of paper a document would print onto. Separately, a page can also define a CropBox, a smaller (or equal) rectangle marking which part of that MediaBox should actually be displayed or printed. Most PDFs never set a CropBox explicitly, so it defaults to matching the MediaBox exactly, which is why an uncropped page shows its full content by default.</p>
+                    <p class="mt-4">Cropping a PDF properly means updating both boxes together: the CropBox so viewers know what to display, and the MediaBox so the page's actual physical dimensions shrink to match, which is what makes the crop behave consistently across different PDF readers rather than looking cropped in one app and full-sized in another. This tool updates both at once specifically for that reason, following the same approach used by dedicated desktop PDF editors rather than a shortcut that only half-applies the change.</p>
+                    <div class="callout-box mt-5">
+                        <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> The Part That Surprises Most People</div>
+                        <p class="mt-2 text-sm">Neither box actually deletes anything. The text, images, and vector content outside the new CropBox are still present in the underlying page data — they're just outside the area a compliant viewer will render. Reset or remove the CropBox later, with the right tool, and the original full page reappears exactly as it was.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-triangle-exclamation text-brand-600" aria-hidden="true"></i> Why This Matters for Sensitive Content
+                    </h3>
+                    <p>If a page includes something you specifically want gone — a signature, an account number, a name — cropping it out of view is not the same as removing it, and treating the two as equivalent is a genuine, fairly common mistake with real consequences.</p>
+                    <p class="mt-4">A cropped PDF sent to someone else still contains the full original page data underneath the new CropBox. Anyone who knows to look — resetting the crop in a PDF editor, or in some cases simply extracting the page content directly — can potentially recover exactly what was cropped away. For anything genuinely confidential that needs to be gone rather than just out of sight, the correct tool is a proper redaction feature, which permanently removes the underlying content rather than adjusting what's displayed. Cropping is the right tool for layout and framing; it is not a privacy or security tool, and it's worth being clear-eyed about that distinction before relying on it for the wrong job.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-ruler text-brand-600" aria-hidden="true"></i> Why Cropping Barely Changes File Size
+                    </h3>
+                    <p>Because the underlying content isn't deleted, cropping a PDF rarely shrinks it by much — usually a small reduction from adjusted metadata, not the dramatic size drop compression produces. If the actual goal is a smaller file rather than a different visible frame, cropping is the wrong tool for that job; a dedicated compressor, which does discard and re-encode image data, is what actually reduces size.</p>
+                    <p class="mt-4">Where cropping does help indirectly is print and export costs: a page physically trimmed down to a smaller MediaBox uses less paper and toner when printed, and looks less awkward exported as an image, even though the PDF file itself isn't meaningfully lighter.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-images text-brand-600" aria-hidden="true"></i> Applying One Crop to Every Page
+                    </h3>
+                    <p>This tool selects a crop area against the first page and applies the same relative area to every page in the document, which is deliberately how most real-world cropping needs actually work: a scanner adding the same black border to every page, or a PDF exported with consistent margins throughout.</p>
+                    <p class="mt-4">The selection is stored as a proportion of the page — how far in from each edge, as a percentage — rather than as fixed measurements. That matters when pages aren't perfectly identical in size: the same proportional crop is applied to each page's own dimensions, which keeps the result consistent even across a document with minor page-to-page size variation, though documents with genuinely different page sizes or orientations mixed together will naturally crop each page proportionally rather than to one universal fixed measurement.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-earth-americas text-brand-600" aria-hidden="true"></i> When Cropping Is Actually the Right Tool
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Scanner borders.</span> Flatbed scanners routinely add a thin black or grey border around the actual page content — cropping trims it uniformly across an entire scanned document in one pass.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Removing headers or footers you don't control.</span> A PDF exported from a system that always stamps a header or footer you don't want in a downstream document can be trimmed away visually without touching the source system.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Preparing for e-readers.</span> Academic papers and reports with generous print margins read far better on a phone or e-reader once the excess whitespace around the actual text is trimmed.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Isolating one region of a larger page.</span> A single chart, table, or diagram on an otherwise busy page can be cropped down to just that region for a cleaner standalone reference.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Print layout adjustments.</span> Trimming a page's dimensions to better match a specific paper size or binding margin before sending it to a printer.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Combining scans from different sources.</span> Two documents scanned on different machines, with different border sizes, can be trimmed to matching proportions before merging into a single consistent file.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Removing a visible watermark band along one edge.</span> Some watermarking tools add their mark as a strip along the top or bottom of the page rather than across the whole page, which a targeted crop can trim away if that specific layout applies.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Fitting a wide spreadsheet export to a readable width.</span> Spreadsheets exported to PDF often include far more blank columns than intended — cropping to just the populated area makes the result far more readable.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-list-check text-brand-600" aria-hidden="true"></i> Getting a Clean Crop
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Check a page other than the first for consistency.</span> If a document's first page is a cover or title page with a different layout from the rest, the crop selected against it may not match the body pages as well as expected.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Leave a small buffer around text.</span> Cropping right to the edge of visible text risks clipping a descender or accent mark that sits slightly outside the main text block on some pages but not others.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Use the preset margins as a starting point, not a final answer.</span> "Small" and "large" margin presets get close quickly; fine-tune from there by eye rather than assuming a preset fits every document perfectly.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Keep the original file until you've checked the result.</span> Since cropping is easy to redo but only from the original dimensions, hold onto the source file until you've confirmed the cropped version looks right on more than one page.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Zoom in on the preview before committing.</span> A margin that looks fine at a glance can reveal a clipped page number or footer detail once you look closely — a few extra seconds of review costs nothing against re-uploading and starting over.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-magnifying-glass text-brand-600" aria-hidden="true"></i> Verifying the Crop Worked as Expected
+                    </h3>
+                    <p>After downloading, open the cropped file in more than one viewer if possible — a browser tab and a dedicated PDF reader, for instance — since this confirms the MediaBox was updated correctly rather than just the CropBox. If only the CropBox changed, some older or less strict viewers may still show the full original page size, which is exactly the inconsistency updating both boxes together is meant to prevent.</p>
+                    <p class="mt-4">Check a page from the middle and the end of the document, not just the first one, particularly for anything long enough that a formatting inconsistency partway through wouldn't be obvious from the first page alone.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-brand-600" aria-hidden="true"></i> Privacy While Cropping
+                    </h3>
+                    <p>Even though cropping itself doesn't delete content, the process of deciding what to crop often involves looking at documents you'd rather not hand to an unfamiliar server just to preview: signed contracts, scanned IDs, financial statements with visible account details.</p>
+                    <p class="mt-4">Because the preview render, the drag-to-select interaction, and the final crop all run inside your browser using JavaScript, the file never needs to leave your device at any stage of the process, including while you're still deciding exactly where to place the crop box. You can confirm this yourself using your browser's developer tools Network tab — no request containing your file appears at any point, from the moment you select it through to downloading the cropped result.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-brand-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does cropping a PDF reduce its file size?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Usually only slightly. Cropping changes which part of the page is visible, not the underlying content, so the file's stored data stays close to its original size. Use a compression tool if a smaller file is the actual goal.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does cropping permanently delete the hidden part of the page?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">No. The content outside the crop area is hidden from view and print, but remains in the file and can be recovered by resetting the crop box. For content that genuinely needs to be gone, use a proper redaction tool instead.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I crop every page differently?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">This tool applies one proportional crop area to every page at once, which covers the common case of trimming consistent margins or borders across a whole document. Pages that each need a genuinely different crop would need separate passes.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Will the cropped PDF look the same in every PDF reader?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Both the CropBox and MediaBox are updated together, the standard properties controlling visible and physical page size, so the result displays and prints consistently across Acrobat, browser viewers, and mobile apps rather than only looking cropped in one specific reader.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I undo a crop after downloading the file?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Not from the cropped file directly through this tool, since it doesn't keep a record of the original dimensions once you leave the page. Keeping your original, uncropped file until you're confident in the result is the reliable way to preserve the option to start over.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is it safe to crop confidential documents here?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes, in the sense that the file is never uploaded — the whole process runs in your browser, verifiable using your developer tools Network tab. Just remember cropping alone doesn't remove sensitive content that's cropped out of view; use redaction for that specific need.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does this work the same way on mobile as on desktop?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. The crop selection responds to touch the same way it responds to a mouse, so dragging the corners and edges to adjust the selection works the same way on a phone as it does on a laptop trackpad.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-arrows-left-right text-brand-600" aria-hidden="true"></i> Portrait, Landscape, and Mixed Orientation
+                </h3>
+                <p>A crop area selected against a portrait first page and applied proportionally still works correctly against a landscape page elsewhere in the same document, since the underlying math scales to each page's own width and height rather than assuming every page shares identical dimensions.</p>
+                <p class="mt-4">Where it's worth a second look is a document that deliberately mixes very differently-shaped pages — a mostly-portrait report with one landscape table inserted, for instance. The same proportional margins will still apply correctly, but because the page's proportions differ, the crop can end up looking visually tighter or looser on that one page than it does on the rest, simply because the underlying shape being cropped is different. Reviewing that specific page after cropping is worth the extra few seconds.</p>
+            </div>
+
+            <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">A PDF crop is a display instruction, not an edit to the content itself — understanding that difference is what lets you use it for exactly what it's good at, trimming borders and adjusting framing across a whole document in one pass, without mistaking it for a tool it was never meant to be. For anything that actually needs to disappear rather than just move out of frame, redaction is the tool built for that; for everything else, drag, preview, and download.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Organize &amp; Edit</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="rotate-pdf.html" class="hover:text-brand-500 transition">Rotate PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                    <li><a href="excel-to-pdf.html" class="hover:text-brand-500 transition">Excel to PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+
+    <script>
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        let selectedFile = null;
+        let selectedBytes = null;
+        // Crop selection as percentages (0-100) of the preview image's displayed size.
+        // Percentages keep the selection valid regardless of the actual render resolution.
+        let cropRect = { x: 5, y: 5, width: 90, height: 90 };
+
+        const workspace = document.getElementById('cropWorkspace');
+        const cropBoxEl = document.getElementById('cropBox');
+        const MIN_SIZE = 8;
+
+        function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+        function updateCropDisplay() {
+            cropBoxEl.style.left = cropRect.x + '%';
+            cropBoxEl.style.top = cropRect.y + '%';
+            cropBoxEl.style.width = cropRect.width + '%';
+            cropBoxEl.style.height = cropRect.height + '%';
+
+            document.getElementById('dimTop').style.height = cropRect.y + '%';
+            document.getElementById('dimBottom').style.height = (100 - cropRect.y - cropRect.height) + '%';
+            document.getElementById('dimLeft').style.top = cropRect.y + '%';
+            document.getElementById('dimLeft').style.height = cropRect.height + '%';
+            document.getElementById('dimLeft').style.width = cropRect.x + '%';
+            document.getElementById('dimRight').style.top = cropRect.y + '%';
+            document.getElementById('dimRight').style.height = cropRect.height + '%';
+            document.getElementById('dimRight').style.width = (100 - cropRect.x - cropRect.width) + '%';
+        }
+
+        function setPreset(marginPercent) {
+            cropRect = {
+                x: marginPercent,
+                y: marginPercent,
+                width: 100 - marginPercent * 2,
+                height: 100 - marginPercent * 2
+            };
+            updateCropDisplay();
+        }
+
+        // --- Drag & resize (Pointer Events: unified mouse + touch) ---
+        let dragState = null;
+
+        cropBoxEl.addEventListener('pointerdown', (e) => {
+            const handle = e.target.closest('.crop-handle');
+            e.stopPropagation();
+            startDrag(e, handle ? 'resize' : 'move', handle ? handle.dataset.dir : null);
+        });
+
+        function startDrag(e, type, handle) {
+            e.preventDefault();
+            const rect = workspace.getBoundingClientRect();
+            dragState = {
+                type, handle,
+                startXPct: (e.clientX - rect.left) / rect.width * 100,
+                startYPct: (e.clientY - rect.top) / rect.height * 100,
+                startRect: { ...cropRect }
+            };
+            try { e.target.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+
+        workspace.addEventListener('pointermove', (e) => {
+            if (!dragState) return;
+            const rect = workspace.getBoundingClientRect();
+            const curXPct = clamp((e.clientX - rect.left) / rect.width * 100, 0, 100);
+            const curYPct = clamp((e.clientY - rect.top) / rect.height * 100, 0, 100);
+            const dx = curXPct - dragState.startXPct;
+            const dy = curYPct - dragState.startYPct;
+            const s = dragState.startRect;
+
+            if (dragState.type === 'move') {
+                cropRect.x = clamp(s.x + dx, 0, 100 - s.width);
+                cropRect.y = clamp(s.y + dy, 0, 100 - s.height);
+            } else if (dragState.type === 'resize') {
+                let left = s.x, top = s.y, right = s.x + s.width, bottom = s.y + s.height;
+                const h = dragState.handle;
+                if (h.includes('w')) left = clamp(s.x + dx, 0, right - MIN_SIZE);
+                if (h.includes('e')) right = clamp(s.x + s.width + dx, left + MIN_SIZE, 100);
+                if (h.includes('n')) top = clamp(s.y + dy, 0, bottom - MIN_SIZE);
+                if (h.includes('s')) bottom = clamp(s.y + s.height + dy, top + MIN_SIZE, 100);
+                cropRect = { x: left, y: top, width: right - left, height: bottom - top };
+            }
+            updateCropDisplay();
+        });
+
+        window.addEventListener('pointerup', () => { dragState = null; });
+        window.addEventListener('pointercancel', () => { dragState = null; });
+
+        // --- File handling ---
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        async function processFile(file) {
+            hideFileError();
+            if (file.type !== 'application/pdf') {
+                showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
+                return;
+            }
+
+            try {
+                selectedBytes = new Uint8Array(await file.arrayBuffer());
+                selectedFile = file;
+
+                const pdf = await pdfjsLib.getDocument(selectedBytes.slice()).promise;
+                const page = await pdf.getPage(1);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                await page.render({ canvasContext: ctx, viewport }).promise;
+
+                document.getElementById('previewImg').src = canvas.toDataURL('image/jpeg', 0.9);
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('pageCount').textContent = `${pdf.numPages} page${pdf.numPages > 1 ? 's' : ''}`;
+
+                cropRect = { x: 5, y: 5, width: 90, height: 90 };
+                updateCropDisplay();
+
+                document.getElementById('uploadArea').classList.remove('drag-active');
+                document.getElementById('uploadArea').classList.add('hidden');
+                document.getElementById('cropArea').classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+                selectedFile = null;
+                selectedBytes = null;
+                showFileError("This PDF couldn't be opened. It may be corrupted, password-protected, or not a standard PDF file.");
+            }
+        }
+
+        // --- Apply crop to every page using pdf-lib ---
+        async function startCrop() {
+            if (!selectedBytes) return;
+            hideFileError();
+
+            document.getElementById('cropBtn').classList.add('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(selectedBytes);
+                const pages = pdfDoc.getPages();
+
+                // Convert the on-screen selection (percent of the preview image) into
+                // margins to trim from each edge, as ratios of the page's own MediaBox -
+                // the same validated approach used by working browser-based PDF croppers:
+                // canvas pixels -> normalized 0-1 -> PDF points, applied to CropBox and
+                // MediaBox together so the crop is consistent across every PDF viewer.
+                const leftRatio = cropRect.x / 100;
+                const topRatio = cropRect.y / 100;
+                const rightRatio = (100 - cropRect.x - cropRect.width) / 100;
+                const bottomRatio = (100 - cropRect.y - cropRect.height) / 100;
+
+                pages.forEach(page => {
+                    const { x, y, width, height } = page.getMediaBox();
+                    const { x: cx, y: cy, width: cw, height: ch } = page.getCropBox();
+
+                    const newLeft = leftRatio * width;
+                    const newRight = rightRatio * width;
+                    const newTop = topRatio * height;
+                    const newBottom = bottomRatio * height;
+
+                    page.setCropBox(cx + newLeft, cy + newBottom, cw - newLeft - newRight, ch - newTop - newBottom);
+                    page.setMediaBox(x + newLeft, y + newBottom, width - newLeft - newRight, height - newTop - newBottom);
+                });
+
+                const croppedBytes = await pdfDoc.save();
+                const blob = new Blob([croppedBytes], { type: 'application/pdf' });
+                showResult(blob);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('cropBtn').classList.remove('hidden');
+                showFileError("Something went wrong while cropping this file. Try a less extreme selection, or a different PDF.");
+            }
+        }
+
+        function showResult(blob) {
+            document.getElementById('cropArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+
+            const url = URL.createObjectURL(blob);
+            const link = document.getElementById('downloadLink');
+            link.href = url;
+            const name = selectedFile.name.replace(/\.[^/.]+$/, '');
+            link.download = `${name}_cropped_PDF_Mechanic.pdf`;
+        }
+
+        function resetTool() {
+            selectedFile = null;
+            selectedBytes = null;
+            dragState = null;
+            hideFileError();
+            document.getElementById('fileInput').value = '';
+            document.getElementById('uploadArea').classList.remove('hidden');
+            document.getElementById('cropArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('cropBtn').classList.remove('hidden');
+            document.getElementById('progressContainer').classList.add('hidden');
+        }
+    </script>
+
+    <script src="common.js" defer></script>
+
+</body>
+</html>

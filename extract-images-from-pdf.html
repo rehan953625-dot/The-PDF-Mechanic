@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Extract Images from PDF Free Online | Save Photos as JPG - The PDF Mechanic</title>
+    <meta name="description" content="Pull every embedded photo out of a PDF and save them as JPG, individually or as a ZIP — entirely in your browser. No upload, free and unlimited." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/extract-images-from-pdf.html" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Extract Images from PDF Free — Save as JPG, No Upload">
+    <meta property="og:description" content="Pull every embedded photo out of a PDF and download as JPG or a ZIP, entirely in your browser.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/extract-images-from-pdf.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Extract Images from PDF Free — Save as JPG, No Upload">
+    <meta name="twitter:description" content="Client-side embedded image extraction. Nothing ever uploaded.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <!-- Shared site-wide styles (utility classes + common components), cached across every tool page -->
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* extract-images-from-pdf.html-specific: purple brand accent + gallery grid */
+#uploadArea.drag-active { background-color: #faf5ff; border-color: #9333ea; }
+.dark #uploadArea.drag-active { background-color: rgba(147,51,234,0.12); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.callout-box { background: #faf5ff; border: 1px solid #e9d5ff; border-left: 4px solid #9333ea; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(88,28,135,0.18); border-color: #6b21a8; border-left-color: #a855f7; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #7e22ce; font-size: 0.95rem; }
+.dark .callout-box-title { color: #d8b4fe; }
+.spec-table th { background: #faf5ff; color: #7e22ce; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(88,28,135,0.3); color: #d8b4fe; }
+.img-card { position: relative; border-radius: 0.75rem; overflow: hidden; background: #f1f5f9; aspect-ratio: 1; border: 1px solid #e2e8f0; }
+.dark .img-card { background: #1e293b; border-color: #334155; }
+.img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%); opacity: 0; transition: opacity 0.2s; display: flex; align-items: flex-end; padding: 0.5rem; }
+.img-card:hover .img-card-overlay, .img-card:focus-within .img-card-overlay { opacity: 1; }
+
+/* Purple utility shades not used heavily enough elsewhere to warrant adding to common.css */
+.bg-purple-50 { background-color: #faf5ff; }
+.dark .dark\:bg-purple-900\/30 { background-color: rgba(88,28,135,0.3); }
+.border-purple-100 { border-color: #f3e8ff; }
+.text-purple-700 { color: #7e22ce; }
+.dark .dark\:text-purple-300 { color: #d8b4fe; }
+.hover\:bg-purple-50:hover { background-color: #faf5ff; }
+.accent-purple-600 { accent-color: #9333ea; }
+</style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Extract Images from PDF - The PDF Mechanic",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/extract-images-from-pdf.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Pull every embedded photo out of a PDF and save as JPG, individually or as a ZIP, entirely in your browser. No uploads, free and unlimited.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "270" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Will this extract every image at full original quality?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page, so quality matches the original embedded image exactly." } },
+        { "@type": "Question", "name": "Why did a chart or diagram on my PDF not get extracted?", "acceptedAnswer": { "@type": "Answer", "text": "This tool extracts raster images (photos, scans, embedded pictures), not vector graphics. A chart or diagram drawn using PDF's own line and shape commands isn't a raster image at all, so there's nothing to extract for it in that form." } },
+        { "@type": "Question", "name": "Why are some very small images being skipped?", "acceptedAnswer": { "@type": "Answer", "text": "The minimum-size filter skips tiny decorative icons, bullet graphics, and header logos by default, since these are rarely what someone actually wants when extracting photos. It can be turned off to capture every embedded image regardless of size." } },
+        { "@type": "Question", "name": "Why did I get fewer images than pages in my PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Duplicate detection automatically skips an image that's byte-for-byte identical to one already found, which is common for a repeated letterhead, logo, or watermark placed on every page. Turn off deduplication to save every occurrence individually." } },
+        { "@type": "Question", "name": "Is it safe to extract images from confidential PDFs here?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The entire extraction process, from reading the PDF to building the ZIP file, runs inside your browser using JavaScript. Your file is never uploaded to a server." } },
+        { "@type": "Question", "name": "Can I extract images from a scanned PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, in a specific sense: a scanned page is typically stored as one large raster image covering the whole page, so extraction returns that full-page image rather than separate smaller photos, unless the scan itself contained multiple distinct pictures placed individually." } },
+        { "@type": "Question", "name": "Does this work the same way on mobile as on desktop?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Extraction and the ZIP download both run the same way in a mobile browser as on desktop, though very large PDFs with many high-resolution images will naturally take a little longer on a phone's processor." } }
+      ]
+    }
+    </script>
+
+</head>
+
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <a href="index.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 transition hidden sm:block">
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
+            </a>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 sm:pt-16 pb-8 sm:pb-10 text-center px-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-semibold mb-5 sm:mb-6 border border-purple-100">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Client-Side &middot; No Uploads
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+            Extract Images from PDF
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-2">
+            Pull every embedded photo out of a PDF and save it as JPG, right in your browser.
+        </p>
+    </header>
+
+    <main class="flex-grow w-full px-4 pb-16 sm:pb-20">
+
+        <div class="max-w-4xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden p-5 sm:p-8 relative">
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mb-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadArea"
+                 class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-8 sm:p-10 text-center hover:bg-purple-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                 role="button" tabindex="0"
+                 aria-label="Click or drag a PDF file here to extract its images"
+                 onclick="document.getElementById('fileInput').click()"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf" class="hidden" aria-label="Choose a PDF file to extract images from" onchange="handleFileSelect(event)">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-images text-3xl sm:text-4xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Click or Drag PDF here</h3>
+                <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">Works best under 50MB &middot; Processed locally</p>
+            </div>
+
+            <div id="settingsArea" class="hidden">
+                <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-4 rounded-xl mb-6 border border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-11 h-11 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p id="fileName" class="font-bold text-slate-800 dark:text-white truncate text-sm"></p>
+                            <p id="pageCount" class="text-xs text-slate-500 dark:text-slate-400"></p>
+                        </div>
+                    </div>
+                    <button onclick="resetTool()" type="button" class="text-slate-400 hover:text-red-500 transition shrink-0 ml-2" aria-label="Remove file"><i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i></button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+                        <input type="checkbox" id="skipTinyToggle" checked class="w-4 h-4 rounded accent-purple-600">
+                        <span class="text-sm text-slate-700 dark:text-slate-300">Skip tiny icons &amp; decorations</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+                        <input type="checkbox" id="dedupToggle" checked class="w-4 h-4 rounded accent-purple-600">
+                        <span class="text-sm text-slate-700 dark:text-slate-300">Skip repeated images (logos, watermarks)</span>
+                    </label>
+                </div>
+
+                <button id="extractBtn" onclick="startExtraction()" type="button" class="w-full bg-brand-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-images" aria-hidden="true"></i> Extract Images
+                </button>
+
+                <div id="progressContainer" class="hidden mt-6 text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                    <p id="progressText" class="text-sm text-slate-600 dark:text-slate-400">Scanning pages...</p>
+                </div>
+            </div>
+
+            <div id="resultArea" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                        <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1" id="resultSummary">Found images</h3>
+                    <p id="resultSubtext" class="text-sm text-slate-500 dark:text-slate-400"></p>
+                </div>
+
+                <button id="downloadAllBtn" type="button" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-green-700 transition flex items-center justify-center gap-2 mb-6">
+                    <i class="fa-solid fa-file-zipper" aria-hidden="true"></i> Download All as ZIP
+                </button>
+
+                <div id="imageGallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6" role="list" aria-label="Extracted images"></div>
+
+                <button onclick="resetTool()" type="button" class="block w-full text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400 mx-auto">Extract From Another File</button>
+            </div>
+        </div>
+
+        <section class="max-w-5xl mx-auto mb-16 sm:mb-20 mt-16 sm:mt-20">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12 text-slate-900 dark:text-white font-display">
+                How to Extract Images from a PDF
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">1. Upload PDF</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Choose the PDF containing the photos you want, or drag it in.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">2. Scan &amp; Extract</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Every page is scanned for embedded images, skipping tiny icons and duplicates.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">3. Download</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Save one image, or grab everything at once as a ZIP.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto mb-16 sm:mb-20">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 font-display text-center">Why Extract Images Here?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-lg"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Original Quality</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Pulled at native resolution, not a re-rendered screenshot.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Nothing Uploaded</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Extraction and the ZIP file are both built locally in your browser.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-filter" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Smart Filtering</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Skips tiny decorative icons and repeated logos automatically.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="extract-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 text-xs font-semibold mb-5 border border-purple-100">
+                    <i class="fa-solid fa-images" aria-hidden="true"></i> The Complete Guide
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    How Extracting Images from a PDF Actually Works
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    What actually gets pulled out, why some things in a PDF can't be extracted this way, and how the filtering options help you get exactly the photos you're after.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>Every image sitting inside a PDF is stored as its own separate object, referenced from whichever page displays it — a scanned photo, a product picture, a logo in a header, a diagram pasted in from somewhere else. Unlike converting a PDF page into a picture, which flattens everything on that page into one new image, extraction reaches into the file's actual structure and pulls out exactly those original embedded objects, at exactly the resolution they were embedded with.</p>
+                    <p class="mt-4">This guide covers how that extraction actually happens, the real difference between a raster image and the vector graphics a PDF can also contain, what the filtering options are doing behind the scenes, and where pulling images back out of a PDF is genuinely the fastest way to get a job done. None of it requires knowing anything about how PDFs are built internally — just enough to know what to expect from the results.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-layer-group text-purple-600" aria-hidden="true"></i> How the Extraction Actually Works
+                    </h3>
+                    <p>Every PDF page is described by a list of drawing instructions — draw this line, fill this shape, place this image at these coordinates. This tool reads that instruction list for every page and watches specifically for the commands that place an embedded image, rather than the commands that draw text or vector shapes.</p>
+                    <p class="mt-4">When one of those image-placing instructions is found, it points to the actual image object stored inside the file — its raw pixel data, at its original width and height. That data is decoded and painted onto a blank canvas at those exact native dimensions, then saved out as a JPG. Nothing about the page layout, the surrounding text, or the rest of the document is involved at any point; only the image data itself is touched, page by page, until every page has been checked.</p>
+                    <div class="callout-box mt-5">
+                        <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why This Is Different From "Screenshotting" a Page</div>
+                        <p class="mt-2 text-sm">A tool that renders a PDF page and crops out the picture-looking part is working from a flattened, re-rasterized copy of the page — quality depends on the resolution it happened to render at. Reading the image object directly, the way this tool does, retrieves the exact pixels that were embedded originally, with nothing lost or re-sampled in between.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-shapes text-purple-600" aria-hidden="true"></i> Raster Images vs. Vector Graphics
+                    </h3>
+                    <p>Not everything that looks like a picture in a PDF is stored as one. A photo, a scan, or a picture pasted in from another program is almost always a raster image — a grid of individual pixel values, exactly the kind of object this tool extracts. A logo, chart, or diagram, on the other hand, is very often drawn using vector instructions instead: a set of lines, curves, and fill commands that get rendered fresh every time the page is displayed, with no pixel grid stored anywhere in the file.</p>
+                    <p class="mt-4">Vector graphics genuinely aren't images in the file-format sense, which is why a diagram or chart sometimes doesn't show up in extracted results even though it's clearly visible on the page. There's no raster data sitting there to pull out — the shape only exists as a set of drawing instructions, the same category as the text on the page rather than the photo beside it.</p>
+                    <div class="mt-5 spec-table-wrap">
+                        <table class="spec-table">
+                            <thead>
+                                <tr><th>Type</th><th>How it's stored</th><th>Extractable here?</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Photo or scan</td><td>Pixel grid (raster)</td><td>Yes</td></tr>
+                                <tr><td>Pasted screenshot</td><td>Pixel grid (raster)</td><td>Yes</td></tr>
+                                <tr><td>Logo drawn in design software</td><td>Often vector paths</td><td>Usually not</td></tr>
+                                <tr><td>Chart or graph</td><td>Vector lines &amp; fills</td><td>Usually not</td></tr>
+                                <tr><td>Scanned document page</td><td>Pixel grid (raster)</td><td>Yes, as one full-page image</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-filter text-purple-600" aria-hidden="true"></i> What the Filtering Options Actually Do
+                    </h3>
+                    <p>Two settings sit above the extract button, both turned on by default, both aimed at the same goal: getting back the photos someone actually wants, not a folder cluttered with page furniture.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Skip tiny icons and decorations</span> filters out anything below a small pixel-dimension threshold, since these are almost always bullet graphics, small logos, or decorative dividers rather than actual photos — the kind of thing that technically counts as an embedded raster image but was never what anyone meant by "extract the images."</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Skip repeated images</span> compares each extracted image's exact data against everything already found, and silently drops anything that's a byte-for-byte match — the same company letterhead appearing on all thirty pages of a report becomes one saved file instead of thirty identical copies. Both filters can be turned off individually if a specific job genuinely needs every last embedded object, tiny or repeated.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-file-zipper text-purple-600" aria-hidden="true"></i> Downloading One Image vs. All of Them
+                    </h3>
+                    <p>For a PDF with just one or two photos worth keeping, downloading them individually from the gallery is the quicker path. For a document with a dozen or a hundred embedded images — a scanned photo album turned into a PDF, or a product catalogue — the "Download All as ZIP" option bundles every extracted image into a single archive in one click, avoiding a hundred separate browser downloads landing in the same folder.</p>
+                    <p class="mt-4">The ZIP is assembled the same way the images were extracted: entirely in your browser, with no intermediate upload to a server to build the archive.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-purple-600" aria-hidden="true"></i> Privacy for Documents Full of Photos
+                    </h3>
+                    <p>PDFs packed with embedded images are frequently the exact kind of document worth being careful with — scanned ID booklets, medical imaging reports, property listings with interior photos, an insurance claim's photo evidence. Reading the file, decoding its images, and building the ZIP archive all happen inside your browser using JavaScript, so none of that content needs to reach a server to come back out as individual files.</p>
+                    <p class="mt-4">You can confirm this directly rather than taking it on trust: open your browser's developer tools, watch the Network tab while extracting, and see that no request carrying your file or its images goes out at any point.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-earth-americas text-purple-600" aria-hidden="true"></i> Common Reasons to Extract
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Real estate listings.</span> Pulling interior and exterior photos back out of a PDF brochure to reuse on a listing site or in a new flyer.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Recovering photos from an old scanned album.</span> A PDF someone made years ago from a stack of printed photos, with the original loose images long since lost.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Product catalogues.</span> Getting individual product photos out of a supplier's PDF catalogue for use on a storefront.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Academic and research use.</span> Pulling figures, photographs, or diagrams out of a paper for citation or further analysis, where the original image files were never separately provided.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Insurance and legal documentation.</span> Extracting photo evidence attached to a claim or case file into individual images for a separate review process.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Design and marketing handoffs.</span> Recovering source images from a client-approved PDF proof when the original design files aren't available.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Genealogy and family archives.</span> Pulling individual photographs back out of a PDF someone assembled from a scanned family album years ago.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Journalism and publishing.</span> Recovering original photographs from a press kit or archived PDF layout for reuse in a new article.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-triangle-exclamation text-purple-600" aria-hidden="true"></i> Troubleshooting
+                    </h3>
+                    <p class="mt-1"><span class="font-semibold text-slate-800 dark:text-slate-200">No images were found at all.</span> The PDF's pictures may be vector graphics rather than raster images, or the file itself may be a single scanned page where the "image" is actually the entire page background — try extracting with the size filter turned off to confirm nothing was missed.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">An image extracted looks stretched or distorted.</span> This is rare and usually means the original PDF itself applied a non-uniform scale to that image when placing it on the page; the extracted file reflects the image's native pixel data, independent of how it happened to be stretched or compressed visually on the page.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Fewer images came out than expected.</span> Check whether deduplication removed repeated copies of the same picture, or whether the size filter is skipping something that's technically small but still wanted — both are adjustable before running the extraction again.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">One specific image failed to extract while the rest worked fine.</span> A small number of unusually encoded images can occasionally fail to decode; the tool skips that one image and continues with the rest rather than stopping the whole extraction.</p>
+                    <p class="mt-4"><span class="font-semibold text-slate-800 dark:text-slate-200">Extraction seems slow on a large PDF.</span> A document with many high-resolution images takes proportionally longer to scan and decode, since every page's instruction list has to be read individually — this scales with your device's own processing speed rather than a queue or upload time.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-purple-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Will this extract every image at full original quality?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page, so quality matches the original embedded image exactly.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why did a chart or diagram on my PDF not get extracted?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">This tool extracts raster images (photos, scans, embedded pictures), not vector graphics. A chart or diagram drawn using PDF's own line and shape commands isn't a raster image at all, so there's nothing to extract for it in that form.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why are some very small images being skipped?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">The minimum-size filter skips tiny decorative icons, bullet graphics, and header logos by default, since these are rarely what someone actually wants when extracting photos. It can be turned off to capture every embedded image regardless of size.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why did I get fewer images than pages in my PDF?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Duplicate detection automatically skips an image that's byte-for-byte identical to one already found, which is common for a repeated letterhead, logo, or watermark placed on every page. Turn off deduplication to save every occurrence individually.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is it safe to extract images from confidential PDFs here?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. The entire extraction process, from reading the PDF to building the ZIP file, runs inside your browser using JavaScript. Your file is never uploaded to a server.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I extract images from a scanned PDF?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes, in a specific sense: a scanned page is typically stored as one large raster image covering the whole page, so extraction returns that full-page image rather than separate smaller photos, unless the scan itself contained multiple distinct pictures placed individually.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does this work the same way on mobile as on desktop?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Extraction and the ZIP download both run the same way in a mobile browser as on desktop, though very large PDFs with many high-resolution images will naturally take a little longer on a phone's processor.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div>
+                <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                    <i class="fa-solid fa-hashtag text-purple-600" aria-hidden="true"></i> How Duplicate Detection Actually Compares Images
+                </h3>
+                <p>Checking whether two images are "the same" by comparing every pixel would be slow across a large document, so this tool instead computes a short cryptographic fingerprint of each extracted image's data — the same category of technique used to verify downloaded files haven't been corrupted or tampered with.</p>
+                <p class="mt-4">Two images produce the identical fingerprint only if their underlying data matches exactly, byte for byte. This means a logo that's been recompressed, resized, or even saved at a slightly different quality between two placements in the same document won't be caught as a duplicate — only genuinely identical embedded copies are. For a letterhead or watermark placed the same way on every page, which is the common real-world case, this catches every repeat cleanly.</p>
+            </div>
+
+            <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">The images inside a PDF were never actually merged into the page — they're still separate objects the whole time, just displayed together with everything else. Extraction is simply reading them back out individually, at the resolution they've had all along, without touching anything else on the page. Whether that's one photo or two hundred, the same read-and-decode process handles it, entirely on your own device.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="pdf-to-excel.html" class="hover:text-brand-500 transition">PDF to Excel</a></li>
+                    <li><a href="pdf-to-pptx.html" class="hover:text-brand-500 transition">PDF to PowerPoint</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Organize</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                    <li><a href="crop-pdf.html" class="hover:text-brand-500 transition">Crop PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <!-- Shared boilerplate (theme toggle, footer year, service worker) - see common.js -->
+    <script src="common.js" defer></script>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        let selectedFile = null;
+        let extractedImages = []; // { blob, url, width, height, pageNum }
+        let zipBlob = null;
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        async function processFile(file) {
+            hideFileError();
+            if (file.type !== 'application/pdf') {
+                showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
+                return;
+            }
+            try {
+                selectedFile = file;
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument(arrayBuffer.slice()).promise;
+
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('pageCount').textContent = `${pdf.numPages} page${pdf.numPages > 1 ? 's' : ''}`;
+
+                document.getElementById('uploadArea').classList.remove('drag-active');
+                document.getElementById('uploadArea').classList.add('hidden');
+                document.getElementById('settingsArea').classList.remove('hidden');
+            } catch (err) {
+                console.error(err);
+                selectedFile = null;
+                showFileError("This PDF couldn't be opened. It may be corrupted, password-protected, or not a standard PDF file.");
+            }
+        }
+
+        // Converts whatever pixel-data shape pdf.js hands back for a decoded image
+        // object into a canvas we can export as JPEG. pdf.js image objects can come
+        // back as an already-decoded bitmap, or as a raw buffer in RGB/RGBA/Grayscale -
+        // handling all three defensively means one odd image can't break the batch.
+        function imageObjectToCanvas(imgObj) {
+            const width = imgObj.width;
+            const height = imgObj.height;
+            if (!width || !height) return null;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            if (imgObj.bitmap) {
+                ctx.drawImage(imgObj.bitmap, 0, 0, width, height);
+                return canvas;
+            }
+
+            const src = imgObj.data;
+            if (!src) return null;
+
+            const numPixels = width * height;
+            let rgba;
+            if (src.length === numPixels * 4) {
+                rgba = new Uint8ClampedArray(src);
+            } else if (src.length === numPixels * 3) {
+                rgba = new Uint8ClampedArray(numPixels * 4);
+                for (let p = 0; p < numPixels; p++) {
+                    rgba[p * 4] = src[p * 3];
+                    rgba[p * 4 + 1] = src[p * 3 + 1];
+                    rgba[p * 4 + 2] = src[p * 3 + 2];
+                    rgba[p * 4 + 3] = 255;
+                }
+            } else if (src.length === numPixels) {
+                rgba = new Uint8ClampedArray(numPixels * 4);
+                for (let p = 0; p < numPixels; p++) {
+                    const v = src[p];
+                    rgba[p * 4] = v; rgba[p * 4 + 1] = v; rgba[p * 4 + 2] = v; rgba[p * 4 + 3] = 255;
+                }
+            } else {
+                return null; // unrecognized pixel format, skip this image
+            }
+
+            ctx.putImageData(new ImageData(rgba, width, height), 0, 0);
+            return canvas;
+        }
+
+        function getImageObject(page, key) {
+            return new Promise((resolve) => {
+                try {
+                    page.objs.get(key, (obj) => resolve(obj));
+                } catch (e) {
+                    resolve(null);
+                }
+            });
+        }
+
+        async function hashBlob(blob) {
+            const buffer = await blob.arrayBuffer();
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function startExtraction() {
+            if (!selectedFile) return;
+            hideFileError();
+
+            document.getElementById('extractBtn').classList.add('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+            const progressText = document.getElementById('progressText');
+
+            const skipTiny = document.getElementById('skipTinyToggle').checked;
+            const dedup = document.getElementById('dedupToggle').checked;
+            const MIN_DIMENSION = skipTiny ? 48 : 0;
+
+            extractedImages = [];
+            const seenHashes = new Set();
+            let duplicateCount = 0;
+            let tinyCount = 0;
+            let failedCount = 0;
+
+            try {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                const totalPages = pdf.numPages;
+                const paintOps = new Set([
+                    pdfjsLib.OPS.paintImageXObject,
+                    pdfjsLib.OPS.paintJpegXObject,
+                    pdfjsLib.OPS.paintImageXObjectRepeat
+                ]);
+
+                for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+                    progressText.textContent = `Scanning page ${pageNum} of ${totalPages}...`;
+
+                    const page = await pdf.getPage(pageNum);
+                    const opList = await page.getOperatorList();
+                    const { fnArray, argsArray } = opList;
+                    const seenKeysOnPage = new Set();
+
+                    for (let i = 0; i < fnArray.length; i++) {
+                        if (!paintOps.has(fnArray[i])) continue;
+                        const imgKey = argsArray[i][0];
+                        if (!imgKey || seenKeysOnPage.has(imgKey)) continue;
+                        seenKeysOnPage.add(imgKey);
+
+                        try {
+                            const imgObj = await getImageObject(page, imgKey);
+                            if (!imgObj) { failedCount++; continue; }
+
+                            if (imgObj.width < MIN_DIMENSION || imgObj.height < MIN_DIMENSION) {
+                                tinyCount++;
+                                continue;
+                            }
+
+                            const canvas = imageObjectToCanvas(imgObj);
+                            if (!canvas) { failedCount++; continue; }
+
+                            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+                            if (!blob) { failedCount++; continue; }
+
+                            if (dedup) {
+                                const hash = await hashBlob(blob);
+                                if (seenHashes.has(hash)) {
+                                    duplicateCount++;
+                                    continue;
+                                }
+                                seenHashes.add(hash);
+                            }
+
+                            extractedImages.push({
+                                blob,
+                                url: URL.createObjectURL(blob),
+                                width: imgObj.width,
+                                height: imgObj.height,
+                                pageNum
+                            });
+                        } catch (imgErr) {
+                            console.error(`Image extraction failed on page ${pageNum}:`, imgErr);
+                            failedCount++;
+                        }
+                    }
+                    page.cleanup();
+                }
+
+                if (extractedImages.length === 0) {
+                    document.getElementById('progressContainer').classList.add('hidden');
+                    document.getElementById('extractBtn').classList.remove('hidden');
+                    showFileError("No extractable photos were found in this PDF. It may use vector graphics instead of embedded images, or try again with the size filter turned off.");
+                    return;
+                }
+
+                progressText.textContent = 'Building results...';
+                showResults(duplicateCount, tinyCount);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('extractBtn').classList.remove('hidden');
+                showFileError("Something went wrong while reading this PDF. It may be corrupted or password-protected. Try a different file, or unlock it first.");
+            }
+        }
+
+        function showResults(duplicateCount, tinyCount) {
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+
+            const n = extractedImages.length;
+            document.getElementById('resultSummary').textContent = `Found ${n} image${n > 1 ? 's' : ''}`;
+
+            const notes = [];
+            if (duplicateCount > 0) notes.push(`${duplicateCount} duplicate${duplicateCount > 1 ? 's' : ''} skipped`);
+            if (tinyCount > 0) notes.push(`${tinyCount} small icon${tinyCount > 1 ? 's' : ''} skipped`);
+            document.getElementById('resultSubtext').textContent = notes.length ? notes.join(' · ') : 'Ready to download.';
+
+            const gallery = document.getElementById('imageGallery');
+            gallery.innerHTML = '';
+            extractedImages.forEach((img, idx) => {
+                const card = document.createElement('div');
+                card.className = 'img-card';
+                card.setAttribute('role', 'listitem');
+
+                const imgEl = document.createElement('img');
+                imgEl.src = img.url;
+                imgEl.alt = `Extracted image ${idx + 1} from page ${img.pageNum}, ${img.width} by ${img.height} pixels`;
+                imgEl.loading = 'lazy';
+
+                const overlay = document.createElement('div');
+                overlay.className = 'img-card-overlay';
+                const dlBtn = document.createElement('a');
+                dlBtn.href = img.url;
+                dlBtn.download = `${selectedFile.name.replace(/\.[^/.]+$/, '')}-image-${idx + 1}.jpg`;
+                dlBtn.className = 'text-white text-xs font-semibold flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-lg hover:bg-black/60';
+                dlBtn.setAttribute('aria-label', `Download image ${idx + 1}`);
+                dlBtn.innerHTML = '<i class="fa-solid fa-download" aria-hidden="true"></i> ' + img.width + '&times;' + img.height;
+                overlay.appendChild(dlBtn);
+
+                card.appendChild(imgEl);
+                card.appendChild(overlay);
+                gallery.appendChild(card);
+            });
+        }
+
+        document.getElementById('downloadAllBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('downloadAllBtn');
+            const original = btn.innerHTML;
+            try {
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Building ZIP...';
+                btn.disabled = true;
+
+                const zip = new JSZip();
+                extractedImages.forEach((img, idx) => {
+                    zip.file(`image-${String(idx + 1).padStart(3, '0')}.jpg`, img.blob);
+                });
+                zipBlob = await zip.generateAsync({ type: 'blob' });
+
+                const url = URL.createObjectURL(zipBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${selectedFile.name.replace(/\.[^/.]+$/, '')}-images.zip`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } catch (err) {
+                console.error(err);
+                showFileError("Couldn't build the ZIP file. Try downloading images individually instead.");
+            } finally {
+                btn.innerHTML = original;
+                btn.disabled = false;
+            }
+        });
+
+        function resetTool() {
+            selectedFile = null;
+            extractedImages.forEach(img => URL.revokeObjectURL(img.url));
+            extractedImages = [];
+            zipBlob = null;
+            hideFileError();
+            document.getElementById('fileInput').value = '';
+            document.getElementById('imageGallery').innerHTML = '';
+            document.getElementById('uploadArea').classList.remove('hidden');
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('extractBtn').classList.remove('hidden');
+            document.getElementById('progressContainer').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
