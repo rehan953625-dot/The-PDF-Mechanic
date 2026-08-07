@@ -193,12 +193,25 @@
 .w-8 { width:2rem; }
 .whitespace-nowrap { white-space:nowrap; }
 .z-40 { z-index:40; }
-.sm\:justify-center { justify-content:center; }
-.sm\:mx-0 { margin-left:0;margin-right:0; }
-.sm\:px-0 { padding-left:0;padding-right:0; }
-.md\:text-6xl { font-size:3.75rem;line-height:1; }
-.lg\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
-.xl\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+
+/* FIX: the 6 rules below were previously sitting OUTSIDE any @media block,
+   which meant they applied at every screen width - including mobile. That's
+   what was forcing a 4-column tools grid and oversized heading text onto
+   phone screens. Properly scoped to their intended breakpoints now. */
+@media (min-width: 640px) {
+  .sm\:justify-center { justify-content:center; }
+  .sm\:mx-0 { margin-left:0;margin-right:0; }
+  .sm\:px-0 { padding-left:0;padding-right:0; }
+}
+@media (min-width: 768px) {
+  .md\:text-6xl { font-size:3.75rem;line-height:1; }
+}
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
 
 /* FAQ accordion (native <details>/<summary>, zero JS) - index.html's own style,
    distinct from the chevron-icon accordion pattern used on individual tool pages */
@@ -603,6 +616,36 @@
           </div>
           <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Translate PDF</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">200 languages, on-device AI.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="flatten pdf form fields free lock answers permanent. flatten, form, fields">
+          <a href="flatten-pdf.html" class="absolute inset-0 z-10" aria-label="Flatten PDF – Lock form fields, free."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-brand-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Flatten PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Lock form fields, free.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="edit" data-search="redact pdf free permanently remove sensitive text black box. redact, censor, blackout">
+          <a href="redact-pdf.html" class="absolute inset-0 z-10" aria-label="Redact PDF – Permanently remove content, free."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Redact PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Permanently remove content, free.</p>
+        </div>
+        <div class="tool-card group relative flex flex-col p-5 rounded-2xl border bg-white dark:bg-dark-card transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg border-slate-200 dark:border-dark-border opacity-100" data-cat="other" data-search="compare pdf diff free highlight text differences changes. compare, diff, changes">
+          <a href="compare-pdf.html" class="absolute inset-0 z-10" aria-label="Compare PDF – Highlight text differences, free."></a>
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 flex items-center justify-center text-2xl transition-transform group-hover:scale-110">
+              <i class="fa-solid fa-code-compare" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">Compare PDF</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 flex-grow">Highlight text differences, free.</p>
         </div>      </div>
 
       <div id="noResults" class="hidden text-center py-16">
