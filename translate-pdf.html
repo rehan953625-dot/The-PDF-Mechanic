@@ -457,6 +457,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="common.js" defer></script>
 
+    <!-- Loads the translation library itself. Kept as a separate module script
+         (not inside a Worker - see the comment near translatorFn below for why)
+         so window.transformersReady can be awaited safely regardless of exactly
+         when this finishes loading relative to a click on "Translate PDF". -->
+    <script type="module">
+        window.transformersReady = (async () => {
+            try {
+                const mod = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0');
+                window.hfPipeline = mod.pipeline;
+                return true;
+            } catch (err) {
+                console.error('Failed to load Transformers.js:', err);
+                return false;
+            }
+        })();
+    </script>
+
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -502,55 +519,8 @@
         populateLanguageSelects();
 
         let selectedFile = null;
-        let translateWorker = null;
-        let workerReady = false;
+        let translatorFn = null; // cached pipeline instance, once successfully loaded
         let pdfBlob = null;
-
-        // The translation model is heavy to load and run, so it lives in a Web
-        // Worker (built here from an inline Blob, keeping this tool a single
-        // self-contained file). This keeps the page itself fully responsive
-        // while the model downloads and while translation is running.
-        function createTranslateWorker() {
-            const workerSource = `
-                import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0';
-                env.allowLocalModels = false;
-
-                let translator = null;
-
-                async function ensureTranslator() {
-                    if (translator) return translator;
-                    translator = await pipeline('translation', 'Xenova/nllb-200-distilled-600M', {
-                        progress_callback: (p) => {
-                            self.postMessage({ type: 'load-progress', payload: p });
-                        }
-                    });
-                    return translator;
-                }
-
-                self.onmessage = async (e) => {
-                    const { type, payload } = e.data;
-                    try {
-                        if (type === 'load') {
-                            await ensureTranslator();
-                            self.postMessage({ type: 'ready' });
-                        } else if (type === 'translate-batch') {
-                            const { chunks, srcLang, tgtLang } = payload;
-                            const results = [];
-                            for (let i = 0; i < chunks.length; i++) {
-                                const out = await translator(chunks[i], { src_lang: srcLang, tgt_lang: tgtLang });
-                                results.push(out[0].translation_text);
-                                self.postMessage({ type: 'chunk-done', payload: { current: i + 1, total: chunks.length } });
-                            }
-                            self.postMessage({ type: 'batch-done', payload: { results } });
-                        }
-                    } catch (err) {
-                        self.postMessage({ type: 'error', payload: String(err && err.message ? err.message : err) });
-                    }
-                };
-            `;
-            const blob = new Blob([workerSource], { type: 'application/javascript' });
-            return new Worker(URL.createObjectURL(blob), { type: 'module' });
-        }
 
         function handleFileSelect(event) {
             const file = event.target.files[0];
@@ -658,56 +628,41 @@
                 const chunks = chunkText(pageTexts);
                 if (chunks.length === 0) throw new Error('no-text-found');
 
-                // Load (or reuse) the worker and wait for the model to be ready.
-                if (!translateWorker) {
-                    translateWorker = createTranslateWorker();
-                }
-                if (!workerReady) {
+                // Load (or reuse) the translation model, directly on the main thread.
+                // An earlier version of this tool ran the model inside a Web Worker,
+                // which turned out to be unreliable: Transformers.js's ONNX runtime
+                // backend tries to spawn its own nested worker threads, and doing that
+                // from inside another worker is a known source of "no backend found"
+                // failures in several browsers. Running it directly here avoids that
+                // entire class of problem.
+                if (!translatorFn) {
                     progressText.textContent = 'Downloading translation model...';
                     progressSubtext.textContent = 'First use only - cached after this';
-                    await new Promise((resolve, reject) => {
-                        const onMsg = (e) => {
-                            const { type, payload } = e.data;
-                            if (type === 'load-progress' && payload && payload.progress != null) {
-                                setProgressRing(Math.min(payload.progress / 100, 0.99));
-                            } else if (type === 'ready') {
-                                translateWorker.removeEventListener('message', onMsg);
-                                workerReady = true;
-                                resolve();
-                            } else if (type === 'error') {
-                                translateWorker.removeEventListener('message', onMsg);
-                                reject(new Error(payload));
+
+                    const moduleReady = await window.transformersReady;
+                    if (!moduleReady || !window.hfPipeline) {
+                        throw new Error('module-load-failed');
+                    }
+
+                    translatorFn = await window.hfPipeline('translation', 'Xenova/nllb-200-distilled-600M', {
+                        progress_callback: (p) => {
+                            if (p && p.progress != null) {
+                                setProgressRing(Math.min(p.progress / 100, 0.99));
                             }
-                        };
-                        translateWorker.addEventListener('message', onMsg);
-                        translateWorker.postMessage({ type: 'load' });
+                        }
                     });
                 }
 
                 // Translate all chunks, tracking progress as they complete.
                 progressText.textContent = `Translating...`;
                 progressSubtext.textContent = `0 / ${chunks.length} passages`;
-                const translatedTexts = await new Promise((resolve, reject) => {
-                    const onMsg = (e) => {
-                        const { type, payload } = e.data;
-                        if (type === 'chunk-done') {
-                            const frac = payload.current / payload.total;
-                            setProgressRing(frac);
-                            progressSubtext.textContent = `${payload.current} / ${payload.total} passages`;
-                        } else if (type === 'batch-done') {
-                            translateWorker.removeEventListener('message', onMsg);
-                            resolve(payload.results);
-                        } else if (type === 'error') {
-                            translateWorker.removeEventListener('message', onMsg);
-                            reject(new Error(payload));
-                        }
-                    };
-                    translateWorker.addEventListener('message', onMsg);
-                    translateWorker.postMessage({
-                        type: 'translate-batch',
-                        payload: { chunks: chunks.map(c => c.text), srcLang, tgtLang }
-                    });
-                });
+                const translatedTexts = [];
+                for (let i = 0; i < chunks.length; i++) {
+                    const out = await translatorFn(chunks[i].text, { src_lang: srcLang, tgt_lang: tgtLang });
+                    translatedTexts.push(out[0].translation_text);
+                    setProgressRing((i + 1) / chunks.length);
+                    progressSubtext.textContent = `${i + 1} / ${chunks.length} passages`;
+                }
 
                 progressText.textContent = 'Building translated PDF...';
                 buildTranslatedPdf(translatedTexts, chunks, pdf.numPages);
@@ -719,8 +674,14 @@
                 document.getElementById('translateBtn').classList.remove('hidden');
                 if (err && err.message === 'no-text-found') {
                     showFileError("No selectable text found in this PDF - it looks like a scanned document. Run it through an OCR tool first, then translate the result.");
+                } else if (err && err.message === 'module-load-failed') {
+                    showFileError("The translation library couldn't load, possibly due to a network or ad-blocker issue. Please check your connection and try again.");
                 } else {
-                    showFileError("Something went wrong during translation. Please check your connection (needed for the first-time model download) and try again.");
+                    // Model loading failed partway through - don't leave a half-loaded
+                    // pipeline cached, so the next attempt starts cleanly rather than
+                    // silently reusing a broken state.
+                    translatorFn = null;
+                    showFileError("Something went wrong loading or running the translation model (" + (err && err.message ? err.message : 'unknown error') + "). Please try again - if this keeps happening, your browser or device may not support the WebAssembly features this model needs.");
                 }
             }
         }
