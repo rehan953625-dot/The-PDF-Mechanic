@@ -97,7 +97,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "Does this really translate without uploading my PDF anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Unlike most PDF translators, which send your text to a translation server, this tool downloads a translation AI model once and runs it entirely on your own device from then on. Your document and its content never leave your browser." } },
-        { "@type": "Question", "name": "Why does this need to download something before translating?", "acceptedAnswer": { "@type": "Answer", "text": "The AI model that performs the translation is a few hundred megabytes, since it needs to understand 200 languages well enough to translate between any pair of them. It downloads once and is cached by your browser, so every translation after the first is immediate." } },
+        { "@type": "Question", "name": "Why does this need to download something before translating?", "acceptedAnswer": { "@type": "Answer", "text": "The AI model that performs the translation is roughly 2GB, since it needs to understand 200 languages well enough to translate between any pair of them, and the full-precision version is used specifically because it's the most reliable one across different browsers and devices. It downloads once and is cached by your browser, so every translation after the first is immediate." } },
         { "@type": "Question", "name": "Is the translation quality as good as Google Translate or DeepL?", "acceptedAnswer": { "@type": "Answer", "text": "For major languages, it's close but generally a step behind the largest cloud translation services, which run considerably bigger models on dedicated hardware. For many lower-resource languages, this model is competitive with or better than mainstream alternatives, since broad language coverage was its specific design goal." } },
         { "@type": "Question", "name": "Will the translated PDF keep the exact original layout?", "acceptedAnswer": { "@type": "Answer", "text": "No. Translated text is rarely the same length as the original, so preserving an exact pixel-for-pixel layout isn't realistic. This tool produces a clean, readable, paginated PDF with the translated text in the original reading order instead." } },
         { "@type": "Question", "name": "Will this work on my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, though the one-time model download and the translation itself will both take noticeably longer on a phone's processor than on a laptop or desktop, especially for longer documents." } },
@@ -153,8 +153,8 @@
             </div>
 
             <div class="callout-box mb-6">
-                <div class="callout-box-title"><i class="fa-solid fa-download" aria-hidden="true"></i> First Use Downloads an AI Model (~300&ndash;600MB)</div>
-                <p class="mt-2 text-sm">This is what makes translation possible without uploading your document anywhere. It downloads once and your browser caches it — every translation after the first starts instantly. A Wi-Fi connection is recommended for the first use.</p>
+                <div class="callout-box-title"><i class="fa-solid fa-download" aria-hidden="true"></i> First Use Downloads an AI Model (~2GB)</div>
+                <p class="mt-2 text-sm">This is what makes translation possible without uploading your document anywhere - the size comes from using the model's full-precision version, chosen specifically for reliability over a smaller compressed one. It downloads once and your browser caches it; every translation after the first starts instantly. A Wi-Fi connection is strongly recommended for the first use.</p>
             </div>
 
             <div id="uploadArea"
@@ -306,7 +306,7 @@
                         <i class="fa-solid fa-brain text-teal-600" aria-hidden="true"></i> The Model: Meta's NLLB-200
                     </h3>
                     <p>This tool runs NLLB-200 ("No Language Left Behind"), an open-source translation model published by Meta AI specifically to cover languages that most commercial translation services underserve — alongside major world languages, it includes dozens of lower-resource languages that rarely get dedicated attention from big tech translation products.</p>
-                    <p class="mt-4">The version used here is a distilled variant: a smaller model trained to approximate the behavior of Meta's full-sized NLLB-200, compressed enough to run inside a browser tab using WebAssembly, without needing a GPU or a server. That compression is precisely why the download exists at all — a model that understands 200 languages well enough to translate between arbitrary pairs of them simply isn't a small file, even after significant optimization.</p>
+                    <p class="mt-4">The version used here is a distilled variant: a smaller model trained to approximate the behavior of Meta's full-sized NLLB-200, compressed enough to run inside a browser tab using WebAssembly, without needing a GPU or a server. That compression is precisely why the download exists at all — a model that understands 200 languages well enough to translate between arbitrary pairs of them simply isn't a small file, even after significant optimization. It's loaded here at full precision rather than a further-compressed variant specifically because that's the version confirmed to run reliably across different browsers; a smaller, quantized version exists but currently fails to load correctly in some browsers due to a bug in the underlying runtime, not this tool.</p>
                     <div class="callout-box mt-5">
                         <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why the Download Only Happens Once</div>
                         <p class="mt-2 text-sm">Once downloaded, the model is cached by your browser the same way an app would be installed on your phone. Every translation after the first happens immediately, entirely offline, without touching the network again — the one-time download is the cost of never needing to upload anything, ever again.</p>
@@ -367,7 +367,7 @@
                                 <span>Why does this need to download something before translating?</span>
                                 <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
                             </summary>
-                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">The AI model that performs the translation is a few hundred megabytes, since it needs to understand 200 languages well enough to translate between any pair of them. It downloads once and is cached by your browser, so every translation after the first is immediate.</p>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">The AI model that performs the translation is roughly 2GB, since it needs to understand 200 languages well enough to translate between any pair of them, and the full-precision version is used specifically because it's the most reliable one across different browsers and devices. It downloads once and is cached by your browser, so every translation after the first is immediate.</p>
                         </details>
                         <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
                             <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
@@ -644,7 +644,15 @@
                         throw new Error('module-load-failed');
                     }
 
+                    // dtype is explicitly set to 'fp32' here rather than left as
+                    // the library's default. The default quantized (q8) variant of
+                    // this model hits a confirmed bug in this library version's ONNX
+                    // runtime ("Missing required scale ... MatMulNBits") that fails
+                    // session creation entirely - fp32 is the variant confirmed to
+                    // load and run correctly instead. It's a larger download as a
+                    // result, but a working tool matters more than a smaller one.
                     translatorFn = await window.hfPipeline('translation', 'Xenova/nllb-200-distilled-600M', {
+                        dtype: 'fp32',
                         progress_callback: (p) => {
                             if (p && p.progress != null) {
                                 setProgressRing(Math.min(p.progress / 100, 0.99));
