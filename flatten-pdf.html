@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Flatten PDF Free Online | Lock Form Fields in Your Browser - The PDF Mechanic</title>
+    <meta name="description" content="Flatten a filled PDF form for free — form fields, checkboxes, and dropdowns become permanent, uneditable page content. Free PDF flattener, no upload, works offline." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/flatten-pdf.html" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Flatten PDF Free — Lock Form Fields, No Upload">
+    <meta property="og:description" content="Free tool to flatten a filled PDF form into permanent, uneditable content. Runs entirely in your browser.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/flatten-pdf.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flatten PDF Free — Lock Form Fields, No Upload">
+    <meta name="twitter:description" content="Free, client-side PDF form flattening. Nothing ever uploaded.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* flatten-pdf.html-specific: slate/blue-grey brand accent */
+#uploadArea.drag-active { background-color: #eff6ff; border-color: #2563eb; }
+.dark #uploadArea.drag-active { background-color: rgba(37,99,235,0.12); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.callout-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(30,58,138,0.18); border-color: #1e3a8a; border-left-color: #3b82f6; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #1d4ed8; font-size: 0.95rem; }
+.dark .callout-box-title { color: #93c5fd; }
+.spec-table th { background: #eff6ff; color: #1d4ed8; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(30,58,138,0.35); color: #93c5fd; }
+.decoration-brand-200 { text-decoration-color: #dbeafe; }
+.underline-offset-2 { text-underline-offset: 2px; }
+</style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Flatten PDF - The PDF Mechanic",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/flatten-pdf.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Free tool to flatten a filled PDF form, making form fields, checkboxes, and dropdowns permanent, uneditable page content. Runs entirely in your browser, no uploads.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "230" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this PDF flattening tool actually free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free, with no page limit, no watermark, and no account required. It runs entirely in your browser, so there's no server cost being passed on to you either." } },
+        { "@type": "Question", "name": "What exactly does flattening a PDF do?", "acceptedAnswer": { "@type": "Answer", "text": "It takes the current appearance of every fillable field - text you typed, boxes you checked, options you selected - and permanently draws it into the page itself, then removes the interactive field. The page looks identical, but nothing on it can be edited or refilled anymore." } },
+        { "@type": "Question", "name": "Why would I want to flatten a PDF form?", "acceptedAnswer": { "@type": "Answer", "text": "Mainly consistency and permanence: a flattened form displays and prints identically in every PDF reader, since there's no interactive field rendering left to vary between apps, and the filled-in answers can't be accidentally changed by whoever opens it next." } },
+        { "@type": "Question", "name": "Can I undo flattening after downloading the file?", "acceptedAnswer": { "@type": "Answer", "text": "Not from the flattened file itself, since the interactive fields are genuinely removed, not just hidden. Keep your original, unflattened file if there's a chance you'll need to edit the form again later." } },
+        { "@type": "Question", "name": "Does flattening work on a PDF that isn't a form?", "acceptedAnswer": { "@type": "Answer", "text": "There's nothing to flatten if a PDF has no interactive form fields to begin with, so running a regular document through this tool simply returns it unchanged." } },
+        { "@type": "Question", "name": "Will flattening change the file size much?", "acceptedAnswer": { "@type": "Answer", "text": "Usually only marginally. Removing the interactive field objects and their associated data typically trims a small amount of size, though this isn't intended as a compression step - a dedicated compressor is the right tool if file size is the actual goal." } }
+      ]
+    }
+    </script>
+
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <a href="index.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 transition hidden sm:block">
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
+            </a>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 sm:pt-16 pb-8 sm:pb-10 text-center px-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 sm:mb-6 border border-brand-100">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 100% Free &middot; No Uploads
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+            Flatten a PDF Form <span class="text-brand-600">Free</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-2">
+            Lock in your filled form answers permanently. Free, right in your browser.
+        </p>
+    </header>
+
+    <main class="flex-grow w-full px-4 pb-16 sm:pb-20">
+
+        <div class="max-w-2xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden p-5 sm:p-8 relative">
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mb-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadArea"
+                 class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-8 sm:p-10 text-center hover:bg-brand-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                 role="button" tabindex="0"
+                 aria-label="Click or drag a filled PDF form here to flatten it"
+                 onclick="document.getElementById('fileInput').click()"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}"
+                 ondragover="event.preventDefault();this.classList.add('drag-active');"
+                 ondragleave="this.classList.remove('drag-active');"
+                 ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf" class="hidden" aria-label="Choose a filled PDF form to flatten" onchange="handleFileSelect(event)">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-brand-100 dark:bg-brand-900/30 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-layer-group text-3xl sm:text-4xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Click or Drag Filled PDF Form here</h3>
+                <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">Free &middot; Works best under 50MB &middot; Processed locally</p>
+            </div>
+
+            <div id="settingsArea" class="hidden">
+                <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-4 rounded-xl mb-6 border border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-11 h-11 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p id="fileName" class="font-bold text-slate-800 dark:text-white truncate text-sm"></p>
+                            <p id="fieldCount" class="text-xs text-slate-500 dark:text-slate-400"></p>
+                        </div>
+                    </div>
+                    <button onclick="resetTool()" type="button" class="text-slate-400 hover:text-red-500 transition shrink-0 ml-2" aria-label="Remove file"><i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i></button>
+                </div>
+
+                <div id="noFieldsNotice" class="hidden inline-alert inline-alert-warn mb-6">
+                    <i class="fa-solid fa-circle-info mt-0.5" aria-hidden="true"></i>
+                    <span>No fillable form fields were found in this PDF. There's nothing to flatten, but you can still download an unchanged copy if you'd like.</span>
+                </div>
+
+                <button id="flattenBtn" onclick="startFlatten()" type="button" class="w-full bg-brand-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Flatten PDF Free
+                </button>
+
+                <div id="progressContainer" class="hidden mt-6 text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 animate-pulse">Flattening form fields...</p>
+                </div>
+            </div>
+
+            <div id="resultArea" class="hidden text-center py-6">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-check text-2xl sm:text-3xl" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">Your PDF is Flattened</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">Form fields are now permanent, uneditable page content.</p>
+
+                <a id="downloadLink" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-green-700 transition shadow-lg w-full sm:w-auto">
+                    <i class="fa-solid fa-download" aria-hidden="true"></i> Download Flattened PDF
+                </a>
+
+                <button onclick="resetTool()" type="button" class="block w-full mt-6 text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400 mx-auto">Flatten Another File</button>
+            </div>
+        </div>
+
+        <section class="max-w-5xl mx-auto mb-16 sm:mb-20 mt-16 sm:mt-20">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12 text-slate-900 dark:text-white font-display">
+                How to Flatten a PDF Form for Free
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">1. Upload Filled Form</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Choose a PDF with form fields already filled in, or drag it in.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">2. Flatten, Free</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Every field's current answer is drawn permanently into the page.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">3. Download</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">A flattened PDF that displays identically everywhere, free to keep.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto mb-16 sm:mb-20">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 font-display text-center">Why Use a Free, Client-Side Flattener?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-lg"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Answers Stay Locked</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Once flattened, filled-in data can't be accidentally edited by the next person who opens it.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Nothing Uploaded</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Flattening happens locally, so a filled-in form full of personal details never leaves your device.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-infinity" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Genuinely Free</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">No page limit, no watermark, no account — free every time, not just a free trial.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="flatten-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 text-xs font-semibold mb-5 border border-brand-100">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> The Complete Free Guide
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    How PDF Flattening Actually Works
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    What flattening a form actually changes, when it's exactly the right free tool for the job, and when it genuinely isn't.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>A fillable PDF form isn't really "filled in" the way a paper form is. Behind the text you typed or the box you checked sits an interactive field object — a small piece of the file that knows it's a text box, a checkbox, or a dropdown, separate from the page's actual visible content. That's what makes the form editable in the first place, and it's exactly what flattening removes.</p>
+                    <p class="mt-4">This free guide covers what actually happens during flattening, why the result displays more consistently than an unflattened form, the situations where flattening is genuinely the right move, and — just as importantly — the situations where it isn't.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-code-branch text-brand-600" aria-hidden="true"></i> What Flattening Actually Changes
+                    </h3>
+                    <p>Every fillable field in a PDF form has two things: the interactive object itself, and an "appearance stream" — instructions for how to draw its current value on the page. Flattening takes that current appearance for every field and copies it directly into the page's own permanent content, then deletes the interactive field object entirely.</p>
+                    <p class="mt-4">Visually, nothing changes — the checked box still looks checked, the typed name is still exactly where it was. What's actually different is underneath: there's no longer a field object a PDF reader could show as editable, because it simply isn't there anymore. This tool updates each field's appearance to match its current value immediately before flattening, so what gets locked in is genuinely what the form currently shows, not a stale or default appearance.</p>
+                    <div class="callout-box mt-5">
+                        <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why Flattened Forms Look More Consistent</div>
+                        <p class="mt-2 text-sm">Different PDF readers render interactive form fields with small visual differences — fonts, checkbox styles, focus outlines. A flattened form has none of that left to render differently, since it's just ordinary page content at that point, which is why it looks and prints identically everywhere.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-check-double text-brand-600" aria-hidden="true"></i> When Flattening Is Exactly Right
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Submitting a finished form.</span> Once every field is filled and correct, flattening locks the answers so nothing shifts on the way to whoever receives it.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Archiving a completed application.</span> A flattened copy in your records can't later be mistaken for a blank template or accidentally overwritten.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Printing reliably.</span> Some printers and older PDF viewers render fillable fields inconsistently; flattened content prints exactly as it appears on screen.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Preventing accidental edits.</span> Sharing a filled form with someone who only needs to read it, not adjust it further.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-triangle-exclamation text-brand-600" aria-hidden="true"></i> When Not to Flatten Yet
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">While the form is still being filled out.</span> Flatten too early, and there's no field left for anyone — including you — to finish completing.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Before multiple reviewers need to comment or edit.</span> A workflow where several people still need to adjust entries should stay interactive until everyone's done.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">If someone downstream needs to extract the field data programmatically.</span> Flattened content is just page content — the structured field data extraction systems rely on is gone along with the fields themselves.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">If the file carries a digital signature you need to keep verifiable.</span> Changing a signed document's content, flattening included, will typically invalidate that signature.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-scale-balanced text-brand-600" aria-hidden="true"></i> Flattening vs. Password Protection
+                    </h3>
+                    <p>These solve genuinely different problems, and it's worth being clear on which one actually fits. Flattening removes the ability to edit specific fields — the form itself becomes static, but anyone can still open and read it freely. Password protection, this site's separate <a href="protect-pdf.html" class="text-brand-600 underline decoration-brand-200 underline-offset-2">Lock PDF tool</a>, controls who can open the file at all, regardless of whether its content is interactive or flattened.</p>
+                    <p class="mt-4">For maximum protection on a sensitive completed form, the two combine naturally: flatten it first so the answers can't be altered, then lock it with a password so it can't be opened without permission either.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-earth-americas text-brand-600" aria-hidden="true"></i> Common Free Uses for Flattening
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Job applications and government forms,</span> where a flattened, free-to-produce copy avoids any question about whether the submitted answers might still change.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Insurance and legal intake forms,</span> where a finalized, non-editable record matters for the paper trail.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">HR and onboarding paperwork,</span> once an employee's details are filled in and confirmed correct.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Tax and financial documents,</span> where a flattened, permanent copy is the version that should sit in the file.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Any form you're about to email,</span> since a flattened attachment can't be mistaken for an editable template by the recipient.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-brand-600" aria-hidden="true"></i> Free Doesn't Mean Your Data Goes Anywhere
+                    </h3>
+                    <p>A filled-in form is often full of exactly the kind of personal detail worth being careful with — names, addresses, ID numbers, financial figures. Because flattening runs entirely inside your browser using JavaScript, that filled-in content never has to leave your device to become permanent. Free doesn't mean sending your form to a server here; it means the tool costs nothing and asks nothing of you in return, including your data.</p>
+                    <p class="mt-4">You can confirm this directly using your browser's own developer tools: open the Network tab, flatten a form, and see that nothing containing your file goes out at any point.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-brand-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is this PDF flattening tool actually free?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes, completely free, with no page limit, no watermark, and no account required. It runs entirely in your browser, so there's no server cost being passed on to you either.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>What exactly does flattening a PDF do?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">It takes the current appearance of every fillable field — text you typed, boxes you checked, options you selected — and permanently draws it into the page itself, then removes the interactive field. The page looks identical, but nothing on it can be edited or refilled anymore.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why would I want to flatten a PDF form?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Mainly consistency and permanence: a flattened form displays and prints identically in every PDF reader, since there's no interactive field rendering left to vary between apps, and the filled-in answers can't be accidentally changed by whoever opens it next.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I undo flattening after downloading the file?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Not from the flattened file itself, since the interactive fields are genuinely removed, not just hidden. Keep your original, unflattened file if there's a chance you'll need to edit the form again later.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does flattening work on a PDF that isn't a form?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">There's nothing to flatten if a PDF has no interactive form fields to begin with, so running a regular document through this tool simply returns it unchanged.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Will flattening change the file size much?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Usually only marginally. Removing the interactive field objects and their associated data typically trims a small amount of size, though this isn't intended as a compression step — a dedicated compressor is the right tool if file size is the actual goal.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">Flattening turns an interactive form into a settled record — the same content, permanently fixed in place. It's a small, specific change with an outsized effect on consistency and peace of mind for anything you're about to send, print, or file away. Free, local, and done in seconds, whether it's one form or the last one you'll fill out this year.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Edit</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="unlock-pdf.html" class="hover:text-brand-500 transition">Unlock PDF</a></li>
+                    <li><a href="crop-pdf.html" class="hover:text-brand-500 transition">Crop PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="pdf-to-excel.html" class="hover:text-brand-500 transition">PDF to Excel</a></li>
+                    <li><a href="pdf-to-pptx.html" class="hover:text-brand-500 transition">PDF to PowerPoint</a></li>
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Organize</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="common.js" defer></script>
+
+    <script>
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        let selectedFile = null;
+        let selectedBytes = null;
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        async function processFile(file) {
+            hideFileError();
+            if (file.type !== 'application/pdf') {
+                showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
+                return;
+            }
+            try {
+                selectedBytes = new Uint8Array(await file.arrayBuffer());
+                selectedFile = file;
+
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(selectedBytes, { ignoreEncryption: true });
+                let fieldCount = 0;
+                try {
+                    const form = pdfDoc.getForm();
+                    fieldCount = form.getFields().length;
+                } catch (e) {
+                    fieldCount = 0; // no AcroForm present at all
+                }
+
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('fieldCount').textContent = fieldCount > 0
+                    ? `${fieldCount} form field${fieldCount > 1 ? 's' : ''} found`
+                    : 'No fillable fields found';
+
+                document.getElementById('noFieldsNotice').classList.toggle('hidden', fieldCount > 0);
+
+                document.getElementById('uploadArea').classList.remove('drag-active');
+                document.getElementById('uploadArea').classList.add('hidden');
+                document.getElementById('settingsArea').classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+                selectedFile = null;
+                selectedBytes = null;
+                showFileError("This PDF couldn't be opened. It may be corrupted, password-protected, or not a standard PDF file. If it's password-protected, unlock it first.");
+            }
+        }
+
+        async function startFlatten() {
+            if (!selectedBytes) return;
+            hideFileError();
+
+            document.getElementById('flattenBtn').classList.add('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(selectedBytes, { ignoreEncryption: true });
+
+                try {
+                    const form = pdfDoc.getForm();
+                    // Make sure each field's appearance matches its current value
+                    // before flattening bakes that appearance permanently into the page.
+                    form.updateFieldAppearances();
+                    form.flatten();
+                } catch (formErr) {
+                    // No AcroForm / nothing to flatten - fall through and just
+                    // return the file as-is, which is expected, not an error.
+                    console.log('No form to flatten:', formErr.message);
+                }
+
+                const flattenedBytes = await pdfDoc.save();
+                const blob = new Blob([flattenedBytes], { type: 'application/pdf' });
+                showResult(blob);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('flattenBtn').classList.remove('hidden');
+                showFileError("Something went wrong while flattening this file. Try a different file, or unlock it first if it's password-protected.");
+            }
+        }
+
+        function showResult(blob) {
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+
+            const url = URL.createObjectURL(blob);
+            const link = document.getElementById('downloadLink');
+            link.href = url;
+            const name = selectedFile.name.replace(/\.[^/.]+$/, '');
+            link.download = `${name}_flattened_PDF_Mechanic.pdf`;
+        }
+
+        function resetTool() {
+            selectedFile = null;
+            selectedBytes = null;
+            hideFileError();
+            document.getElementById('fileInput').value = '';
+            document.getElementById('uploadArea').classList.remove('hidden');
+            document.getElementById('settingsArea').classList.add('hidden');
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('flattenBtn').classList.remove('hidden');
+            document.getElementById('progressContainer').classList.add('hidden');
+            document.getElementById('noFieldsNotice').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>

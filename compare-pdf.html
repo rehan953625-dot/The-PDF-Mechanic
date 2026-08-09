@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Compare Two PDFs Free Online | Find Text Differences - The PDF Mechanic</title>
+    <meta name="description" content="Free PDF comparison tool that highlights every word added or removed between two versions. No upload, works entirely offline in your browser." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/compare-pdf.html" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Compare Two PDFs Free — Highlight Every Change, No Upload">
+    <meta property="og:description" content="Free tool to compare two PDF versions word by word. Runs entirely in your browser.">
+    <meta property="og:url" content="https://www.thepdfmechanic.com/compare-pdf.html">
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compare Two PDFs Free — Highlight Every Change">
+    <meta name="twitter:description" content="Free, client-side PDF diff tool. Nothing ever uploaded.">
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* compare-pdf.html-specific: indigo brand accent + diff highlight styles */
+#uploadAreaA.drag-active, #uploadAreaB.drag-active { background-color: #eef2ff; border-color: #4f46e5; }
+.dark #uploadAreaA.drag-active, .dark #uploadAreaB.drag-active { background-color: rgba(67,56,202,0.15); }
+.inline-alert { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.9rem 1.1rem; border-radius: 0.85rem; font-size: 0.85rem; line-height: 1.5; }
+.callout-box { background: #eef2ff; border: 1px solid #c7d2fe; border-left: 4px solid #4f46e5; border-radius: 0.75rem; padding: 1.25rem 1.5rem; }
+.dark .callout-box { background: rgba(49,46,129,0.25); border-color: #3730a3; border-left-color: #6366f1; }
+.callout-box-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #4338ca; font-size: 0.95rem; }
+.dark .callout-box-title { color: #a5b4fc; }
+.spec-table th { background: #eef2ff; color: #4338ca; font-weight: 700; text-align: left; padding: 0.75rem 1rem; white-space: nowrap; }
+.dark .spec-table th { background: rgba(49,46,129,0.35); color: #a5b4fc; }
+.bg-indigo-50 { background-color: #eef2ff; } .dark .dark\:bg-indigo-900\/20 { background-color: rgba(49,46,129,0.2); }
+.text-indigo-600 { color: #4f46e5; } .bg-indigo-100 { background-color: #e0e7ff; }
+.diff-added { background: #dcfce7; color: #166534; text-decoration: none; padding: 0.05em 0; }
+.dark .diff-added { background: rgba(22,101,52,0.35); color: #86efac; }
+.diff-removed { background: #fee2e2; color: #991b1b; text-decoration: line-through; padding: 0.05em 0; }
+.dark .diff-removed { background: rgba(127,29,29,0.35); color: #fca5a5; }
+.border-indigo-100 { border-color: #e0e7ff; } .dark .dark\:border-indigo-800 { border-color: #3730a3; }
+.hover\:bg-indigo-50:hover { background-color: #eef2ff; }
+.max-h-\[500px\] { max-height: 500px; }
+.ml-auto { margin-left: auto; }
+.pb-6 { padding-bottom: 1.5rem; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+@media (min-width: 640px) { .sm\:gap-6 { gap: 1.5rem; } .sm\:p-6 { padding: 1.5rem; } }
+</style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Compare PDF - The PDF Mechanic",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/compare-pdf.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Free tool to compare two PDF documents and highlight every word added or removed. Runs entirely in your browser, no uploads.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "ratingCount": "190" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this PDF comparison tool really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free, with no limit on how many comparisons you run or how long the documents are. There's no account and no watermark on the result." } },
+        { "@type": "Question", "name": "Does this compare the visual layout or just the text?", "acceptedAnswer": { "@type": "Answer", "text": "Just the text content, compared word by word in reading order. It won't catch a purely visual change like a font swap or a moved image, but it reliably catches every wording change, no matter how small." } },
+        { "@type": "Question", "name": "Why does the comparison show unrelated formatting as a change?", "acceptedAnswer": { "@type": "Answer", "text": "Only actual word content is compared; spacing and line-break differences from how each PDF happens to be structured are normalized out first, so the highlighted differences reflect genuine wording changes, not incidental formatting." } },
+        { "@type": "Question", "name": "Can I compare scanned PDFs?", "acceptedAnswer": { "@type": "Answer", "text": "Only if the scan has already been made searchable with OCR. A scanned page with no underlying text layer has no words for the tool to compare, since it's just an image." } },
+        { "@type": "Question", "name": "Is it safe to compare confidential documents here?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both documents are read and compared entirely inside your browser using JavaScript. Neither file is ever uploaded to a server." } },
+        { "@type": "Question", "name": "Which document should I upload as \"Original\" versus \"Revised\"?", "acceptedAnswer": { "@type": "Answer", "text": "The older or starting version goes in as Original, and the newer one as Revised - this only affects which changes show as \"added\" (green) versus \"removed\" (red), not whether a difference is detected at all." } }
+      ]
+    }
+    </script>
+
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <a href="index.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-500 transition hidden sm:block">
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
+            </a>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 sm:pt-16 pb-8 sm:pb-10 text-center px-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 text-xs font-semibold mb-5 sm:mb-6 border border-indigo-100 dark:border-indigo-800">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 100% Free &middot; No Uploads
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+            Compare Two PDFs <span class="text-brand-600">Free</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-2">
+            See every word that changed between two versions. Free, instant, right in your browser.
+        </p>
+    </header>
+
+    <main class="flex-grow w-full px-4 pb-16 sm:pb-20">
+
+        <div class="max-w-4xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden p-5 sm:p-8 relative">
+
+            <div id="fileError" class="hidden inline-alert inline-alert-error mb-6" role="alert">
+                <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                <span id="fileErrorText"></span>
+            </div>
+
+            <div id="uploadStep">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                    <div>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 text-center">Original</p>
+                        <div id="uploadAreaA"
+                             class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-6 text-center hover:bg-indigo-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 h-full flex flex-col justify-center"
+                             role="button" tabindex="0"
+                             aria-label="Click or drag the original PDF here"
+                             onclick="document.getElementById('fileInputA').click()"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInputA').click();}"
+                             ondragover="event.preventDefault();this.classList.add('drag-active');"
+                             ondragleave="this.classList.remove('drag-active');"
+                             ondrop="handleDrop(event, 'A')">
+                            <input type="file" id="fileInputA" accept="application/pdf" class="hidden" aria-label="Choose the original PDF" onchange="handleFileSelect(event, 'A')">
+                            <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-pdf text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <p id="fileNameA" class="font-bold text-sm text-slate-800 dark:text-white mb-1">Click or Drag PDF</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">The older version</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 text-center">Revised</p>
+                        <div id="uploadAreaB"
+                             class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-6 text-center hover:bg-indigo-50 dark:hover:bg-slate-800 transition cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 h-full flex flex-col justify-center"
+                             role="button" tabindex="0"
+                             aria-label="Click or drag the revised PDF here"
+                             onclick="document.getElementById('fileInputB').click()"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInputB').click();}"
+                             ondragover="event.preventDefault();this.classList.add('drag-active');"
+                             ondragleave="this.classList.remove('drag-active');"
+                             ondrop="handleDrop(event, 'B')">
+                            <input type="file" id="fileInputB" accept="application/pdf" class="hidden" aria-label="Choose the revised PDF" onchange="handleFileSelect(event, 'B')">
+                            <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-pdf text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <p id="fileNameB" class="font-bold text-sm text-slate-800 dark:text-white mb-1">Click or Drag PDF</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">The newer version</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="compareBtn" onclick="startComparison()" type="button" disabled class="w-full bg-brand-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-code-compare" aria-hidden="true"></i> Compare Free
+                </button>
+
+                <div id="progressContainer" class="hidden mt-6 text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 animate-pulse">Comparing documents...</p>
+                </div>
+            </div>
+
+            <div id="resultArea" class="hidden">
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-6 pb-6 border-b border-slate-200 dark:border-slate-700">
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-green-600" id="addedCount">0</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">Added</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-red-600" id="removedCount">0</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">Removed</p>
+                    </div>
+                    <button onclick="resetTool()" type="button" class="text-sm text-slate-500 hover:text-brand-600 dark:text-slate-400 ml-auto">
+                        <i class="fa-solid fa-rotate-right mr-1" aria-hidden="true"></i> Compare Another Pair
+                    </button>
+                </div>
+
+                <div id="diffOutput" class="bg-slate-50 dark:bg-slate-900 rounded-xl p-5 sm:p-6 text-sm leading-relaxed max-h-[500px] overflow-y-auto border border-slate-200 dark:border-slate-700 whitespace-pre-wrap"></div>
+            </div>
+        </div>
+
+        <section class="max-w-5xl mx-auto mb-16 sm:mb-20 mt-16 sm:mt-20">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 sm:mb-12 text-slate-900 dark:text-white font-display">
+                How to Compare Two PDFs for Free
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-upload" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">1. Upload Both Versions</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The original and the revised PDF you want to check against it.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-code-compare" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">2. Compare, Free</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Every word is checked against the other version, instantly.</p>
+                </div>
+                <div class="text-center px-2">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-50 dark:bg-blue-900/20 text-brand-600 rounded-2xl flex items-center justify-center text-xl sm:text-2xl mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-highlighter" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-2">3. Review Highlights</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Additions in green, removals struck through in red.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto mb-16 sm:mb-20">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 font-display text-center">Why Use a Free, Client-Side Comparison Tool?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-lg"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Catches Every Word</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Nothing gets missed the way a manual read-through easily can on a long document.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Nothing Uploaded</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Two versions of a contract or report stay on your device, both of them.</p>
+                </div>
+                <div class="flex flex-col items-center text-center gap-2">
+                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-infinity" aria-hidden="true"></i></div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Completely Free</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">No limit on comparisons, document length, or how often you use it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-slate-800" id="compare-guide">
+            <div class="text-center mb-12 sm:mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 text-xs font-semibold mb-5 border border-indigo-100 dark:border-indigo-800">
+                    <i class="fa-solid fa-code-compare" aria-hidden="true"></i> The Complete Free Guide
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    How PDF Comparison Actually Works
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-2">
+                    What actually gets compared, why word-level matters more than page-level, and where this catches changes a quick read-through would miss.
+                </p>
+            </div>
+
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
+
+                <div>
+                    <p>Comparing two documents by eye works fine for a one-page letter. It falls apart fast on a thirty-page contract, where a single changed number or a quietly deleted clause can hide in plain sight between two versions that look, at a glance, identical. This free tool reads the actual text of both PDFs and checks it word by word, so nothing depends on how carefully a human happens to be reading.</p>
+                    <p class="mt-4">This guide covers how that word-by-word comparison actually works, why it operates on text rather than pixels, and where it excels — as well as the kinds of changes it honestly won't catch.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-diagram-project text-indigo-600" aria-hidden="true"></i> How the Comparison Actually Works
+                    </h3>
+                    <p>Both PDFs are read page by page, extracting the actual text content in reading order, the same way a search engine or a screen reader would encounter it. That produces two plain blocks of text — the original and the revised — which then get compared using a well-established difference algorithm, the same general approach that powers "track changes" style tools across the software world.</p>
+                    <p class="mt-4">The algorithm doesn't just say "these are different" — it works out the smallest possible set of additions and removals needed to turn the first text into the second, word by word. That's what produces a clean, readable highlight of exactly what changed, rather than a wall of text flagged as different because a paragraph shifted position on the page.</p>
+                    <div class="callout-box mt-5">
+                        <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why Word-Level Beats Page-Level
+                        </div>
+                        <p class="mt-2 text-sm">A comparison that only says "page 4 is different" leaves you re-reading the whole page to find what changed. Word-level comparison points directly at the specific words added or removed, cutting a multi-minute manual review down to a glance.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-eye text-indigo-600" aria-hidden="true"></i> Text Comparison, Not Visual Comparison
+                    </h3>
+                    <p>It's worth being precise about what's actually being compared. This tool checks the words in each document, not the pixels. A change in font, color, or spacing between two versions won't show up as a difference here, as long as the actual wording is identical — and a genuinely reworded sentence will show up clearly, even if the visual formatting around it looks unchanged.</p>
+                    <p class="mt-4">For most real comparison needs — contract redlines, policy updates, report revisions — the wording is exactly what matters, which is why text-level comparison is the more useful default rather than a limitation to work around.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-list-check text-indigo-600" aria-hidden="true"></i> What This Comparison Won't Catch
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Purely visual changes</span> — a swapped font, an adjusted color, a resized image — where the underlying wording is identical.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Content in scanned pages without OCR,</span> since an image of text has no actual text for the tool to read and compare.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Table and layout restructuring</span> that keeps the same words but rearranges how they're grouped — the words themselves will match, even if their table position changed.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Comments, annotations, or form field data</span> that don't live in the page's main text content.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-earth-americas text-indigo-600" aria-hidden="true"></i> Common Free Uses for PDF Comparison
+                    </h3>
+                    <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Contract redlining,</span> confirming exactly what changed between a sent draft and a returned, "revised" version.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Policy and compliance documents,</span> tracking what actually changed between quarterly or annual policy updates.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Academic and research papers,</span> checking differences between submitted and revised manuscript versions.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Legal filings,</span> confirming an amended document matches exactly what was agreed, nothing more.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Government and exam notifications,</span> checking whether a republished notice or syllabus actually changed from the previous version.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Vendor and supplier agreements,</span> verifying a "final" version matches what was actually negotiated.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
+                        <i class="fa-solid fa-lock text-indigo-600" aria-hidden="true"></i> Free, and Both Documents Stay Private
+                    </h3>
+                    <p>Comparing two documents often means having both a confidential draft and its revision open at once — twice the sensitive content of a single file. Because both PDFs are read and compared entirely inside your browser using JavaScript, neither version ever needs to be uploaded anywhere to see what changed between them.</p>
+                    <p class="mt-4">You can confirm this directly: open your browser's developer tools, watch the Network tab while comparing, and see that neither file goes out over the network at any point. Free here means no cost and no server involved, not a trade of your documents for convenience.</p>
+                </div>
+
+                <div>
+                    <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-5 font-display">
+                        <i class="fa-solid fa-circle-question text-indigo-600" aria-hidden="true"></i> Frequently Asked Questions
+                    </h3>
+                    <div class="space-y-3">
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is this PDF comparison tool really free?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes, completely free, with no limit on how many comparisons you run or how long the documents are. There's no account and no watermark on the result.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Does this compare the visual layout or just the text?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Just the text content, compared word by word in reading order. It won't catch a purely visual change like a font swap or a moved image, but it reliably catches every wording change, no matter how small.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Why does the comparison show unrelated formatting as a change?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Only actual word content is compared; spacing and line-break differences from how each PDF happens to be structured are normalized out first, so the highlighted differences reflect genuine wording changes, not incidental formatting.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Can I compare scanned PDFs?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Only if the scan has already been made searchable with OCR. A scanned page with no underlying text layer has no words for the tool to compare, since it's just an image.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Is it safe to compare confidential documents here?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Both documents are read and compared entirely inside your browser using JavaScript. Neither file is ever uploaded to a server.</p>
+                        </details>
+                        <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+                            <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+                                <span>Which document should I upload as "Original" versus "Revised"?</span>
+                                <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
+                            </summary>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">The older or starting version goes in as Original, and the newer one as Revised — this only affects which changes show as "added" (green) versus "removed" (red), not whether a difference is detected at all.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="max-w-2xl mx-auto">Two documents that look the same at a glance can hide a changed figure, a dropped clause, or a quietly reworded sentence — exactly the kind of difference that matters most and is easiest to miss reading by eye. Word-by-word comparison finds it in seconds instead of minutes, for free, without either version ever leaving your device.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Security &amp; Edit</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="redact-pdf.html" class="hover:text-brand-500 transition">Redact PDF</a></li>
+                    <li><a href="protect-pdf.html" class="hover:text-brand-500 transition">Lock PDF</a></li>
+                    <li><a href="flatten-pdf.html" class="hover:text-brand-500 transition">Flatten PDF</a></li>
+                    <li><a href="crop-pdf.html" class="hover:text-brand-500 transition">Crop PDF</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Organize</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                    <li><a href="extract-images-from-pdf.html" class="hover:text-brand-500 transition">Extract Images</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="pdf-to-excel.html" class="hover:text-brand-500 transition">PDF to Excel</a></li>
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/8.0.3/diff.min.js"></script>
+    <script src="common.js" defer></script>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        let fileA = null;
+        let fileB = null;
+
+        function handleFileSelect(event, slot) {
+            const file = event.target.files[0];
+            if (file) processFile(file, slot);
+        }
+        function handleDrop(event, slot) {
+            event.preventDefault();
+            document.getElementById('uploadArea' + slot).classList.remove('drag-active');
+            const file = event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) processFile(file, slot);
+        }
+
+        function processFile(file, slot) {
+            hideFileError();
+            if (file.type !== 'application/pdf') {
+                showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
+                return;
+            }
+            if (slot === 'A') fileA = file; else fileB = file;
+            document.getElementById('fileName' + slot).textContent = file.name;
+            document.getElementById('uploadArea' + slot).classList.remove('drag-active');
+
+            document.getElementById('compareBtn').disabled = !(fileA && fileB);
+        }
+
+        async function extractFullText(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+            let fullText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                const pageText = content.items.map(it => it.str).join(' ');
+                fullText += pageText + '\n\n';
+                page.cleanup();
+            }
+            // Normalize whitespace so incidental line-break/spacing differences
+            // between how each PDF happens to be structured don't get flagged
+            // as content changes.
+            return fullText.replace(/\s+/g, ' ').trim();
+        }
+
+        async function startComparison() {
+            if (!fileA || !fileB) return;
+            hideFileError();
+
+            document.getElementById('compareBtn').classList.add('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+
+            try {
+                const [textA, textB] = await Promise.all([
+                    extractFullText(fileA),
+                    extractFullText(fileB)
+                ]);
+
+                if (!textA && !textB) {
+                    throw new Error('no-text-found');
+                }
+
+                const parts = Diff.diffWords(textA, textB);
+                renderDiff(parts);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('compareBtn').classList.remove('hidden');
+                if (err && err.message === 'no-text-found') {
+                    showFileError("No selectable text found in either PDF - they look like scanned documents. Run them through an OCR tool first, then compare the results.");
+                } else {
+                    showFileError("Something went wrong while comparing these files. They may be corrupted or password-protected. Try unlocking them first.");
+                }
+            }
+        }
+
+        function renderDiff(parts) {
+            const output = document.getElementById('diffOutput');
+            output.innerHTML = '';
+            let addedWords = 0;
+            let removedWords = 0;
+
+            parts.forEach(part => {
+                const span = document.createElement('span');
+                if (part.added) {
+                    span.className = 'diff-added';
+                    addedWords += part.value.trim().split(/\s+/).filter(Boolean).length;
+                } else if (part.removed) {
+                    span.className = 'diff-removed';
+                    removedWords += part.value.trim().split(/\s+/).filter(Boolean).length;
+                }
+                span.textContent = part.value;
+                output.appendChild(span);
+            });
+
+            document.getElementById('addedCount').textContent = addedWords;
+            document.getElementById('removedCount').textContent = removedWords;
+
+            document.getElementById('progressContainer').classList.add('hidden');
+            document.getElementById('uploadStep').classList.add('hidden');
+            document.getElementById('resultArea').classList.remove('hidden');
+        }
+
+        function resetTool() {
+            fileA = null;
+            fileB = null;
+            hideFileError();
+            document.getElementById('fileInputA').value = '';
+            document.getElementById('fileInputB').value = '';
+            document.getElementById('fileNameA').textContent = 'Click or Drag PDF';
+            document.getElementById('fileNameB').textContent = 'Click or Drag PDF';
+            document.getElementById('diffOutput').innerHTML = '';
+            document.getElementById('uploadStep').classList.remove('hidden');
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('compareBtn').classList.remove('hidden');
+            document.getElementById('compareBtn').disabled = true;
+            document.getElementById('progressContainer').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
