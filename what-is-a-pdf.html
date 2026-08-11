@@ -101,8 +101,6 @@
 /* Layout utilities specific to this page's sticky-sidebar article layout */
 .mt-10 { margin-top: 2.5rem; }
 .mt-14 { margin-top: 3.5rem; }
-.order-1 { order: 1; }
-.order-2 { order: 2; }
 .decoration-brand-200 { text-decoration-color: #dbeafe; }
 .underline-offset-2 { text-underline-offset: 2px; }
 .dark .dark\:border-brand-800 { border-color: #1e3a8a; }
@@ -114,8 +112,6 @@
 @media (min-width: 1024px) {
   .lg\:block { display: block; }
   .lg\:hidden { display: none; }
-  .lg\:order-1 { order: 1; }
-  .lg\:order-2 { order: 2; }
   .lg\:self-start { align-self: flex-start; }
   .lg\:sticky { position: sticky; }
   .lg\:top-24 { top: 6rem; }
@@ -204,7 +200,7 @@
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10">
 
             <!-- Table of contents - sticky sidebar on desktop, collapses above content on mobile -->
-            <aside class="lg:sticky lg:top-24 lg:self-start order-2 lg:order-1">
+            <aside class="lg:sticky lg:top-24 lg:self-start">
                 <details class="lg:hidden bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl p-4 mb-6" open>
                     <summary class="font-bold text-sm cursor-pointer">Jump to a Section</summary>
                     <nav class="mt-3" aria-label="Table of contents">
@@ -249,7 +245,7 @@
                 </nav>
             </aside>
 
-            <article class="order-1 lg:order-2 min-w-0 prose-content text-slate-700 dark:text-slate-300 leading-relaxed">
+            <article class="min-w-0 prose-content text-slate-700 dark:text-slate-300 leading-relaxed">
                 <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">Right now, somewhere in the world, a student is downloading a syllabus, a lawyer is signing a contract, a government office is issuing a certificate, and a company is sending an invoice — and there's a very good chance every single one of them is doing it through the same 32-year-old file format. Not because anyone chose it deliberately today. Because The PDF simply won, decades ago, and nothing has managed to replace it since.</p>
 
                 <p>This is the complete story of how that happened: what a PDF actually is underneath the icon, who built it and why, the decade it spent nearly failing, the year it stopped belonging to one company, and why — even in 2026, with better-funded, more "modern" formats available — it's still the thing you reach for when a document absolutely has to look the same on every single screen it lands on.</p>
