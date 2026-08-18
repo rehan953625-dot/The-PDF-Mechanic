@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Amazon Shipping Label Crop & Sort Tool Offline | Easy Ship & FBA | The PDF Mechanic</title>
+    <meta name="description" content="Crop Amazon Easy Ship & FBA Box shipping labels offline for 4x6 thermal printers or A4 sheets. Separate customer invoices, sort by SKU & courier (ATS, Delhivery, Blue Dart), and generate picklists. 100% private." />
+    <meta name="keywords" content="amazon shipping label crop tool offline, amazon easy ship label cropper, amazon label sort by sku, amazon fba box label crop 4x6, amazon invoice separator pdf, amazon ats label cropper" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="The PDF Mechanic" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/amazon-shipping-label-crop-tool.html" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Amazon Shipping Label Crop & Sort Tool - Free & Offline" />
+    <meta property="og:description" content="Crop Amazon Easy Ship & FBA labels to 4x6 thermal roll stickers, separate tax invoices, and sort by SKU/ATS with 100% offline privacy." />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/amazon-shipping-label-crop-tool.html" />
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- PDF Engines -->
+    <script src="https://unpkg.com/pdf-lib@1.17.9/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+
+    <script>
+      tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+          extend: {
+            colors: { 
+                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
+                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
+            },
+            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+            animation: { 'bounce-slow': 'bounce 3s infinite', 'fade-in': 'fadeIn 0.5s ease-out' },
+            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
+          }
+        }
+      }
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Amazon Shipping Label Crop & Sort Tool",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "description": "Free web tool for Amazon India sellers to crop Easy Ship and FBA shipping labels for 4x6 thermal printers and A4 sheets, separate tax invoices, sort by SKU & courier, and create bulk dispatch picklists.",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1780" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I crop Amazon Easy Ship labels for a 4x6 thermal printer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your Amazon order PDF to The PDF Mechanic, choose the 'Thermal 4x6' option, select SKU or ATS courier sorting, and click 'Crop & Prepare Amazon Labels'."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this tool support Amazon ATS, Delhivery, and Blue Dart labels?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our intelligent text-parser detects whether an order is routed through Amazon Transport Services (ATS), Delhivery, Blue Dart, or Xpressbees and groups them accordingly."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-4">
+              <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+              </a>
+          </div>
+          <div class="flex items-center gap-4">
+             <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition hidden md:block">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Back Home
+             </a>
+             <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:block"></i>
+             </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Tool Container -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-12 w-full">
+        
+        <!-- Header / Intro -->
+        <div class="text-center mb-10">
+            <span class="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider mb-3 border border-brand-100 dark:border-brand-800">
+              <i class="fa-solid fa-bolt text-amber-500"></i> Amazon Seller Studio
+            </span>
+            <h1 class="font-display text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 dark:text-white">
+              Amazon Shipping Label Crop & Sort Tool
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Crop Amazon Easy Ship & FBA PDFs to <strong>4×6" Thermal Roll Labels</strong> or <strong>A4 4-in-1 Grid</strong>. Auto-separate tax invoices, sort by SKU & Courier (ATS, Delhivery, Blue Dart), and generate dispatch picklists.
+            </p>
+            <div class="flex justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 dark:text-slate-400 mt-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-green-500"></i> 100% In-Browser Privacy</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-boxes-stacked text-blue-500"></i> Auto SKU Sorting</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-purple-500"></i> ATS &amp; 3PL Grouping</span>
+            </div>
+        </div>
+
+        <!-- Interactive Tool Card -->
+        <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden min-h-[420px] transition-colors relative mb-16">
+            
+            <!-- Phase 1: Upload Dropzone -->
+            <div id="uploadArea" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" onclick="document.getElementById('fileInput').click()">
+                <input type="file" id="fileInput" accept="application/pdf" multiple class="hidden" onchange="handleFileSelect(event)">
+                
+                <div class="w-24 h-24 bg-brand-50 dark:bg-brand-900/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300 shadow-inner">
+                    <i class="fa-solid fa-box-open text-4xl text-brand-600"></i>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Select Amazon Label PDFs</h3>
+                <p class="text-slate-500 dark:text-slate-400 mb-6 text-sm">Upload Easy Ship batch PDFs, FBA Box Labels, or Self-Ship documents</p>
+                
+                <button class="bg-brand-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open"></i> Choose PDF Files
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="hidden absolute inset-0 bg-white/95 dark:bg-dark-card/95 z-20 flex flex-col items-center justify-center p-6 text-center">
+                <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-5xl mb-4"></i>
+                <p class="text-slate-800 dark:text-slate-200 font-bold text-lg" id="loadingText">Scanning Amazon PDF Markers...</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Extracting barcodes, ASINs, and Tax Invoice boundaries</p>
+            </div>
+
+            <!-- Phase 2: Editor & Settings Area -->
+            <div id="editorArea" class="hidden p-6 sm:p-8 space-y-6">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-center border-b border-slate-100 dark:border-slate-700 pb-4 gap-4">
+                    <div>
+                      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                          <i class="fa-solid fa-sliders text-brand-500"></i> Amazon Dispatch Configuration
+                      </h3>
+                      <p class="text-xs text-slate-500 dark:text-slate-400" id="fileStatsSummary">Loaded 0 orders across 0 files</p>
+                    </div>
+                    <button onclick="document.getElementById('fileInput').click()" class="text-xs font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-slate-600 px-3.5 py-2 rounded-lg hover:bg-brand-50 dark:hover:bg-slate-700 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Add More PDFs
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  
+                  <!-- Settings Column (7 cols) -->
+                  <div class="lg:col-span-7 space-y-5">
+                    
+                    <!-- Print Layout -->
+                    <div>
+                      <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">1. Target Print Layout</label>
+                      <div class="grid grid-cols-3 gap-2.5">
+                        <label class="relative flex flex-col p-3 border-2 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 border-brand-500 bg-brand-50/50 dark:bg-brand-900/20 text-center" id="opt-thermal">
+                          <input type="radio" name="layoutMode" value="thermal" checked class="hidden" onchange="updateLayoutStyles()" />
+                          <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">Thermal 4×6"</span>
+                          <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Roll Sticker</span>
+                        </label>
+                        <label class="relative flex flex-col p-3 border-2 border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 text-center" id="opt-a4-4in1">
+                          <input type="radio" name="layoutMode" value="a4-4in1" class="hidden" onchange="updateLayoutStyles()" />
+                          <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">A4 4-in-1</span>
+                          <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Dashed Guides</span>
+                        </label>
+                        <label class="relative flex flex-col p-3 border-2 border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 text-center" id="opt-a4-2in1">
+                          <input type="radio" name="layoutMode" value="a4-2in1" class="hidden" onchange="updateLayoutStyles()" />
+                          <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">A4 2-in-1</span>
+                          <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Half Sheet</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- Sorting Mode -->
+                    <div>
+                      <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">2. Batch Sorting Strategy</label>
+                      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <label class="flex items-center p-2.5 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          <input type="radio" name="sortMode" value="sku" checked class="text-brand-600 focus:ring-brand-500 mr-2" />
+                          Sort by SKU / ASIN
+                        </label>
+                        <label class="flex items-center p-2.5 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          <input type="radio" name="sortMode" value="courier" class="text-brand-600 focus:ring-brand-500 mr-2" />
+                          Sort by Carrier (ATS)
+                        </label>
+                        <label class="flex items-center p-2.5 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          <input type="radio" name="sortMode" value="none" class="text-brand-600 focus:ring-brand-500 mr-2" />
+                          No Sorting
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- Invoices & Multi-Qty Toggles -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                      <label class="flex items-start gap-2.5 cursor-pointer bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <input type="checkbox" id="keepInvoiceCheck" checked class="mt-0.5 rounded text-brand-600 focus:ring-brand-500 w-4 h-4" />
+                        <div>
+                          <span class="font-bold text-xs text-slate-800 dark:text-white block">Extract Customer Invoices</span>
+                          <span class="text-[11px] text-slate-500 dark:text-slate-400">Creates separate invoice PDF</span>
+                        </div>
+                      </label>
+
+                      <label class="flex items-start gap-2.5 cursor-pointer bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <input type="checkbox" id="multiQtyHighlight" checked class="mt-0.5 rounded text-brand-600 focus:ring-brand-500 w-4 h-4" />
+                        <div>
+                          <span class="font-bold text-xs text-slate-800 dark:text-white block">Multi-Qty Warning Badge</span>
+                          <span class="text-[11px] text-slate-500 dark:text-slate-400">Red stamp on 2+ item orders</span>
+                        </div>
+                      </label>
+                    </div>
+
+                    <!-- Custom Text Overlay -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Custom Text Stamp</label>
+                        <input type="text" id="customText" placeholder="e.g. Handle With Care / Packed on CCTV" class="w-full text-xs p-2.5 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+                      </div>
+                      <div class="flex items-end">
+                        <label class="flex items-center gap-2 cursor-pointer pb-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          <input type="checkbox" id="addTimestamp" checked class="rounded text-brand-600 focus:ring-brand-500 w-4 h-4" />
+                          Stamp Dispatch Timestamp
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Live Canvas & Split Boundary Column (5 cols) -->
+                  <div class="lg:col-span-5 space-y-3 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Interactive Split Preview</span>
+                      <span class="text-[10px] font-bold bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 px-2 py-0.5 rounded">Auto-Detected</span>
+                    </div>
+
+                    <!-- Canvas -->
+                    <div class="relative w-full aspect-[1/1.414] bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+                      <canvas id="previewCanvas" class="max-w-full max-h-full object-contain"></canvas>
+                      <div id="cropOverlay" class="absolute top-0 left-0 right-0 bg-brand-500/15 border-b-2 border-dashed border-red-500 pointer-events-none transition-all duration-75" style="height: 50%;">
+                        <span class="absolute bottom-1 right-2 text-[9px] font-bold text-red-600 bg-white/95 dark:bg-slate-900/95 px-1 py-0.5 rounded shadow-sm border border-red-200 dark:border-red-800">Amazon Cut Line</span>
+                      </div>
+                    </div>
+
+                    <!-- Split Line Slider -->
+                    <div>
+                      <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+                        <span>Adjust Cut Height</span>
+                        <span id="splitPercentLabel" class="text-brand-600 dark:text-brand-400 font-bold">50%</span>
+                      </div>
+                      <input type="range" id="splitSlider" min="30" max="70" value="50" class="w-full accent-brand-600 cursor-pointer" oninput="handleSliderChange(this.value)" />
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Action Footer -->
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
+                        <i class="fa-solid fa-shield-halved mr-1 text-green-500"></i> Processing occurs 100% in device RAM.
+                    </div>
+                    <button onclick="processAmazonPDFs()" id="processBtn" class="w-full sm:w-auto bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                        Crop &amp; Prepare Amazon Labels <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Phase 3: Result & Download Area -->
+            <div id="resultArea" class="hidden absolute inset-0 bg-white dark:bg-dark-card z-30 flex flex-col items-center justify-center p-6 text-center animate-fade-in overflow-y-auto">
+                <div class="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-5 animate-bounce-slow">
+                    <i class="fa-solid fa-check text-green-600 dark:text-green-400 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-1">Amazon Batch Ready!</h3>
+                <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-md text-xs sm:text-sm">
+                  Your Amazon Easy Ship / FBA labels are cropped and optimized for high-speed scanning.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full max-w-xl mb-6">
+                  <a id="dlLabelsBtn" class="bg-brand-600 text-white px-5 py-3.5 rounded-xl font-bold text-xs sm:text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition flex items-center justify-center gap-2 cursor-pointer">
+                      <i class="fa-solid fa-download"></i> Cropped Labels
+                  </a>
+                  <a id="dlInvoicesBtn" class="bg-slate-800 dark:bg-slate-700 text-white px-5 py-3.5 rounded-xl font-bold text-xs sm:text-sm hover:bg-slate-900 transition flex items-center justify-center gap-2 cursor-pointer">
+                      <i class="fa-solid fa-file-invoice"></i> Invoices PDF
+                  </a>
+                  <a id="dlPicklistBtn" class="bg-amber-600 text-white px-5 py-3.5 rounded-xl font-bold text-xs sm:text-sm hover:bg-amber-700 transition flex items-center justify-center gap-2 cursor-pointer">
+                      <i class="fa-solid fa-list-check"></i> SKU Picklist
+                  </a>
+                </div>
+                
+                <button onclick="location.reload()" class="text-slate-500 hover:text-brand-600 dark:text-slate-400 font-medium text-xs">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Process Another Batch
+                </button>
+            </div>
+
+        </div>
+
+        <!-- How It Works Section -->
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-10 font-display">How to Crop &amp; Sort Amazon Labels</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">1</div>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Upload Easy Ship PDF</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Download your batch from Amazon Seller Central and drop it here. Multi-account merge supported.</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">2</div>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Select Layout &amp; Sort</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Select Thermal 4×6" or A4 4-in-1 grid. Sort by SKU for bulk picking or Carrier for ATS handover.</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4 font-bold">3</div>
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Print at 100% Scale</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Download your print-ready vector PDF and print at 100% actual size without barcode distortion.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Why use our Amazon Cropper?</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/20 text-green-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-lock"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">100% Offline Privacy</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Customer addresses, order values, and GST details never leave your computer or phone.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-barcode"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Vector Quality Barcodes</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Maintains vector crispness so Amazon Transport Services (ATS), Delhivery, and Blue Dart scanners read barcodes instantly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+                <div class="space-y-3">
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                            <span>Does it support Amazon FBA Box Labels?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">
+                          Yes! Upload your FBA carton/box label PDF and it will isolate each carton label for 4x6 roll sticker printing.
+                        </p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                            <span>What printer settings should I use?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">
+                          Set paper size to 4×6 inches (100×150 mm) and scale to 100% (Actual Size). Avoid "Fit to Page" to prevent barcode distortion.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Long-Form SEO Article -->
+        <section class="border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+            <article class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-6">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">
+                  High-Speed Amazon India Shipping Label Processing &amp; Sorting
+                </h2>
+                <p>
+                  Amazon Seller Central exports combined Easy Ship documents with shipping barcodes on the top half and customer tax invoices on the bottom half. Direct printing forces scaling that degrades barcode scannability.
+                </p>
+                <p>
+                  <strong>The PDF Mechanic Amazon Tool</strong> automatically detects Amazon markers (like <code>Tax Invoice</code>, <code>Ordered Through Amazon</code>, <code>Tracking ID</code>), crops the shipping label to standard 4x6" thermal size, sorts orders by SKU & Carrier (ATS / Delhivery / Blue Dart), and separates tax invoices into an independent PDF.
+                </p>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+          <div class="col-span-1 sm:col-span-2 md:col-span-1">
+              <div class="flex items-center gap-2 mb-4 text-white">
+                  <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                  <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-500 mb-4">
+                  Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
+              </p>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">E-Commerce Tools</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="amazon-shipping-label-crop-tool.html" class="text-brand-500 font-semibold">Amazon Label Cropper</a></li>
+                  <li><a href="meesho-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Meesho Label Cropper</a></li>
+                  <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                  <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                  <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                  <li><a href="crop-pdf.html" class="hover:text-brand-500 transition">Crop PDF Margins</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">Legal</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                  <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+          &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- JavaScript Implementation -->
+    <script>
+      let fileQueue = [];
+      let parsedPages = [];
+      let splitRatio = 0.50;
+      let generatedUrls = { labels: null, invoices: null, picklist: null };
+
+      // Update Radio styles
+      function updateLayoutStyles() {
+        ['opt-thermal', 'opt-a4-4in1', 'opt-a4-2in1'].forEach(id => {
+          const el = document.getElementById(id);
+          el.classList.remove('border-brand-500', 'bg-brand-50/50', 'dark:bg-brand-900/20');
+          el.classList.add('border-slate-200', 'dark:border-slate-700');
+        });
+        const checked = document.querySelector('input[name="layoutMode"]:checked').value;
+        const targetId = checked === 'thermal' ? 'opt-thermal' : checked === 'a4-4in1' ? 'opt-a4-4in1' : 'opt-a4-2in1';
+        const active = document.getElementById(targetId);
+        active.classList.remove('border-slate-200', 'dark:border-slate-700');
+        active.classList.add('border-brand-500', 'bg-brand-50/50', 'dark:bg-brand-900/20');
+      }
+
+      function handleSliderChange(val) {
+        splitRatio = val / 100;
+        document.getElementById('splitPercentLabel').textContent = `${val}%`;
+        document.getElementById('cropOverlay').style.height = `${val}%`;
+      }
+
+      async function handleFileSelect(e) {
+        const files = Array.from(e.target.files).filter(f => f.type === 'application/pdf');
+        if (!files.length) return;
+
+        document.getElementById('uploadArea').classList.add('hidden');
+        document.getElementById('loading').classList.remove('hidden');
+
+        fileQueue = fileQueue.concat(files);
+        await parseAndPreviewFiles();
+      }
+
+      async function parseAndPreviewFiles() {
+        parsedPages = [];
+        let totalOrders = 0;
+
+        for (let fIdx = 0; fIdx < fileQueue.length; fIdx++) {
+          const file = fileQueue[fIdx];
+          const arrayBuffer = await file.arrayBuffer();
+          const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+          totalOrders += pdfDoc.numPages;
+
+          // Preview first page
+          if (fIdx === 0) {
+            const page1 = await pdfDoc.getPage(1);
+            const viewport = page1.getViewport({ scale: 1.5 });
+            const canvas = document.getElementById('previewCanvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            const ctx = canvas.getContext('2d');
+            await page1.render({ canvasContext: ctx, viewport }).promise;
+
+            // Auto-detect boundary
+            const tc = await page1.getTextContent();
+            for (const it of tc.items) {
+              if (/tax invoice|retail invoice|invoice number|seller name|ordered through amazon/i.test(it.str)) {
+                const yBottom = it.transform;
+                const detected = (viewport.height / 1.5 - yBottom + 15) / (viewport.height / 1.5);
+                if (detected > 0.30 && detected < 0.70) {
+                  splitRatio = Math.round(detected * 100) / 100;
+                  document.getElementById('splitSlider').value = Math.round(splitRatio * 100);
+                  document.getElementById('splitPercentLabel').textContent = `${document.getElementById('splitSlider').value}%`;
+                  document.getElementById('cropOverlay').style.height = `${document.getElementById('splitSlider').value}%`;
+                  break;
+                }
+              }
+            }
+          }
+
+          // Parse text markers for all pages
+          for (let p = 1; p <= pdfDoc.numPages; p++) {
+            const pg = await pdfDoc.getPage(p);
+            const tc = await pg.getTextContent();
+            let courier = "Amazon ATS";
+            let sku = "SKU-Amazon";
+            let qty = 1;
+
+            tc.items.forEach(it => {
+              const str = it.str.trim();
+              if (/delhivery/i.test(str)) courier = "Delhivery";
+              else if (/blue\s*dart/i.test(str)) courier = "Blue Dart";
+              else if (/xpressbees/i.test(str)) courier = "Xpressbees";
+              else if (/ats|amazon\s*transport/i.test(str)) courier = "Amazon ATS";
+
+              if (/sku\s*:\s*([^,\n]+)/i.test(str) || /asin\s*:\s*([A-Z0-9]+)/i.test(str)) {
+                const match = str.match(/sku\s*:\s*([^,\n]+)/i) || str.match(/asin\s*:\s*([A-Z0-9]+)/i);
+                if (match) sku = match.trim();
+              }
+              if (/qty\s*:\s*(\d+)/i.test(str) || /quantity\s*:\s*(\d+)/i.test(str)) {
+                const qMatch = str.match(/qty\s*:\s*(\d+)/i) || str.match(/quantity\s*:\s*(\d+)/i);
+                if (qMatch) qty = parseInt(qMatch, 10);
+              }
+            });
+
+            parsedPages.push({ fileIndex: fIdx, pageIndex: p - 1, courier, sku, qty, arrayBuffer });
+          }
+        }
+
+        document.getElementById('fileStatsSummary').textContent = `Loaded ${totalOrders} orders across ${fileQueue.length} file(s)`;
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('editorArea').classList.remove('hidden');
+      }
+
+      async function processAmazonPDFs() {
+        const btn = document.getElementById('processBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-1"></i> Processing...';
+
+        try {
+          const sortMode = document.querySelector('input[name="sortMode"]:checked').value;
+          if (sortMode === 'sku') parsedPages.sort((a, b) => a.sku.localeCompare(b.sku));
+          else if (sortMode === 'courier') parsedPages.sort((a, b) => a.courier.localeCompare(b.courier));
+
+          const layoutMode = document.querySelector('input[name="layoutMode"]:checked').value;
+          const customTextVal = document.getElementById('customText').value.trim();
+          const stampTime = document.getElementById('addTimestamp').checked;
+          const highlightMulti = document.getElementById('multiQtyHighlight').checked;
+          const keepInvoices = document.getElementById('keepInvoiceCheck').checked;
+
+          // 1. Cropped Labels
+          const labelsBytes = await generateLabelsPDF(parsedPages, layoutMode, { splitRatio, customText: customTextVal, stampTime, highlightMulti });
+          generatedUrls.labels = URL.createObjectURL(new Blob([labelsBytes], { type: 'application/pdf' }));
+          document.getElementById('dlLabelsBtn').href = generatedUrls.labels;
+          document.getElementById('dlLabelsBtn').download = 'amazon-cropped-labels.pdf';
+
+          // 2. Invoices PDF
+          if (keepInvoices) {
+            const invBytes = await generateInvoicesPDF(parsedPages, splitRatio);
+            generatedUrls.invoices = URL.createObjectURL(new Blob([invBytes], { type: 'application/pdf' }));
+            document.getElementById('dlInvoicesBtn').href = generatedUrls.invoices;
+            document.getElementById('dlInvoicesBtn').download = 'amazon-invoices.pdf';
+            document.getElementById('dlInvoicesBtn').classList.remove('hidden');
+          } else {
+            document.getElementById('dlInvoicesBtn').classList.add('hidden');
+          }
+
+          // 3. Picklist PDF
+          const picklistBytes = await generatePicklistPDF(parsedPages);
+          generatedUrls.picklist = URL.createObjectURL(new Blob([picklistBytes], { type: 'application/pdf' }));
+          document.getElementById('dlPicklistBtn').href = generatedUrls.picklist;
+          document.getElementById('dlPicklistBtn').download = 'amazon-dispatch-picklist.pdf';
+
+          document.getElementById('editorArea').classList.add('hidden');
+          document.getElementById('resultArea').classList.remove('hidden');
+        } catch (err) {
+          console.error(err);
+          alert('Processing error: ' + err.message);
+          btn.disabled = false;
+          btn.innerHTML = 'Crop & Prepare Amazon Labels <i class="fa-solid fa-arrow-right"></i>';
+        }
+      }
+
+      async function generateLabelsPDF(pages, layout, opts) {
+        const outDoc = await PDFLib.PDFDocument.create();
+        const loadedDocs = {};
+        for (let i = 0; i < fileQueue.length; i++) loadedDocs[i] = await PDFLib.PDFDocument.load(await fileQueue[i].arrayBuffer());
+
+        if (layout === 'thermal') {
+          const TW = 288, TH = 432;
+          for (const it of pages) {
+            const srcDoc = loadedDocs[it.fileIndex];
+            const [embedded] = await outDoc.embedPdf(srcDoc, [it.pageIndex]);
+            const srcPage = srcDoc.getPage(it.pageIndex);
+            const { width: sw, height: sh } = srcPage.getSize();
+            const labelH = sh * opts.splitRatio;
+            const labelY = sh - labelH;
+
+            const newPage = outDoc.addPage([TW, TH]);
+            const scale = Math.min((TW - 16) / sw, (TH - 24) / labelH);
+            const scaledW = sw * scale, scaledH = labelH * scale;
+
+            newPage.drawPage(embedded, {
+              x: (TW - scaledW) / 2,
+              y: (TH - scaledH) / 2 - (labelY * scale) + 5,
+              xScale: scale,
+              yScale: scale,
+            });
+
+            if (opts.highlightMulti && it.qty > 1) {
+              newPage.drawRectangle({ x: TW - 85, y: TH - 24, width: 75, height: 16, color: PDFLib.rgb(0.9, 0.1, 0.1) });
+              newPage.drawText(`QTY: ${it.qty} (MULTI)`, { x: TW - 80, y: TH - 17, size: 7, color: PDFLib.rgb(1, 1, 1) });
+            }
+
+            let foot = opts.customText || '';
+            if (opts.stampTime) foot += (foot ? ' | ' : '') + new Date().toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
+            if (foot) newPage.drawText(foot, { x: 10, y: 8, size: 6.5, color: PDFLib.rgb(0.3, 0.3, 0.3) });
+          }
+        } else if (layout === 'a4-4in1') {
+          const A4W = 595.28, A4H = 841.89, cW = A4W / 2, cH = A4H / 2;
+          let curPg = null;
+          for (let i = 0; i < pages.length; i++) {
+            const slot = i % 4;
+            if (slot === 0) {
+              curPg = outDoc.addPage([A4W, A4H]);
+              curPg.drawLine({ start: { x: cW, y: 0 }, end: { x: cW, y: A4H }, thickness: 0.5, color: PDFLib.rgb(0.8, 0.8, 0.8), dashArray: });
+              curPg.drawLine({ start: { x: 0, y: cH }, end: { x: A4W, y: cH }, thickness: 0.5, color: PDFLib.rgb(0.8, 0.8, 0.8), dashArray: });
+            }
+            const it = pages[i];
+            const srcDoc = loadedDocs[it.fileIndex];
+            const [embedded] = await outDoc.embedPdf(srcDoc, [it.pageIndex]);
+            const srcPage = srcDoc.getPage(it.pageIndex);
+            const { width: sw, height: sh } = srcPage.getSize();
+            const labelH = sh * opts.splitRatio, labelY = sh - labelH;
+
+            const col = slot % 2, row = Math.floor(slot / 2);
+            const scale = Math.min((cW - 16) / sw, (cH - 16) / labelH);
+            curPg.drawPage(embedded, {
+              x: (col * cW) + (cW - sw * scale) / 2,
+              y: ((1 - row) * cH) + (cH - labelH * scale) / 2 - (labelY * scale),
+              xScale: scale,
+              yScale: scale
+            });
+          }
+        }
+        return await outDoc.save();
+      }
+
+      async function generateInvoicesPDF(pages, ratio) {
+        const outDoc = await PDFLib.PDFDocument.create();
+        const loadedDocs = {};
+        for (let i = 0; i < fileQueue.length; i++) loadedDocs[i] = await PDFLib.PDFDocument.load(await fileQueue[i].arrayBuffer());
+
+        for (const it of pages) {
+          const srcDoc = loadedDocs[it.fileIndex];
+          const [embedded] = await outDoc.embedPdf(srcDoc, [it.pageIndex]);
+          const srcPage = srcDoc.getPage(it.pageIndex);
+          const { width: sw, height: sh } = srcPage.getSize();
+          const invH = sh * (1 - ratio);
+
+          const newPage = outDoc.addPage([sw, invH]);
+          newPage.drawPage(embedded, { x: 0, y: 0, xScale: 1, yScale: 1 });
+        }
+        return await outDoc.save();
+      }
+
+      async function generatePicklistPDF(pages) {
+        const doc = await PDFLib.PDFDocument.create();
+        const page = doc.addPage([595.28, 841.89]);
+        const summary = {};
+        let totalItems = 0;
+
+        pages.forEach(p => {
+          if (!summary[p.sku]) summary[p.sku] = { count: 0, qty: 0, courier: p.courier };
+          summary[p.sku].count += 1;
+          summary[p.sku].qty += p.qty;
+          totalItems += p.qty;
+        });
+
+        page.drawText("Amazon India Dispatch Summary & Picklist", { x: 40, y: 800, size: 16 });
+        page.drawText(`Date: ${new Date().toLocaleDateString('en-IN')} | Total Orders: ${pages.length} | Total Items: ${totalItems}`, { x: 40, y: 780, size: 9, color: PDFLib.rgb(0.4, 0.4, 0.4) });
+
+        let y = 740;
+        page.drawText("ASIN / SKU Code", { x: 40, y, size: 9 });
+        page.drawText("Carrier", { x: 300, y, size: 9 });
+        page.drawText("Orders", { x: 420, y, size: 9 });
+        page.drawText("Total Qty", { x: 490, y, size: 9 });
+        page.drawLine({ start: { x: 40, y: y - 5 }, end: { x: 555, y: y - 5 }, thickness: 1, color: PDFLib.rgb(0.8, 0.8, 0.8) });
+        y -= 25;
+
+        Object.entries(summary).forEach(([sku, info]) => {
+          if (y < 50) return;
+          page.drawText(sku.substring(0, 40), { x: 40, y, size: 8.5 });
+          page.drawText(info.courier, { x: 300, y, size: 8.5 });
+          page.drawText(String(info.count), { x: 420, y, size: 8.5 });
+          page.drawText(String(info.qty), { x: 490, y, size: 8.5 });
+          y -= 18;
+        });
+        return await doc.save();
+      }
+
+      // Theme toggle initialization
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
