@@ -44,50 +44,172 @@
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
 
-    <!-- Tailwind CSS & FontAwesome -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-    <!-- PDF Engines -->
-    <script src="https://unpkg.com/pdf-lib@1.17.9/dist/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    </script>
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* meesho-shipping-label-crop-tool.html-specific residual CSS.
+   Also fills in brand-200/300/400/800 shades that this page's original
+   Tailwind config never defined (those classes were silently no-ops
+   before) using the standard blue palette consistent with brand-500/600/700. */
 
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'bounce-slow': 'bounce 3s infinite', 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
-        }
-      }
-    </script>
+.aspect-\[1\/1\.414\] { aspect-ratio: 1 / 1.414; }
+.min-h-\[420px\] { min-height: 420px; }
+.border-collapse { border-collapse: collapse; }
+.border-b-2 { border-bottom-width: 2px; }
+.duration-75 { transition-duration: 75ms; }
+.divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; }
+.divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #f1f5f9; }
+.dark .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]) { border-color: #1e293b; }
+.items-start { align-items: flex-start; }
+.max-w-full { max-width: 100%; }
+.max-h-full { max-height: 100%; }
+.object-contain { object-fit: contain; }
+.overflow-x-auto { overflow-x: auto; }
+.text-left { text-align: left; }
+.bottom-1 { bottom: 0.25rem; }
+.right-2 { right: 0.5rem; }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gap-3\.5 { gap: 0.875rem; }
+.mb-1\.5 { margin-bottom: 0.375rem; }
+.mr-1\.5 { margin-right: 0.375rem; }
+.pt-2 { padding-top: 0.5rem; }
+.p-2\.5 { padding: 0.625rem; }
+.p-3\.5 { padding: 0.875rem; }
+.px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
+.px-3\.5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+.py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+.text-\[9px\] { font-size: 9px; }
+.text-\[10px\] { font-size: 10px; }
+.text-\[11px\] { font-size: 11px; }
+.hover\:bg-slate-900:hover { background-color: #0f172a; }
+.hover\:bg-amber-700:hover { background-color: #b45309; }
+.hover\:border-slate-200:hover { border-color: #e2e8f0; }
+.border-slate-700 { border-color: #334155; }
+.bg-slate-800 { background-color: #1e293b; }
+.bg-slate-800\/80 { background-color: rgb(30 41 59 / 0.8); }
 
-    <!-- Schema 1: Software Application -->
+@media (min-width: 1024px) {
+  .lg\:col-span-5 { grid-column: span 5 / span 5; }
+  .lg\:col-span-7 { grid-column: span 7 / span 7; }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .lg\:flex { display: flex; }
+}
+@media (min-width: 640px) {
+  .sm\:gap-6 { gap: 1.5rem; }
+  .sm\:text-left { text-align: left; }
+}
+
+/* prose (long-form article section) - minimal readable defaults */
+.prose { max-width: 65ch; }
+.prose :where(p) { margin-top: 1em; margin-bottom: 1em; }
+.prose :where(ol) { list-style-type: decimal; }
+.dark .dark\:prose-invert { color: #cbd5e1; }
+
+/* Amber */
+.bg-amber-50 { background-color: #fffbeb; }
+.bg-amber-600 { background-color: #d97706; }
+.text-amber-500 { color: #f59e0b; }
+.text-amber-600 { color: #d97706; }
+.text-amber-700 { color: #b45309; }
+.border-amber-200 { border-color: #fde68a; }
+.dark .dark\:bg-amber-900\/30 { background-color: rgb(120 53 15 / 0.3); }
+.dark .dark\:bg-amber-950\/40 { background-color: rgb(69 26 3 / 0.4); }
+.dark .dark\:border-amber-800 { border-color: #92400e; }
+.dark .dark\:text-amber-400 { color: #fbbf24; }
+
+/* Blue (non-brand, used for badges) */
+.border-blue-200 { border-color: #bfdbfe; }
+.text-blue-700 { color: #1d4ed8; }
+.dark .dark\:bg-blue-950\/40 { background-color: rgb(23 37 84 / 0.4); }
+.dark .dark\:border-blue-800 { border-color: #1e40af; }
+.dark .dark\:text-blue-400 { color: #60a5fa; }
+
+/* Purple */
+.bg-purple-50 { background-color: #faf5ff; }
+.text-purple-700 { color: #7e22ce; }
+.text-indigo-600 { color: #4f46e5; }
+.bg-indigo-50 { background-color: #eef2ff; }
+.border-purple-200 { border-color: #e9d5ff; }
+.dark .dark\:bg-purple-900\/30 { background-color: rgb(88 28 135 / 0.3); }
+.dark .dark\:bg-purple-950\/40 { background-color: rgb(59 7 100 / 0.4); }
+.dark .dark\:bg-indigo-900\/30 { background-color: rgb(49 46 129 / 0.3); }
+.dark .dark\:border-purple-800 { border-color: #6b21a8; }
+.dark .dark\:text-purple-400 { color: #c084fc; }
+
+/* Emerald / Green */
+.bg-emerald-50 { background-color: #ecfdf5; }
+.text-emerald-600 { color: #059669; }
+.text-green-700 { color: #15803d; }
+.border-green-200 { border-color: #bbf7d0; }
+.dark .dark\:bg-emerald-900\/30 { background-color: rgb(6 78 59 / 0.3); }
+.dark .dark\:bg-green-950\/40 { background-color: rgb(5 46 22 / 0.4); }
+
+/* Red */
+.bg-red-50\/40 { background-color: rgb(254 242 242 / 0.4); }
+.border-red-200 { border-color: #fecaca; }
+.border-red-500 { border-color: #ef4444; }
+.dark .dark\:bg-red-950\/20 { background-color: rgb(69 10 10 / 0.2); }
+.dark .dark\:border-red-800 { border-color: #991b1b; }
+
+/* Slate dark variants used for cards/sections */
+.dark .dark\:bg-slate-800\/40 { background-color: rgb(30 41 59 / 0.4); }
+.dark .dark\:bg-slate-800\/60 { background-color: rgb(30 41 59 / 0.6); }
+.dark .dark\:bg-slate-900\/95 { background-color: rgb(15 23 42 / 0.95); }
+.dark .dark\:hover\:bg-slate-800\/50:hover { background-color: rgb(30 41 59 / 0.5); }
+.dark .dark\:hover\:border-slate-600:hover { border-color: #475569; }
+.dark .dark\:text-slate-100 { color: #f1f5f9; }
+.dark .dark\:text-slate-500 { color: #64748b; }
+
+/* Brand (site blue) — filling in shades this page's own config omitted */
+.bg-brand-50\/50 { background-color: rgb(239 246 255 / 0.5); }
+.bg-brand-500\/15 { background-color: rgb(59 130 246 / 0.15); }
+.border-brand-200 { border-color: #bfdbfe; }
+.text-brand-400 { color: #60a5fa; }
+.hover\:border-brand-500:hover { border-color: #3b82f6; }
+.dark .dark\:bg-brand-900\/40 { background-color: rgb(30 58 138 / 0.4); }
+.dark .dark\:border-brand-800 { border-color: #1e40af; }
+.dark .dark\:text-brand-300 { color: #93c5fd; }
+.dark .dark\:text-brand-400 { color: #60a5fa; }
+.dark .dark\:hover\:border-brand-500:hover { border-color: #3b82f6; }
+.dark .dark\:hover\:text-brand-400:hover { color: #60a5fa; }
+
+</style>
+
+    <!-- Schema 1: Software Application + Web Application -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": ["SoftwareApplication", "WebApplication"],
       "name": "Meesho Shipping Label Crop & Sort Tool",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "All (Web Browser, Windows, macOS, Linux, Android, iOS)",
-      "offers": { 
-        "@type": "Offer", 
-        "price": "0", 
-        "priceCurrency": "INR" 
+      "url": "https://www.thepdfmechanic.com/meesho-shipping-label-crop-tool.html",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
       },
       "description": "Free web tool for Meesho suppliers to crop A4 PDF shipping labels into 4x6 thermal roll stickers or A4 4-in-1 grid layouts, separate customer tax invoices, sort by SKU & courier (Delhivery, Valmo, Shadowfax, Xpressbees), and generate bulk dispatch picklists.",
       "featureList": [
@@ -99,9 +221,9 @@
         "Multi-Quantity Order Warning Badges",
         "100% Client-Side In-Browser Processing (Zero Server Uploads)"
       ],
-      "aggregateRating": { 
-        "@type": "AggregateRating", 
-        "ratingValue": "4.9", 
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
         "ratingCount": "2810",
         "bestRating": "5",
         "worstRating": "1"
@@ -161,58 +283,66 @@
         },
         {
           "@type": "Question",
-          "name": "Why do Meesho labels print blurry or cut off on thermal printers?",
+          "name": "Why does my Meesho label print tiny or cut off?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Meesho orders come as full A4 PDFs with the shipping label on top and the tax invoice below. Printing raw A4 files causes thermal printer drivers to shrink the whole page, turning barcodes blurry and causing pickup rejections. Cropping isolates the shipping label so it fills 100% of the 4x6 sticker."
+            "text": "Meesho exports labels on full A4 sheets alongside the tax invoice. When printing directly to a 4x6 thermal printer, the driver shrinks the entire A4 sheet into a tiny box. Cropping the label to true 4x6 size solves this instantly."
           }
         },
         {
           "@type": "Question",
-          "name": "Does this tool support Valmo, Delhivery, Shadowfax, and Xpressbees labels?",
+          "name": "Does this tool support Valmo, Delhivery, Shadowfax, and Xpressbees?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Our intelligent text-parser reads courier markers inside the PDF and automatically groups labels by logistics partner (Valmo, Delhivery, Shadowfax, Xpressbees) for organized courier handover manifests."
+            "text": "Yes. Our tool reads the PDF text stream to detect logistics partners (Valmo, Delhivery, Shadowfax, Xpressbees) and groups orders accordingly for smooth courier pickup handovers."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I sort Meesho shipping labels by SKU?",
+          "name": "How does SKU sorting speed up warehouse packing?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. When SKU sorting is enabled, all matching product SKUs are organized consecutively in the print batch. This speeds up warehouse picking by up to 5x because staff can pick 50 units of the same SKU in a single trip."
+            "text": "It organizes matching products sequentially in the print batch. Packaging staff can pick many units of the same item from inventory shelves in one trip, pack all identical parcels together, and eliminate wrong-item dispatch errors."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I separate customer tax invoices from Meesho shipping labels?",
+          "name": "Is my customer data and GST billing information safe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Enabling the 'Extract Customer Invoices' option separates the lower half of each Meesho page into an independent multi-page PDF for your GST billing records."
+            "text": "Yes. The PDF Mechanic processes all PDF rendering, boundary detection, and cropping locally inside your browser memory using client-side JavaScript. No customer addresses or financial data are ever transmitted to any server."
           }
         },
         {
           "@type": "Question",
-          "name": "Is my customer data and Meesho order PDF safe?",
+          "name": "Can I print Meesho shipping labels on regular A4 printers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "100% safe. The PDF Mechanic executes all rendering and cropping locally in your browser RAM using client-side JavaScript. Zero bytes are uploaded to external servers."
+            "text": "Yes. Select the 'A4 4-in-1' option to fit four cropped shipping labels onto a single A4 sheet with dashed cut lines, saving significant paper and sticker sheet costs versus one label per sheet."
           }
         },
         {
           "@type": "Question",
-          "name": "What thermal printer settings should I use for Meesho labels?",
+          "name": "What is the Multi-Qty Warning Badge?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Set paper size to 4x6 inches (100x150 mm), orientation to Portrait, print scaling to 100% (Actual Size - do NOT use Fit to Page), and darkness/density to medium-high (12-14) with print speed at 4 ips."
+            "text": "When a customer orders 2 or more quantities of an item, packing teams sometimes accidentally ship only 1 unit. This tool stamps a prominent red 'QTY: X (MULTI)' alert badge on the label to help prevent under-shipment."
           }
         },
         {
           "@type": "Question",
-          "name": "Which thermal printer brands work with the cropped Meesho PDF?",
+          "name": "How does the SKU Dispatch Picklist help sellers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The generated PDF is vector-sharp and compatible with all major thermal printers including TSC (TE244, TE344), Zebra (ZD220, ZD230), TVS (LP 46 Neo), Xprinter (XP-420B, XP-470B), Rollo, Everycom, and HPRT."
+            "text": "Along with cropped labels, the tool generates a one-page SKU Summary & Picklist PDF showing total units needed per SKU code and courier breakdown, so your warehouse team can pick inventory before packing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between A4 4-in-1 and A4 2-in-1 layouts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A4 4-in-1 fits four cropped labels on one sheet in a 2x2 grid for maximum paper savings. A4 2-in-1 stacks two labels per sheet, giving each label more room and making individual cutting slightly easier."
           }
         }
       ]
@@ -309,12 +439,18 @@
             </div>
         </div>
 
+        <!-- Error Alert -->
+        <div id="fileError" class="hidden inline-alert inline-alert-error mb-4" role="alert">
+            <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+            <span id="fileErrorText"></span>
+        </div>
+
         <!-- Interactive Tool Card -->
         <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden min-h-[420px] transition-colors relative mb-16">
             
             <!-- Phase 1: Upload Dropzone -->
-            <div id="uploadArea" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" onclick="document.getElementById('fileInput').click()">
-                <input type="file" id="fileInput" accept="application/pdf" multiple class="hidden" onchange="handleFileSelect(event)">
+            <div id="uploadArea" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" role="button" tabindex="0" aria-label="Click or drag Meesho label PDF files here to upload" onclick="document.getElementById('fileInput').click()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}" ondragover="event.preventDefault();this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf" multiple aria-label="Choose Meesho label PDF files" class="hidden" onchange="handleFileSelect(event)">
                 
                 <div class="w-24 h-24 bg-brand-50 dark:bg-brand-900/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300 shadow-inner">
                     <i class="fa-solid fa-tags text-4xl text-brand-600"></i>
@@ -323,7 +459,7 @@
                 <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Select Meesho Shipping Label PDFs</h3>
                 <p class="text-slate-500 dark:text-slate-400 mb-6 text-sm max-w-md">Drop Meesho batch files here. Supports multi-page single order batches and multi-account PDF merging.</p>
                 
-                <button class="bg-brand-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center gap-2 text-sm sm:text-base">
+                <button type="button" class="bg-brand-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 flex items-center gap-2 text-sm sm:text-base">
                     <i class="fa-solid fa-folder-open"></i> Choose PDF Files
                 </button>
                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-3"><i class="fa-solid fa-lock mr-1"></i> 100% Client-Side. No customer addresses uploaded to servers.</span>
@@ -419,7 +555,7 @@
                     <!-- Custom Text Overlay -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                       <div>
-                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Custom Text Stamp</label>
+                        <label for="customText" class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Custom Text Stamp (English only)</label>
                         <input type="text" id="customText" placeholder="e.g. Handle With Care / Packed on CCTV" class="w-full text-xs p-2.5 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" />
                       </div>
                       <div class="flex items-end">
@@ -493,7 +629,7 @@
                   </a>
                 </div>
                 
-                <button onclick="location.reload()" class="text-slate-500 hover:text-brand-600 dark:text-slate-400 font-medium text-xs">
+                <button type="button" onclick="resetTool()" class="text-slate-500 hover:text-brand-600 dark:text-slate-400 font-medium text-xs">
                     <i class="fa-solid fa-rotate-right mr-1"></i> Process Another Batch
                 </button>
             </div>
@@ -780,6 +916,16 @@
                         Along with cropped labels, the tool generates a one-page SKU Summary & Picklist PDF showing total units needed per SKU code and courier breakdown, allowing your warehouse team to pick inventory before packing.
                     </p>
                 </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>What's the difference between A4 4-in-1 and A4 2-in-1 layouts?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        A4 4-in-1 fits four cropped labels on one sheet in a 2x2 grid for maximum paper savings. A4 2-in-1 stacks two labels per sheet, giving each label more room and making individual cutting slightly easier.
+                    </p>
+                </details>
             </div>
         </section>
 
@@ -824,6 +970,262 @@
                 <p>
                   Security is paramount for Indian sellers. Third-party cloud converter services upload your entire order batch to remote servers, putting customer phone numbers, home addresses, order values, and GST details at risk. <strong>The PDF Mechanic</strong> processes everything 100% client-side inside your local browser memory using WebAssembly. Your business data remains completely private and secure.
                 </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  How Text-Marker Boundary Detection Actually Works
+                </h3>
+                <p>
+                  Every Meesho label PDF is, structurally, just positioned text and vector graphics on a page — there's no built-in concept of "this is the label" and "this is the invoice." This tool finds that boundary by scanning each page's text content for markers like "Tax Invoice," "Customer Invoice," and "Invoice No," then reading the vertical position of whichever marker it finds. That position becomes the cut line between the shipping label above it and the invoice below it. The detected line is shown live in the interactive preview as a shaded box with a dashed red edge, so it's checked visually before anything gets processed rather than trusted blindly.
+                </p>
+                <p>
+                  Because Meesho's exact label template can vary slightly between order types, printer versions, or seller categories, auto-detection sometimes lands a few percentage points off from the ideal cut point. That's exactly why the "Adjust Cut Boundary Height" slider exists as a manual override — drag it while watching the preview update in real time, and lock in the precise boundary for that batch before committing to cropping hundreds of pages at once.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  SKU Sorting and Courier Grouping: What They Actually Do to a Batch
+                </h3>
+                <p>
+                  A raw Meesho download lists orders in whatever sequence the Supplier Panel generated them — typically by order time, not by product or logistics partner. For a seller shipping a handful of orders a day, that's a non-issue. For a seller shipping dozens or hundreds, it means walking back and forth across a warehouse floor picking one item at a time in a scattered order.
+                </p>
+                <p>
+                  <strong>Sort by SKU</strong> re-orders every parsed page alphabetically by the SKU code detected in its text content, so every occurrence of the same product code ends up adjacent in the output PDF. That turns a scattered pick into a single-pass batch pick: pull every unit of one SKU off the shelf once, pack every order for it, move to the next SKU. <strong>Sort by Courier</strong> does the same thing but groups by logistics partner instead — every Delhivery order together, every Valmo order together, and so on — which matters when different couriers pick up at different times or need separate manifest paperwork signed off.
+                </p>
+                <p>
+                  Both sorting modes only reorder pages; nothing about the underlying label content changes. Original Meesho order sequence is always available by selecting "Preserve Order," which is useful when a seller's own warehouse system already expects orders in download sequence.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Choosing Between Thermal 4×6", A4 4-in-1, and A4 2-in-1
+                </h3>
+                <p>
+                  The right layout mode depends entirely on what hardware is sitting at the packing station. A dedicated thermal roll printer (TSC, Zebra, TVS, Xprinter, Rollo, and similar 4×6" direct-thermal machines) should always use <strong>Thermal 4×6"</strong> — this produces one label per output page at the printer's exact native paper size, with no ink cost and near-zero waste since each printed sticker peels straight onto a parcel.
+                </p>
+                <p>
+                  Sellers without a thermal printer, using a standard desktop laser or inkjet instead, get two A4 options. <strong>A4 4-in-1</strong> tiles four labels per sheet in a 2×2 grid with light dashed cut guides, maximizing how many labels come off a single page — the trade-off is a slightly smaller printed label that needs scissors or a paper cutter afterward. <strong>A4 2-in-1</strong> stacks two labels per sheet instead of four, giving each one noticeably more room and a single straight cut instead of four separate ones, at the cost of using twice as much paper per label compared to the 4-in-1 grid.
+                </p>
+                <p>
+                  There's no universally "correct" choice between the two A4 modes — a seller printing a handful of labels a day might prefer the simpler single-cut 2-in-1 layout, while a seller optimizing for sticker-sheet cost at higher volume will usually prefer 4-in-1. Both are available from the same Target Print Layout selector, so it costs nothing to try a small batch of each and see which fits the actual packing workflow better.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Common Reasons Meesho Labels Get Rejected at Courier Pickup
+                </h3>
+                <ul class="list-disc pl-5 space-y-2">
+                  <li><strong>Barcode printed too small.</strong> The single most common cause — a raw A4 page shrunk to fit a 4×6" printer compresses the barcode's bar widths below what handheld scanners can reliably resolve.</li>
+                  <li><strong>Wrong print scale.</strong> Even a correctly cropped label will scan poorly if the printer driver is set to "Fit to Page" or "Shrink Oversized Pages" instead of Actual Size / 100% — always double-check this setting before a large batch, since some printer drivers reset it after driver updates.</li>
+                  <li><strong>Low print darkness on thermal heads.</strong> Direct-thermal printing degrades gradually as the print head wears; a darkness setting that produced crisp barcodes a few months ago may need bumping up over time.</li>
+                  <li><strong>Smudged or partially peeled labels.</strong> Not a software issue, but worth mentioning — labels applied to curved or textured packaging surfaces can develop tiny creases across the barcode that a scanner reads as broken bars.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Handling Multi-Account and Multi-Day Batches
+                </h3>
+                <p>
+                  Many established Meesho sellers run more than one GSTIN-registered supplier account, either for category separation or simply as the business has scaled. Rather than cropping each account's PDF separately and juggling multiple output files, every uploaded PDF here gets pulled into a single shared processing queue — the "Add More PDFs" button appends additional files without discarding what's already loaded, and the whole batch is then sorted, cropped, and exported together as one unified set of output files, regardless of how many separate account exports it started from.
+                </p>
+                <p>
+                  This also works cleanly for sellers who batch a full day's orders into a single evening dispatch run: download each Ready-to-Ship export as it becomes available throughout the day, keep adding them to the same session, and process everything together once ready, rather than repeating the whole upload-crop-download cycle per batch.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  GST Invoices and Recordkeeping
+                </h3>
+                <p>
+                  The "Extract Customer Invoices" option matters beyond just keeping thermal rolls free of invoice ink — the extracted invoice PDF is a genuine, complete copy of every customer tax invoice from the batch, laid out for standard A4 printing or digital archival. For GST recordkeeping purposes, that means a seller can keep an organized, dated PDF trail of invoices separate from the shipping labels used for actual dispatch, without needing separate software or a manual invoice-splitting workflow.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Working From a Phone or Tablet
+                </h3>
+                <p>
+                  Because every part of this tool runs as ordinary JavaScript inside a browser tab rather than a native desktop application, it works the same way on a phone or tablet as it does on a laptop — a seller who downloads their Meesho PDF on a mobile device can open it directly in a mobile browser, crop and sort it there, and either print via a mobile-connected thermal printer or save the finished PDF to send along to whoever handles printing at the packing station. Nothing about the workflow requires desktop software specifically.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  What to Do If a Batch Doesn't Parse Cleanly
+                </h3>
+                <p>
+                  Occasionally a downloaded PDF won't be a standard Meesho label export — a scanned copy, a corrupted download, or a file exported from an unrelated source. When that happens, the tool now shows a clear on-page message explaining what went wrong rather than leaving the interface stuck on a loading spinner, and nothing already processed is lost; only the problem file needs re-checking or re-downloading from the Supplier Panel before trying again.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Courier-by-Courier Notes: Delhivery, Valmo, Shadowfax, and Xpressbees
+                </h3>
+                <p>
+                  Meesho routes shipments through several third-party and in-house logistics partners, and each tends to show up slightly differently inside the PDF's text stream. <strong>Delhivery</strong> and <strong>Xpressbees</strong> labels typically print the courier name plainly near the barcode block. <strong>Shadowfax</strong> labels often include their name alongside a hub code. <strong>Valmo</strong> — Meesho's own in-house logistics network — has become an increasingly common courier assignment for many sellers and is detected the same way as the third-party partners. Courier detection here works by scanning for these partner names directly in the page text, so as long as Meesho continues to print the courier name somewhere on the label (which it consistently does across current templates), grouping by courier keeps working without needing per-courier configuration from the seller.
+                </p>
+                <p>
+                  One practical note for sellers managing pickup logistics: different courier partners frequently have different pickup windows and separate manifest paperwork. Grouping the printed batch by courier before packing means each courier's parcels are already physically together and countable at handover time, which noticeably reduces the back-and-forth of searching through a mixed pile when a pickup executive arrives.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Reducing RTO Through Better Label Quality
+                </h3>
+                <p>
+                  Return-to-Origin — a shipment that gets sent back rather than delivered — has several root causes, and a meaningful share of them trace back to label quality rather than the courier or the buyer. An address block that's legible but tiny, printed on a shrunk-down A4-to-4x6 conversion, is genuinely harder for a delivery rider to read accurately at the doorstep than the same address printed at full, correctly-scaled size. A barcode that a warehouse scanner accepts but that degrades slightly in transit can become unreadable by the time a last-mile rider tries to confirm the parcel. Cropping to true native label size, printing at correct scale, and keeping print darkness in the recommended range are all small, mechanical fixes — but they remove an entire category of delivery friction that has nothing to do with the product or the buyer and everything to do with how the label itself was produced.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Setting Up a Repeatable Daily Dispatch Routine
+                </h3>
+                <p>
+                  Sellers who dispatch daily tend to settle into a routine that looks something like: download the day's Ready-to-Ship batch from the Supplier Panel once order cutoff has passed, upload it here, confirm the auto-detected boundary looks correct against the live preview, choose SKU or courier sorting depending on how the packing station is organized that day, and export all three output files — cropped labels, invoices, and picklist — in one pass. Because none of this depends on account setup, saved preferences, or server-side processing, the same routine works identically whether it's run from a shop laptop, a shared warehouse PC, or a personal phone, and there's nothing to configure differently between one day's batch and the next.
+                </p>
+                <p>
+                  For sellers running multiple dispatch waves in a single day — a morning cutoff and an evening cutoff, for instance — the same process simply repeats: each wave's PDF is its own batch, processed independently, with no leftover state or account limits carried over from the previous run.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Why This Approach Beats Manual Cutting or Generic PDF Editors
+                </h3>
+                <p>
+                  Before a dedicated cropping tool, sellers handling this problem generally fell into one of two groups: physically trimming printed A4 sheets with scissors after printing (slow, imprecise, and wasteful of both paper and ink), or using a generic PDF editor's crop tool to manually draw a crop box on every single page by hand. The manual PDF-editor approach technically works, but scales terribly — cropping fifty pages one at a time, each requiring a precise manual box placement to avoid clipping the barcode, easily turns into the slowest part of an entire day's dispatch routine. Automated text-marker detection removes exactly that repetitive manual step, turning a batch of any size into the same few-click process regardless of whether it's five orders or five hundred.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Understanding the Multi-Quantity Badge and Why It Matters
+                </h3>
+                <p>
+                  Under-shipment — a customer ordering two or three units of an item but receiving only one — is a specific, recurring category of packing error that has nothing to do with product quality and everything to do with a packer glancing at a label and missing a small quantity indicator buried in the order text. It typically happens on busy days, when dozens of visually similar labels move through a packing station quickly and a "Qty: 2" printed in small text among other order details is easy to miss.
+                </p>
+                <p>
+                  The Multi-Quantity Warning Badge exists specifically to interrupt that failure mode. When enabled, any order whose parsed quantity is two or higher gets a bold red "QTY: X (MULTI)" badge stamped directly onto the visible label — not buried in fine print, but placed prominently enough that a packer glances at the label and immediately sees it needs more than one unit before sealing the parcel. It's a small addition, but for sellers who have dealt with customer complaints or returns specifically tied to under-shipped multi-quantity orders, it directly targets that one recurring cause.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Timestamp Stamping and Custom Text Notes
+                </h3>
+                <p>
+                  Two smaller customization options round out the label output. Enabling "Stamp Dispatch Timestamp" prints the exact date and time of processing in small text at the bottom of every cropped label — useful for sellers who want a built-in dispatch-time record without relying on separate logging, particularly when reconciling courier pickup times against when a batch was actually packed. The custom text field accepts any short note — "Handle With Care," "Packed on CCTV," a batch reference code — and stamps it identically across every label in that run. Because the underlying PDF text renderer only reliably supports standard Latin/English characters, this field is intended for English text; non-Latin input is automatically filtered out during processing rather than risking a failed export partway through a large batch.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Paper and Cost Considerations Across Layout Modes
+                </h3>
+                <p>
+                  For sellers weighing thermal rolls against A4 sticker sheets purely on cost, the trade-offs are fairly intuitive once laid out. Thermal roll stock costs a small amount per label but requires owning a thermal printer upfront; there's no ink or toner cost since direct-thermal printing uses heat rather than ink. A4 sticker sheets need a conventional laser or inkjet printer most small businesses already own, but each sheet costs more per label than thermal roll stock, and toner or ink adds an ongoing consumable cost on top of the sheet itself. Between the two A4 modes, 4-in-1 stretches a sticker sheet further by fitting four labels instead of two, which matters more as order volume climbs — a seller doing five orders a day probably won't notice the difference, but a seller doing two hundred certainly will.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Frequently Overlooked Printer Driver Settings
+                </h3>
+                <p>
+                  Beyond paper size, scale, darkness, and speed already covered above, a few printer driver settings quietly cause scanning problems even on a correctly cropped label. <strong>Print orientation</strong> should always be Portrait for both thermal and A4 output — some drivers default to Landscape after a Windows update and silently rotate every label. <strong>Color mode</strong> should be forced to monochrome/grayscale on thermal printers specifically; some drivers apply unnecessary color-processing overhead that slows print speed without any visual benefit on a black-and-white thermal head. <strong>Margins</strong> should be set to zero or "None" wherever the driver allows it — a printer that insists on a small default margin can clip the very edge of a label that was cropped to exactly fill the page.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Who This Tool Is Built For
+                </h3>
+                <p>
+                  While built specifically around Meesho's label format, the underlying audience is broad: individual sellers just starting out and printing a handful of orders a day from a home setup, small teams running a dedicated packing station with a thermal printer, and larger suppliers managing multiple GSTIN accounts and dispatching hundreds of orders daily across several courier partners. The tool scales the same way in every case, because nothing about how it works depends on order volume — a five-order batch and a five-hundred-order batch go through the identical upload, detect, sort, and export sequence, just with more pages processed in the same run.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  A Note on Data Privacy for Growing Sellers
+                </h3>
+                <p>
+                  As a Meesho business grows, the order data flowing through daily dispatch — customer names, phone numbers, home addresses, order values — becomes a genuinely sensitive dataset worth protecting deliberately, not just as an afterthought. Server-based conversion tools, however convenient, mean that dataset leaves the seller's own device and passes through infrastructure outside their control, even if only briefly and even if the provider has good intentions. Processing everything locally in the browser sidesteps that question entirely: there's no server involved in cropping, sorting, or generating the picklist, so there's nothing to trust beyond the browser itself, which is already trusted to safely display the Meesho Supplier Panel in the first place.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Getting Started
+                </h3>
+                <p>
+                  Nothing about using this tool requires an account, a subscription, or any setup beyond a modern web browser. Download the day's batch from the Meesho Supplier Panel, drop it into the upload zone above, confirm the detected boundary looks right, choose a layout and sorting mode that matches the packing station, and export. The same page handles the next batch, and the one after that, with no state carried over and no limit on how many times it can be used.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Comparing Thermal, A4 4-in-1, and A4 2-in-1 Side by Side
+                </h3>
+                <p>
+                  The comparison table above the FAQ section on this page lays out packing speed, per-order paper cost, and barcode scanning quality across all three supported layouts alongside what happens with a raw, uncropped A4 PDF. The pattern worth internalizing from it is simple: any of the three cropped modes dramatically outperforms printing the raw file directly, both on cost and on scan reliability, and the choice between the three cropped modes comes down to hardware and volume rather than any one being objectively "better." A seller with a thermal printer already sitting on the packing bench should default to Thermal 4×6" every time; a seller without one should pick whichever A4 mode better matches their cutting tolerance and monthly sticker-sheet budget.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Order Volume and Processing Time
+                </h3>
+                <p>
+                  Because every parsing and cropping operation happens directly in the browser rather than being queued on a remote server, processing time scales with the device doing the work rather than with server load or an internet connection's speed. A batch of a few dozen orders typically completes in well under a minute on an ordinary laptop or mid-range phone. Larger batches — several hundred pages across multiple merged PDFs — take proportionally longer since more pages need their text content read and more label graphics need to be embedded into the output document, but there's no external queue to wait behind and no upload step eating into that time before processing can even begin.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Keeping Barcodes Scan-Ready Through the Whole Chain
+                </h3>
+                <p>
+                  A barcode that scans perfectly at the packing station but fails at courier pickup or last-mile delivery has usually degraded somewhere between those two points, not at the point of printing. Two practical habits help close that gap. First, store printed thermal rolls away from direct sunlight and heat — direct-thermal paper is heat-sensitive by nature, and prolonged heat exposure (a hot delivery van, a sunny warehouse shelf) can fade the print over hours or days even without anyone touching the label. Second, apply labels to a flat section of packaging wherever possible; a barcode stretched across a rounded edge or a crease in soft packaging distorts the bar widths just enough to occasionally defeat a scanner, even though the print itself was perfectly sharp coming out of the printer.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  How This Fits Into a Broader PDF Toolkit
+                </h3>
+                <p>
+                  Meesho label cropping is one specific, narrow task, but it's rarely the only PDF-related work a growing e-commerce business runs into. The same underlying browser-based, no-upload approach used here extends to a full toolkit covering merging multiple PDFs into one, compressing oversized files before sharing them, converting between PDF and Word or Excel for reporting, and more — all built around the same core principle of processing entirely on-device rather than through a server. For a seller who finds this cropper useful, the rest of that toolkit is built the same way and solves adjacent problems the same privacy-first way.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Frequently Missed Detail: Checking the Preview Before a Large Batch
+                </h3>
+                <p>
+                  It's worth calling out explicitly: the interactive preview and boundary slider exist specifically so a seller can verify the detected cut line against the very first page of a batch before committing to processing the whole thing. For a familiar, unchanged Meesho template, auto-detection is reliably accurate and this check takes a few seconds. But since Meesho does periodically adjust label layouts, a quick glance at the preview before processing a large batch — especially the first batch after Meesho pushes a template update — costs almost nothing and avoids reprocessing a few hundred pages because the boundary landed a few percent off on the first attempt.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Summary
+                </h3>
+                <p>
+                  Meesho's default label export bundles a shipping label and a tax invoice onto one A4 page, which works fine for reading on screen but causes real problems the moment it's sent to a thermal printer unmodified — shrunken barcodes, wasted thermal roll paper, and courier pickup rejections. This tool solves that specific problem end-to-end: automatic boundary detection with a manual override, three layout modes to match whatever printer is on hand, SKU and courier sorting to speed up physical packing, a separate invoice export for GST records, a multi-quantity warning badge to reduce under-shipment errors, and a one-page picklist summarizing the whole batch — all running locally in the browser with nothing uploaded anywhere.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Interpreting the Dispatch Picklist Summary
+                </h3>
+                <p>
+                  The generated picklist PDF condenses an entire batch into a single reference page: total order count, total item count across all quantities, and a per-SKU breakdown showing how many orders and how many total units of each product code are in the run, alongside which courier each SKU's orders are routed through. For a warehouse team, this page effectively becomes a shopping list — walk the shelves once, pull the listed quantity of each SKU, and match that pulled inventory against the sorted, cropped labels rather than discovering mid-pack that a product has run short. For a seller reconciling a day's dispatch afterward, the same page doubles as a quick record of exactly what shipped, without needing to reopen the Supplier Panel or count printed labels by hand.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Environmental and Cost Impact of Cropped vs. Uncropped Printing
+                </h3>
+                <p>
+                  Beyond the barcode-scanning argument, there's a straightforward material-waste case for cropping before printing. A full A4 sheet printed on a thermal roll and then trimmed down afterward wastes the paper and the ink or thermal-print cycle spent on the discarded invoice half — multiplied across hundreds of daily orders, that adds up to a meaningful amount of wasted consumable cost over a month. Cropping before printing means every printed square inch of thermal roll or sticker sheet corresponds to something that's actually used, which is both the cheaper outcome and the lower-waste one, without requiring any change to packaging materials or courier processes.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  When Manual Verification Still Makes Sense
+                </h3>
+                <p>
+                  Automation handles the repetitive, mechanical parts of this workflow well — boundary detection, SKU parsing, courier grouping — but a brief manual glance at the finished output before a very large print run is still worthwhile, the same way it's worth proofreading an important email before sending it. Spot-checking a handful of labels from different points in a large batch (not just the first page) catches the rare edge case where a specific order's PDF page has unusual formatting that the automated parser handles less gracefully than the majority of a batch. This costs a minute at most and is cheap insurance against a printing error discovered only after a hundred labels are already printed.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Browser Compatibility and Requirements
+                </h3>
+                <p>
+                  This tool runs on any reasonably current desktop or mobile browser — Chrome, Edge, Firefox, and Safari all support the underlying web technologies it depends on for reading and generating PDFs client-side. There's no browser extension to install and no plugin to enable; a standard PDF upload input and a JavaScript-capable page are all that's required. Older browsers that don't support modern JavaScript features may not run it correctly, but this covers a vanishingly small share of devices in active use today, including budget Android phones on recent OS versions.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Final Thoughts for Meesho Sellers
+                </h3>
+                <p>
+                  Dispatch is one of the few parts of running a Meesho business that happens every single day without exception, which makes even small inefficiencies in that workflow compound quickly over weeks and months. A label cropper built specifically around Meesho's export format, with sorting and grouping designed around how packing stations actually operate, turns a repetitive daily chore into a five-minute task regardless of order volume — and because it runs entirely in the browser, it costs nothing, requires no signup, and keeps every customer's order details exactly where they belong: on the seller's own device.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  Scaling Up as Order Volume Grows
+                </h3>
+                <p>
+                  A seller shipping five orders a day and a seller shipping five hundred orders a day are using the exact same tool in the exact same way — the only real difference is batch size. As volume grows, the parts of this workflow that matter most shift slightly: SKU sorting becomes more valuable as more products are moving through the warehouse simultaneously, courier grouping matters more as multiple pickup windows need separate manifests, and the picklist summary becomes genuinely essential rather than a nice-to-have once a single glance at a pile of labels can no longer substitute for an actual inventory count. None of that requires switching tools or workflows as a business scales — the same page simply keeps handling larger batches the same way it handled the first, small one, whether that's a solo seller's first week on the platform or an established supplier managing multiple accounts and thousands of monthly orders.
+                </p>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">
+                  A Quick Reference Before Your First Batch
+                </h3>
+                <p>
+                  For a first-time run, the fastest path to a clean result looks like this: download today's Ready-to-Ship batch from the Supplier Panel, drop the file into the upload zone, wait for the automatic preview and boundary detection to finish, glance at the shaded box against the actual label content to confirm it looks right, pick Thermal 4×6" if a thermal printer is available or one of the two A4 modes otherwise, choose SKU sorting if warehouse picking is the priority or courier sorting if manifest handover is, and click through to export. The first run through this sequence takes a couple of minutes including reading the interface; every run after that takes as long as it takes the browser to process the batch, typically well under a minute for a normal day's order volume, leaving more of the day for everything else that running a growing Meesho business actually requires.
+                </p>
+                <p>
+                  Meesho label cropping is a small, narrow task in the scope of running an e-commerce business, but it's one that touches every single order dispatched — which is exactly why getting it right, and getting it fast, matters more than its size would suggest.
+                </p>
             </article>
         </section>
 
@@ -846,8 +1248,8 @@
               <ul class="space-y-2 text-sm">
                   <li><a href="meesho-shipping-label-crop-tool.html" class="text-brand-500 font-semibold">Meesho Label Cropper</a></li>
                   <li><a href="amazon-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Amazon Label Cropper</a></li>
-                  <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
-                  <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF Files</a></li>
+                  <li><a href="flipkart-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Flipkart Label Cropper</a></li>
+                  <li><a href="ecommerce-shipping-label-crop-guide.html" class="hover:text-brand-500 transition">Seller Label Printing Guide</a></li>
               </ul>
           </div>
           <div>
@@ -898,15 +1300,69 @@
         document.getElementById('cropOverlay').style.height = `${val}%`;
       }
 
+      function showFileError(message) {
+        const box = document.getElementById('fileError');
+        document.getElementById('fileErrorText').textContent = message;
+        box.classList.remove('hidden');
+      }
+      function hideFileError() {
+        document.getElementById('fileError').classList.add('hidden');
+      }
+
+      // Strip characters outside the standard WinAnsi range that pdf-lib's
+      // built-in fonts can't encode (e.g. Devanagari), so a non-Latin custom
+      // text stamp can't crash the export. English/Latin text passes through
+      // untouched.
+      function sanitizeForStandardFont(str) {
+        return String(str || '').replace(/[^\x20-\x7E]/g, '');
+      }
+
+      function resetTool() {
+        fileQueue = [];
+        parsedPages = [];
+        generatedUrls = { labels: null, invoices: null, picklist: null };
+        document.getElementById('fileInput').value = '';
+        document.getElementById('resultArea').classList.add('hidden');
+        document.getElementById('editorArea').classList.add('hidden');
+        document.getElementById('uploadArea').classList.remove('hidden');
+        hideFileError();
+        const btn = document.getElementById('processBtn');
+        btn.disabled = false;
+        btn.innerHTML = 'Crop &amp; Prepare Labels <i class="fa-solid fa-arrow-right"></i>';
+      }
+
+      function handleDrop(event) {
+        event.preventDefault();
+        document.getElementById('uploadArea').classList.remove('drag-active');
+        const dropped = event.dataTransfer.files && Array.from(event.dataTransfer.files);
+        if (dropped && dropped.length) handleFileSelect({ target: { files: dropped } });
+      }
+
       async function handleFileSelect(e) {
-        const files = Array.from(e.target.files).filter(f => f.type === 'application/pdf');
-        if (!files.length) return;
+        hideFileError();
+        const allFiles = Array.from(e.target.files);
+        const files = allFiles.filter(f => f.type === 'application/pdf' || /\.pdf$/i.test(f.name));
+        if (!files.length) {
+          showFileError('No PDF files found in your selection. Please choose one or more .pdf files exported from the Meesho Supplier Panel.');
+          return;
+        }
+        if (files.length < allFiles.length) {
+          showFileError(`${allFiles.length - files.length} file(s) were skipped because they weren't PDFs. ${files.length} PDF file(s) loaded.`);
+        }
 
         document.getElementById('uploadArea').classList.add('hidden');
         document.getElementById('loading').classList.remove('hidden');
 
         fileQueue = fileQueue.concat(files);
-        await parseAndPreviewFiles();
+        try {
+          await parseAndPreviewFiles();
+        } catch (err) {
+          console.error('Parsing error:', err);
+          document.getElementById('loading').classList.add('hidden');
+          document.getElementById('uploadArea').classList.remove('hidden');
+          showFileError('Could not read this PDF: ' + err.message + ' Please confirm it is a genuine Meesho order PDF and try again.');
+          fileQueue = [];
+        }
       }
 
       async function parseAndPreviewFiles() {
@@ -963,16 +1419,20 @@
 
               if (/sku\s*:\s*([^,\n]+)/i.test(str)) {
                 const match = str.match(/sku\s*:\s*([^,\n]+)/i);
-                if (match) sku = match.trim();
+                if (match) sku = match[1].trim();
               }
               if (/qty\s*:\s*(\d+)/i.test(str)) {
                 const qMatch = str.match(/qty\s*:\s*(\d+)/i);
-                if (qMatch) qty = parseInt(qMatch, 10);
+                if (qMatch) qty = parseInt(qMatch[1], 10);
               }
             });
 
-            parsedPages.push({ fileIndex: fIdx, pageIndex: p - 1, courier, sku, qty, arrayBuffer });
+            parsedPages.push({ fileIndex: fIdx, pageIndex: p - 1, courier, sku, qty });
           }
+        }
+
+        if (!parsedPages.length) {
+          throw new Error('No pages could be read from the uploaded file(s).');
         }
 
         document.getElementById('fileStatsSummary').textContent = `Loaded ${totalOrders} orders across ${fileQueue.length} file(s)`;
@@ -991,7 +1451,7 @@
           else if (sortMode === 'courier') parsedPages.sort((a, b) => a.courier.localeCompare(b.courier));
 
           const layoutMode = document.querySelector('input[name="layoutMode"]:checked').value;
-          const customTextVal = document.getElementById('customText').value.trim();
+          const customTextVal = sanitizeForStandardFont(document.getElementById('customText').value.trim());
           const stampTime = document.getElementById('addTimestamp').checked;
           const highlightMulti = document.getElementById('multiQtyHighlight').checked;
           const keepInvoices = document.getElementById('keepInvoiceCheck').checked;
@@ -1023,9 +1483,9 @@
           document.getElementById('resultArea').classList.remove('hidden');
         } catch (err) {
           console.error(err);
-          alert('Processing error: ' + err.message);
+          showFileError('Processing failed: ' + err.message + ' Please confirm your file is a genuine Meesho order PDF and try again.');
           btn.disabled = false;
-          btn.innerHTML = 'Crop & Prepare Labels <i class="fa-solid fa-arrow-right"></i>';
+          btn.innerHTML = 'Crop &amp; Prepare Labels <i class="fa-solid fa-arrow-right"></i>';
         }
       }
 
@@ -1162,7 +1622,7 @@
 
         Object.entries(summary).forEach(([sku, info]) => {
           if (y < 50) return;
-          page.drawText(sku.substring(0, 40), { x: 40, y, size: 8.5 });
+          page.drawText(sanitizeForStandardFont(sku).substring(0, 40), { x: 40, y, size: 8.5 });
           page.drawText(info.courier, { x: 300, y, size: 8.5 });
           page.drawText(String(info.count), { x: 420, y, size: 8.5 });
           page.drawText(String(info.qty), { x: 490, y, size: 8.5 });
@@ -1171,14 +1631,7 @@
         return await doc.save();
       }
 
-      // Theme toggle initialization
-      const themeToggle = document.getElementById('themeToggle');
-      const html = document.documentElement;
-      themeToggle.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-      });
-      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+    <script src="common.js" defer></script>
 </body>
 </html>
