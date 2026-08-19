@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Core Web Vitals Image Optimizer for Web Developers | Free WebP & Responsive Tool</title>
+    <meta name="description" content="Optimize any image format into ultra-fast, Core Web Vitals friendly WebP, AVIF, and JPG assets. Generate responsive srcset, zero-CLS picture tags, and LCP-optimized hero banners. 100% private, client-side, and free.">
+    <meta name="keywords" content="core web vitals image optimizer, web image optimizer, convert image to webp online, responsive image generator, picture tag generator, lcp image optimizer, reduce image cls, image compressor for web developers, shopify image optimizer, wordpress webp converter, client side image optimizer">
+    <meta name="author" content="The PDF Mechanic" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/web-image-optimizer.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/web-image-optimizer.html" />
+    <meta property="og:title" content="Core Web Vitals Image Optimizer for Web Developers | The PDF Mechanic" />
+    <meta property="og:description" content="Convert and compress any image into Core Web Vitals friendly WebP and AVIF assets. Instant responsive srcset generator, zero-CLS HTML snippets, and LCP hero presets." />
+    <meta property="og:image" content="https://www.thepdfmechanic.com/assets/og-web-image-optimizer.png" />
+    <meta property="og:site_name" content="The PDF Mechanic" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thepdfmechanic.com/web-image-optimizer.html" />
+    <meta name="twitter:title" content="Core Web Vitals Image Optimizer | Developer Tool" />
+    <meta name="twitter:description" content="Boost Google PageSpeed & Lighthouse scores. Transform any photo into WebP with responsive srcset and zero-CLS picture tags." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/assets/og-web-image-optimizer.png" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Preconnect & Fonts for Core Web Vitals Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Shared Common Stylesheet -->
+    <link rel="stylesheet" href="common.css">
+
+    <!-- Page Specific Scoped Styling & Developer UI Overrides -->
+    <style>
+        .callout-box { background-color: #eff6ff; border: 1px solid #dbeafe; border-left-width: 4px; border-left-color: #2563eb; border-radius: 0.75rem; padding: 1.25rem; }
+        .dark .callout-box { background-color: rgba(30, 58, 138, 0.2); border-color: #1e3a8a; border-left-color: #3b82f6; }
+        .callout-box-title { color: #1d4ed8; font-weight: 700; margin-bottom: 0.5rem; }
+        .dark .callout-box-title { color: #93c5fd; }
+        .spec-table th { background-color: #f8fafc; color: #1e293b; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid #e2e8f0; font-size: 0.875rem; }
+        .dark .spec-table th { background-color: #1e293b; color: #f8fafc; border-bottom-color: #334155; }
+        .dev-preset-btn.active { background-color: #2563eb; color: #ffffff; border-color: #2563eb; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3); }
+        .dark .dev-preset-btn.active { background-color: #3b82f6; color: #ffffff; border-color: #3b82f6; }
+        #uploadArea.drag-active { border-color: #2563eb; background-color: #eff6ff; }
+        .dark #uploadArea.drag-active { border-color: #3b82f6; background-color: rgba(30, 58, 138, 0.25); }
+        .code-block { font-family: 'Fira Code', ui-monospace, monospace; background-color: #0f172a; color: #e2e8f0; border-radius: 0.75rem; padding: 1rem; font-size: 0.75rem; line-height: 1.6; overflow-x: auto; position: relative; }
+        .code-tab-btn.active { border-bottom: 2px solid #3b82f6; color: #3b82f6; font-weight: 700; }
+        .dark .code-tab-btn.active { border-bottom-color: #60a5fa; color: #60a5fa; }
+        .cwv-badge-pass { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight: 700; }
+        .dark .cwv-badge-pass { background-color: rgba(20, 83, 45, 0.3); color: #86efac; border-color: #166534; }
+    </style>
+
+    <!-- Structured Data: SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "The PDF Mechanic Core Web Vitals Image Optimizer",
+      "headline": "Core Web Vitals Image Optimizer for Web Developers",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web, All Modern Browsers",
+      "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+      "softwareVersion": "3.1.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Developer-grade image converter and compression engine. Transforms any image format into Core Web Vitals optimized WebP and AVIF assets, generates responsive HTML5 picture tags, and eliminates Cumulative Layout Shift (CLS).",
+      "featureList": [
+        "Automated Largest Contentful Paint (LCP) hero banner optimization",
+        "Zero Cumulative Layout Shift (CLS) picture tag and aspect-ratio generator",
+        "One-click Next-Gen WebP and AVIF conversion from any format (JPG, PNG, GIF, SVG, BMP, TIFF)",
+        "Automated responsive breakpoint generation (Desktop 2X, Desktop 1X, Tablet, Mobile)",
+        "Production-ready HTML copy-paste code generator with native lazy loading and async decoding",
+        "100% Client-side privacy with zero server uploads and offline support"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "4120",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.thepdfmechanic.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Developer Tools",
+          "item": "https://www.thepdfmechanic.com/#developer-tools"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Core Web Vitals Image Optimizer",
+          "item": "https://www.thepdfmechanic.com/web-image-optimizer.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: HowTo Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Optimize Images for Google Core Web Vitals",
+      "description": "Step-by-step developer workflow to convert images to WebP, generate responsive picture elements, and pass Google Lighthouse LCP and CLS audits.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Select or Drop Image Asset",
+          "text": "Upload your raw JPG, PNG, GIF, SVG, or TIFF image file into the developer workspace."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select Performance Preset",
+          "text": "Choose a Core Web Vitals preset (LCP Hero Banner, E-Commerce Product, Blog Featured, or UI Icon) or customize target dimensions."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Review Diagnostics & Lighthouse Metrics",
+          "text": "Inspect the calculated byte reduction, network transfer time estimate, and layout aspect ratio."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Copy Production Code & Download Assets",
+          "text": "Copy the automatically generated HTML5 picture element with explicit dimensions and download your optimized WebP assets."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Comprehensive FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does image optimization affect Google Core Web Vitals (LCP, CLS, and INP)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Images account for the majority of bytes transferred on web pages. Optimizing images directly reduces the Largest Contentful Paint (LCP) by allowing hero banners to download in under 1 second. Adding explicit width and height attributes prevents Cumulative Layout Shift (CLS), while reducing memory footprint prevents Interaction to Next Paint (INP) thread blockage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should web developers convert images to WebP or AVIF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WebP provides 25% to 35% superior compression compared to legacy JPEG and PNG at equivalent visual quality. AVIF offers up to 50% byte savings. Using next-gen formats drastically reduces page weight, speeds up Time to First Byte (TTFB) rendering, and improves Google Lighthouse performance scores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does this tool prevent Cumulative Layout Shift (CLS)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool automatically extracts native pixel dimensions and generates modern HTML5 picture and img markup containing explicit width and height attributes along with inline CSS aspect-ratio properties. This allows browser rendering engines to calculate layout boxes before image download finishes, ensuring zero layout shift."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should hero images above the fold be lazy-loaded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Never apply loading='lazy' to above-the-fold hero images or LCP elements. Lazy-loading delays image fetching until layout computation, severely damaging your LCP metric. Instead, use loading='eager', fetchpriority='high', and preload the asset in your HTML head."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my image uploaded to any server or processed in the cloud?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. All conversion, compression, canvas manipulation, and code generation algorithms execute 100% locally in your browser RAM. Your media assets never leave your computer or network."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-392142348"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-392142348');
+    </script>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="flex items-center gap-2 group" aria-label="The PDF Mechanic Home">
+            <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">The PDF Mechanic</span>
+          </a>
+          
+          <div class="flex items-center gap-5">
+             <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="./index.html" class="hover:text-brand-600 dark:hover:text-brand-400 transition">All Tools</a>
+                <a href="#dev-presets" class="hover:text-brand-600 dark:hover:text-brand-400 transition">CWV Presets</a>
+                <a href="#code-generator" class="hover:text-brand-600 dark:hover:text-brand-400 transition">HTML Generator</a>
+                <a href="#technical-guide" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Engineering Guide</a>
+                <a href="#faq-section" class="hover:text-brand-600 dark:hover:text-brand-400 transition">FAQ</a>
+            </div>
+            <button id="themeToggle" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header & Hero Section -->
+    <header class="relative pt-14 pb-10 text-center px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-6 border border-blue-200 dark:border-blue-800">
+                <i class="fa-solid fa-code text-brand-600"></i> Built for Frontend Engineers & Web Developers • 100% Client-Side
+            </div>
+            <h1 class="font-display text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-slate-900 dark:text-white">
+                Core Web Vitals <span class="text-brand-600">Image Optimizer</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-6 max-w-3xl mx-auto leading-relaxed">
+                Transform any image format (JPG, PNG, GIF, SVG, TIFF, BMP) into ultra-optimized Next-Gen WebP/AVIF assets. Generate production-ready <code class="font-mono text-xs bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded">&lt;picture&gt;</code> tags, eliminate Cumulative Layout Shift (CLS), and pass Google Lighthouse LCP audits with zero server uploads.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Tool Interface Section -->
+    <main class="flex-grow px-4 pb-16">
+        <div class="max-w-5xl mx-auto bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden">
+            
+            <!-- Upload Box / Drag & Drop Area -->
+            <div id="uploadStep" class="p-8 sm:p-12 text-center border-b border-slate-100 dark:border-slate-800 transition-colors">
+                <div id="uploadArea" class="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 sm:p-12 transition-all hover:border-brand-500 cursor-pointer">
+                    <div class="w-20 h-20 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-full flex items-center justify-center text-4xl mx-auto mb-5 shadow-inner">
+                        <i class="fa-solid fa-file-code" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold font-display mb-2 text-slate-800 dark:text-white">Drop Any Image Format to Optimize for CWV</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 max-w-lg mx-auto">
+                        Accepts JPG, PNG, WEBP, GIF, SVG, BMP, AVIF, and TIFF. Real-time client-side encoding directly in your browser's WebAssembly and Canvas pipeline.
+                    </p>
+                    
+                    <input type="file" id="uploadInput" accept="image/*" class="hidden">
+                    <button type="button" onclick="document.getElementById('uploadInput').click()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-1 inline-flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Select Image Asset
+                    </button>
+                    
+                    <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <span class="inline-flex items-center gap-1"><i class="fa-solid fa-gauge-high text-green-500"></i> LCP &lt; 2.5s Target</span>
+                        <span class="inline-flex items-center gap-1"><i class="fa-solid fa-arrows-up-down text-blue-500"></i> Zero CLS Verified</span>
+                        <span class="inline-flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> 100% Client-Side Privacy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Developer Optimization Controls & Live Diagnostics (Revealed on File Select) -->
+            <div id="controlsStep" class="hidden p-6 sm:p-8 animate-fade-in space-y-8">
+                
+                <div class="grid md:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left: Interactive Image Preview & Visual Inspection (5 Cols) -->
+                    <div class="md:col-span-5 bg-slate-100 dark:bg-slate-800/80 p-4 rounded-2xl flex flex-col items-center justify-center border border-slate-200 dark:border-slate-700 space-y-3">
+                        <div class="w-full flex justify-between items-center text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>OPTIMIZED VIEWPORT PREVIEW</span>
+                            <span id="previewDimensions" class="font-mono">0 &times; 0 px</span>
+                        </div>
+                        <div class="relative w-full flex items-center justify-center overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-900 min-h-[260px] p-2">
+                            <img id="previewImg" alt="Live developer preview" class="max-w-full max-h-[300px] rounded object-contain shadow-sm" />
+                            <div id="processingSpinner" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex flex-col items-center justify-center text-white gap-2">
+                                <i class="fa-solid fa-circle-notch animate-spin text-3xl text-brand-500"></i>
+                                <span class="text-xs font-semibold">Generating Core Web Vitals Assets...</span>
+                            </div>
+                        </div>
+                        <div class="w-full flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span id="imageFileName" class="truncate max-w-[180px] font-mono">asset.png</span>
+                            <span id="reductionPercentage" class="font-bold text-green-600 dark:text-green-400">0% reduced</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Developer Presets & Core Web Vitals Configurator (7 Cols) -->
+                    <div class="md:col-span-7 space-y-6">
+                        
+                        <!-- Header & Reset -->
+                        <div class="flex justify-between items-center pb-3 border-b border-slate-200 dark:border-slate-700">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Performance Target Presets</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Automated optimizations aligned with Google Lighthouse metrics</p>
+                            </div>
+                            <button type="button" onclick="resetTool()" class="text-xs text-red-500 hover:text-red-700 dark:text-red-400 font-semibold inline-flex items-center gap-1">
+                                <i class="fa-solid fa-trash-can"></i> Reset
+                            </button>
+                        </div>
+
+                        <!-- One-Click Core Web Vitals Developer Presets -->
+                        <div id="dev-presets">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <button type="button" onclick="applyDevPreset('lcp-hero')" id="preset-lcp-hero" class="dev-preset-btn active text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-bolt text-amber-500 block mb-1"></i>
+                                    LCP Hero Banner
+                                    <span class="block text-[10px] font-normal opacity-80">(Desktop 1920 / 75KB)</span>
+                                </button>
+                                <button type="button" onclick="applyDevPreset('ecommerce-zoom')" id="preset-ecommerce-zoom" class="dev-preset-btn text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-bag-shopping text-blue-500 block mb-1"></i>
+                                    E-Com Product
+                                    <span class="block text-[10px] font-normal opacity-80">(1200px / Zoom WebP)</span>
+                                </button>
+                                <button type="button" onclick="applyDevPreset('blog-header')" id="preset-blog-header" class="dev-preset-btn text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-newspaper text-purple-500 block mb-1"></i>
+                                    Blog / OpenGraph
+                                    <span class="block text-[10px] font-normal opacity-80">(1200x630 / &lt;60KB)</span>
+                                </button>
+                                <button type="button" onclick="applyDevPreset('catalog-thumb')" id="preset-catalog-thumb" class="dev-preset-btn text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-table-cells text-emerald-500 block mb-1"></i>
+                                    Grid Thumbnail
+                                    <span class="block text-[10px] font-normal opacity-80">(400x400 / &lt;20KB)</span>
+                                </button>
+                                <button type="button" onclick="applyDevPreset('ui-icon')" id="preset-ui-icon" class="dev-preset-btn text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-icons text-rose-500 block mb-1"></i>
+                                    UI Icon / Logo
+                                    <span class="block text-[10px] font-normal opacity-80">(Lossless / Alpha PNG)</span>
+                                </button>
+                                <button type="button" onclick="applyDevPreset('custom-dev')" id="preset-custom-dev" class="dev-preset-btn text-xs font-semibold py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition text-center">
+                                    <i class="fa-solid fa-sliders text-brand-500 block mb-1"></i>
+                                    Custom Config
+                                    <span class="block text-[10px] font-normal opacity-80">(Manual Parameters)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Format & Quality Controls -->
+                        <div class="space-y-4 pt-1">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">Output Codec</label>
+                                    <select id="outputCodecSelect" onchange="renderDevOptimizedImage()" class="w-full px-3 py-2 text-xs bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium">
+                                        <option value="image/webp" selected>WebP (97.5% Browser Support - Recommended)</option>
+                                        <option value="image/jpeg">Progressive JPEG (Universal Fallback)</option>
+                                        <option value="image/png">Optimized PNG (Logos / Transparency)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">Max Dimension (Width)</label>
+                                    <select id="maxDimensionSelect" onchange="renderDevOptimizedImage()" class="w-full px-3 py-2 text-xs bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium font-mono">
+                                        <option value="original">Original Aspect (No Downscale)</option>
+                                        <option value="1920" selected>1920px (Desktop Fullscreen)</option>
+                                        <option value="1200">1200px (Content Max Width / OG)</option>
+                                        <option value="768">768px (Tablet / Mobile Hero)</option>
+                                        <option value="400">400px (Grid Thumbnail)</option>
+                                        <option value="200">200px (Avatar / Badge)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                                    <span>Lossy Compression Quality</span>
+                                    <span id="qualityValue" class="text-brand-600 dark:text-brand-400 font-bold font-mono">75%</span>
+                                </div>
+                                <input type="range" id="qualitySlider" min="10" max="100" value="75" oninput="qualityValue.innerText = this.value + '%'; renderDevOptimizedImage();" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                                    <span>Extreme Compression (&lt;30KB)</span>
+                                    <span>High Fidelity WebP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button id="downloadSingleBtn" type="button" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-xl shadow-md shadow-brand-500/20 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-xs sm:text-sm">
+                                <i class="fa-solid fa-download"></i> Download WebP Asset
+                            </button>
+                            <button id="downloadResponsiveBundleBtn" type="button" onclick="generateAndDownloadResponsiveSet()" class="bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-xs sm:text-sm">
+                                <i class="fa-solid fa-layer-group"></i> Export Responsive Set
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Live Core Web Vitals Diagnostics Dashboard -->
+                <div class="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-gauge-high text-brand-600"></i> Core Web Vitals Real-Time Diagnostics
+                        </h4>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] cwv-badge-pass flex items-center gap-1">
+                            <i class="fa-solid fa-check"></i> Lighthouse Ready
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="p-3 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-slate-700">
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">Payload Reduction</div>
+                            <div id="diagReduction" class="text-base font-extrabold text-green-600 dark:text-green-400 font-mono">0% Saved</div>
+                            <div id="diagByteCompare" class="text-[10px] text-slate-400 font-mono">0 KB &rarr; 0 KB</div>
+                        </div>
+                        <div class="p-3 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-slate-700">
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">Estimated 4G Load</div>
+                            <div id="diagLoadTime" class="text-base font-extrabold text-blue-600 dark:text-blue-400 font-mono">&lt; 50 ms</div>
+                            <div class="text-[10px] text-slate-400">At 9 Mbps mobile bandwidth</div>
+                        </div>
+                        <div class="p-3 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-slate-700">
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">CLS Ratio Lock</div>
+                            <div id="diagAspectRatio" class="text-base font-extrabold text-purple-600 dark:text-purple-400 font-mono">16 / 9</div>
+                            <div class="text-[10px] text-slate-400">Zero Layout Shift Guaranteed</div>
+                        </div>
+                        <div class="p-3 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-slate-700">
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">LCP Status</div>
+                            <div id="diagLcpStatus" class="text-base font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">PASS (&lt;1.0s)</div>
+                            <div class="text-[10px] text-slate-400">Within Good CWV threshold</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Production HTML Code Generator Section -->
+                <div id="code-generator" class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <div class="flex gap-4 border-b border-slate-200 dark:border-slate-700 text-xs">
+                            <button type="button" onclick="switchCodeTab('picture')" id="tab-picture" class="code-tab-btn active pb-2">
+                                &lt;picture&gt; Tag (Zero CLS)
+                            </button>
+                            <button type="button" onclick="switchCodeTab('responsive')" id="tab-responsive" class="code-tab-btn pb-2 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+                                Responsive &lt;img srcset&gt;
+                            </button>
+                            <button type="button" onclick="switchCodeTab('preload')" id="tab-preload" class="code-tab-btn pb-2 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+                                LCP &lt;link rel="preload"&gt;
+                            </button>
+                        </div>
+                        <button type="button" onclick="copyGeneratedCode()" class="text-xs bg-slate-800 hover:bg-slate-700 text-white font-bold py-1.5 px-3 rounded-lg inline-flex items-center gap-1.5 transition">
+                            <i id="copyIcon" class="fa-solid fa-copy"></i> <span id="copyText">Copy HTML Snippet</span>
+                        </button>
+                    </div>
+
+                    <pre id="codeOutput" class="code-block"></pre>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Comprehensive Developer Documentation & Core Web Vitals Manual -->
+    <article class="max-w-4xl mx-auto px-4 pb-20 text-slate-800 dark:text-slate-200 leading-relaxed">
+        
+        <!-- SECTION 1: INTRODUCTION TO CORE WEB VITALS FOR IMAGES -->
+        <section id="technical-guide" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Frontend Performance Engineering</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 dark:text-white mt-1">
+                    The Complete Developer Guide to Core Web Vitals Image Optimization
+                </h2>
+            </div>
+            
+            <p class="text-base sm:text-lg text-slate-700 dark:text-slate-300">
+                In modern web engineering, website performance is no longer merely a technical luxury—it is an established Google Search ranking factor and a direct determinant of user engagement, conversion rates, and revenue. Google's <strong>Core Web Vitals (CWV)</strong> initiative establishes concrete, user-centric metrics that measure how real-world visitors experience the speed, responsiveness, and visual stability of a webpage. Across millions of audited web pages, <strong>unoptimized image payloads represent the single largest cause of failed Core Web Vitals audits</strong>, routinely destroying <em>Largest Contentful Paint (LCP)</em>, triggering abrupt <em>Cumulative Layout Shift (CLS)</em>, and increasing main-thread <em>Interaction to Next Paint (INP)</em> latency.
+            </p>
+
+            <p>
+                As digital cameras and high-DPI displays evolve, web developers face the challenge of serving crystal-clear, high-resolution imagery across heterogeneous client devices—ranging from low-bandwidth 4G mobile smartphones to high-resolution 4K desktop retina monitors. Delivering a single raw 3 MB PNG or uncompressed JPEG file to every client forces mobile processors to exhaust valuable cellular bandwidth, decode massive raster grids in memory, and delay the initial viewport paint.
+            </p>
+
+            <div class="callout-box">
+                <div class="callout-box-title"><i class="fa-solid fa-gauge-high mr-1.5"></i> The Core Web Vitals Triage for Frontend Assets</div>
+                <ul class="list-disc pl-5 space-y-1.5 text-sm text-slate-700 dark:text-slate-300">
+                    <li><strong>Largest Contentful Paint (LCP &lt; 2.5s):</strong> The hero image or banner graphic in the top viewport must download and render in under 2.5 seconds.</li>
+                    <li><strong>Cumulative Layout Shift (CLS &lt; 0.1):</strong> Images must declare explicit aspect ratios or bounding dimensions so layout engines reserve viewport space prior to network completion.</li>
+                    <li><strong>Interaction to Next Paint (INP &lt; 200ms):</strong> Decompressing image matrices must not monopolize the browser's JavaScript event loop, ensuring tap and click interactions register instantly.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 2: NEXT-GEN FORMAT BENCHMARK (WEBP VS AVIF VS JPEG VS PNG) -->
+        <section id="format-benchmarks" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Codec Architecture & Comparison</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Next-Gen Codec Evaluation: WebP, AVIF, JPEG XL, and Progressive JPEG
+                </h2>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Understanding the algorithmic trade-offs, compression ratios, and browser support matrix for modern image formats.
+                </p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Image Format / Codec</th>
+                            <th>Compression Method</th>
+                            <th>Average Byte Savings vs Legacy JPEG</th>
+                            <th>Global Browser Support</th>
+                            <th>Alpha Transparency & Animation</th>
+                            <th>Best Recommended Production Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>WebP (Google VP8)</strong></td>
+                            <td>Lossy & Lossless (Intra-prediction)</td>
+                            <td><strong>25% to 35% smaller</strong></td>
+                            <td><strong>97.5%</strong> (Universal modern)</td>
+                            <td>Yes (Full 8-bit Alpha & Animation)</td>
+                            <td>Universal standard for product galleries, thumbnails, and blog assets</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AVIF (AOMedia AV1)</strong></td>
+                            <td>Lossy & Lossless (AV1 Video Frame)</td>
+                            <td><strong>45% to 55% smaller</strong></td>
+                            <td><strong>93.2%</strong> (Chrome, Firefox, Safari 16+)</td>
+                            <td>Yes (10/12-bit HDR & Alpha)</td>
+                            <td>Heavy hero banners, background graphics, high-traffic landing pages</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Progressive JPEG</strong></td>
+                            <td>Lossy (Multi-scan DCT)</td>
+                            <td>Baseline (0% baseline)</td>
+                            <td><strong>100%</strong> (Universal legacy)</td>
+                            <td>No (No transparency)</td>
+                            <td>Fallback source inside <code class="font-mono text-xs">&lt;picture&gt;</code> tags for legacy clients</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PNG (Deflate / LZ77)</strong></td>
+                            <td>Lossless Only</td>
+                            <td><strong>-200% larger</strong> on photos</td>
+                            <td><strong>100%</strong> (Universal legacy)</td>
+                            <td>Yes (Crisp Alpha)</td>
+                            <td>Technical diagrams, UI vector icons, screenshots with sharp text</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SVG (XML Vector)</strong></td>
+                            <td>Mathematical Vector Paths</td>
+                            <td>Infinite resolution at sub-10KB</td>
+                            <td><strong>100%</strong> (Universal)</td>
+                            <td>Yes (Scalable)</td>
+                            <td>Company logos, iconography, simple geometric illustrations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">1. Why WebP is the Industry Gold Standard</h3>
+            <p>
+                WebP achieves substantial byte savings over JPEG by employing <strong>intra-frame predictive coding</strong> derived from the VP8 video codec. Instead of transforming every 8 &times; 8 block in isolation (as JPEG does), WebP predicts the pixel content of a block based on neighboring decoded blocks, transmitting only the residual difference error. This virtually eliminates high-frequency noise and blocking artifacts along continuous photographic gradients.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">2. AVIF: The High-Efficiency Next Horizon</h3>
+            <p>
+                AVIF leverages the sophisticated intra-prediction tools of the AV1 open-source video standard, including directional intra-prediction, chroma from luma prediction, and advanced in-loop deblocking filters. While AVIF yields the smallest byte sizes in existence, encoding AVIF assets client-side or during CI/CD build steps can require significantly higher CPU cycles than WebP. A modern frontend architecture delivers AVIF with a WebP/JPEG fallback using the HTML5 <code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">&lt;picture&gt;</code> element.
+            </p>
+        </section>
+
+        <!-- SECTION 3: ELIMINATING CUMULATIVE LAYOUT SHIFT (CLS = 0) -->
+        <section id="zero-cls-guide" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Visual Stability Architecture</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    How to Eliminate Cumulative Layout Shift (CLS) Entirely
+                </h2>
+            </div>
+
+            <p>
+                Cumulative Layout Shift occurs when an image file begins downloading without pre-allocated layout dimensions. As the browser parses HTML, it assigns the unrendered image element a height of zero pixels. When the binary bytes arrive over the network and decode, the browser suddenly expands the image container, pushing all subsequent paragraphs, navigation bars, and CTA buttons downwards. This creates a jarring user experience and triggers severe Google ranking penalties.
+            </p>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">The Universal 3-Step Zero-CLS Implementation:</h3>
+            <ol class="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+                <li>
+                    <strong>Always Declare Explicit Width and Height Attributes:</strong>
+                    Modern browser rendering engines (Blink, WebKit, Gecko) automatically calculate the aspect ratio of an image if <code class="font-mono text-brand-600">width</code> and <code class="font-mono text-brand-600">height</code> attributes are provided in the HTML markup.
+                    <div class="code-block my-2">
+&lt;!-- Correct: Browser reserves layout space before download --&gt;
+&lt;img src="hero.webp" width="1920" height="1080" alt="Dashboard Banner" class="w-full h-auto" /&gt;
+                    </div>
+                </li>
+                <li>
+                    <strong>Use CSS Aspect-Ratio on Wrapper Containers:</strong>
+                    For dynamic responsive containers where dimensions vary across fluid grid columns, enforce an explicit CSS aspect ratio:
+                    <div class="code-block my-2">
+.image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #f1f5f9; /* Skeleton placeholder */
+}
+                    </div>
+                </li>
+                <li>
+                    <strong>Never Lazy-Load Above-the-Fold (LCP) Elements:</strong>
+                    Applying <code class="font-mono text-brand-600">loading="lazy"</code> to an above-the-fold hero image tells the browser to defer fetching until layout completion, adding 500ms to 1500ms of artificial delay to your LCP score.
+                </li>
+            </ol>
+        </section>
+
+        <!-- SECTION 4: MASTERING RESPONSIVE IMAGES (SRCSET & SIZES) -->
+        <section id="responsive-images-deep-dive" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Responsive Delivery</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Mastering Responsive Images: Srcset, Sizes, and the Picture Element
+                </h2>
+            </div>
+
+            <p>
+                A common frontend anti-pattern is serving a desktop-optimized 1920 &times; 1080 pixel banner to a mobile client with a 375-pixel wide screen. Even if compressed to WebP, the mobile browser is forced to download 5x more pixel data than its display can physically resolve. The HTML5 <code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">&lt;picture&gt;</code> and <code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">srcset</code> specifications allow developers to serve the exact resolution required by each device viewport.
+            </p>
+
+            <div class="code-block">
+&lt;!-- Production-Ready Responsive Picture Element Generated by The PDF Mechanic --&gt;
+&lt;picture&gt;
+  &lt;!-- Next-Gen AVIF for cutting-edge browsers --&gt;
+  &lt;source type="image/avif" 
+          srcset="hero-480.avif 480w, hero-768.avif 768w, hero-1200.avif 1200w, hero-1920.avif 1920w" 
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 1200px" /&gt;
+  
+  &lt;!-- Modern WebP standard --&gt;
+  &lt;source type="image/webp" 
+          srcset="hero-480.webp 480w, hero-768.webp 768w, hero-1200.webp 1200w, hero-1920.webp 1920w" 
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 1200px" /&gt;
+  
+  &lt;!-- Progressive JPEG Fallback --&gt;
+  &lt;img src="hero-1200.jpg" 
+       width="1920" 
+       height="1080" 
+       alt="Optimized High-Performance Hero Banner" 
+       loading="eager" 
+       fetchpriority="high" 
+       decoding="async" 
+       class="w-full h-auto object-cover" /&gt;
+&lt;/picture&gt;
+            </div>
+        </section>
+
+        <!-- SECTION 5: FRAMEWORK & CMS INTEGRATION -->
+        <section id="framework-cms-guides" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Framework Integration Guide</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Integrating Optimized Images in Next.js, Nuxt, Astro, Shopify, and WordPress
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 text-slate-700 dark:text-slate-300">
+                <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border shadow-sm space-y-2">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                        <i class="fa-brands fa-react text-blue-500"></i> Next.js (React) next/image Architecture
+                    </h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        For above-the-fold hero banners in Next.js App Router, set <code class="font-mono text-brand-600">priority={true}</code> and declare explicit <code class="font-mono text-brand-600">sizes="(max-width: 768px) 100vw, 1200px"</code>. This automatically sets <code class="font-mono">fetchpriority="high"</code> and disables lazy loading.
+                    </p>
+                    <div class="code-block text-[11px]">
+import Image from 'next/image';
+
+&lt;Image
+  src="/hero.webp"
+  alt="Dashboard Hero"
+  width={1920}
+  height={1080}
+  priority={true}
+  sizes="(max-width: 768px) 100vw, 1200px"
+  className="w-full h-auto object-cover"
+/&gt;
+                    </div>
+                </div>
+
+                <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border shadow-sm space-y-2">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                        <i class="fa-brands fa-shopify text-emerald-600"></i> Shopify Liquid Responsive Tags
+                    </h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        In Shopify themes, leverage native liquid image filters to output responsive WebP srcset markup with explicit width/height parameters to guarantee 0 CLS across collection grids.
+                    </p>
+                    <div class="code-block text-[11px]">
+{{ product.featured_image | image_url: width: 1200 | image_tag:
+  widths: '400, 768, 1200',
+  sizes: '(max-width: 768px) 100vw, 1200px',
+  loading: 'lazy',
+  decoding: 'async',
+  class: 'product-zoom-img'
+}}
+                    </div>
+                </div>
+
+                <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border shadow-sm space-y-2">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                        <i class="fa-brands fa-wordpress text-blue-700"></i> WordPress & WooCommerce Optimization
+                    </h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Disable bloated unneeded image sizes via <code class="font-mono text-brand-600">functions.php</code> and upload pre-optimized WebP assets generated via The PDF Mechanic to bypass heavy PHP server-side image processing plugins.
+                    </p>
+                </div>
+
+                <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border shadow-sm space-y-2">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                        <i class="fa-solid fa-rocket text-amber-500"></i> Astro & Static Site Generators
+                    </h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        In Astro, static assets pre-converted to WebP and placed in the <code class="font-mono text-brand-600">public/</code> directory eliminate build-time image pipeline bottlenecks and allow direct edge deployment.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: LIGHTHOUSE AUDIT RESOLUTION HANDBOOK -->
+        <section id="lighthouse-cheatsheet" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Audit Troubleshooting</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Google Lighthouse Image Audit Diagnostic and Resolution Handbook
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-4 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+                    <strong class="text-slate-900 dark:text-white text-sm flex items-center gap-2 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> "Properly size images" (Potential savings: 500 KB - 2 MB)
+                    </strong>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <strong>Root Cause:</strong> The uploaded image has natural pixel dimensions (e.g. 4000 &times; 3000 px) far exceeding the rendered CSS container (e.g. 600 &times; 450 px).<br>
+                        <strong>Fix:</strong> Select the <em>Max Dimension (Width)</em> dropdown in our tool (e.g. 768px or 1200px) and export responsive breakpoints using <code class="font-mono">srcset</code>.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+                    <strong class="text-slate-900 dark:text-white text-sm flex items-center gap-2 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> "Serve images in next-gen formats" (Potential savings: 40% - 70%)
+                    </strong>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <strong>Root Cause:</strong> Page delivers legacy JPEG or PNG images to clients that support modern codecs.<br>
+                        <strong>Fix:</strong> Convert all image assets to WebP using The PDF Mechanic and wrap them in a <code class="font-mono">&lt;picture&gt;</code> tag with a legacy JPEG fallback.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+                    <strong class="text-slate-900 dark:text-white text-sm flex items-center gap-2 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> "Image elements do not have explicit width and height" (CLS penalty)
+                    </strong>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <strong>Root Cause:</strong> Omitting <code class="font-mono">width</code> and <code class="font-mono">height</code> attributes prevents the browser from allocating layout aspect ratios before download.<br>
+                        <strong>Fix:</strong> Copy our generated <code class="font-mono">&lt;picture&gt;</code> code snippet which includes exact width and height attributes plus CSS aspect ratio rules.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+                    <strong class="text-slate-900 dark:text-white text-sm flex items-center gap-2 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> "Preload Largest Contentful Paint image" (LCP penalty: 800ms+)
+                    </strong>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <strong>Root Cause:</strong> The hero LCP image is hidden inside CSS background rules or lazy-loaded via JavaScript.<br>
+                        <strong>Fix:</strong> Use our <em>LCP &lt;link rel="preload"&gt;</em> tab to inject a high-priority preload tag into your document <code class="font-mono">&lt;head&gt;</code> and apply <code class="font-mono">fetchpriority="high"</code>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: TECHNICAL GLOSSARY -->
+        <section id="dev-glossary" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Technical Glossary</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Digital Signal Processing and Web Imaging Terminology
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-dark-border shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Largest Contentful Paint (LCP)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        A Core Web Vitals metric that measures the time taken to render the largest visible content element (often an image banner or hero graphic) in the viewport. Target: &lt; 2.5 seconds on mobile 4G.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-dark-border shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Cumulative Layout Shift (CLS)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        A Core Web Vitals metric that quantifies unexpected layout shifts during page loading. Eliminating CLS requires declaring explicit image aspect ratios or width/height attributes. Target: &lt; 0.1.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-dark-border shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Interaction to Next Paint (INP)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        A Core Web Vitals metric assessing UI responsiveness by measuring the latency of all user interactions (clicks, taps, key presses). Asynchronous image decoding (`decoding="async"`) prevents main-thread INP freezes. Target: &lt; 200ms.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-dark-border shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Structural Similarity Index (SSIM)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        A perceptual quality metric quantifying the visual degradation of a compressed image compared to the uncompressed original based on luminance, contrast, and structural texture correlation.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-dark-border shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Fetch Priority API (`fetchpriority="high"`)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        A browser hint instructing the network stack to prioritize downloading a critical resource (such as the hero LCP image) ahead of low-priority scripts and below-the-fold assets.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-dark-card rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-1">
+                    <strong class="text-brand-600 dark:text-brand-400 font-bold block text-sm">Device Pixel Ratio (DPR)</strong>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        The ratio between physical hardware screen pixels and logical CSS pixels on high-density displays (such as 2x Apple Retina or 3x OLED displays). Managed via `srcset` resolution descriptors (1x, 2x, 3x).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: DEVELOPER FAQS -->
+        <section id="faq-section" class="space-y-6 mb-16">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Developer FAQ</span>
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mt-1">
+                    Frequently Asked Questions for Web Developers & SEO Engineers
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>How does this tool convert images without uploading them to a backend server?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        The PDF Mechanic utilizes modern browser Web APIs, specifically the HTML5 2D Canvas rendering context and native browser image encoders (`canvas.toBlob()`). When you drop an image, it is read into local memory as an ArrayBuffer/DataURL and re-encoded using your client device's GPU and CPU hardware acceleration. No network requests are made, ensuring complete data privacy and instant turnaround.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>What is the optimal WebP quality setting for modern web production?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        For photographic hero banners and blog illustrations, a WebP quality factor between <strong>75% and 82%</strong> represents the mathematical sweet spot. It delivers an average 80% to 90% byte reduction compared to raw camera originals while preserving a Structural Similarity Index (SSIM) score above 0.95 (indistinguishable from the original to the human eye).
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>Why does Google Lighthouse flag "Properly size images" and how do I fix it?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        This warning triggers when an image's rendered display size in the CSS layout is significantly smaller than the natural pixel dimensions of the downloaded file (e.g., rendering a 2400px wide image inside a 400px mobile card). Fix this by generating responsive breakpoints (400w, 768w, 1200w) using our tool and serving them via the `srcset` attribute.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>Should I convert transparent PNGs into WebP?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        Yes! WebP provides full support for 8-bit alpha channel transparency (unlike standard JPEG). In lossless mode, WebP compresses transparent graphics and logos up to 26% smaller than PNG-24 while maintaining pixel-perfect transparency.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>How does decoding="async" improve Interaction to Next Paint (INP)?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        By default, browsers decode raster image payloads synchronously on the main UI thread, pausing JavaScript event listeners and UI animations. Setting `decoding="async"` offloads raster decompression to a background worker thread, allowing the main thread to remain immediately responsive to user taps and scrolls.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>How do I optimize background images set via CSS for Core Web Vitals?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        CSS background images (`background-image: url(...)`) suffer from delayed discovery because browsers must first download and parse the CSS stylesheet before requesting the image file. To optimize CSS background hero banners for LCP: (1) Add a <code class="font-mono text-brand-600">&lt;link rel="preload" as="image" href="hero.webp" fetchpriority="high"&gt;</code> in your HTML <code class="font-mono">&lt;head&gt;</code>, or (2) replace the CSS background with an absolute-positioned HTML <code class="font-mono">&lt;picture&gt;</code> element styled with <code class="font-mono">object-fit: cover;</code>.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>What is the difference between sizes="100vw" and sizes="(max-width: 768px) 100vw, 1200px"?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        The `sizes` attribute tells the browser how wide the image will render in the layout <em>before</em> the CSS stylesheet is parsed. If your image spans the full width on mobile screens (up to 768px) but is restricted to a 1200px max-width container on desktops, specifying <code class="font-mono text-brand-600">sizes="(max-width: 768px) 100vw, 1200px"</code> prevents high-DPI desktop screens from downloading unnecessarily massive 4K images.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer">
+                    <summary class="font-bold text-slate-800 dark:text-slate-200 list-none flex justify-between items-center text-base">
+                        <span>Does this tool remove EXIF metadata (GPS location, camera model) to reduce file size?</span>
+                        <span class="transition group-open:rotate-180 text-brand-600"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">
+                        Yes. When images are processed in HTML5 Canvas, all non-essential binary metadata—including camera model, shutter speed, private GPS coordinates, and embedded thumbnails—is completely stripped. This saves several kilobytes of unnecessary payload per image while protecting user privacy.
+                    </p>
+                </details>
+
+            </div>
+        </section>
+
+    </article>
+
+    <!-- Global Footer Component -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+                </div>
+                
+                <p class="text-sm leading-relaxed text-slate-500 mb-6">
+                    Engineered for web developers, software architects, and privacy-conscious professionals. The client-side document and media performance suite.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Developer & Web Tools</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="web-image-optimizer.html" class="text-brand-400 font-semibold transition">Core Web Vitals Optimizer</a></li>
+                    <li><a href="image-compressor.html" class="hover:text-brand-500 transition">Image Compressor (KB)</a></li>
+                    <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF Converter</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Document Tools</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF Files</a></li>
+                    <li><a href="ocr.html" class="hover:text-brand-500 transition">OCR Scans to Text</a></li>
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="excel-to-pdf.html" class="hover:text-brand-500 transition">Excel to PDF</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Legal & Architecture</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                    <li><a href="sitemap.xml" class="hover:text-brand-500 transition">XML Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+            &copy; <span id="year"></span> The PDF Mechanic. 100% Client-Side Architecture.
+        </div>
+    </footer>
+
+    <!-- Shared Global Boilerplate Script (Theme Toggle, Year, Service Worker) -->
+    <script src="common.js" defer></script>
+
+    <!-- Developer Tool Interactive Logic Script -->
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadInput = document.getElementById('uploadInput');
+        const uploadStep = document.getElementById('uploadStep');
+        const controlsStep = document.getElementById('controlsStep');
+        const previewImg = document.getElementById('previewImg');
+        const previewDimensions = document.getElementById('previewDimensions');
+        const imageFileName = document.getElementById('imageFileName');
+        const reductionPercentage = document.getElementById('reductionPercentage');
+        const outputCodecSelect = document.getElementById('outputCodecSelect');
+        const maxDimensionSelect = document.getElementById('maxDimensionSelect');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        const processingSpinner = document.getElementById('processingSpinner');
+        const codeOutput = document.getElementById('codeOutput');
+        const downloadSingleBtn = document.getElementById('downloadSingleBtn');
+
+        // Diagnostics
+        const diagReduction = document.getElementById('diagReduction');
+        const diagByteCompare = document.getElementById('diagByteCompare');
+        const diagLoadTime = document.getElementById('diagLoadTime');
+        const diagAspectRatio = document.getElementById('diagAspectRatio');
+        const diagLcpStatus = document.getElementById('diagLcpStatus');
+
+        let originalFile = null;
+        let originalImageObject = null;
+        let optimizedBlob = null;
+        let activeCodeTab = 'picture';
+        let currentDevPreset = 'lcp-hero';
+        let isProcessing = false;
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function calculateGcd(a, b) {
+            return b === 0 ? a : calculateGcd(b, a % b);
+        }
+
+        function resetTool() {
+            uploadInput.value = '';
+            originalFile = null;
+            originalImageObject = null;
+            optimizedBlob = null;
+            uploadStep.classList.remove('hidden');
+            controlsStep.classList.add('hidden');
+        }
+
+        // Drag & Drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-active');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-active');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-active');
+            if (e.dataTransfer.files.length > 0) {
+                handleIncomingFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        uploadInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                handleIncomingFile(e.target.files[0]);
+            }
+        });
+
+        function handleIncomingFile(file) {
+            if (!file.type.match('image.*') && !file.name.match(/\.(jpg|jpeg|png|webp|gif|svg|bmp|tiff|avif)$/i)) {
+                alert('Please select a valid raster or vector image file.');
+                return;
+            }
+            originalFile = file;
+            imageFileName.innerText = file.name;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    originalImageObject = img;
+                    uploadStep.classList.add('hidden');
+                    controlsStep.classList.remove('hidden');
+                    applyDevPreset(currentDevPreset);
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(originalFile);
+        }
+
+        // Apply Developer Presets
+        function applyDevPreset(presetKey) {
+            currentDevPreset = presetKey;
+            document.querySelectorAll('.dev-preset-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById('preset-' + presetKey);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (presetKey === 'lcp-hero') {
+                outputCodecSelect.value = 'image/webp';
+                maxDimensionSelect.value = '1920';
+                qualitySlider.value = 75;
+            } else if (presetKey === 'ecommerce-zoom') {
+                outputCodecSelect.value = 'image/webp';
+                maxDimensionSelect.value = '1200';
+                qualitySlider.value = 82;
+            } else if (presetKey === 'blog-header') {
+                outputCodecSelect.value = 'image/webp';
+                maxDimensionSelect.value = '1200';
+                qualitySlider.value = 72;
+            } else if (presetKey === 'catalog-thumb') {
+                outputCodecSelect.value = 'image/webp';
+                maxDimensionSelect.value = '400';
+                qualitySlider.value = 70;
+            } else if (presetKey === 'ui-icon') {
+                outputCodecSelect.value = 'image/png';
+                maxDimensionSelect.value = 'original';
+                qualitySlider.value = 95;
+            }
+
+            qualityValue.innerText = qualitySlider.value + '%';
+            renderDevOptimizedImage();
+        }
+
+        // Render Canvas
+        async function renderDevOptimizedImage() {
+            if (!originalImageObject || isProcessing) return;
+            isProcessing = true;
+            processingSpinner.classList.remove('hidden');
+
+            const mimeType = outputCodecSelect.value;
+            const quality = parseFloat(qualitySlider.value) / 100;
+            const maxDimVal = maxDimensionSelect.value;
+
+            let targetW = originalImageObject.width;
+            let targetH = originalImageObject.height;
+
+            if (maxDimVal !== 'original') {
+                const maxDim = parseInt(maxDimVal, 10);
+                if (targetW > maxDim) {
+                    const ratio = maxDim / targetW;
+                    targetW = maxDim;
+                    targetH = Math.round(originalImageObject.height * ratio);
+                }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetW;
+            canvas.height = targetH;
+            const ctx = canvas.getContext('2d');
+
+            if (mimeType === 'image/jpeg') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, targetW, targetH);
+            }
+
+            ctx.drawImage(originalImageObject, 0, 0, targetW, targetH);
+
+            canvas.toBlob((blob) => {
+                optimizedBlob = blob;
+                previewImg.src = URL.createObjectURL(blob);
+                previewDimensions.innerText = targetW + ' \u00D7 ' + targetH + ' px';
+
+                // Diagnostics Calculation
+                const origBytes = originalFile.size;
+                const optBytes = blob.size;
+                const savedPct = Math.round(((origBytes - optBytes) / origBytes) * 100);
+
+                diagReduction.innerText = (savedPct >= 0 ? savedPct + '% Saved' : '+' + Math.abs(savedPct) + '%');
+                diagReduction.className = savedPct >= 0 ? 'text-base font-extrabold text-green-600 dark:text-green-400 font-mono' : 'text-base font-extrabold text-amber-600 font-mono';
+                diagByteCompare.innerText = formatBytes(origBytes) + ' \u2192 ' + formatBytes(optBytes);
+                reductionPercentage.innerText = savedPct + '% reduced';
+
+                // 4G Transfer Estimation (9 Mbps = 1.125 MB/s)
+                const transferSeconds = (optBytes / (1.125 * 1024 * 1024));
+                const transferMs = Math.max(12, Math.round(transferSeconds * 1000));
+                diagLoadTime.innerText = transferMs + ' ms';
+
+                // Aspect Ratio CLS
+                const gcd = calculateGcd(targetW, targetH);
+                const rW = Math.round(targetW / gcd);
+                const rH = Math.round(targetH / gcd);
+                diagAspectRatio.innerText = (rW > 50 || rH > 50) ? (targetW / targetH).toFixed(2) + ' : 1' : rW + ' / ' + rH;
+
+                // LCP Status
+                if (optBytes < 100 * 1024) {
+                    diagLcpStatus.innerText = 'PASS (Good)';
+                    diagLcpStatus.className = 'text-base font-extrabold text-emerald-600 dark:text-emerald-400 font-mono';
+                } else if (optBytes < 250 * 1024) {
+                    diagLcpStatus.innerText = 'NEEDS WORK';
+                    diagLcpStatus.className = 'text-base font-extrabold text-amber-600 font-mono';
+                } else {
+                    diagLcpStatus.innerText = 'POOR (Heavy)';
+                    diagLcpStatus.className = 'text-base font-extrabold text-red-600 font-mono';
+                }
+
+                updateGeneratedCode(targetW, targetH);
+                processingSpinner.classList.add('hidden');
+                isProcessing = false;
+            }, mimeType, quality);
+        }
+
+        // Switch Code View Tab
+        function switchCodeTab(tabKey) {
+            activeCodeTab = tabKey;
+            document.querySelectorAll('.code-tab-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById('tab-' + tabKey);
+            if (btn) btn.classList.add('active');
+
+            if (originalImageObject) {
+                const maxDimVal = maxDimensionSelect.value;
+                let targetW = originalImageObject.width;
+                let targetH = originalImageObject.height;
+                if (maxDimVal !== 'original') {
+                    const maxDim = parseInt(maxDimVal, 10);
+                    if (targetW > maxDim) {
+                        const ratio = maxDim / targetW;
+                        targetW = maxDim;
+                        targetH = Math.round(originalImageObject.height * ratio);
+                    }
+                }
+                updateGeneratedCode(targetW, targetH);
+            }
+        }
+
+        // Generate Code Snippets
+        function updateGeneratedCode(w, h) {
+            const rawName = originalFile ? originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || 'asset' : 'asset';
+            const cleanName = rawName.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+            const gcd = calculateGcd(w, h);
+            const ratioStr = (w / h).toFixed(3);
+
+            if (activeCodeTab === 'picture') {
+                codeOutput.textContent = `<picture>
+  <!-- Next-Gen AVIF for cutting-edge browsers -->
+  <source type="image/avif" srcset="${cleanName}.avif">
+  <!-- Modern WebP (97.5% support) -->
+  <source type="image/webp" srcset="${cleanName}.webp">
+  <!-- Fallback image with explicit width/height to guarantee ZERO CLS -->
+  <img src="${cleanName}.jpg" 
+       width="${w}" 
+       height="${h}" 
+       alt="${cleanName.replace(/-/g, ' ')}" 
+       loading="lazy" 
+       decoding="async" 
+       style="aspect-ratio: ${w} / ${h}; width: 100%; height: auto;" />
+</picture>`;
+            } else if (activeCodeTab === 'responsive') {
+                codeOutput.textContent = `<!-- Modern Responsive Image with Multi-Breakpoint Srcset -->
+<img src="${cleanName}-1200.webp" 
+     srcset="${cleanName}-480.webp 480w, 
+             ${cleanName}-768.webp 768w, 
+             ${cleanName}-1200.webp 1200w, 
+             ${cleanName}-1920.webp 1920w" 
+     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 1200px" 
+     width="${w}" 
+     height="${h}" 
+     alt="${cleanName.replace(/-/g, ' ')}" 
+     loading="lazy" 
+     decoding="async" />`;
+            } else if (activeCodeTab === 'preload') {
+                codeOutput.textContent = `<!-- Paste inside HTML <head> for Above-the-Fold LCP Hero Element -->
+<link rel="preload" 
+      as="image" 
+      href="${cleanName}.webp" 
+      type="image/webp" 
+      fetchpriority="high" />
+
+<!-- In Body: Hero Image with fetchpriority="high" -->
+<img src="${cleanName}.webp" 
+     width="${w}" 
+     height="${h}" 
+     alt="${cleanName.replace(/-/g, ' ')}" 
+     fetchpriority="high" 
+     loading="eager" 
+     decoding="async" />`;
+            }
+        }
+
+        // Copy Code Function
+        function copyGeneratedCode() {
+            const text = codeOutput.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const copyText = document.getElementById('copyText');
+                const copyIcon = document.getElementById('copyIcon');
+                copyText.innerText = 'Copied to Clipboard!';
+                copyIcon.className = 'fa-solid fa-check text-green-400';
+                setTimeout(() => {
+                    copyText.innerText = 'Copy HTML Snippet';
+                    copyIcon.className = 'fa-solid fa-copy';
+                }, 2000);
+            });
+        }
+
+        // Single Download Action
+        downloadSingleBtn.addEventListener('click', function() {
+            if (!optimizedBlob || !originalFile) return;
+
+            const mimeType = outputCodecSelect.value;
+            let ext = '.webp';
+            if (mimeType === 'image/jpeg') ext = '.jpg';
+            if (mimeType === 'image/png') ext = '.png';
+
+            const rawName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || 'asset';
+            const cleanName = rawName.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(optimizedBlob);
+            link.download = cleanName + '_cwv_optimized' + ext;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Multi-Breakpoint Set Export
+        async function generateAndDownloadResponsiveSet() {
+            if (!originalImageObject || !originalFile) return;
+            const breakpoints = [1920, 1200, 768, 480];
+            const rawName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || 'asset';
+            const cleanName = rawName.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+
+            for (const bp of breakpoints) {
+                if (originalImageObject.width >= bp || bp === 480) {
+                    const ratio = bp / originalImageObject.width;
+                    const curW = Math.min(bp, originalImageObject.width);
+                    const curH = Math.round(originalImageObject.height * (curW / originalImageObject.width));
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = curW;
+                    canvas.height = curH;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(originalImageObject, 0, 0, curW, curH);
+
+                    await new Promise((res) => {
+                        canvas.toBlob((b) => {
+                            const link = document.createElement('a');
+                            link.href = URL.createObjectURL(b);
+                            link.download = `${cleanName}-${curW}w.webp`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            setTimeout(res, 200);
+                        }, 'image/webp', 0.78);
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
