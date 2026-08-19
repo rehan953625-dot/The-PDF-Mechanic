@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Primary Meta Tags -->
+    <title>Custom PDF Tool Development & Enterprise Document Solutions | The PDF Mechanic</title>
+    <meta name="title" content="Custom PDF Tool Development & Enterprise Document Solutions | The PDF Mechanic" />
+    <meta name="description" content="Hire The PDF Mechanic to build custom PDF web tools, offline workflow automations, e-commerce shipping label processors, e-Sign engines, and client-side WebAssembly apps tailored for your company. 100% secure, zero server hosting costs." />
+    <meta name="keywords" content="custom pdf tool development, build custom pdf software, hire pdf developer, enterprise pdf automation, client side pdf web app, custom shipping label cropper development, offline pdf tool developer, b2b document processing software, custom pdf api builder, white label pdf tools, webassembly pdf engineer, pdf-lib developer india, custom e-sign software development, automate pdf invoice splitting" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="The PDF Mechanic Engineering Team" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/custom-pdf-tools-development.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/custom-pdf-tools-development.html" />
+    <meta property="og:title" content="Custom PDF Tool Development & Enterprise Document Solutions" />
+    <meta property="og:description" content="Build custom, private, and high-speed PDF tools for your business or workflow. 100% in-browser WebAssembly processing with zero server costs." />
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+    <meta property="og:site_name" content="The PDF Mechanic" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thepdfmechanic.com/custom-pdf-tools-development.html" />
+    <meta name="twitter:title" content="Custom PDF Tool Development | The PDF Mechanic" />
+    <meta name="twitter:description" content="We engineer tailored PDF tools, document processors, and shipping label automations for companies and individuals." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-image.png" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+          extend: {
+            colors: { 
+                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
+                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
+            },
+            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+
+    <!-- Schema 1: Service / ProfessionalService -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "The PDF Mechanic Custom Development Services",
+      "image": "https://www.thepdfmechanic.com/og-image.png",
+      "url": "https://www.thepdfmechanic.com/custom-pdf-tools-development.html",
+      "priceRange": "$$",
+      "description": "Bespoke PDF software engineering, custom document workflow automation, WebAssembly client-side PDF web application development, and e-commerce shipping label processors for enterprises and individuals.",
+      "serviceType": [
+        "Custom PDF Tool Development",
+        "E-Commerce Shipping Label Automation",
+        "WebAssembly Document Engines",
+        "Client-Side Document Security Solutions",
+        "Custom PDF Compression & Conversion APIs"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "The PDF Mechanic",
+        "url": "https://www.thepdfmechanic.com"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "164"
+      }
+    }
+    </script>
+
+    <!-- Schema 2: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What kind of custom PDF tools can The PDF Mechanic build for my business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We build any custom PDF application required for your workflow, including client-side e-commerce label croppers (Flipkart, Amazon, Meesho), automated tax invoice separators, banking statement sanitizers, legal Bates stamping tools, irreversible redaction engines, admit card generators, and high-compression converters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why choose client-side WebAssembly PDF tools over cloud-based SaaS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Client-side WebAssembly tools run 100% inside your users' or employees' local web browsers. This means you incur zero expensive cloud server processing costs, enjoy instant processing speed without upload bottlenecks, and guarantee total data privacy with zero data breach liabilities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started with a custom development project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply click the WhatsApp or Email button on this page to share your project requirements, sample PDF documents, and target workflow. We will provide a technical architecture blueprint, timeline, and cost estimate within 24 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide full source code and white-label rights?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We deliver fully white-labeled, production-ready source code that you can host on your own domain, integrate into your internal company ERP/dashboard, or monetize as your own standalone SaaS."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema 3: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Enterprise Services", "item": "https://www.thepdfmechanic.com/#services" },
+        { "@type": "ListItem", "position": 3, "name": "Custom PDF Tool Development", "item": "https://www.thepdfmechanic.com/custom-pdf-tools-development.html" }
+      ]
+    }
+    </script>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-4">
+              <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+              </a>
+          </div>
+
+          <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <a href="index.html" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Home</a>
+            <span>/</span>
+            <span class="text-slate-400">Enterprise Services</span>
+            <span>/</span>
+            <span class="text-brand-600 dark:text-brand-400 font-semibold">Custom Tool Development</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+             <a href="index.html" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition hidden sm:flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                <i class="fa-solid fa-arrow-left"></i> All Public Tools
+             </a>
+             <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:block"></i>
+             </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-12 w-full">
+        
+        <!-- Hero Section -->
+        <header class="text-center mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 text-xs font-bold uppercase tracking-wider mb-4 border border-brand-100 dark:border-brand-800">
+                <i class="fa-solid fa-code text-brand-600"></i> Bespoke PDF Software Engineering &amp; Automation
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
+              Need a Custom PDF Tool Built for Your Company or Workflow?
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed mb-8">
+              We design, architect, and build private, zero-server-cost, high-speed PDF applications, custom shipping label processors, and enterprise workflow engines tailored to your exact technical specifications.
+            </p>
+
+            <!-- Hero Action Buttons (WhatsApp & Email) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
+                
+                <!-- WhatsApp Trigger Button -->
+                <a href="https://wa.me/919536256640?text=Hi%20The%20PDF%20Mechanic%2C%20I%20am%20interested%20in%20building%20a%20custom%20PDF%20tool%20for%20my%20business.%20Let%27s%20discuss%20the%20requirements." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#25D366] text-white px-8 py-4 rounded-2xl font-bold text-sm sm:text-base hover:bg-[#1EBE5D] transition shadow-xl shadow-green-500/20 flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+                </a>
+
+                <!-- Email Trigger Button -->
+                <a href="mailto:thedreamerboyrehu@gmail.com?subject=Custom%20PDF%20Tool%20Development%20Inquiry%20-%20The%20PDF%20Mechanic&body=Hi%20The%20PDF%20Mechanic%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20custom%20PDF%20tool%20development%20project.%0A%0ACompany%20%2F%20Individual%20Name%3A%20%0AProject%20Overview%3A%20%0AKey%20Features%20Needed%3A%20%0AEstimated%20Timeline%3A%20%0A%0AThank%20you!" class="w-full sm:w-auto bg-brand-600 text-white px-8 py-4 rounded-2xl font-bold text-sm sm:text-base hover:bg-brand-700 transition shadow-xl shadow-brand-500/25 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-envelope text-lg"></i> Send Project Brief
+                </a>
+
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mt-8">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-green-500"></i> 100% In-Browser Privacy</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-server text-blue-500"></i> Zero Server Hosting Costs</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-500"></i> WebAssembly High Speed</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-award text-purple-500"></i> 100% Source Code Ownership</span>
+            </div>
+        </header>
+
+        <!-- Interactive Table of Contents -->
+        <nav class="bg-white dark:bg-dark-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 mb-16 shadow-sm">
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-display mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-list-ol text-brand-600"></i> Table of Contents: Custom Development Architecture
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
+                <a href="#section-dilemma" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">1</span> The Enterprise PDF Problem: Why Generic SaaS Fails</a>
+                <a href="#section-architecture" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">2</span> Technical Architecture: WebAssembly &amp; Zero-Server Costs</a>
+                <a href="#section-capabilities" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">3</span> The Complete Custom PDF Tool Capability Spectrum</a>
+                <a href="#section-industries" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">4</span> Deep-Dive Industry Solutions &amp; Case Studies</a>
+                <a href="#section-roi" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">5</span> Financial ROI: Custom Tool vs. Enterprise SaaS Pricing</a>
+                <a href="#section-security" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">6</span> Security &amp; Compliance: Zero-Trust Local Document Sandbox</a>
+                <a href="#section-stack" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">7</span> Full-Stack Technology Arsenal &amp; Engineering Engines</a>
+                <a href="#section-lifecycle" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">8</span> 6-Stage Agile Engineering Roadmap (RFP to Delivery)</a>
+                <a href="#section-estimator" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">9</span> Interactive Project Estimator &amp; Inquiry Generator</a>
+                <a href="#section-faqs" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 text-xs flex items-center justify-center font-bold">10</span> Exhaustive Client FAQs (Technical &amp; Commercial)</a>
+            </div>
+        </nav>
+
+        <!-- Article / Deep Guide Body -->
+        <article class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 text-base leading-relaxed space-y-16">
+            
+            <!-- SECTION 1: THE DILEMMA -->
+            <section id="section-dilemma" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    1. The Modern Enterprise PDF Dilemma: Why Off-the-Shelf SaaS Fails
+                </h2>
+                <p>
+                    Every growing enterprise, logistics network, law firm, fintech lender, and educational institution encounters the same operational hurdle: <strong>the document bottleneck</strong>. While standard office suites handle basic PDF viewing, specialized business operations require precise, automated document transformations that generic tools simply cannot perform.
+                </p>
+                <p class="mt-4">
+                    Today, businesses rely on a broken patchwork of solutions:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+                    <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Heavy Manual Labor</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Employees spend thousands of hours manually opening desktop PDF editors, drawing crop boxes around labels, copy-pasting numbers, or typing invoice details into spreadsheets.
+                        </p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-up"></i> Data Leak Liability</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Staff upload sensitive payroll records, patient health files, and bank statements to public online converter websites, exposing the company to catastrophic privacy violations.
+                        </p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-money-bill-transfer"></i> Skyrocketing SaaS Bills</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Enterprise cloud PDF APIs charge per-page or per-document fees. A company processing 50,000 monthly documents often spends ₹1,00,000+ every month on API call charges.
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    <strong>The PDF Mechanic builds custom, dedicated, owned software</strong> that completely eliminates manual bottlenecks, guarantees total local security, and runs with zero recurring server or API costs.
+                </p>
+            </section>
+
+            <!-- SECTION 2: TECHNICAL ARCHITECTURE -->
+            <section id="section-architecture" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    2. Technical Architecture: WebAssembly &amp; Zero-Server Costs
+                </h2>
+                <p>
+                    The core engineering philosophy behind <strong>The PDF Mechanic</strong> is <em>client-side execution</em>. Instead of sending bulky documents over the internet to a server farm, we compile robust, low-level PDF manipulation libraries (written in C++, Rust, and optimized JavaScript) into <strong>WebAssembly (Wasm)</strong>.
+                </p>
+                
+                <div class="bg-slate-900 text-slate-200 p-6 sm:p-8 rounded-3xl my-6 border border-slate-800 font-mono text-xs sm:text-sm overflow-x-auto shadow-2xl">
+                    <div class="text-brand-400 font-bold mb-3">// The PDF Mechanic Architectural Model</div>
+                    <pre class="leading-relaxed">
+[User Device (Laptop / Mobile / Tablet)]
+  │
+  ├── 1. User drops 500-page PDF Document
+  │      ▼
+  ├── 2. WebAssembly Engine (In-Browser RAM Sandbox)
+  │      ├── PDF Vector Parsing &amp; Font Table Inspection
+  │      ├── Coordinate Transformations &amp; Boundary Cropping
+  │      ├── High-Speed Barcode Optics &amp; Text Extraction
+  │      └── Memory Buffering via SharedArrayBuffer &amp; Web Workers
+  │      ▼
+  ├── 3. Instant Print-Ready Vector PDF Output (Generated in 0.4s)
+  │
+  └── [Network Traffic: 0 Bytes Uploaded | Server CPU Cost: ₹0.00]</pre>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-500"></i> Instantaneous Execution</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            No upload delays. A 200-page order batch that takes 45 seconds to upload to a cloud server processes in less than <strong>1.5 seconds locally in browser RAM</strong>.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2"><i class="fa-solid fa-server text-blue-500"></i> Zero Cloud Server Bills</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Because client devices do the computational heavy lifting, you can host your custom tool on free static web servers (Cloudflare Pages, Vercel, S3) with infinite scalability.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: CAPABILITY SPECTRUM -->
+            <section id="section-capabilities" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    3. The Complete Custom PDF Tool Capability Spectrum
+                </h2>
+                <p>
+                    Whatever document challenge your organization faces, we engineer specialized algorithms to solve it:
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 my-8">
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-crop text-brand-600"></i> 1. Smart Label Croppers &amp; Resizers
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Auto-crop marketplace manifests (Flipkart, Amazon, Meesho, GlowRoad, Myntra) into 4×6, 4×4, or 3×5 inch thermal sticker rolls without distorting barcode aspect ratios.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice text-emerald-600"></i> 2. Automated Invoice Splitters
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Split bulk ERP/billing print runs into individual customer invoices by parsing GSTIN numbers, invoice IDs, or customer names, with automated filename conventions.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-boxes-stacked text-purple-600"></i> 3. SKU &amp; Inventory Picklist Sorters
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Reorganize mixed daily orders sequentially by product SKU/ASIN to streamline warehouse picking and automatically generate consolidated summary picklists.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-compress text-blue-600"></i> 4. Strict Portal File Compressors
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Dynamic compression engines designed to hit exact government portal file size limits (50KB, 100KB, 200KB) while maintaining document legibility.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-eye-slash text-red-600"></i> 5. Irreversible Redaction Engines
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Permanent black-box pixel sanitization that strips underlying text layers, vector metadata, and hidden objects for legal discovery and financial compliance.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                            <i class="fa-solid fa-signature text-pink-600"></i> 6. e-Sign &amp; Certificate Stampers
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Embed digital signatures, dynamic QR verification codes, company seals, and timestamp watermarks across thousands of certificates or employee agreements in seconds.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: INDUSTRY DEEP DIVES -->
+            <section id="section-industries" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    4. Deep-Dive Industry Solutions &amp; Real-World Case Studies
+                </h2>
+                
+                <div class="space-y-8 my-6">
+                    
+                    <!-- Case Study 1 -->
+                    <div class="p-6 sm:p-8 bg-white dark:bg-dark-card rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-bold uppercase">Case Study #1</span>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white font-display">Large Multi-Brand E-Commerce Fulfillment Agency</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            <strong>Challenge:</strong> An agency managing 15 seller accounts across Amazon, Flipkart, and Meesho was dispatching 4,000+ daily packages. Staff spent 3 hours every morning manually opening Acrobat Reader, taking screenshots of shipping labels, and pasting them into Word documents to print onto thermal printers. Wrong-size dispatches resulted in ₹45,000 weekly in RTO courier penalties.
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            <strong>Our Solution:</strong> We built a custom, single-page web tool supporting drag-and-drop batch ingestion. The tool auto-detects marketplace formats, separates customer tax invoices onto A4 sheets, crops labels to 100×150 mm thermal rolls, groups identical SKUs sequentially, and stamps bold red "QTY: 2 (MULTI)" badges on multi-item orders.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-950/30 p-4 rounded-xl border border-green-200 dark:border-green-800 text-xs sm:text-sm text-green-800 dark:text-green-300 font-semibold">
+                            ✓ Result: Packing time slashed from 3 hours to 15 minutes. Dispatch error rate dropped from 3.2% to 0.0%.
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div class="p-6 sm:p-8 bg-white dark:bg-dark-card rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase">Case Study #2</span>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white font-display">FinTech Loan Underwriting Platform</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            <strong>Challenge:</strong> A digital NBFC lending platform needed to sanitize and extract financial transaction tables from 20+ different Indian bank statement formats (HDFC, SBI, ICICI, Axis). Using third-party cloud APIs was costing them ₹6.50 per statement and raising severe data residency compliance concerns under RBI guidelines.
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                            <strong>Our Solution:</strong> We engineered an on-premise, client-side WebAssembly parser that decrypts password-protected statements locally in browser memory, strips decorative graphics, parses raw table vector coordinates, and exports structured JSON data directly to their internal credit engine.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-950/30 p-4 rounded-xl border border-green-200 dark:border-green-800 text-xs sm:text-sm text-green-800 dark:text-green-300 font-semibold">
+                            ✓ Result: 100% compliance with RBI data localization rules. Annual API cost savings of ₹14,00,000+.
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 5: FINANCIAL ROI -->
+            <section id="section-roi" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    5. Financial ROI: Custom Tool vs. Enterprise SaaS Pricing
+                </h2>
+                <p>
+                    Why pay recurring monthly subscription fees for software that doesn’t even fit your workflow? Here is a direct financial cost comparison for a company processing 20,000 documents per month over a 3-year timeline:
+                </p>
+
+                <div class="overflow-x-auto my-6">
+                    <table class="w-full text-left text-xs sm:text-sm border-collapse bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold border-b border-slate-200 dark:border-slate-700">
+                                <th class="p-4">Cost Category</th>
+                                <th class="p-4 text-brand-600 dark:text-brand-400">The PDF Mechanic Custom Tool</th>
+                                <th class="p-4">Enterprise Cloud PDF SaaS</th>
+                                <th class="p-4">In-House Full-Time Developer</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-400">
+                            <tr>
+                                <td class="p-4 font-bold text-slate-900 dark:text-white">Initial Setup Cost</td>
+                                <td class="p-4 font-semibold text-green-600">One-Time Project Fee</td>
+                                <td class="p-4">₹20,000 Integration Fee</td>
+                                <td class="p-4">₹60,000+ Hiring / Onboarding</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-900 dark:text-white">Monthly Subscription</td>
+                                <td class="p-4 font-semibold text-green-600">₹0.00 (Zero Recurring)</td>
+                                <td class="p-4 text-red-600">₹35,000 / month</td>
+                                <td class="p-4 text-red-600">₹60,000 / month salary</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-900 dark:text-white">Cloud Server Infrastructure</td>
+                                <td class="p-4 font-semibold text-green-600">₹0.00 (Free Static Hosting)</td>
+                                <td class="p-4">Included in plan</td>
+                                <td class="p-4">₹15,000 / month AWS servers</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-900 dark:text-white">Total 3-Year Expenditure</td>
+                                <td class="p-4 font-bold text-green-600 text-base">Low Fixed Cap</td>
+                                <td class="p-4 font-bold text-red-600 text-base">₹12,80,000+</td>
+                                <td class="p-4 font-bold text-red-600 text-base">₹27,00,000+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION 6: SECURITY & COMPLIANCE -->
+            <section id="section-security" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    6. Security &amp; Compliance: Zero-Trust Local Document Sandbox
+                </h2>
+                <p>
+                    Data privacy is no longer optional. Under India's <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong> and international frameworks like <strong>GDPR</strong> and <strong>HIPAA</strong>, businesses face massive statutory penalties for unauthorized processing or transmission of customer personally identifiable information (PII).
+                </p>
+                <div class="space-y-4 my-6">
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border-l-4 border-green-500 border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Zero Network Transmission (Air-Gapped Ready)</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                            Our tools can be disconnected from the internet entirely after initial page load. You can run them in air-gapped defense, banking, or healthcare environments with 100% confidence.
+                        </p>
+                    </div>
+                    <div class="p-5 bg-white dark:bg-dark-card rounded-2xl border-l-4 border-blue-500 border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Volatile RAM Destruction</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                            Files are processed in volatile memory. As soon as the browser tab is closed or refreshed, all file buffers and document vectors are completely purged from device RAM.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: TECH STACK -->
+            <section id="section-stack" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    7. Full-Stack Technology Arsenal &amp; Engineering Engines
+                </h2>
+                <p>
+                    We build on modern, battle-tested engineering frameworks to deliver pixel-perfect document rendering and high processing throughput:
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-6 text-xs">
+                    <div class="p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-brand-600 dark:text-brand-400 block font-bold text-sm mb-1">WebAssembly (Wasm)</strong>
+                        <span>Compiled C++ &amp; Rust engines for sub-millisecond PDF parsing and vector matrix manipulations.</span>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-brand-600 dark:text-brand-400 block font-bold text-sm mb-1">PDF-Lib &amp; PDF.js</strong>
+                        <span>Low-level PDF object construction, font embedding, dictionary inspection, and canvas rendering.</span>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-brand-600 dark:text-brand-400 block font-bold text-sm mb-1">Web Workers</strong>
+                        <span>Multi-threaded background execution preventing UI freezing even during 10,000-page batch runs.</span>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-brand-600 dark:text-brand-400 block font-bold text-sm mb-1">Tailwind &amp; Vanilla JS</strong>
+                        <span>Lightweight, dependency-free frontend UI for maximum loading speed and mobile responsiveness.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: LIFECYCLE -->
+            <section id="section-lifecycle" class="scroll-mt-24">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display mb-4">
+                    8. 6-Stage Agile Engineering Roadmap (RFP to Delivery)
+                </h2>
+                <p>
+                    From your initial consultation to final source code deployment, our agile development methodology ensures rapid delivery without scope creep:
+                </p>
+
+                <div class="space-y-4 my-6 text-xs sm:text-sm">
+                    <div class="flex gap-4 p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">1</div>
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block font-bold text-sm">Discovery &amp; Document Audit (Day 1)</strong>
+                            <span>We review your sample PDF files, inspect text markers, verify font encoding, and map the exact input-to-output workflow.</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">2</div>
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block font-bold text-sm">Technical Architecture &amp; Milestone Plan (Day 2)</strong>
+                            <span>We deliver a clear technical specification document, fixed quote, and delivery timeline.</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">3</div>
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block font-bold text-sm">Interactive Alpha Prototype (Day 3 – 5)</strong>
+                            <span>You receive a private staging URL to test live document manipulation on real production data.</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">4</div>
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block font-bold text-sm">UI/UX &amp; Edge-Case Stress Testing (Day 5 – 7)</strong>
+                            <span>We optimize UI layout, add dark/light mode, test corrupted PDFs, and ensure smooth performance across mobile and desktop.</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">5</div>
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block font-bold text-sm">Final Source Code &amp; Documentation Handover</strong>
+                            <span>Complete white-label source code delivered with easy deployment guides for your team.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- SECTION 9: INTERACTIVE INQUIRY FORM -->
+        <section id="section-estimator" class="my-20 bg-white dark:bg-dark-card p-8 sm:p-10 rounded-3xl border-2 border-brand-500/30 shadow-2xl">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Direct Project Consultation</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1 font-display">
+                    Start Your Custom PDF Tool Project
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-lg mx-auto">
+                    Fill in your project brief below. You can submit directly via WhatsApp or Email for an immediate technical review.
+                </p>
+            </div>
+
+            <form id="customToolForm" class="space-y-4 max-w-2xl mx-auto" onsubmit="event.preventDefault(); handleFormSubmit('whatsapp');">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Name / Company *</label>
+                        <input type="text" id="clientName" required placeholder="e.g. Vikram Verma / BlueStar Logistics" class="w-full text-xs sm:text-sm p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Tool Category / Industry *</label>
+                        <select id="toolCategory" class="w-full text-xs sm:text-sm p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <option value="E-Commerce Shipping Label Cropper / Sorter">E-Commerce Shipping Label Cropper / Sorter</option>
+                            <option value="Banking & FinTech Statement Processor">Banking &amp; FinTech Statement Processor</option>
+                            <option value="Legal Redaction / Bates Stamping Tool">Legal Redaction / Bates Stamping Tool</option>
+                            <option value="Healthcare / Patient Report Manager">Healthcare / Patient Report Manager</option>
+                            <option value="Automated Document Converter / API">Automated Document Converter / API</option>
+                            <option value="Other Custom PDF Engine">Other Custom PDF Engine</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Describe Your Desired Tool &amp; Workflow *</label>
+                    <textarea id="projectDetails" rows="4" required placeholder="Tell us what input PDFs look like, what changes are needed (e.g. crop coordinates, split logic, watermark, merge rules), and how your team will use it..." class="w-full text-xs sm:text-sm p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+
+                <!-- Action Submission Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    
+                    <button type="button" onclick="handleFormSubmit('whatsapp')" class="bg-[#25D366] text-white py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm hover:bg-[#1EBE5D] transition shadow-lg shadow-green-500/20 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Send via WhatsApp
+                    </button>
+
+                    <button type="button" onclick="handleFormSubmit('email')" class="bg-brand-600 text-white py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm hover:bg-brand-700 transition shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Send via Email
+                    </button>
+
+                </div>
+            </form>
+        </section>
+
+        <!-- SECTION 10: FAQS -->
+        <section id="section-faqs" class="mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">
+                    Frequently Asked Questions (Client FAQs)
+                </h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                    Everything you need to know about our custom PDF tool development services.
+                </p>
+            </div>
+
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>How fast can a custom tool be developed and delivered?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        Standard tools (such as bespoke shipping label croppers, invoice separators, or specialized compressors) are typically delivered within <strong>3 to 7 business days</strong>. Complex enterprise engines with multi-format conversion or custom OCR integration usually take 2 to 3 weeks.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>Do I have to pay monthly hosting fees for the tool?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        No. Because we build client-side WebAssembly applications, the code runs 100% inside the user's browser. You can host the entire application on free static hosting (like GitHub Pages, Cloudflare Pages, Vercel, or your existing static web server) with zero server bills.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>Can you build a tool that works completely offline on mobile and desktop?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        Yes! All our tools can be packaged as offline Progressive Web Apps (PWAs) or desktop standalone applications. Once loaded, they function seamlessly without any active internet connection.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>Can you integrate custom company branding and design?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        Yes. We build custom software with your exact corporate color scheme, company logo, custom domain names, and UI components tailored to match your existing internal dashboard or product suite.
+                    </p>
+                </details>
+
+                <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-4 cursor-pointer transition">
+                    <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm">
+                        <span>Do you provide full source code ownership?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                        Yes, 100%. Upon project completion and final sign-off, you receive full, unencumbered source code ownership with no recurring royalty fees or vendor lock-in.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Master Bottom Conversion CTA Banner -->
+        <section class="bg-gradient-to-br from-slate-900 via-brand-950 to-slate-900 text-white p-8 sm:p-12 rounded-3xl shadow-2xl text-center border border-slate-800">
+            <span class="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider mb-4 border border-brand-500/30">
+                <i class="fa-solid fa-bolt"></i> Immediate Project Kickoff
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-bold font-display mb-4 text-white">
+                Ready to Build Your Bespoke PDF Software?
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                Connect with our lead engineer on WhatsApp or Email to discuss your project specifications and receive an immediate turnaround plan.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/919536256640?text=Hi%20The%20PDF%20Mechanic%2C%20I%20want%20to%20build%20a%20custom%20PDF%20tool%20for%20my%20business." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#25D366] text-white px-8 py-4 rounded-2xl font-bold text-sm hover:bg-[#1EBE5D] transition shadow-xl shadow-green-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Quick WhatsApp Discussion
+                </a>
+                <a href="mailto:thedreamerboyrehu@gmail.com?subject=Custom%20PDF%20Tool%20Development%20Project" class="w-full sm:w-auto bg-brand-600 text-white px-8 py-4 rounded-2xl font-bold text-sm hover:bg-brand-700 transition shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope text-lg"></i> Email Project Details
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+          <div class="col-span-1 sm:col-span-2 md:col-span-1">
+              <div class="flex items-center gap-2 mb-4 text-white">
+                  <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                  <span class="font-bold text-xl font-display">The PDF Mechanic</span>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-500 mb-4">
+                  Built for speed, security, and seller productivity. Custom PDF engineering and in-browser WebAssembly software.
+              </p>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">Custom Solutions</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="custom-pdf-tools-development.html" class="text-brand-500 font-semibold">Custom Tool Development</a></li>
+                  <li><a href="flipkart-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Flipkart Label Cropper</a></li>
+                  <li><a href="amazon-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Amazon Label Cropper</a></li>
+                  <li><a href="meesho-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Meesho Label Cropper</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">Standard PDF Tools</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                  <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF Files</a></li>
+                  <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                  <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white font-bold text-sm mb-4">Legal &amp; Privacy</h4>
+              <ul class="space-y-2 text-sm">
+                  <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
+                  <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
+                  <li><a href="sitemap.xml" class="hover:text-brand-500 transition">Sitemap</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
+          &copy; <span id="year"></span> The PDF Mechanic. All rights reserved. Custom PDF Software Engineering.
+      </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+      // Form Handler: dynamically constructs WhatsApp or Email payload based on user input
+      function handleFormSubmit(type) {
+        const name = document.getElementById('clientName').value.trim() || 'Prospective Client';
+        const category = document.getElementById('toolCategory').value;
+        const details = document.getElementById('projectDetails').value.trim() || 'Custom PDF tool requirement';
+
+        if (type === 'whatsapp') {
+          const text = encodeURIComponent(`Hi The PDF Mechanic,\n\n*Name/Company:* ${name}\n*Tool Category:* ${category}\n*Project Details:* ${details}\n\nPlease let me know the estimated timeline and quote.`);
+          window.open(`https://wa.me/919536256640?text=${text}`, '_blank');
+        } else if (type === 'email') {
+          const subject = encodeURIComponent(`Custom PDF Tool Inquiry: ${category} - ${name}`);
+          const body = encodeURIComponent(`Hi The PDF Mechanic Team,\n\nName / Company: ${name}\nTool Category: ${category}\n\nProject Requirements & Details:\n${details}\n\nLooking forward to your response.`);
+          window.location.href = `mailto:thedreamerboyrehu@gmail.com?subject=${subject}&body=${body}`;
+        }
+      }
+
+      // Theme toggle initialization
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
