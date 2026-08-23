@@ -1972,24 +1972,22 @@
         }
 
         // Download Action
-        compressBtn.addEventListener('click', function() {
-            if (!compressedBlob || !originalFile) return;
+compressBtn.addEventListener('click', function() {
+    if (!compressedBlob || !originalFile) return;
 
-            const mimeType = getSelectedMimeType();
-            let ext = '.jpg';
-            if (mimeType === 'image/webp') ext = '.webp';
-            if (mimeType === 'image/png') ext = '.png';
+    const mimeType = getSelectedMimeType();
+    let ext = '.jpg';
+    if (mimeType === 'image/webp') ext = '.webp';
+    if (mimeType === 'image/png') ext = '.png';
 
-            const baseName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || originalFile.name;
-            const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(compressedBlob);
-            downloadLink.download = 'compressed_' + baseName + ext;
-            document.body.appendChild(downloadLink);
-            downloadLink.click 'compressed_' + baseName + ext;
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-        });
+    const baseName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.')) || originalFile.name;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(compressedBlob);
+    downloadLink.download = 'compressed_' + baseName + ext;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+});
     </script>
 </body>
 </html>
