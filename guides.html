@@ -3,10 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <title>PDF Guides, Tutorials & Security Tips | The PDF Mechanic</title>
-    <meta name="description" content="Explore our library of tutorials on merging PDFs offline, compressing files for email, and understanding client-side security.">
-     <!-- Favicon & PWA -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>PDF Guides, Tutorials & Security Tips (2026) | The PDF Mechanic</title>
+    <meta name="title" content="PDF Guides, Tutorials & Security Tips (2026) | The PDF Mechanic" />
+    <meta name="description" content="Free, in-depth guides on merging, splitting & compressing PDFs offline, resizing photos for government job forms, client-side PDF security, and e-commerce shipping label cropping — all written to help you fix a specific problem." />
+    <meta name="keywords" content="pdf guides, pdf tutorials, how to merge pdf, how to split pdf, reduce pdf size for email, what is a pdf file, pdf security explained, resize photo for government job, compress pdf to 100kb, offline pdf tools, client side pdf tools, free ocr tool guide" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="The PDF Mechanic" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/guides.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/guides.html" />
+    <meta property="og:title" content="PDF Guides, Tutorials & Security Tips | The PDF Mechanic" />
+    <meta property="og:description" content="In-depth, free guides on merging, splitting, compressing PDFs, government form photo sizing, and client-side document security." />
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+    <meta property="og:site_name" content="The PDF Mechanic" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thepdfmechanic.com/guides.html" />
+    <meta name="twitter:title" content="PDF Guides, Tutorials & Security Tips | The PDF Mechanic" />
+    <meta name="twitter:description" content="Free guides on PDF merging, splitting, compression, government form prep, and offline document security." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-image.png" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -16,36 +47,181 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
 
-    
-    <meta property="og:title" content="PDF Guides & Tutorials | The PDF Mechanic">
-    <meta property="og:description" content="Master your documents with our latest tips, tricks, and security explanations.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' }, dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } }, fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] }, animation: { 'fade-in': 'fadeIn 0.5s ease-out' }, keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } } } }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen transition-colors duration-300">
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* guides.html-specific residual CSS */
+.backdrop-blur-sm { backdrop-filter: blur(4px); }
+.duration-500 { transition-duration: 500ms; }
+.h-48 { height: 12rem; }
+.left-4 { left: 1rem; }
+.top-4 { top: 1rem; }
+.text-8xl { font-size: 6rem; line-height: 1; }
+.overflow-x-auto { overflow-x: auto; }
+.hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.hover\:underline:hover { text-decoration-line: underline; }
+.group-hover\:text-brand-600:hover, .group:hover .group-hover\:text-brand-600 { color: #2563eb; }
+.dark .dark\:text-brand-400 { color: #60a5fa; }
+.dark .dark\:text-slate-900 { color: #0f172a; }
+.dark .dark\:bg-white { background-color: #ffffff; }
+.dark .dark\:bg-slate-900\/90 { background-color: rgb(15 23 42 / 0.9); }
+.bg-slate-300 { background-color: #cbd5e1; }
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Category accent colors used across guide-card thumbnails */
+.bg-rose-100 { background-color: #ffe4e6; }
+.dark .dark\:bg-rose-900\/20 { background-color: rgb(136 19 55 / 0.2); }
+.text-rose-500\/30 { color: rgb(244 63 94 / 0.3); }
+.bg-emerald-100 { background-color: #d1fae5; }
+.dark .dark\:bg-emerald-900\/20 { background-color: rgb(6 78 59 / 0.2); }
+.text-emerald-500\/30 { color: rgb(16 185 129 / 0.3); }
+.text-purple-500\/30 { color: rgb(168 85 247 / 0.3); }
+.text-blue-500\/30 { color: rgb(59 130 246 / 0.3); }
+.text-green-500\/30 { color: rgb(34 197 94 / 0.3); }
+.text-brand-500\/30 { color: rgb(59 130 246 / 0.3); }
+.text-amber-500\/30 { color: rgb(245 158 11 / 0.3); }
+.text-teal-500\/30 { color: rgb(20 184 166 / 0.3); }
+.text-indigo-500\/30 { color: rgb(99 102 241 / 0.3); }
+.text-sky-500\/30 { color: rgb(14 165 233 / 0.3); }
+.text-pink-500\/30 { color: rgb(236 72 153 / 0.3); }
+.bg-amber-100 { background-color: #fef3c7; }
+.dark .dark\:bg-amber-900\/20 { background-color: rgb(120 53 15 / 0.2); }
+.bg-teal-100 { background-color: #ccfbf1; }
+.dark .dark\:bg-teal-900\/20 { background-color: rgb(19 78 74 / 0.2); }
+.bg-indigo-100 { background-color: #e0e7ff; }
+.dark .dark\:bg-indigo-900\/20 { background-color: rgb(49 46 129 / 0.2); }
+.bg-sky-100 { background-color: #e0f2fe; }
+.dark .dark\:bg-sky-900\/20 { background-color: rgb(12 74 110 / 0.2); }
+.bg-pink-100 { background-color: #fce7f3; }
+.dark .dark\:bg-pink-900\/20 { background-color: rgb(131 24 67 / 0.2); }
+
+/* Category filter tabs (matches home page's tab-btn pattern) */
+.tab-btn { white-space: nowrap; }
+.tab-btn.active { }
+.filter-hidden { display: none !important; }
+
+/* Small additions found during final coverage pass */
+.antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.border-y { border-top-width: 1px; border-bottom-width: 1px; }
+.mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+.dark .dark\:bg-slate-600 { background-color: #475569; }
+.dark .dark\:text-slate-600 { color: #475569; }
+.dark .dark\:group-hover\:text-brand-400:hover, .dark .group:hover .dark\:group-hover\:text-brand-400 { color: #60a5fa; }
+
+</style>
+
+    <!-- Schema 1: CollectionPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "PDF Guides, Tutorials & Security Tips",
+      "description": "A library of free guides covering PDF merging, splitting, compression, government form document prep, client-side security, and e-commerce shipping label workflows.",
+      "url": "https://www.thepdfmechanic.com/guides.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "The PDF Mechanic",
+        "url": "https://www.thepdfmechanic.com/"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "url": "https://www.thepdfmechanic.com/how-to-merge-pdf.html", "name": "How to Merge PDF Files Offline" },
+          { "@type": "ListItem", "position": 2, "url": "https://www.thepdfmechanic.com/how-to-split-pdf.html", "name": "How to Split a PDF into Separate Pages" },
+          { "@type": "ListItem", "position": 3, "url": "https://www.thepdfmechanic.com/reduce-pdf-size.html", "name": "Reduce PDF Size for Email" },
+          { "@type": "ListItem", "position": 4, "url": "https://www.thepdfmechanic.com/what-is-a-pdf.html", "name": "What Is a PDF, Actually?" },
+          { "@type": "ListItem", "position": 5, "url": "https://www.thepdfmechanic.com/pdf-security-explained.html", "name": "Why Client-side PDF Tools Are Safer" },
+          { "@type": "ListItem", "position": 6, "url": "https://www.thepdfmechanic.com/private-offline-pdf-tools.html", "name": "Private, Offline PDF Tools Explained" },
+          { "@type": "ListItem", "position": 7, "url": "https://www.thepdfmechanic.com/merge-bank-statements.html", "name": "Merge Bank Statements Securely" },
+          { "@type": "ListItem", "position": 8, "url": "https://www.thepdfmechanic.com/resize-for-govt-jobs.html", "name": "Resize Photo & Signature for Government Job Forms" },
+          { "@type": "ListItem", "position": 9, "url": "https://www.thepdfmechanic.com/compress-pdf-100kb/", "name": "Compress PDF to 100KB" },
+          { "@type": "ListItem", "position": 10, "url": "https://www.thepdfmechanic.com/pdf-to-word-no-upload/", "name": "Convert PDF to Word Without Uploading" },
+          { "@type": "ListItem", "position": 11, "url": "https://www.thepdfmechanic.com/merge-pdf-offline-android/", "name": "Merge PDFs Offline on Android" },
+          { "@type": "ListItem", "position": 12, "url": "https://www.thepdfmechanic.com/image-to-text-offline/", "name": "Extract Text from Images Offline" },
+          { "@type": "ListItem", "position": 13, "url": "https://www.thepdfmechanic.com/free-ocr-tool/", "name": "Free OCR Tool, No Daily Limits" },
+          { "@type": "ListItem", "position": 14, "url": "https://www.thepdfmechanic.com/ecommerce-shipping-label-crop-guide.html", "name": "Guide to Cropping Meesho, Amazon & Flipkart Shipping Labels" }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Schema 2: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://www.thepdfmechanic.com/guides.html" }
+      ]
+    }
+    </script>
+
+    <!-- Schema 3: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are all of The PDF Mechanic's guides free to read?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every guide on this page is free, with no account, signup, or paywall of any kind — the same as every tool linked from them." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account to use the tools linked in these guides?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. None of the tools on The PDF Mechanic require an account, email address, or payment. Open the tool, use it, and download your result." }
+        },
+        {
+          "@type": "Question",
+          "name": "How often are new guides added?",
+          "acceptedAnswer": { "@type": "Answer", "text": "New guides are added alongside new tools, typically every few weeks, usually covering a specific real-world problem (like government form photo sizing or offline Android usage) rather than a generic overview." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do these guides apply outside India?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most of the underlying PDF and image techniques (merging, splitting, compressing, converting) apply anywhere. A few guides — like government job form sizing and e-commerce marketplace label cropping — are written specifically around Indian portals and marketplaces (SSC, UPSC, IBPS, Railway RRB, Meesho, Flipkart, Amazon Easy Ship) since those have their own specific requirements." }
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300 antialiased">
+
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
-                        <i class="fa-solid fa-wrench"></i>
-                    </div>
-                    <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
+            </a>
+
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition hidden sm:block">
+                    <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back to Tools
                 </a>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Back to Tools
-                </a>
-                <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                    <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -55,206 +231,494 @@
         <div class="max-w-3xl mx-auto">
             <span class="text-brand-600 dark:text-brand-400 font-bold tracking-wider text-xs uppercase mb-4 block">Knowledge Base</span>
             <h1 class="font-display text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 dark:text-white leading-tight">
-                Guides & <span class="text-brand-600">Resources</span>
+                Guides &amp; <span class="text-brand-600">Resources</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Expert tips on managing your documents securely. Learn how to compress, merge, and convert files without uploading them to the cloud.
+                Practical, specific guides on merging, splitting, compressing, and converting documents &mdash; plus how to prepare files for government forms and e-commerce marketplaces &mdash; without uploading anything to a server.
             </p>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow">
-        
-        <div class="flex gap-2 overflow-x-auto pb-8 mb-4 hide-scrollbar">
-            <button class="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-sm font-bold shadow-md">All Guides</button>
-            <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 transition">Tutorials</button>
-            <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 transition">Security</button>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow" id="guides-main">
+
+        <div class="flex gap-2 overflow-x-auto pb-8 mb-4 hide-scrollbar" role="tablist" aria-label="Filter guides by category">
+            <button type="button" onclick="setGuideCategory('all')" data-cat="all" class="tab-btn active px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-sm font-bold shadow-md transition-all">All Guides</button>
+            <button type="button" onclick="setGuideCategory('tutorials')" data-cat="tutorials" class="tab-btn px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">Tutorials</button>
+            <button type="button" onclick="setGuideCategory('security')" data-cat="security" class="tab-btn px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">Security &amp; Privacy</button>
+            <button type="button" onclick="setGuideCategory('govt')" data-cat="govt" class="tab-btn px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">Government Forms</button>
+            <button type="button" onclick="setGuideCategory('ecommerce')" data-cat="ecommerce" class="tab-btn px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">E-Commerce</button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="guidesGrid">
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="merge pdf combine files offline tutorial">
                 <a href="how-to-merge-pdf.html" class="block h-48 bg-brand-100 dark:bg-brand-900/20 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center text-brand-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-layer-group"></i>
+                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Tutorial</span>
                     </div>
                 </a>
                 <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 05, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 05, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         3 min read
                     </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
                         <a href="how-to-merge-pdf.html">How to Merge PDF Files Offline</a>
                     </h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
                         Step-by-step guide to combining documents on your device without internet access.
                     </p>
-                    <a href="how-to-merge-pdf.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    <a href="how-to-merge-pdf.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
                     </a>
                 </div>
             </article>
 
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" style="animation-delay: 0.1s">
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="split pdf separate pages tutorial divide" style="animation-delay: 0.1s">
+                <a href="how-to-split-pdf.html" class="block h-48 bg-green-100 dark:bg-green-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-green-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-scissors" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Tutorial</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jul 28, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        3 min read
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="how-to-split-pdf.html">How to Split a PDF into Separate Pages</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Extract specific pages or divide one large PDF into several smaller files in seconds.
+                    </p>
+                    <a href="how-to-split-pdf.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="reduce pdf size email gmail limit tips" style="animation-delay: 0.2s">
                 <a href="reduce-pdf-size.html" class="block h-48 bg-rose-100 dark:bg-rose-900/20 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center text-rose-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-compress"></i>
+                        <i class="fa-solid fa-compress" aria-hidden="true"></i>
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Tips</span>
                     </div>
                 </a>
                 <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 05, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 05, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         2 min read
                     </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
                         <a href="reduce-pdf-size.html">Reduce PDF Size for Email</a>
                     </h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
                         How to shrink large reports to fit Gmail limits (25MB) easily without losing quality.
                     </p>
-                    <a href="reduce-pdf-size.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    <a href="reduce-pdf-size.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
                     </a>
                 </div>
             </article>
 
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" style="animation-delay: 0.2s">
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="what is a pdf file format explained basics" style="animation-delay: 0.3s">
+                <a href="what-is-a-pdf.html" class="block h-48 bg-amber-100 dark:bg-amber-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-amber-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Basics</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Aug 12, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        5 min read
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="what-is-a-pdf.html">What Is a PDF, Actually?</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        The file format explained simply — what's inside a PDF, and why it became the universal document standard.
+                    </p>
+                    <a href="what-is-a-pdf.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="security" data-search="pdf security client side safer privacy" style="animation-delay: 0.4s">
                 <a href="pdf-security-explained.html" class="block h-48 bg-purple-100 dark:bg-purple-900/20 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center text-purple-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-shield-halved"></i>
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Security</span>
                     </div>
                 </a>
                 <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 04, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 04, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         4 min read
                     </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
                         <a href="pdf-security-explained.html">Why Client-side PDF tools are safer</a>
                     </h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        Understanding the privacy difference between server uploads and local tools.
+                        Understanding the privacy difference between server uploads and local, in-browser tools.
                     </p>
-                    <a href="pdf-security-explained.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                </div>
-            </article>
-            
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" style="animation-delay: 0.3s">
-                <a href="compress-pdf-100kb/index.html" class="block h-48 bg-emerald-100 dark:bg-emerald-900/20 relative overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center text-emerald-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-file-zipper"></i>
-                    </div>
-                    <div class="absolute top-4 left-4">
-                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">New Tool</span>
-                    </div>
-                </a>
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 07, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-                        Tool
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
-                        <a href="compress-pdf-100kb/index.html">Compress PDF to 100kb</a>
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        Reduce PDF size below 100kb for government portals (UPSC, SSC) securely offline.
-                    </p>
-                    <a href="compress-pdf-100kb/index.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Open Tool <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    <a href="pdf-security-explained.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
                     </a>
                 </div>
             </article>
 
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" style="animation-delay: 0.4s">
-                <a href="resize-for-govt-jobs.html" class="block h-48 bg-blue-100 dark:bg-blue-900/20 relative overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center text-blue-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <div class="absolute top-4 left-4">
-                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
-                    </div>
-                </a>
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 15, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-                        Guide
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
-                        <a href="resize-for-govt-jobs.html">Resize Photo for SSC/UPSC Forms</a>
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                        How to reduce image size to 20kb-50kb for government job applications securely.
-                    </p>
-                    <a href="resize-for-govt-jobs.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" style="animation-delay: 0.5s">
-                <a href="merge-bank-statements.html" class="block h-48 bg-green-100 dark:bg-green-900/20 relative overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center text-green-500/30 text-8xl group-hover:scale-110 transition duration-500">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="security" data-search="private offline pdf tools webassembly explained" style="animation-delay: 0.5s">
+                <a href="private-offline-pdf-tools.html" class="block h-48 bg-indigo-100 dark:bg-indigo-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-indigo-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-lock" aria-hidden="true"></i>
                     </div>
                     <div class="absolute top-4 left-4">
                         <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Privacy</span>
                     </div>
                 </a>
                 <div class="p-6 flex flex-col flex-grow">
-                    <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
-                        <i class="fa-regular fa-calendar"></i> Jan 16, 2026
-                        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Aug 04, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        4 min read
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="private-offline-pdf-tools.html">Private, Offline PDF Tools Explained</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        How WebAssembly lets a full PDF toolkit run entirely on your device, with nothing ever sent to a server.
+                    </p>
+                    <a href="private-offline-pdf-tools.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Article <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="security" data-search="merge bank statements securely privacy loan" style="animation-delay: 0.5s">
+                <a href="merge-bank-statements.html" class="block h-48 bg-green-100 dark:bg-green-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-green-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Privacy</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 16, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         Privacy
                     </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 transition">
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
                         <a href="merge-bank-statements.html">Merge Bank Statements Securely</a>
                     </h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
                         Applying for a loan? Combine monthly statements without uploading your financial data online.
                     </p>
-                    <a href="merge-bank-statements.html" class="inline-flex items-center text-brand-600 font-semibold text-sm hover:underline">
-                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    <a href="merge-bank-statements.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
                     </a>
                 </div>
             </article>
 
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="security" data-search="pdf to word no upload private conversion" style="animation-delay: 0.5s">
+                <a href="pdf-to-word-no-upload/" class="block h-48 bg-sky-100 dark:bg-sky-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-sky-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-file-word" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Privacy</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Privacy
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="pdf-to-word-no-upload/">Convert PDF to Word Without Uploading</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        How the in-browser PDF-to-Word conversion works, and why your document never leaves your device.
+                    </p>
+                    <a href="pdf-to-word-no-upload/" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="govt" data-search="resize photo signature government job ssc upsc ibps" style="animation-delay: 0.5s">
+                <a href="resize-for-govt-jobs.html" class="block h-48 bg-blue-100 dark:bg-blue-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-blue-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Guide
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="resize-for-govt-jobs.html">Resize Photo &amp; Signature for Government Job Forms</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Exact pixel dimensions and file sizes for SSC, IBPS, Railway RRB, and UPSC application portals.
+                    </p>
+                    <a href="resize-for-govt-jobs.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="govt" data-search="compress pdf 100kb government portal ssc upsc" style="animation-delay: 0.5s">
+                <a href="compress-pdf-100kb/" class="block h-48 bg-emerald-100 dark:bg-emerald-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-emerald-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-file-zipper" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Guide
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="compress-pdf-100kb/">Compress PDF to 100KB</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Reduce PDF size below 100KB for government portals (UPSC, SSC) securely, entirely offline.
+                    </p>
+                    <a href="compress-pdf-100kb/" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="merge pdf offline android mobile phone chrome" style="animation-delay: 0.5s">
+                <a href="merge-pdf-offline-android/" class="block h-48 bg-teal-100 dark:bg-teal-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-teal-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Guide
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="merge-pdf-offline-android/">Merge PDFs Offline on Android</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Phone-by-phone tips for combining PDFs on Android Chrome without burning mobile data.
+                    </p>
+                    <a href="merge-pdf-offline-android/" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="extract text from image offline ocr scan" style="animation-delay: 0.5s">
+                <a href="image-to-text-offline/" class="block h-48 bg-pink-100 dark:bg-pink-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-pink-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-font" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Guide
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="image-to-text-offline/">Extract Text from Images Offline</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Turn a photo of a document or handwritten note into editable text using on-device OCR.
+                    </p>
+                    <a href="image-to-text-offline/" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="tutorials" data-search="free ocr tool no daily limit unlimited" style="animation-delay: 0.5s">
+                <a href="free-ocr-tool/" class="block h-48 bg-sky-100 dark:bg-sky-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-sky-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Jan 15, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Guide
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="free-ocr-tool/">A Genuinely Free OCR Tool, No Daily Limits</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        Why most "free" OCR tools cap you at a few pages a day, and how this one doesn't.
+                    </p>
+                    <a href="free-ocr-tool/" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="guide-card group flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl transition duration-300 animate-fade-in" data-cat="ecommerce" data-search="ecommerce shipping label crop meesho amazon flipkart guide" style="animation-delay: 0.5s">
+                <a href="ecommerce-shipping-label-crop-guide.html" class="block h-48 bg-brand-100 dark:bg-brand-900/20 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center text-brand-500/30 text-8xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-tags" aria-hidden="true"></i>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm backdrop-blur-sm">Seller Guide</span>
+                    </div>
+                </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i> Aug 19, 2026
+                        <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        12 min read
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition">
+                        <a href="ecommerce-shipping-label-crop-guide.html">Crop Meesho, Amazon &amp; Flipkart Shipping Labels</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                        The complete seller handbook for 4x6 thermal label cropping, invoice separation, and SKU sorting across all three marketplaces.
+                    </p>
+                    <a href="ecommerce-shipping-label-crop-guide.html" class="inline-flex items-center text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">
+                        Read Guide <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>        </div>
+
+        <div id="noGuidesResult" class="hidden text-center py-16">
+            <div class="text-5xl text-slate-300 dark:text-slate-600 mb-4"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i></div>
+            <p class="text-slate-500 dark:text-slate-400">No guides in this category yet.</p>
         </div>
+
     </main>
+
+    <section class="bg-white dark:bg-dark-card py-20 border-y border-slate-200 dark:border-dark-border">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 text-slate-900 dark:text-white font-display">
+                What You'll Find in These Guides
+            </h2>
+            <div class="prose-content max-w-none text-slate-600 dark:text-slate-400 leading-relaxed space-y-6">
+                <p>
+                    Every guide here starts from a specific, real problem rather than a general overview of what a PDF tool can do. "How do I get my scanned certificate under 200KB for an SSC application" is a different question from "how does PDF compression work," and it deserves a different kind of answer &mdash; one with the actual numbers, the actual portal quirks, and the actual steps, not just a definition. That's the standard every guide on this page is written to.
+                </p>
+                <p>
+                    A few threads run through all of them. First, privacy: every tool these guides point to runs entirely in your browser using WebAssembly, so nothing you upload &mdash; a bank statement, an Aadhaar card, a signed contract &mdash; ever reaches a server. Second, specificity: rather than one generic "how to use a PDF compressor" page, there's a dedicated guide for compressing to exactly 100KB for a government portal, a separate one for shrinking a report to fit Gmail's 25MB attachment limit, and another for resizing a passport photo to the exact pixel dimensions IBPS expects &mdash; because the right answer genuinely differs between those three cases.
+                </p>
+                <p>
+                    The guides are grouped into four categories using the filter tabs above: general <strong>Tutorials</strong> on the core PDF operations (merging, splitting, converting, understanding the format itself), <strong>Security &amp; Privacy</strong> deep-dives on why and how client-side processing works, <strong>Government Forms</strong> guides built specifically around Indian exam and banking portal requirements, and <strong>E-Commerce</strong> guides for marketplace sellers handling shipping labels at scale. New guides are added as new tools ship, usually covering whatever specific problem prompted the tool in the first place.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12 text-slate-900 dark:text-white font-display">
+            Frequently Asked Questions
+        </h2>
+        <div class="space-y-4">
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer transition">
+                <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm sm:text-base">
+                    <span>Are all of The PDF Mechanic's guides free to read?</span>
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                    Yes. Every guide on this page is free, with no account, signup, or paywall of any kind &mdash; the same as every tool linked from them.
+                </p>
+            </details>
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer transition">
+                <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm sm:text-base">
+                    <span>Do I need to create an account to use the tools linked in these guides?</span>
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                    No. None of the tools on The PDF Mechanic require an account, email address, or payment. Open the tool, use it, and download your result.
+                </p>
+            </details>
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer transition">
+                <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm sm:text-base">
+                    <span>How often are new guides added?</span>
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                    New guides are added alongside new tools, typically every few weeks, usually covering a specific real-world problem &mdash; like government form photo sizing or offline Android usage &mdash; rather than a generic overview.
+                </p>
+            </details>
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-2xl p-5 cursor-pointer transition">
+                <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white text-sm sm:text-base">
+                    <span>Do these guides apply outside India?</span>
+                    <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500 leading-relaxed">
+                    Most of the underlying PDF and image techniques (merging, splitting, compressing, converting) apply anywhere. A few guides &mdash; like government job form sizing and e-commerce marketplace label cropping &mdash; are written specifically around Indian portals and marketplaces (SSC, UPSC, IBPS, Railway RRB, Meesho, Flipkart, Amazon Easy Ship) since those have their own specific requirements.
+                </p>
+            </details>
+        </div>
+    </section>
 
     <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
             <div class="col-span-1 sm:col-span-2 md:col-span-1">
                 <div class="flex items-center gap-2 mb-4 text-white">
-                    <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
                     <span class="font-bold text-xl font-display">The PDF Mechanic</span>
                 </div>
                 <p class="text-sm leading-relaxed text-slate-500 mb-4">
                     Built for speed and privacy. The only PDF toolkit that works 100% offline in your browser.
                 </p>
             </div>
-            
+
             <div>
-                <h4 class="text-white font-bold text-sm mb-4">Tools</h4>
+                <h4 class="text-white font-bold text-sm mb-4">Organize &amp; Edit</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
                     <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
+                    <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
+                    <li><a href="splitter.html" class="hover:text-brand-500 transition">Split PDF</a></li>
+                    <li><a href="pdf-editor.html" class="hover:text-brand-500 transition">PDF Editor</a></li>
+                    <li><a href="ocr.html" class="hover:text-brand-500 transition">OCR PDF</a></li>
                 </ul>
             </div>
 
@@ -262,32 +726,71 @@
                 <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                    <li><a href="word-to-pdf.html" class="hover:text-brand-500 transition">Word to PDF</a></li>
+                    <li><a href="pdf-to-excel.html" class="hover:text-brand-500 transition">PDF to Excel</a></li>
                     <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
+                    <li><a href="pdf-to-pptx.html" class="hover:text-brand-500 transition">PDF to PowerPoint</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="text-white font-bold text-sm mb-4">Legal</h4>
+                <h4 class="text-white font-bold text-sm mb-4">Seller Tools &amp; Legal</h4>
                 <ul class="space-y-2 text-sm">
+                    <li><a href="meesho-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Meesho Label Cropper</a></li>
+                    <li><a href="amazon-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Amazon Label Cropper</a></li>
+                    <li><a href="flipkart-shipping-label-crop-tool.html" class="hover:text-brand-500 transition">Flipkart Label Cropper</a></li>
                     <li><a href="privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a></li>
                     <li><a href="terms.html" class="hover:text-brand-500 transition">Terms of Use</a></li>
-                    <li><a href="sitemap.xml" class="hover:text-brand-500 transition">Sitemap</a></li>
                 </ul>
             </div>
         </div>
-        
+
+        <div class="max-w-7xl mx-auto px-4 border-t border-slate-900 pt-6 mb-6">
+            <p class="text-xs text-slate-600 text-center">
+                <a href="index.html" class="hover:text-brand-500 transition">All Tools</a>
+                <span class="mx-2">&middot;</span>
+                <a href="guides.html" class="hover:text-brand-500 transition">Guides</a>
+                <span class="mx-2">&middot;</span>
+                <a href="sitemap.xml" class="hover:text-brand-500 transition">Sitemap</a>
+            </p>
+        </div>
+
         <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-600 px-4">
             &copy; <span id="year"></span> The PDF Mechanic. All rights reserved.
         </div>
     </footer>
 
     <script>
-      const themeToggle = document.getElementById('themeToggle');
-      const html = document.documentElement;
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) html.classList.add('dark');
-      themeToggle.addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
-      document.getElementById('year').textContent = new Date().getFullYear();
+      function setGuideCategory(cat) {
+        document.querySelectorAll('#guides-main .tab-btn').forEach(function (btn) {
+          var isActive = btn.getAttribute('data-cat') === cat;
+          btn.classList.toggle('active', isActive);
+          btn.classList.toggle('bg-slate-900', isActive);
+          btn.classList.toggle('dark:bg-white', isActive);
+          btn.classList.toggle('text-white', isActive);
+          btn.classList.toggle('dark:text-slate-900', isActive);
+          btn.classList.toggle('shadow-md', isActive);
+          btn.classList.toggle('bg-white', !isActive);
+          btn.classList.toggle('dark:bg-slate-800', !isActive);
+          btn.classList.toggle('border', !isActive);
+          btn.classList.toggle('border-slate-200', !isActive);
+          btn.classList.toggle('dark:border-slate-700', !isActive);
+          btn.classList.toggle('text-slate-600', !isActive);
+          btn.classList.toggle('dark:text-slate-300', !isActive);
+          btn.classList.toggle('font-bold', isActive);
+          btn.classList.toggle('font-medium', !isActive);
+        });
+
+        var cards = document.querySelectorAll('.guide-card');
+        var visibleCount = 0;
+        cards.forEach(function (card) {
+          var show = cat === 'all' || card.getAttribute('data-cat') === cat;
+          card.classList.toggle('filter-hidden', !show);
+          if (show) visibleCount++;
+        });
+        document.getElementById('noGuidesResult').classList.toggle('hidden', visibleCount !== 0);
+      }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="common.js" defer></script>
 </body>
 </html>
