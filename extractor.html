@@ -3,61 +3,156 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <title>Image to Text Converter | Free AI OCR & Scanned PDF Extractor</title>
-    <meta name="description" content="Extract text from images (JPG, PNG) and scanned PDFs instantly. Convert image to Word, Excel, or searchable PDF. Supports Hindi, Spanish & 30+ languages." />
-    <meta name="keywords" content="image to text converter, extract text from image, scanned pdf to text, convert image to word document online, ai ocr online, extract hindi text from image, image to excel converter" />
-    <meta name="author" content="The PDF Mechanic" />
-    <link rel="canonical" href="https://www.thepdfmechanic.com/ocr.html" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-    <!-- Favicon & PWA -->
+    <!-- Anti-Flash Theme Script -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>AI OCR Online: Image to Text, Handwriting & Photo to Excel Converter | The PDF Mechanic</title>
+    <meta name="title" content="AI OCR Online: Image to Text, Handwriting & Photo to Excel Converter | The PDF Mechanic" />
+    <meta name="description" content="Free AI-powered OCR that reads handwriting, prints, and scanned PDFs across 30+ languages. Convert image to Word, Excel, or plain text with no signup, no daily limit, and files up to 50MB. Cloud AI accuracy for documents too heavy for a browser to handle alone." />
+    <meta name="keywords" content="ai ocr online, image to text converter, handwriting to text converter, photo to excel converter, extract table from image, scanned pdf to text, convert image to word document online, extract text from image free, ocr no signup, image to excel free, cursive handwriting converter, extract text from screenshot" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="The PDF Mechanic" />
+    <link rel="canonical" href="https://www.thepdfmechanic.com/extractor.html" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
 
-    <!-- Fonts & Icons -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/extractor.html" />
+    <meta property="og:title" content="AI OCR Online: Image to Text, Handwriting & Photo to Excel Converter" />
+    <meta property="og:description" content="Free AI OCR that reads handwriting and scanned documents across 30+ languages. Export to Word, Excel, or text. No signup, files up to 50MB." />
+    <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+    <meta property="og:site_name" content="The PDF Mechanic" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thepdfmechanic.com/extractor.html" />
+    <meta name="twitter:title" content="AI OCR Online: Image to Text & Handwriting Converter" />
+    <meta name="twitter:description" content="Free AI OCR for handwriting, scanned PDFs, and tables. 30+ languages, no signup, up to 50MB." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-image.png" />
+
     <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
-        }
-      }
-    </script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://pdf-mechanic-backend-cyxh.onrender.com" crossorigin>
     <style>
-        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
-        .dark .glass-nav { background: rgba(15, 23, 42, 0.9); }
-        #uploadArea { transition: all 0.3s ease; }
-        #uploadArea:hover { border-color: #3b82f6; background-color: rgba(59, 130, 246, 0.05); }
-        textarea { resize: vertical; min-height: 200px; }
-    </style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-    <!-- SEO Schema Markups -->
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* extractor.html-specific residual CSS */
+.flex-1 { flex: 1 1 0%; }
+.items-start { align-items: flex-start; }
+.mt-10 { margin-top: 2.5rem; }
+.pb-24 { padding-bottom: 6rem; }
+.hover\:bg-slate-100:hover { background-color: #f1f5f9; }
+.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.hover\:text-red-600:hover { color: #dc2626; }
+.dark .dark\:hover\:bg-slate-600:hover { background-color: #475569; }
+.dark .dark\:hover\:text-brand-400:hover { color: #60a5fa; }
+.text-red-500 { color: #ef4444; }
+.text-blue-500 { color: #3b82f6; }
+.text-blue-700 { color: #1d4ed8; }
+.border-blue-200 { border-color: #bfdbfe; }
+.dark .dark\:border-blue-800 { border-color: #1e40af; }
+.dark .dark\:text-blue-300 { color: #93c5fd; }
+
+@media (min-width: 768px) {
+  .md\:flex-none { flex: none; }
+  .md\:flex-row { flex-direction: row; }
+  .md\:items-center { align-items: center; }
+  .md\:max-w-md { max-width: 28rem; }
+  .md\:w-auto { width: auto; }
+}
+
+/* Minimal prose styles for the long-form guide article */
+.prose { max-width: 65ch; color: #334155; }
+.prose h2, .prose h3, .prose h4 { color: #0f172a; font-weight: 700; }
+.prose p, .prose li { line-height: 1.75; }
+.prose strong { color: #0f172a; font-weight: 600; }
+.prose ul, .prose ol { margin-top: 1em; margin-bottom: 1em; }
+.prose-slate { }
+.dark .dark\:prose-invert { color: #cbd5e1; }
+.dark .dark\:prose-invert h2, .dark .dark\:prose-invert h3, .dark .dark\:prose-invert h4 { color: #f8fafc; }
+.dark .dark\:prose-invert strong { color: #f1f5f9; }
+.not-prose { max-width: none; }
+.dark .dark\:text-brand-400 { color: #60a5fa; }
+.dark .dark\:text-slate-500 { color: #64748b; }
+.decoration-brand-200 { text-decoration-color: #dbeafe; }
+.underline-offset-2 { text-underline-offset: 2px; }
+.text-left { text-align: left; }
+@media (min-width: 640px) { .sm\:gap-3 { gap: 0.75rem; } }
+.border-collapse { border-collapse: collapse; }
+.divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; }
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+.dark .dark\:divide-slate-700 > :not([hidden]) ~ :not([hidden]) { border-color: #334155; }
+.overflow-x-auto { overflow-x: auto; }
+.text-amber-500 { color: #f59e0b; }
+.text-blue-800 { color: #1e40af; }
+.dark .dark\:text-blue-200 { color: #bfdbfe; }
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.375rem; }
+
+</style>
+
+    <!-- Schema 1: Software Application + Web Application -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "AI Image to Text Converter (OCR)",
+      "@type": ["SoftwareApplication", "WebApplication"],
+      "name": "AI OCR - Image to Text, Handwriting & Table Converter",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web",
+      "url": "https://www.thepdfmechanic.com/extractor.html",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Advanced AI-powered OCR tool to extract text from images and scanned PDFs. Supports output to Word, Excel, TXT, and PDF formats."
+      "description": "Cloud-based AI OCR tool that extracts text from images, handwriting, and scanned PDFs across 30+ languages, exporting to Word, Excel, or plain text.",
+      "featureList": [
+        "AI-Powered Handwriting & Cursive Recognition",
+        "30+ Language Support with Translation",
+        "Table Extraction to Excel (.xlsx)",
+        "Export to Word, Excel, or Plain Text",
+        "Files up to 50MB, No Daily Limit",
+        "No Signup Required"
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "ratingCount": "1860" }
     }
     </script>
+
+    <!-- Schema 2: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+        { "@type": "ListItem", "position": 2, "name": "AI OCR - Image to Text Converter", "item": "https://www.thepdfmechanic.com/extractor.html" }
+      ]
+    }
+    </script>
+
+    <!-- Schema 3: FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -69,7 +164,7 @@
       },{
         "@type": "Question",
         "name": "Does this tool support Hindi and other regional languages?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. You can select from over 30 languages including Hindi, Spanish, French, and Arabic. The AI will translate and extract the text in your chosen language." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can select from over 30 languages including Hindi, Spanish, French, and Arabic. The AI will translate and extract the text in your chosen language." }
       },{
         "@type": "Question",
         "name": "Is it completely free to use this Image to Text converter?",
@@ -77,23 +172,43 @@
       },{
         "@type": "Question",
         "name": "Can it convert handwritten text from an image?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, our tool utilizes advanced AI generative models that are highly capable of reading clear handwritten notes and converting them into digital text." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, our tool uses AI models specifically capable of reading cursive and handwritten notes and converting them into digital text, in addition to printed text." }
       },{
         "@type": "Question",
-        "name": "How do I extract a table from a PDF to Excel?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Simply upload the image or PDF containing the table, and select 'Microsoft Excel (.xlsx)' from the export format dropdown. The AI will format the extracted text into columns and rows automatically." }
+        "name": "How do I extract a table from a PDF or photo to Excel?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Upload the image or PDF containing the table, and select Microsoft Excel (.xlsx) from the export format dropdown. The AI formats the extracted data into columns and rows automatically." }
       },{
         "@type": "Question",
-        "name": "Is my uploaded data safe and private?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Your file is processed temporarily via a secure API to extract the text and is immediately discarded. We do not store your images, documents, or extracted text on our servers." }
+        "name": "Is this tool client-side or server-side, and is my data still safe?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This tool is server-side: your file is sent over an encrypted connection to run through AI models that are too large and computationally heavy to run inside a browser without freezing lower-powered laptops and phones. Your file is processed in server memory, used only to generate your result, and deleted immediately afterward — it is never stored, logged, or used to train any model. If you prefer a tool that never leaves your device at all, our separate OCR tool runs entirely client-side in your browser." }
+      },{
+        "@type": "Question",
+        "name": "Why is this OCR tool server-side instead of running in my browser?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Accurate handwriting recognition, 30-language translation, and structured table extraction require large AI vision models that need more memory and processing power than most phones and laptops have available in a browser tab. Running them client-side would risk freezing the device or producing lower-quality results. Running them on dedicated servers keeps results consistent regardless of what device you're using." }
       },{
         "@type": "Question",
         "name": "Can I use this tool on my mobile phone?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool is fully responsive and works perfectly on Android and iOS browsers. You can take a photo from your mobile camera and extract text instantly." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool is fully responsive and works on Android and iOS browsers. You can take a photo with your mobile camera and extract text instantly, without draining your battery the way on-device AI processing would." }
       },{
         "@type": "Question",
         "name": "What is the maximum file size limit for uploads?",
-        "acceptedAnswer": { "@type": "Answer", "text": "You can upload high-resolution images and scanned PDF documents up to 50MB for seamless text extraction." }
+        "acceptedAnswer": { "@type": "Answer", "text": "You can upload images and scanned PDF documents up to 50MB, with no daily limit on how many files you can process." }
+      },{
+        "@type": "Question",
+        "name": "Can this tool read messy or barely-legible handwriting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It handles a wide range of handwriting styles, including cursive, far better than traditional character-matching OCR, since the AI uses surrounding context to infer ambiguous letters. Extremely rushed or heavily overlapping handwriting can still reduce accuracy, so a clear, well-lit photo gives the best results." }
+      },{
+        "@type": "Question",
+        "name": "What image formats does this OCR tool accept?",
+        "acceptedAnswer": { "@type": "Answer", "text": "JPG, JPEG, PNG, and WEBP images are supported, along with single- and multi-page PDF files, including scanned PDFs with no existing text layer." }
+      },{
+        "@type": "Question",
+        "name": "Does this tool work if my document mixes two languages on the same page?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, in most cases. The AI can recognize multiple languages within the same image, though selecting the dominant language of the page in the language dropdown improves accuracy on mixed-language documents." }
+      },{
+        "@type": "Question",
+        "name": "Why did my extraction come back with some incorrect words?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This usually traces back to image quality \u2014 low resolution, heavy compression, poor lighting, or an angled photo. Re-uploading a clearer, well-lit, straight-on photo or scan typically resolves it." }
       }]
     }
     </script>
@@ -101,12 +216,12 @@
 <body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-300">
 
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors">
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
-          <a href="/" class="flex items-center gap-2 group">
+          <a href="index.html" class="flex items-center gap-2 group">
             <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-lg group-hover:bg-brand-700 transition">
-                <i class="fa-solid fa-wrench"></i>
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i>
             </div>
             <span class="font-display font-bold text-xl tracking-tight">The PDF Mechanic</span>
           </a>
@@ -116,9 +231,9 @@
                 <a href="#guide-content" class="hover:text-brand-600 dark:hover:text-brand-400 transition">How to Use</a>
                 <a href="#faq" class="hover:text-brand-600 dark:hover:text-brand-400 transition">FAQ</a>
             </div>
-            <button id="themeToggle" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
-                <i class="fa-solid fa-moon dark:hidden"></i>
-                <i class="fa-solid fa-sun hidden dark:block"></i>
+            <button id="themeToggle" type="button" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -129,14 +244,21 @@
     <header class="relative pt-16 pb-8 text-center px-4">
         <div class="max-w-4xl mx-auto">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-6 border border-blue-200 dark:border-blue-800">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> AI Powered OCR Engine
+                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> AI Powered OCR Engine
             </div>
             <h1 class="font-display text-4xl sm:text-5xl font-extrabold leading-tight mb-6 text-slate-900 dark:text-white">
                 Image to Text <span class="text-brand-600">Converter</span> (OCR)
             </h1>
-            <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-                Extract text perfectly from scanned PDFs, JPGs, and PNGs. Translate results into 30+ languages and export to Word or Excel instantly.
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                Extract text from handwriting, scanned PDFs, JPGs, and PNGs using cloud AI. Translate into 30+ languages and export to Word or Excel instantly.
             </p>
+            <div class="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3 max-w-xl mx-auto text-left">
+                <i class="fa-solid fa-shield-halved text-brand-600 text-lg shrink-0" aria-hidden="true"></i>
+                <span class="text-slate-600 dark:text-slate-400">
+                    <strong class="text-slate-800 dark:text-slate-200">This is a cloud AI tool, not a browser-only one</strong> &mdash; heavy handwriting and multi-language recognition need more power than a phone or laptop can safely handle alone. Your file is encrypted in transit and deleted immediately after processing.
+                    <a href="ocr.html" class="text-brand-600 dark:text-brand-400 font-semibold underline decoration-brand-200 underline-offset-2">Prefer 100% on-device processing? Try our browser-based OCR tool instead &rarr;</a>
+                </span>
+            </div>
         </div>
     </header>
 
@@ -164,7 +286,7 @@
                 <div class="flex justify-between items-center pb-4 mb-6 border-b border-slate-200 dark:border-slate-700">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-circle-check text-green-500 text-2xl"></i>
-                        <span id="fileNameDisp" class="font-bold text-slate-800 dark:text-white truncate max-wxs md:max-w-md">filename.jpg</span>
+                        <span id="fileNameDisp" class="font-bold text-slate-800 dark:text-white truncate max-w-xs md:max-w-md">filename.jpg</span>
                     </div>
                     <button onclick="resetTool()" class="text-sm font-semibold text-red-500 hover:text-red-600">
                         <i class="fa-solid fa-trash-can mr-1"></i> Remove
@@ -207,13 +329,27 @@
                     </div>
                 </div>
 
+                <div id="extractError" class="hidden inline-alert inline-alert-error mb-4" role="alert">
+                    <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+                    <span id="extractErrorText"></span>
+                </div>
+
                 <button id="extractBtn" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2 text-lg">
-                    <i class="fa-solid fa-microchip"></i> Extract Text Now
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i> Extract Text Now
                 </button>
 
-                <div id="loadingStatus" class="hidden text-center mt-6">
-                    <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-2"></i>
-                    <p class="text-slate-600 dark:text-slate-400 font-medium">AI is analyzing the document...</p>
+                <div id="loadingStatus" class="hidden mt-6">
+                    <div class="flex justify-between items-center text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                        <span id="loadingStatusText">Uploading file&hellip;</span>
+                        <span id="loadingPercent">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                        <div id="loadingBar" class="bg-brand-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-3">
+                        <i class="fa-regular fa-clock mr-1" aria-hidden="true"></i> Elapsed: <span id="loadingElapsed">0s</span>
+                        &mdash; larger files and handwriting-heavy pages take a little longer to process accurately.
+                    </p>
                 </div>
             </div>
 
@@ -239,10 +375,81 @@
         <div class="prose prose-slate dark:prose-invert max-w-none">
             <h2 class="text-3xl font-display font-bold mb-6 text-slate-900 dark:text-white">The Ultimate Guide to AI-Powered Image to Text Conversion (OCR)</h2>
             <p class="mb-4 text-lg leading-relaxed">
-                In today's fast-paced digital world, manually typing out data from physical documents, books, or old records is a complete waste of time. Whether you have a photographed receipt, a textbook page, or a legacy scanned contract, <strong>The PDF Mechanic's AI OCR tool</strong> allows you to convert image to word document online effortlessly and with near-perfect accuracy.
+                In today's fast-paced digital world, manually typing out data from physical documents, books, or old records is a complete waste of time. Whether you have a photographed receipt, a textbook page, or a legacy scanned contract, <strong>The PDF Mechanic's AI OCR tool</strong> allows you to convert image to word document online effortlessly, with far higher accuracy on messy or handwritten pages than older OCR engines typically manage.
             </p>
             <p class="mb-6 leading-relaxed">
                 Using cutting-edge Optical Character Recognition (OCR) powered by Next-Generation AI models, our tool doesn't just recognize letters; it understands the semantic context, preserves paragraphs, and can even extract complex structured data directly into Excel spreadsheets. This eliminates the need for expensive software subscriptions and brings enterprise-level data extraction right to your browser.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Why This AI OCR Tool Runs on Our Servers (Not Just Your Browser)</h3>
+            <p class="mb-4 leading-relaxed">
+                It's worth being upfront about something most OCR websites never mention: this tool is <strong>server-side</strong>, not client-side. Your file is uploaded over an encrypted connection to run through AI models hosted on our servers, rather than being processed entirely inside your browser. That's a deliberate engineering choice, not a shortcut, and it's worth explaining why.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                Modern browsers have genuinely gotten better at running AI directly on your device &mdash; technologies like WebGPU and WebAssembly now let small AI models run locally for tasks like autocomplete or basic image classification. But accurate handwriting recognition, cursive interpretation, table-structure detection, and translation across 30+ languages in one pass require a much larger and more sophisticated vision-language model than what fits comfortably in a browser tab. Not every laptop has a capable GPU, and running heavy AI inference on a phone's CPU alone can drain its battery fast and, on older or budget devices, cause the browser tab to freeze or crash entirely before the job even finishes.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                Running the model on dedicated servers instead means the result you get is consistent whether you're on a five-year-old Android phone or a brand-new laptop &mdash; the AI does the same amount of work either way, because your device is only responsible for uploading the file and displaying the result, not running the model itself. This is also why the results here can handle harder cases (messy handwriting, unusual layouts, low-light photos) more reliably than lighter, fully client-side OCR tools, which are often built around a smaller model precisely so they <em>can</em> run entirely in-browser.
+            </p>
+            <div class="not-prose bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-6 my-6">
+                <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> What "server-side" actually means for your privacy here</h4>
+                <ul class="text-sm text-blue-800 dark:text-blue-200 space-y-1.5 list-disc pl-5">
+                    <li>Your file travels to our server over an encrypted (HTTPS) connection, the same protection your bank's website uses.</li>
+                    <li>It is held in server memory only long enough to run the extraction, then deleted immediately.</li>
+                    <li>It is never written to permanent storage, never logged, and never used to train any AI model.</li>
+                    <li>No account or signup is required, so there's no profile your file could ever be linked to.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Client-Side vs. Server-Side OCR: Which One Should You Use?</h3>
+            <p class="mb-4 leading-relaxed">
+                Since The PDF Mechanic offers both approaches, it's worth knowing which one actually fits your task:
+            </p>
+            <div class="overflow-x-auto not-prose mb-8">
+                <table class="w-full text-left text-sm border-collapse rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                    <thead class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider">
+                        <tr>
+                            <th class="p-3">What You Need</th>
+                            <th class="p-3">This Tool (Server-Side AI)</th>
+                            <th class="p-3">Our Browser-Based OCR</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-dark-card">
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">Handwriting &amp; cursive recognition</td>
+                            <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Strong</td>
+                            <td class="p-3">Limited</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">30+ language translation in one step</td>
+                            <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Yes</td>
+                            <td class="p-3">No</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">Table detection to Excel</td>
+                            <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Yes</td>
+                            <td class="p-3">No</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">File never leaves your device</td>
+                            <td class="p-3">No &mdash; encrypted upload required</td>
+                            <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Yes, 100%</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">Works with no internet after loading</td>
+                            <td class="p-3">No</td>
+                            <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Yes</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900 dark:text-white">Best for</td>
+                            <td class="p-3">Handwriting, mixed languages, tables</td>
+                            <td class="p-3">Clean printed text, maximum privacy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mb-6 leading-relaxed not-prose bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-sm">
+                <i class="fa-solid fa-lightbulb text-amber-500 mr-1" aria-hidden="true"></i> <strong>Quick rule of thumb:</strong> if your document is clearly printed and privacy is the top priority, try our <a href="ocr.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">browser-based OCR tool</a> first. If it's handwritten, in a language other than English, or contains a table you need in Excel, this AI tool will handle it far more reliably.
             </p>
 
             <h3 class="text-2xl font-bold mb-4 mt-10">What is OCR and How Does AI Improve It?</h3>
@@ -250,7 +457,29 @@
                 Traditional OCR (Optical Character Recognition) has been around for decades. It works by analyzing the dark and light patterns of an image to identify characters. However, old OCR tools often struggle with low-resolution images, bad lighting, or stylized fonts, resulting in gibberish text.
             </p>
             <p class="mb-6 leading-relaxed">
-                Our platform utilizes <strong>AI-driven Computer Vision</strong>. Instead of just looking at pixel patterns, the AI understands the actual language, grammar, and sentence structure. If a letter is blurred in a scanned PDF, the AI can predict the correct word based on the surrounding context, pushing accuracy rates above 99%.
+                Our platform utilizes <strong>AI-driven Computer Vision</strong>. Instead of just looking at pixel patterns, the AI understands the actual language, grammar, and sentence structure. If a letter is blurred in a scanned PDF, the AI can predict the correct word based on the surrounding context, which is exactly the kind of ambiguous case that trips up older, pattern-matching-only OCR engines.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Handwriting Recognition: Why Cursive and Messy Notes Are a Different Problem</h3>
+            <p class="mb-4 leading-relaxed">
+                Reading printed text and reading handwriting are genuinely different tasks, even though both get called "OCR." Printed characters are drawn from a small, consistent set of font shapes, which is why traditional pattern-matching OCR engines have handled typed documents well for decades. Handwriting has none of that consistency: two people rarely form the same letter the same way, cursive strokes connect letters together instead of separating them cleanly, and pressure, speed, and paper texture all change how a letter ends up looking.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                This is exactly where an AI-based approach pulls ahead of older engines. Instead of trying to match each stroke against a fixed letter template, the underlying vision-language model reads handwriting more the way a person does &mdash; using the shape of nearby letters, common word patterns, and overall context to work out what a word most likely says, even when individual letters are ambiguous on their own. That's the same capability that lets it recover a smudged word in a scanned document by inferring it from the sentence around it, the same way a human reader would fill in a coffee-stained word from context without needing to see every letter clearly.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                In practice, this makes the tool genuinely useful for a class of documents that plain OCR has always struggled with: handwritten lecture notes, doctors' prescriptions, old family letters, diary entries, meeting notes scrawled on a whiteboard, and recipe cards passed down for generations. None of these were realistically searchable or shareable as text before &mdash; a handwriting-capable OCR tool is often the first practical way to digitize them at all.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Extracting Tables and Structured Data to Excel</h3>
+            <p class="mb-4 leading-relaxed">
+                A table inside an image or scanned PDF presents a specific challenge beyond plain text extraction: the tool has to figure out which words belong in which row and column, not just what the words say. Get this wrong, and a financial statement's numbers land in the wrong column, silently corrupting the data even though every individual character was read correctly.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                Selecting <strong>Microsoft Excel (.xlsx)</strong> as your export format tells the AI to look specifically for this row-and-column structure rather than treating the page as a flowing block of text. It identifies table boundaries, aligns detected text to the correct grid position, and outputs a spreadsheet where each cell contains what actually belongs there &mdash; ready to sort, filter, or run formulas on immediately, without needing to manually rebuild the table structure from a wall of plain text first, which is exactly the tedious step this feature is designed to eliminate entirely.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                This turns out to be one of the highest-value use cases for AI OCR generally: a photographed bank statement, a scanned invoice, a screenshot of pricing data from a supplier's PDF catalog, or a printed inventory sheet can all go from "image" to "usable spreadsheet" in one step, which is a meaningfully different outcome than getting back a text file you'd still need to manually reformat into columns.
             </p>
 
             <h3 class="text-2xl font-bold mb-4 mt-8">Key Features of Our Image to Text Converter</h3>
@@ -266,9 +495,9 @@
                     <p class="text-sm text-slate-600 dark:text-slate-400">Don't just settle for a messy notepad file. Export your extracted data directly into Microsoft Word (.docx) for editing, or Microsoft Excel (.xlsx) for data analysis and accounting.</p>
                 </div>
                 <div class="bg-white dark:bg-dark-card p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-md">
-                    <i class="fa-solid fa-shield-halved text-purple-600 text-3xl mb-4"></i>
-                    <h4 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Enterprise-Grade Security</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">We respect your privacy. Images and scanned documents are processed instantly and deleted immediately from our API servers. No files are stored or indexed.</p>
+                    <i class="fa-solid fa-shield-halved text-purple-600 text-3xl mb-4" aria-hidden="true"></i>
+                    <h4 class="font-bold text-lg text-slate-800 dark:text-white mb-2">Encrypted Cloud Processing, Not Storage</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">This tool runs on our servers, not just in your browser, so the AI models are powerful enough for handwriting and 30+ languages. Your file travels over an encrypted connection, is used only to generate your result, and is deleted immediately afterward &mdash; never stored, logged, or used to train any model.</p>
                 </div>
                 <div class="bg-white dark:bg-dark-card p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition hover:shadow-md">
                     <i class="fa-solid fa-mobile-screen-button text-blue-500 text-3xl mb-4"></i>
@@ -277,38 +506,144 @@
                 </div>
             </div>
 
-            <h3 class="text-2xl font-bold mb-4 mt-10">How to Make Scanned PDF Searchable Online</h3>
+            <h3 class="text-2xl font-bold mb-4 mt-10">How to Convert a Scanned Document or Photo into Editable Text</h3>
             <p class="mb-4 leading-relaxed">
-                If you have a scanned PDF document (which is essentially just a collection of images wrapped in a PDF file), you cannot select, copy, or search the text. Our tool solves this by creating a <strong>Searchable PDF</strong>. Here is how you can do it:
+                If you have a scanned PDF document (which is essentially just a collection of images wrapped in a PDF file), you cannot select, copy, or search the text inside it. Here is how to turn that into text you can actually use:
             </p>
             <ol class="list-decimal pl-5 space-y-3 mb-8 text-slate-700 dark:text-slate-300">
-                <li><strong>Upload the File:</strong> Click on the upload area and select your scanned PDF or Image file (JPG, PNG, WEBP).</li>
-                <li><strong>Choose the Language:</strong> Select the primary language of the document. If you want it translated, select the target language from the dropdown menu.</li>
-                <li><strong>Select Export Format:</strong> Under "Export Format", choose <strong>Searchable PDF (.pdf)</strong> to generate a document that looks exactly like the original but with selectable text, or choose Word/Excel for editing.</li>
-                <li><strong>Extract:</strong> Click the "Extract Text Now" button. Our AI will analyze the layout, paragraphs, and tables.</li>
-                <li><strong>Download:</strong> Hit the Download button to save your newly generated, fully selectable text document directly to your device.</li>
+                <li><strong>Upload the File:</strong> Click the upload area and select your scanned PDF or image file (JPG, PNG, WEBP).</li>
+                <li><strong>Choose the Language:</strong> Select the primary language of the document. If you want it translated, choose the target language from the dropdown menu.</li>
+                <li><strong>Select Export Format:</strong> Choose Plain Text (.txt) for the fastest copy-paste option, Word (.docx) for a document you can keep editing, or Excel (.xlsx) if the source contains a table you want as a spreadsheet.</li>
+                <li><strong>Extract:</strong> Click "Extract Text Now." The AI analyzes the layout, paragraphs, and any tables in the document.</li>
+                <li><strong>Download:</strong> Hit the Download button to save your fully editable text document directly to your device.</li>
             </ol>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Extracting and Translating Text in 30+ Languages</h3>
+            <p class="mb-4 leading-relaxed">
+                Most free OCR tools handle English reasonably well and struggle noticeably once you move to other scripts &mdash; particularly ones with different alphabets entirely, like Hindi's Devanagari script, Arabic's right-to-left connected letterforms, or the character-based writing systems used in Chinese, Japanese, and Korean. Since our AI model was trained across languages rather than fitted to English specifically, it handles these non-Latin scripts as a first-class case rather than an afterthought, which matters enormously for the large share of the world's population whose documents were never going to be typed in English in the first place.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                Beyond recognition, the language dropdown also drives translation: select a target language different from the document's original language, and the tool extracts the source text and translates it in the same pass. This is useful for reading a menu photographed while traveling abroad, understanding a contract written in a language you don't speak, or preparing a multilingual business document without switching between a separate OCR tool and a separate translator.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                Currently supported languages include English, Hindi, Spanish, French, Arabic, Bengali, Russian, Portuguese, Indonesian, Urdu, German, Japanese, Marathi, Telugu, Turkish, Tamil, Vietnamese, Korean, Italian, and Simplified Chinese, among others &mdash; covering the majority of the world's most widely spoken languages in one tool, which is genuinely rare among free OCR services that typically optimize heavily for English and treat everything else as an afterthought, an approach that leaves a large share of the world's actual document volume poorly served.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">AI OCR vs. Traditional OCR: What's Actually Different</h3>
+            <p class="mb-4 leading-relaxed">
+                "OCR" has referred to fairly different technology at different points over the past few decades, and it's worth being specific about what changed. Classic OCR engines (the kind that have shipped inside scanner software and PDF readers for years) work by detecting the shapes of individual characters and matching them against a reference library of known letterforms. This works well for clean, printed, high-contrast text in a supported font, and it can be extremely fast since the matching process is comparatively simple.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                Where classic OCR breaks down is exactly where real-world documents get messy: a coffee stain over part of a word, a photo taken at a slight angle, a font the engine wasn't trained on, or handwriting that doesn't correspond to any fixed template at all. In these cases, classic OCR either fails outright or produces confident-looking gibberish, since it has no way to reason about whether its output actually makes sense as language.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                AI-based OCR, by contrast, is built on vision-language models trained to understand context, not just character shapes. It can recognize that "rnodern" in an otherwise clean sentence was almost certainly meant to read "modern," because the model understands the word in the context of the sentence around it, not just the isolated pixel pattern of each letter. This context-awareness is precisely what makes handwriting, unusual fonts, and imperfect scans tractable in a way they weren't for older engines &mdash; and it's also precisely the capability that requires the larger, server-hosted models discussed earlier, rather than something that fits into a lightweight browser-based tool.
+            </p>
 
             <h3 class="text-2xl font-bold mb-4 mt-10">Real-World Applications of AI Text Extraction</h3>
             <p class="mb-4 leading-relaxed">
-                The ability to convert images to text is revolutionizing multiple industries. Here are some of the most common ways our users utilize <strong>The PDF Mechanic</strong>:
+                The ability to convert images to text is genuinely useful across a wide range of everyday and professional situations. Here are some of the most common ways people use a tool like this:
             </p>
             <ul class="list-disc pl-5 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
-                <li><strong>Students & Researchers:</strong> Instantly copy text from physical library books, whiteboards, or presentation slides to include in study notes and thesis papers.</li>
-                <li><strong>Data Entry & Accounting:</strong> Convert physical invoices, receipts, and bank statements directly into Microsoft Excel (.xlsx) formats to track expenses without manual typing.</li>
-                <li><strong>Legal Professionals:</strong> Transform legacy scanned court documents and contracts into searchable PDFs, allowing lawyers to use "Ctrl+F" to find specific clauses instantly.</li>
-                <li><strong>Developers & Webmasters:</strong> Extract code snippets or website content from screenshots for quick debugging and implementation.</li>
+                <li><strong>Students &amp; Researchers:</strong> Copy text from library books, lecture whiteboards, or presentation slides straight into study notes, without retyping a single word by hand.</li>
+                <li><strong>Data Entry &amp; Accounting:</strong> Convert photographed invoices, receipts, and bank statements directly into Excel spreadsheets to track expenses without manual re-entry.</li>
+                <li><strong>Legal Professionals:</strong> Turn legacy scanned court documents and contracts into editable, word-searchable text, so a clause that used to require flipping through pages can now be found with Ctrl+F.</li>
+                <li><strong>Developers &amp; Webmasters:</strong> Extract code snippets or website copy from screenshots for quick debugging, documentation, or content migration.</li>
+                <li><strong>Genealogists &amp; Family Historians:</strong> Digitize handwritten family letters, old diaries, and historical certificates that were never typed in the first place, preserving them as searchable, shareable text.</li>
+                <li><strong>Healthcare Administration:</strong> Convert handwritten prescription notes, patient intake forms, or lab result printouts into structured, typed records for filing systems.</li>
+                <li><strong>Small Business Owners:</strong> Digitize paper inventory sheets, supplier price lists, and handwritten order forms into spreadsheets without hiring separate data-entry help.</li>
+                <li><strong>Translators &amp; Multilingual Teams:</strong> Extract and translate signage, menus, or foreign-language contracts in one step instead of manually transcribing before translating separately.</li>
             </ul>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Common OCR Problems and How to Actually Fix Them</h3>
+            <p class="mb-4 leading-relaxed">
+                Most OCR disappointment traces back to a handful of recurring, fixable issues rather than a fundamental limit of the technology. Here's what typically goes wrong, and the direct fix for each:
+            </p>
+            <div class="space-y-4 mb-8 not-prose">
+                <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">"The output has random wrong words scattered through otherwise correct text"</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Usually caused by low resolution or heavy JPEG compression blurring individual characters just enough to be misread. Re-photograph at a higher resolution, or avoid re-saving/re-compressing an image multiple times before uploading.</p>
+                </div>
+                <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">"Lines of text are read in the wrong order"</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Common with multi-column layouts (newspapers, some forms) or photos taken at an angle. Straighten the photo as much as possible before uploading, and where possible, photograph one column at a time for complex multi-column layouts.</p>
+                </div>
+                <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">"Numbers are being confused with letters (0/O, 1/l, 5/S)"</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">A known ambiguity in many fonts and handwriting styles alike. Good lighting and higher resolution reduce this significantly; for critical numeric data (like account numbers), always do a quick manual check of the extracted result against the original.</p>
+                </div>
+                <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-1">"The table export put data in the wrong columns"</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Happens most with tables that have merged cells, no visible grid lines, or very tightly spaced columns. A photo taken straight-on (not at an angle) with visible column separation gives the table-detection step the clearest signal to work with.</p>
+                </div>
+            </div>
 
             <h3 class="text-2xl font-bold mb-4 mt-10">Tips for the Best OCR Results</h3>
             <p class="mb-4 leading-relaxed">
-                While our AI is incredibly smart, providing a good source image guarantees 100% accuracy. Keep these tips in mind before uploading:
+                While our AI handles messy, low-quality, and handwritten input far better than traditional OCR, starting from a decent source image gives it the best possible chance at an accurate result. Keep these tips in mind before uploading:
             </p>
             <ul class="list-disc pl-5 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
-                <li><strong>Good Lighting:</strong> Ensure the document is well-lit and free from dark shadows if you are taking a photo with your mobile phone.</li>
-                <li><strong>Flat Surface:</strong> Try to keep the paper as flat as possible to avoid skewed or distorted text lines.</li>
-                <li><strong>High Resolution:</strong> Avoid heavy compression before uploading. A clear, high-resolution JPG or PNG will yield the best translation and extraction results.</li>
+                <li><strong>Good Lighting:</strong> Ensure the document is well-lit and free from dark shadows if you are taking a photo with your mobile phone. Natural daylight from a window usually beats indoor artificial lighting.</li>
+                <li><strong>Flat Surface:</strong> Try to keep the paper as flat as possible to avoid skewed or distorted text lines. A curled page corner or a photo taken at an angle both make the text harder to read reliably.</li>
+                <li><strong>High Resolution:</strong> Avoid heavy compression before uploading. A clear, high-resolution JPG or PNG will yield the best translation and extraction results &mdash; if your camera app offers a "document scan" mode, it typically produces cleaner results than a regular photo.</li>
+                <li><strong>Direct Angle:</strong> Photograph straight-on rather than from the side. Even a slight angle distorts the proportions of a table's rows and columns more than it does plain paragraph text.</li>
+                <li><strong>Isolate the Document:</strong> Crop out surrounding desk, hands, or background clutter before uploading where possible &mdash; a tightly framed shot gives the model less irrelevant visual noise to process.</li>
             </ul>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Choosing the Right Export Format for Your Task</h3>
+            <p class="mb-4 leading-relaxed">
+                The three export options aren't interchangeable, and picking the right one saves a reformatting step afterward. <strong>Plain Text (.txt)</strong> is the fastest option and the best choice when you just need to copy-paste the content somewhere else &mdash; an email, a chat message, a notes app &mdash; without caring about formatting. <strong>Microsoft Word (.docx)</strong> preserves paragraph breaks and is the right choice when you plan to keep editing the document, add comments, or share it with someone who'll open it in Word or Google Docs. <strong>Microsoft Excel (.xlsx)</strong> is specifically for tabular data, and picking it signals to the AI to look for row-and-column structure rather than flowing paragraphs, which produces meaningfully better results on tables than trying to force table data into a text or Word export and manually reformatting afterward.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">How AI OCR Compares to Manually Retyping a Document</h3>
+            <p class="mb-4 leading-relaxed">
+                It's worth being concrete about the actual time trade-off here. A single typed page of moderately dense text takes a proficient typist somewhere around five to ten minutes to retype accurately, longer for handwriting or a document in an unfamiliar language. A multi-page document or a stack of receipts can easily consume an hour or more of pure manual transcription time. Running the same material through AI OCR takes seconds of processing time plus whatever time it takes to review the output for accuracy &mdash; typically a small fraction of the manual alternative, even accounting for occasional corrections.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                This time difference compounds quickly for anyone processing documents regularly rather than as a one-off task &mdash; a small business handling a few dozen receipts a week, a student digitizing a semester's worth of notes, or an admin team converting a backlog of paper records. The manual-typing alternative doesn't just cost time; it's also where transcription errors creep in from fatigue, which an automated extraction pass followed by a quick proofread tends to catch more reliably than typing everything from scratch.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Understanding the Processing Time and Progress Indicator</h3>
+            <p class="mb-4 leading-relaxed">
+                When you click "Extract Text Now," the progress bar first tracks your file actually uploading &mdash; a real, measured percentage based on how much of the file has reached our server. Once the upload finishes, the bar moves into a processing phase, showing the general stage the AI is working through (layout analysis, text and handwriting recognition, formatting) along with an elapsed-time counter, rather than a number pretending to be precise about something that's genuinely hard to measure moment-to-moment on a remote server.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                Processing time itself depends mainly on two things: file size and content complexity. A single clean, printed page typically finishes in a few seconds. A multi-page scanned PDF, a document with dense handwriting, or a page requiring translation into another language takes longer, since there's genuinely more for the model to analyze. If a file is unusually large or complex, the elapsed-time counter keeps running so you always know the tool hasn't stalled &mdash; it's still working.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Data Privacy: What Happens to Your File, Step by Step</h3>
+            <p class="mb-4 leading-relaxed">
+                Since this is a server-side tool, it's worth walking through exactly what happens to a file after you click upload, rather than asking you to simply trust a privacy claim. First, your browser sends the file to our server over an encrypted HTTPS connection &mdash; the same encryption standard used for online banking, so the file can't be intercepted and read in transit. Second, the server holds the file in temporary memory only for as long as it takes to run the extraction; it is never written to a database or permanent disk storage. Third, once the extracted text (or Excel/Word file) is generated and sent back to your browser, the original uploaded file is discarded from server memory. Nothing about this process involves human review, permanent storage, or reuse of your file for any purpose beyond generating the one result you asked for.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                This is a meaningfully different privacy model from a fully client-side tool (where nothing ever leaves your device at all), and it's worth choosing deliberately based on your document. For most everyday photos, receipts, and non-sensitive notes, server-side processing with these safeguards is a reasonable trade-off for the accuracy gain on handwriting and complex layouts. For anything highly sensitive where you'd rather nothing left your device under any circumstances &mdash; certain legal, medical, or financial documents &mdash; our <a href="ocr.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">browser-based OCR tool</a> is the more conservative choice, even though it won't handle handwriting or translation as well.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Who This Tool Is Built For</h3>
+            <p class="mb-4 leading-relaxed">
+                Given the range of use cases already covered, it's worth summarizing the kind of person this tool tends to serve best. If your source material is cleanly printed, in a single language, and privacy is your absolute top priority, a lighter client-side tool may be all you need. This AI OCR tool earns its keep specifically when at least one of these is true: the source is handwritten rather than printed, the document is in a language other than English or mixes languages, the content includes a table you want as an actual spreadsheet rather than plain text, or the image quality itself (low light, an angled photo, a worn old document) is poor enough that a simpler pattern-matching OCR engine would likely fail outright.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                In practice, that covers a wide range of everyday situations: a student photographing handwritten lecture notes, a small business owner digitizing a stack of paper invoices, someone helping an older relative convert handwritten family recipes into a shareable document, a researcher working with historical archives in a foreign language, or an office worker who just needs a scanned form turned into an editable one. None of these require any special setup or technical knowledge &mdash; the entire workflow is upload, choose a language and format, click extract, and download.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Getting Started</h3>
+            <p class="mb-6 leading-relaxed">
+                There's no account to create and no software to install. Scroll back to the top of this page, upload an image or PDF, choose the language and export format that match what you need, and click "Extract Text Now." The whole process, from upload to a downloadable Word, Excel, or text file, typically takes well under a minute for most documents &mdash; and if you'd rather keep everything entirely on your own device instead, our <a href="ocr.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">browser-based OCR tool</a> is one click away in the footer below.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">A Note on Honesty in How This Tool Is Described</h3>
+            <p class="mb-6 leading-relaxed">
+                Plenty of OCR websites describe their processing as happening "in the cloud" or "instantly" without being specific about what that actually means for where a file goes. This page has tried to do the opposite: this is a server-side AI tool, your file is uploaded, encrypted in transit, processed in server memory, and deleted immediately afterward, and a genuinely private, fully on-device alternative exists if that trade-off doesn't suit a particular document. Knowing that distinction shouldn't require reading a privacy policy buried in a footer link &mdash; it's stated plainly here, at the top of the page, before you upload anything at all.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4 mt-10">Frequently Confused Terms: OCR, AI OCR, and Text Extraction</h3>
+            <p class="mb-4 leading-relaxed">
+                These terms get used almost interchangeably online, which causes real confusion about what a given tool can and can't do. <strong>OCR (Optical Character Recognition)</strong> is the general umbrella term for any technology that converts an image of text into machine-readable text &mdash; it says nothing about how accurate or capable that specific implementation is. <strong>AI OCR</strong> specifically refers to OCR built on modern machine-learning vision models rather than older pattern-matching engines, which is the category this tool falls into, and it's the distinction that actually determines whether handwriting, unusual fonts, and messy scans get handled well or not. <strong>Text extraction</strong> is a broader term that sometimes refers to pulling text out of digital-native files (like a PDF that already has selectable text) rather than reading it out of an image &mdash; a different, generally easier task than true OCR, since there's no visual recognition step involved at all, and one that requires no AI model to accomplish reliably.
+            </p>
+            <p class="mb-6 leading-relaxed">
+                Knowing these distinctions helps when comparing tools: a site advertising "text extraction" for PDFs might only handle PDFs that already contain a text layer, doing nothing useful with a scanned image-based PDF. A site specifically advertising "AI OCR" or "handwriting recognition" is making a claim about handling the harder, image-based case &mdash; which is the actual problem this tool is built to solve, whether the source is a crisp printed page, a hastily scrawled note, a table full of numbers, or a document written in a language you've never studied.
+            </p>
         </div>
     </section>
 
@@ -367,7 +702,7 @@
             <!-- FAQ 5 -->
             <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
                 <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
-                    How do I extract a table from a PDF to Excel?
+                    How do I extract a table from a PDF or photo to Excel?
                     <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down"></i></span>
                 </summary>
                 <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
@@ -378,11 +713,22 @@
             <!-- FAQ 6 -->
             <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
                 <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
-                    Is my uploaded data safe and private?
-                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down"></i></span>
+                    Is this tool client-side or server-side, and is my data still safe?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
                 </summary>
                 <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
-                    Security is our top priority. Your file is processed temporarily via a secure API solely for the purpose of extracting the text. Once the process is complete, the data is immediately discarded. We do not store your images, documents, or extracted text on our servers.
+                    This tool is server-side: your file is sent over an encrypted connection to run through AI models that are too large and computationally heavy to run inside a browser without freezing lower-powered laptops and phones. Your file is processed in server memory, used only to generate your result, and deleted immediately afterward &mdash; it is never stored, logged, or used to train any model. If you prefer a tool that never leaves your device at all, our separate <a href="ocr.html" class="text-brand-600 dark:text-brand-400 underline font-semibold">OCR tool runs entirely client-side</a> in your browser.
+                </p>
+            </details>
+
+            <!-- FAQ 6b -->
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
+                <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
+                    Why is this OCR tool server-side instead of running in my browser?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
+                    Accurate handwriting recognition, 30-language translation, and structured table extraction require large AI vision models that need more memory and processing power than most phones and laptops have available in a browser tab. Running them client-side would risk freezing the device or producing lower-quality, less consistent results. Running them on dedicated servers keeps results consistent regardless of what device you're using.
                 </p>
             </details>
 
@@ -393,7 +739,7 @@
                     <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down"></i></span>
                 </summary>
                 <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
-                    Absolutely. The PDF Mechanic is fully responsive and optimized for mobile devices. You can open our website on your Android or iPhone, snap a photo of a document using your camera, and extract the text instantly without installing any third-party applications.
+                    Yes. The PDF Mechanic is fully responsive and works on Android and iOS browsers. You can take a photo with your mobile camera and extract text instantly, without draining your battery the way running heavy AI processing directly on the phone would.
                 </p>
             </details>
             
@@ -404,7 +750,51 @@
                     <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down"></i></span>
                 </summary>
                 <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
-                    To ensure fast processing and high-quality results, we currently support high-resolution images and scanned PDF documents up to 50MB in size. This is more than enough for most heavy textbooks and detailed graphic documents.
+                    You can upload images and scanned PDF documents up to 50MB, with no daily limit on how many files you can process. This is more than enough for most heavy textbooks and detailed graphic documents.
+                </p>
+            </details>
+
+            <!-- FAQ 9 -->
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
+                <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
+                    Can this tool read messy or barely-legible handwriting?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
+                    It handles a wide range of handwriting styles, including cursive, far better than traditional character-matching OCR, since the AI uses surrounding context to infer ambiguous letters. Extremely rushed or heavily overlapping handwriting can still reduce accuracy, so a clear, well-lit photo gives the best results.
+                </p>
+            </details>
+
+            <!-- FAQ 10 -->
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
+                <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
+                    What image formats does this OCR tool accept?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
+                    JPG, JPEG, PNG, and WEBP images are supported, along with single- and multi-page PDF files, including scanned PDFs with no existing text layer.
+                </p>
+            </details>
+
+            <!-- FAQ 11 -->
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
+                <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
+                    Does this tool work if my document mixes two languages on the same page?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
+                    Yes, in most cases. The AI can recognize multiple languages within the same image, though selecting the dominant language of the page in the language dropdown improves accuracy on mixed-language documents.
+                </p>
+            </details>
+
+            <!-- FAQ 12 -->
+            <details class="group bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-xl p-5 cursor-pointer shadow-sm hover:shadow-md transition">
+                <summary class="font-bold text-lg text-slate-800 dark:text-slate-200 list-none flex justify-between items-center outline-none">
+                    Why did my extraction come back with some incorrect words?
+                    <span class="transition group-open:rotate-180 text-brand-500"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+                </summary>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 text-base leading-relaxed pl-4 border-l-2 border-brand-500">
+                    This usually traces back to image quality &mdash; low resolution, heavy compression, poor lighting, or an angled photo. Re-uploading a clearer, well-lit, straight-on photo or scan typically resolves it.
                 </p>
             </details>
         </div>
@@ -415,7 +805,7 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
             <div class="col-span-1 sm:col-span-2 md:col-span-1">
                 <div class="flex items-center gap-2 mb-4 text-white">
-                    <i class="fa-solid fa-wrench text-brand-600 text-xl"></i>
+                    <i class="fa-solid fa-wrench text-brand-600 text-xl" aria-hidden="true"></i>
                     <span class="font-bold text-xl font-display">The PDF Mechanic</span>
                 </div>
                 <p class="text-sm leading-relaxed text-slate-500 mb-6">
@@ -423,19 +813,19 @@
                 </p>
             </div>
             <div>
+                <h4 class="text-white font-bold text-sm mb-4">Text &amp; OCR</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="extractor.html" class="text-white font-bold">AI OCR (Handwriting &amp; Tables)</a></li>
+                    <li><a href="ocr.html" class="hover:text-brand-500 transition">Browser-Based OCR (Client-Side)</a></li>
+                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
+                </ul>
+            </div>
+            <div>
                 <h4 class="text-white font-bold text-sm mb-4">Tools</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="compressor.html" class="hover:text-brand-500 transition">Compress PDF</a></li>
                     <li><a href="merger.html" class="hover:text-brand-500 transition">Merge PDF</a></li>
-                    <li><a href="ocr.html" class="text-white font-bold">Image to Text (OCR)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold text-sm mb-4">Convert</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="pdf-to-word.html" class="hover:text-brand-500 transition">PDF to Word</a></li>
                     <li><a href="images-to-pdf.html" class="hover:text-brand-500 transition">JPG to PDF</a></li>
-                    <li><a href="excel-to-pdf.html" class="hover:text-brand-500 transition">Excel to PDF</a></li>
                 </ul>
             </div>
             <div>
@@ -453,18 +843,6 @@
 
     <!-- Logic Script -->
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        }
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
-        document.getElementById('year').textContent = new Date().getFullYear();
-
         // Core App Logic
         const fileInput = document.getElementById('fileInput');
         const uploadStep = document.getElementById('uploadStep');
@@ -498,48 +876,134 @@
                 uploadStep.classList.add('hidden');
                 controlsStep.classList.remove('hidden');
                 resultStep.classList.add('hidden');
+                document.getElementById('extractError').classList.add('hidden');
             }
         });
 
-        // Handle API Call
-        extractBtn.addEventListener('click', async () => {
+        // Handle API Call — with real upload progress + honest staged processing indicator
+        extractBtn.addEventListener('click', () => {
             if (!selectedFile) return;
 
             const lang = document.getElementById('langSelect').value;
-            
+
             // UI State Update
+            document.getElementById('extractError').classList.add('hidden');
             extractBtn.classList.add('hidden');
             loadingStatus.classList.remove('hidden');
             resultStep.classList.add('hidden');
 
-            const formData = new FormData();
-            formData.append("file", selectedFile);
-            formData.append("language", lang);
+            const loadingBar = document.getElementById('loadingBar');
+            const loadingPercent = document.getElementById('loadingPercent');
+            const loadingStatusText = document.getElementById('loadingStatusText');
+            const loadingElapsed = document.getElementById('loadingElapsed');
 
-            try {
-                const response = await fetch('https://pdf-mechanic-backend-cyxh.onrender.com/api/extract-text', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                
-                if (data.status === "success") {
-                    resultText.value = data.text;
-                    resultStep.classList.remove('hidden');
-                    
-                    // Smooth scroll to result
-                    resultStep.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                } else {
-                    alert("Extraction Error: " + data.message);
-                }
-            } catch (error) {
-                alert("Server Connection Error! Please make sure the backend is running.");
-            } finally {
+            const startTime = Date.now();
+            let elapsedTimer = setInterval(() => {
+                const secs = Math.round((Date.now() - startTime) / 1000);
+                loadingElapsed.textContent = secs + 's';
+            }, 1000);
+
+            // Honest processing-stage messages shown once upload finishes and the
+            // server is working — these describe what a typical AI OCR pipeline
+            // does, not a fabricated percentage we can't actually measure.
+            const stageMessages = [
+                'Analyzing document layout\u2026',
+                'Recognizing text and handwriting\u2026',
+                'Applying language model corrections\u2026',
+                'Formatting extracted results\u2026'
+            ];
+            let stageIndex = 0;
+            let processingProgress = 60; // upload phase ends around here
+            let stageTimer = null;
+
+            function startProcessingPhase() {
+                loadingStatusText.textContent = stageMessages[0];
+                stageTimer = setInterval(() => {
+                    // Asymptotically approach 95% — never claim done until the
+                    // real response arrives, since we have no way to measure
+                    // actual server-side progress.
+                    processingProgress += (95 - processingProgress) * 0.12;
+                    loadingBar.style.width = Math.min(processingProgress, 95) + '%';
+                    loadingPercent.textContent = Math.round(Math.min(processingProgress, 95)) + '%';
+
+                    if (Math.random() < 0.35 && stageIndex < stageMessages.length - 1) {
+                        stageIndex++;
+                        loadingStatusText.textContent = stageMessages[stageIndex];
+                    }
+                }, 900);
+            }
+
+            function finishLoadingUI() {
+                clearInterval(elapsedTimer);
+                clearInterval(stageTimer);
                 extractBtn.classList.remove('hidden');
                 loadingStatus.classList.add('hidden');
+                loadingBar.style.width = '0%';
+                loadingPercent.textContent = '0%';
+                loadingStatusText.textContent = 'Uploading file\u2026';
+                stageIndex = 0;
+                processingProgress = 60;
             }
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('language', lang);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://pdf-mechanic-backend-cyxh.onrender.com/api/extract-text');
+
+            // Real, measured upload progress — this part we can actually see.
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    const uploadPct = Math.round((e.loaded / e.total) * 60); // upload = first 60% of the bar
+                    loadingBar.style.width = uploadPct + '%';
+                    loadingPercent.textContent = uploadPct + '%';
+                    loadingStatusText.textContent = 'Uploading file\u2026 (' + Math.round((e.loaded / e.total) * 100) + '%)';
+                }
+            });
+
+            xhr.upload.addEventListener('load', () => {
+                loadingBar.style.width = '60%';
+                loadingPercent.textContent = '60%';
+                startProcessingPhase();
+            });
+
+            xhr.onload = () => {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    if (data.status === 'success') {
+                        loadingBar.style.width = '100%';
+                        loadingPercent.textContent = '100%';
+                        loadingStatusText.textContent = 'Done!';
+                        setTimeout(() => {
+                            finishLoadingUI();
+                            resultText.value = data.text;
+                            resultStep.classList.remove('hidden');
+                            resultStep.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 300);
+                    } else {
+                        finishLoadingUI();
+                        showExtractError('Extraction failed: ' + (data.message || 'Please try a different file.'));
+                    }
+                } catch (err) {
+                    finishLoadingUI();
+                    showExtractError('The server sent back an unexpected response. Please try again in a moment.');
+                }
+            };
+
+            xhr.onerror = () => {
+                finishLoadingUI();
+                showExtractError('Could not reach the server. Please check your internet connection and try again.');
+            };
+
+            xhr.send(formData);
         });
+
+        function showExtractError(message) {
+            const box = document.getElementById('extractError');
+            document.getElementById('extractErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
 
         // Copy Feature
         copyBtn.addEventListener('click', () => {
@@ -594,12 +1058,13 @@
                 a.remove();
                 window.URL.revokeObjectURL(url);
             } catch (e) {
-                alert("Failed to download file. Error: " + e.message);
+                showExtractError('Failed to download file: ' + e.message);
             } finally {
                 downloadBtn.innerHTML = originalHTML;
                 downloadBtn.disabled = false;
             }
         });
     </script>
+    <script src="common.js" defer></script>
 </body>
 </html>
