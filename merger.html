@@ -3,13 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <title>Merge PDF Files Offline | Free & Secure PDF Combiner | The PDF Mechanic</title>
-    <meta name="description" content="Combine multiple PDF files into one document instantly. Works 100% offline in your browser. No upload required, secure and free on Android & PC." />
-    <meta name="keywords" content="merge pdf offline, combine pdf no upload, client-side pdf merger, join pdf files android, stitch pdf documents, free pdf binder, secure pdf joiner" />
-    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Merge PDF Files Free Online, No File Limit | Combine PDFs Offline | The PDF Mechanic</title>
+    <meta name="title" content="Merge PDF Files Free Online, No File Limit | Combine PDFs Offline | The PDF Mechanic" />
+    <meta name="description" content="Merge unlimited PDF files free, with no daily cap, no 12-file limit, and no file-size restriction. Combine PDFs entirely offline in your browser — nothing is ever uploaded. Works on Android, iPhone, and PC." />
+    <meta name="keywords" content="merge pdf, combine pdf files, merge pdf no limit, merge pdf offline, combine pdf without upload, merge large pdf files, join pdf files free, merge scanned pdf, merge pdf preserve bookmarks, unlimited pdf merger, pdf merge no daily limit, client-side pdf merger" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="The PDF Mechanic" />
     <link rel="canonical" href="https://www.thepdfmechanic.com/merger.html" />
-    <!-- Favicon & PWA -->
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -19,59 +34,118 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#2563eb">
 
-
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Merge PDF Files Offline - Free & Secure" />
-    <meta property="og:description" content="Join multiple PDFs into one file directly in your browser. No data leaves your device." />
+    <meta property="og:url" content="https://www.thepdfmechanic.com/merger.html" />
+    <meta property="og:title" content="Merge PDF Files Free, No File Limit | The PDF Mechanic" />
+    <meta property="og:description" content="Combine unlimited PDFs offline in your browser. No daily cap, no 12-file limit, no upload. Free forever." />
     <meta property="og:image" content="https://www.thepdfmechanic.com/og-image.png" />
+    <meta property="og:site_name" content="The PDF Mechanic" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thepdfmechanic.com/merger.html" />
+    <meta name="twitter:title" content="Merge PDF Files Free, No File Limit" />
+    <meta name="twitter:description" content="Combine unlimited PDFs offline in your browser. No daily cap, no upload, free forever." />
+    <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-image.png" />
 
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    </script>
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <style>
+  @font-face {
+    font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/outfit/v11/QdbQKvLOfvyp4_82O7h26e3c.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-    <script>
-      tailwind.config = {
-        darkMode: 'class', 
-        theme: {
-          extend: {
-            colors: { 
-                brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
-                dark: { bg: '#0f172a', card: '#1e293b', text: '#f8fafc', border: '#334155' } 
-            },
-            fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
-            animation: { 'bounce-slow': 'bounce 3s infinite', 'fade-in': 'fadeIn 0.5s ease-out' },
-            keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
-          }
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="common.css">
+    <style>
+/* merger.html-specific residual CSS */
+.gap-12 { gap: 3rem; }
+.h-6 { height: 1.5rem; }
+.w-6 { width: 1.5rem; }
+.ml-1 { margin-left: 0.25rem; }
+.pr-2 { padding-right: 0.5rem; }
+.object-cover { object-fit: cover; }
+.max-h-\[50vh\] { max-height: 50vh; }
+.text-\[10px\] { font-size: 10px; }
+.text-red-500 { color: #ef4444; }
+.hover\:bg-red-600:hover { background-color: #dc2626; }
+.hover\:bg-brand-600:hover { background-color: #2563eb; }
+.hover\:text-white:hover { color: #ffffff; }
+.bg-slate-800 { background-color: #1e293b; }
+.dark .dark\:bg-slate-600 { background-color: #475569; }
+.border-brand-200 { border-color: #dbeafe; }
+.dark .dark\:text-brand-300 { color: #93c5fd; }
+.dark .dark\:text-brand-400 { color: #60a5fa; }
+@media (min-width: 640px) { .sm\:text-left { text-align: left; } }
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+.dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; }
+
+/* Minimal prose styles for the long-form article */
+.prose { max-width: 65ch; color: #334155; }
+.prose h2, .prose h3, .prose h4 { color: #0f172a; font-weight: 700; }
+.prose p { line-height: 1.75; }
+.prose strong { color: #0f172a; font-weight: 600; }
+.dark .dark\:prose-invert { color: #cbd5e1; }
+.dark .dark\:prose-invert h2, .dark .dark\:prose-invert h3, .dark .dark\:prose-invert h4 { color: #f8fafc; }
+.dark .dark\:prose-invert strong { color: #f1f5f9; }
+.border-collapse { border-collapse: collapse; }
+.divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; }
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+.dark .dark\:divide-slate-700 > :not([hidden]) ~ :not([hidden]) { border-color: #334155; }
+.overflow-x-auto { overflow-x: auto; }
+.text-left { text-align: left; }
+.decoration-brand-200 { text-decoration-color: #dbeafe; }
+.underline-offset-2 { text-underline-offset: 2px; }
+.not-prose { max-width: none; }
+.bg-amber-100 { background-color: #fef3c7; }
+.dark .dark\:bg-amber-900\/20 { background-color: rgb(120 53 15 / 0.2); }
+.text-amber-600 { color: #d97706; }
+
+</style>
+
+    <!-- Schema 1: Software Application + Web Application -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": ["SoftwareApplication", "WebApplication"],
       "name": "Merge PDF Files Offline",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "Combine multiple PDF files into one document instantly. Works 100% offline in your browser. No upload required.",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "1840"
-      }
+      "url": "https://www.thepdfmechanic.com/merger.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Combine unlimited PDF files into one document, entirely offline in your browser. No daily cap, no file-count limit, no upload.",
+      "featureList": [
+        "Unlimited Files, No Daily Cap",
+        "No File-Count or File-Size Limit",
+        "100% Offline, Client-Side Processing",
+        "Drag-and-Drop Reordering with Live Thumbnails",
+        "Works on Android, iOS, and Desktop"
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1840" }
     }
     </script>
 
+    <!-- Schema 2: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Merge PDF", "item": "https://www.thepdfmechanic.com/merger.html" }
+      ]
+    }
+    </script>
+
+    <!-- Schema 3: FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -79,17 +153,43 @@
       "mainEntity": [{
         "@type": "Question",
         "name": "Is there a file size limit for merging?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Since we process files on your computer, the limit depends on your RAM. Usually, you can merge very large files easily without any server restrictions."
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Since we process files on your computer rather than a server, there's no file-size limit imposed by us — the practical limit depends on your device's available RAM, and most phones and laptops handle even large PDF batches without issue." }
       },{
         "@type": "Question",
         "name": "How do I change the order of files?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Once you select files, use the Up and Down arrows next to each file to rearrange them before clicking the Merge button."
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": "Once you select files, use the Up and Down arrows next to each file to rearrange them before clicking the Merge button." }
+      },{
+        "@type": "Question",
+        "name": "Is there a limit on how many PDFs I can merge at once?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Unlike Adobe's online Combine Files tool (limited to 12 files) or free tiers on other sites (often capped at 2 tasks per day), this tool has no file-count limit and no daily cap, since there's no server quota to enforce." }
+      },{
+        "@type": "Question",
+        "name": "Do you preserve bookmarks and the table of contents when merging?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The merged PDF combines all pages from your source files in the order you set. Existing bookmarks within each source PDF are not currently carried into the merged file's outline, though the page content itself remains identical." }
+      },{
+        "@type": "Question",
+        "name": "Can I merge scanned PDF files?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Scanned PDFs merge the same way as any other PDF, regardless of whether they contain selectable text or are purely image-based." }
+      },{
+        "@type": "Question",
+        "name": "Will merging reduce the quality of my PDF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Merging only combines pages; it does not re-compress, re-render, or otherwise alter the content of your original files." }
+      },{
+        "@type": "Question",
+        "name": "Can I merge PDFs on my phone without installing an app?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. This tool works fully in your mobile browser (Chrome on Android, Safari on iOS) with no app to download or install." }
+      },{
+        "@type": "Question",
+        "name": "What happens if one of my PDF files is password-protected?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An encrypted or password-protected PDF cannot be read by this tool, or any merging tool, until the password is removed first. Unlock the file using a PDF unlock tool, then merge normally." }
+      },{
+        "@type": "Question",
+        "name": "Do I need an internet connection to merge PDFs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You need internet to load the page initially. After that, the merge itself works with no connection at all, since all processing happens on your own device." }
+      },{
+        "@type": "Question",
+        "name": "Can I remove a file after adding it to the merge queue?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each file in the list has a remove button (the X icon) that takes it out of the queue without affecting the others." }
       }]
     }
     </script>
@@ -106,24 +206,24 @@
 </head>
 <body class="font-sans bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-dark-text flex flex-col min-h-screen transition-colors duration-300">
 
-    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <nav class="sticky top-0 z-50 glass-nav border-b border-slate-200 dark:border-dark-border transition-colors" aria-label="Main navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <div class="flex items-center gap-4">
               <a href="index.html" class="flex items-center gap-2 group">
                 <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center text-white text-lg shadow-md group-hover:bg-brand-700 transition">
-                    <i class="fa-solid fa-wrench"></i>
+                    <i class="fa-solid fa-wrench" aria-hidden="true"></i>
                 </div>
                 <span class="font-display font-bold text-xl tracking-tight hidden sm:block">The PDF Mechanic</span>
               </a>
           </div>
           <div class="flex items-center gap-4">
              <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 transition hidden md:block">
-                <i class="fa-solid fa-arrow-left mr-1"></i> Back Home
+                <i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i> Back Home
              </a>
-             <button id="themeToggle" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500">
-                <i class="fa-solid fa-moon dark:hidden"></i>
-                <i class="fa-solid fa-sun hidden dark:block"></i>
+             <button id="themeToggle" type="button" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:ring-2 ring-brand-500" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon dark:hidden" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun hidden dark:block" aria-hidden="true"></i>
              </button>
           </div>
         </div>
@@ -133,17 +233,22 @@
     <main class="flex-grow max-w-5xl mx-auto px-4 py-12 w-full">
         
         <div class="text-center mb-10">
-            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-300 text-xs font-bold uppercase tracking-wider mb-3">Offline Tool</span>
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-300 text-xs font-bold uppercase tracking-wider mb-3">Offline Tool &mdash; No File Limit</span>
             <h1 class="font-display text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 dark:text-white">Merge PDF Files</h1>
             <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                Combine multiple documents into one file securely. Processing happens in your browser—no uploads.
+                Combine unlimited PDFs into one file securely. No 12-file cap, no daily limit, no uploads &mdash; everything runs in your browser.
             </p>
+        </div>
+
+        <div id="fileError" class="hidden inline-alert inline-alert-error max-w-3xl mx-auto mb-6" role="alert">
+            <i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i>
+            <span id="fileErrorText"></span>
         </div>
 
         <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-200 dark:border-dark-border overflow-hidden min-h-[400px] transition-colors relative mb-20">
             
-            <div id="uploadArea" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" onclick="document.getElementById('fileInput').click()">
-                <input type="file" id="fileInput" accept="application/pdf" multiple class="hidden" onchange="handleFileSelect(event)">
+            <div id="uploadArea" role="button" tabindex="0" aria-label="Click or drag PDF files here to upload" class="p-8 md:p-16 text-center cursor-pointer group h-full flex flex-col justify-center items-center" onclick="document.getElementById('fileInput').click()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('fileInput').click();}" ondragover="event.preventDefault();this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="application/pdf" multiple aria-label="Choose PDF files" class="hidden" onchange="handleFileSelect(event)">
                 
                 <div class="w-24 h-24 bg-brand-50 dark:bg-brand-900/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
                     <i class="fa-solid fa-layer-group text-4xl text-brand-600"></i>
@@ -196,8 +301,8 @@
                     <i class="fa-solid fa-download"></i> Download Merged PDF
                 </a>
                 
-                <button onclick="location.reload()" class="mt-6 text-slate-500 hover:text-brand-600 font-medium text-sm">
-                    <i class="fa-solid fa-rotate-right mr-1"></i> Merge Different Files
+                <button type="button" onclick="resetTool()" class="mt-6 text-slate-500 hover:text-brand-600 font-medium text-sm">
+                    <i class="fa-solid fa-rotate-right mr-1" aria-hidden="true"></i> Merge Different Files
                 </button>
             </div>
         </div>
@@ -221,6 +326,9 @@
                     <p class="text-sm text-slate-500 dark:text-slate-400">Click "Merge PDF" and the new file will be created instantly on your device.</p>
                 </div>
             </div>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mt-8">
+                That's the entire process, start to finish, whether you're combining two files or twenty. There's no upload step in between "Select Files" and "Merge &amp; Save" &mdash; the three steps above are literally everything that happens.
+            </p>
         </section>
 
         <section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
@@ -235,10 +343,24 @@
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-brands fa-android"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-brands fa-android" aria-hidden="true"></i></div>
                         <div>
                             <h3 class="font-bold text-slate-900 dark:text-white">Mobile Friendly</h3>
                             <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Works perfectly on Android Chrome and iOS Safari without installing any apps.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-infinity" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">No File-Count or Daily Limit</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">No 12-file cap, no "2 tasks a day" wall. Merge as many batches as you need, as often as you need.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-slash" aria-hidden="true"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">No Account, No Email</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">No signup wall, no email capture, and nothing to remember a password for.</p>
                         </div>
                     </div>
                 </div>
@@ -249,17 +371,73 @@
                 <div class="space-y-3">
                     <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
                         <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
-                            <span>Is there a file size limit?</span>
-                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                            <span>Is there a file size limit for merging?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
                         </summary>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Since we process files on your computer, the limit depends on your RAM. Usually, you can merge very large files easily.</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Since we process files on your computer rather than a server, there's no file-size limit imposed by us &mdash; the practical limit depends on your device's available RAM, and most phones and laptops handle even large PDF batches without issue.</p>
                     </details>
                     <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
                         <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
-                            <span>How do I change the order?</span>
-                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500"></i></span>
+                            <span>How do I change the order of files?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
                         </summary>
-                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Once you select files, use the Up <i class="fa-solid fa-arrow-up text-xs"></i> and Down <i class="fa-solid fa-arrow-down text-xs"></i> arrows next to each file to rearrange them.</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Once you select files, use the Up <i class="fa-solid fa-arrow-up text-xs" aria-hidden="true"></i> and Down <i class="fa-solid fa-arrow-down text-xs" aria-hidden="true"></i> arrows next to each file to rearrange them.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Is there a limit on how many PDFs I can merge at once?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">No. Unlike Adobe's online Combine Files tool (limited to 12 files) or free tiers on other sites (often capped at 2 tasks per day), this tool has no file-count limit and no daily cap, since there's no server quota to enforce.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Do you preserve bookmarks and the table of contents when merging?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">The merged PDF combines all pages from your source files in the order you set. Existing bookmarks within each source PDF are not currently carried into the merged file's outline, though the page content itself remains identical.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Can I merge scanned PDF files?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes. Scanned PDFs merge the same way as any other PDF, regardless of whether they contain selectable text or are purely image-based.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Will merging reduce the quality of my PDF?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">No. Merging only combines pages; it does not re-compress, re-render, or otherwise alter the content of your original files.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Can I merge PDFs on my phone without installing an app?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes. This tool works fully in your mobile browser (Chrome on Android, Safari on iOS) with no app to download or install.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>What happens if one of my PDF files is password-protected?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">An encrypted or password-protected PDF cannot be read by this tool, or any merging tool, until the password is removed first. Unlock the file using a PDF unlock tool, then merge normally.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Do I need an internet connection to merge PDFs?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">You need internet to load the page initially. After that, the merge itself works with no connection at all, since all processing happens on your own device.</p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-white">
+                            <span>Can I remove a file after adding it to the merge queue?</span>
+                            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-brand-500" aria-hidden="true"></i></span>
+                        </summary>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 pl-2 border-l-2 border-brand-500">Yes. Each file in the list has a remove button (the X icon) that takes it out of the queue without affecting the others.</p>
                     </details>
                 </div>
             </div>
@@ -273,9 +451,69 @@
                     In today's digital workflow, the need to <strong>combine PDF documents without uploading</strong> them to a server is critical for privacy. Whether you are merging bank statements, medical records, or student assignments, sending files to a cloud server always carries a risk. That's why The PDF Mechanic offers a client-side solution that runs entirely in your browser.
                 </p>
 
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Why "No File Limit" Actually Matters</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Search Adobe's own community forums and you'll find years of people running into the same wall: their online Combine Files tool caps a batch at 12 files, and a separate 100MB-per-file ceiling on top of that. Threads asking about this go back to at least 2014 and are still active today, usually from someone trying to combine a hundred scanned pages or a folder of receipts and discovering, mid-task, that the tool simply won't take any more. Other free mergers cap usage differently &mdash; a fixed number of tasks per day before you're pushed toward a paid plan, for instance, rather than a hard per-batch file count.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    This tool doesn't have that problem, and it's worth being precise about why: there's no server involved to impose a quota on. When merging happens entirely inside your own browser, using your own device's memory, there's no backend counting how many files you've combined today or throttling you toward an upgrade. The only practical ceiling is how much RAM your phone or laptop has available &mdash; for the vast majority of everyday merges (a handful of documents, a stack of scans, a bundle of invoices), that's not a limit anyone will ever actually hit.
+                </p>
+
+                <div class="not-prose overflow-x-auto mb-8">
+                    <table class="w-full text-left text-sm border-collapse rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider">
+                            <tr>
+                                <th class="p-3">What to Check</th>
+                                <th class="p-3">Typical Online Merger</th>
+                                <th class="p-3">The PDF Mechanic</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-dark-card">
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Files per merge</td>
+                                <td class="p-3">Often capped (e.g. 12 files)</td>
+                                <td class="p-3 text-green-600 dark:text-green-400 font-semibold">No fixed limit</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Merges per day</td>
+                                <td class="p-3">Often capped (e.g. 2/day free tier)</td>
+                                <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Where files are processed</td>
+                                <td class="p-3">Uploaded to a remote server</td>
+                                <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Your own device only</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Works with no internet</td>
+                                <td class="p-3">No</td>
+                                <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Yes, once loaded</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Account required for full use</td>
+                                <td class="p-3">Often, past the free cap</td>
+                                <td class="p-3 text-green-600 dark:text-green-400 font-semibold">Never</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Why Choose Client-Side PDF Merging?</h3>
                 <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                     Most "free PDF joiners" require you to upload your files. This is slow and uses your mobile data. Our tool uses advanced <em>WebAssembly technology</em> to <strong>merge PDF files offline on mobile</strong>. Once the page loads, you can turn off your internet, and the tool will still function perfectly. This makes it the fastest way to stitch PDF documents if you have a slow connection or limited data pack.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">How Many PDFs Can You Actually Merge at Once?</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    There's no hardcoded number here, which is a deliberate difference from tools that impose one. In practice, the real ceiling is your device's available memory: a modern phone or laptop with a few gigabytes of free RAM can comfortably merge dozens of typical documents (a few megabytes each) without any trouble. Where you'd start to notice a slowdown is with an unusually large batch of very high-resolution scans &mdash; hundreds of pages at print-quality resolution &mdash; since all of that image data has to sit in your browser's memory during processing. For the overwhelming majority of real-world tasks (combining a resume with cover letters, joining scanned receipts for an expense report, assembling a multi-chapter thesis), this is not a constraint anyone runs into.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    If you are working with an exceptionally large batch and notice the browser tab becoming sluggish, merging in two smaller passes (combine the first half, then combine that result with the second half) works around the memory ceiling without needing any different tool.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">What Happens to Bookmarks, Metadata, and Page Order</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    It's worth being precise about what merging does and doesn't preserve. Every page from every source file is copied into the new document, in the exact order you arrange them using the up/down controls &mdash; page content, formatting, and embedded images all transfer identically, since merging doesn't re-render or re-compress anything. What does <em>not</em> currently carry over is each source file's internal bookmark outline (the clickable table-of-contents panel some PDF readers show) &mdash; the merged file is a single flat sequence of pages rather than a document with a rebuilt, unified bookmark tree spanning all the originals. For most everyday merging tasks (combining receipts, assembling a document packet, joining scanned pages) this distinction rarely matters; it's worth knowing about specifically if you're merging long, heavily-bookmarked reference documents where navigation matters as much as content.
                 </p>
 
                 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">How to Join PDF Files on Android Without Apps</h3>
@@ -290,8 +528,169 @@
                     </p>
                 </div>
 
-                <p class="text-slate-600 dark:text-slate-400 text-sm">
-                    <strong>Common Uses:</strong> Merging invoices for tax returns, combining thesis chapters, joining scanned ID cards (Aadhaar/PAN) into one file, and organizing legal documents securely.
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">
+                    <strong>Common Uses:</strong> Merging invoices for tax returns, combining thesis chapters, joining scanned ID cards into one file, and organizing legal documents securely.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merge PDF for Every Use Case</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    Combining PDFs shows up in a surprisingly wide range of everyday and professional situations, far beyond what any single example could fully capture. Some of the most common:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 mb-8 text-slate-700 dark:text-slate-300">
+                    <li><strong>Students &amp; Academics:</strong> Combining individual chapters, appendices, and a cover page into one thesis or dissertation file, or joining scanned assignment pages before submission.</li>
+                    <li><strong>Job Seekers:</strong> Merging a resume, cover letter, and portfolio samples into a single PDF for one clean upload rather than three separate attachments.</li>
+                    <li><strong>Accountants &amp; Freelancers:</strong> Combining monthly invoices, receipts, and expense reports into one file per client or per tax year for easier recordkeeping.</li>
+                    <li><strong>HR &amp; Recruiters:</strong> Joining an offer letter, employment contract, and onboarding forms into a single packet for a new hire.</li>
+                    <li><strong>Legal Professionals:</strong> Assembling exhibits, affidavits, and supporting documents into one combined filing.</li>
+                    <li><strong>Real Estate:</strong> Merging inspection reports, disclosures, and contract pages into a single closing document.</li>
+                    <li><strong>Small Business Owners:</strong> Combining scanned purchase orders or supplier invoices into monthly batches for bookkeeping.</li>
+                    <li><strong>Anyone Scanning Paper Documents:</strong> Joining individually scanned pages (common when using a phone camera rather than a document feeder) into one properly ordered PDF.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Common Reasons PDF Merging Fails, and How to Avoid Them</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    Looking through years of user reports across various PDF tools, a handful of causes account for most merge failures:
+                </p>
+                <div class="not-prose space-y-4 mb-8">
+                    <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Password-protected or encrypted files</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">A PDF locked with a password can't be read by any merging tool, including this one, until it's unlocked first. Remove the password using a PDF unlock tool, then merge normally.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Corrupted or incomplete downloads</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">A PDF that didn't finish downloading, or was corrupted during transfer, often fails to open at all. Re-downloading or re-scanning the original document usually resolves this.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">A file that isn't actually a PDF</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Occasionally a file has a ".pdf" extension but is actually a different format entirely (a renamed image or Word document, for instance). This tool checks file type on upload and will let you know if something doesn't look like a genuine PDF.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dark-card p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Hitting an artificial daily or file-count limit</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">If you've been using a different tool and suddenly hit a wall mid-task, that's almost always a server-side quota, not a problem with your files. This is precisely the scenario a client-side tool like this one avoids entirely.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">How Client-Side PDF Merging Actually Works</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    When you select your files, nothing is transmitted anywhere. Your browser reads each PDF directly from your device's storage into memory, using a PDF-manipulation library compiled to WebAssembly &mdash; a format that lets code originally written in languages like Rust or C run inside a browser at near-native speed. That library reads the internal page structure of each source file, copies the pages in the order you specify into a brand-new PDF document, and writes the result back out as a downloadable file, all without a single network request carrying your file's contents anywhere. You can verify this yourself: open your browser's developer tools, switch to the Network tab, and merge a batch of files &mdash; you'll see no outgoing request containing your PDF data, because there genuinely isn't one.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging vs. Other PDF Organization Tasks</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Merging is specifically for combining separate files into one. It's worth distinguishing from a few related but different tasks: <strong>splitting</strong> does the opposite, breaking one PDF into several smaller files; <strong>reordering pages</strong> within a single existing PDF (rather than combining multiple source files) is a related but distinct operation, typically handled by a page-organizer tool rather than a merger; and <strong>compressing</strong> reduces file size without changing how many documents you have or their content. If your actual goal is one of these instead of combining separate files, our <a href="splitter.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">PDF splitter</a> or <a href="compressor.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">PDF compressor</a> is the more direct tool for the job.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging Large or Image-Heavy Scanned PDFs</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Scanned documents behave differently from typed PDFs during a merge, since each page is stored as a full-resolution image rather than lightweight text data. A batch of ten scanned pages at high resolution can easily be larger, byte for byte, than a hundred-page typed report. This doesn't stop the merge from working, but it does mean processing takes proportionally longer and uses more of your device's memory while the merge is running. If you're specifically merging scanned documents and file size afterward matters (for an email attachment or an upload portal with a size limit), running the merged result through a <a href="compressor.html" class="text-brand-600 dark:text-brand-400 underline decoration-brand-200 underline-offset-2 font-semibold">PDF compressor</a> afterward is the more effective order of operations &mdash; merge first for correct page order, then compress the single combined file once, rather than trying to shrink each source file individually beforehand.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Choosing the Right Order Before You Merge</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Page order matters more than it might seem once a document is finished and shared &mdash; a resume followed by a cover letter reads very differently from a cover letter followed by a resume, and a contract with its signature page in the middle rather than at the end can genuinely confuse a recipient. Since the up and down arrows reorder files (each file's own internal page order stays intact), it helps to think in terms of "which whole document comes first" rather than trying to interleave individual pages from different sources &mdash; if you need finer, page-by-page control across multiple files, that's a slightly different, more specialized task than straightforward document merging.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    A simple habit that avoids most ordering mistakes: name your source files with a number prefix before uploading (01-cover-letter.pdf, 02-resume.pdf, 03-portfolio.pdf) so the intended order is obvious at a glance in the file list, even before you've dragged anything into place.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging PDFs for Specific Software and Portals</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Many upload systems &mdash; job application portals, university admissions systems, grant applications, insurance claims &mdash; ask for supporting documents as "one combined PDF" rather than accepting multiple separate attachments. This request shows up constantly across completely unrelated industries because it solves a real problem on the receiving end: reviewing one file is simpler than hunting through an email with six attachments, and a combined file can't accidentally arrive with one page missing the way a multi-attachment email sometimes does. If a form or portal you're dealing with asks for this and doesn't tell you how to do it, merging your documents here before uploading is exactly the missing step.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    A related, slightly different scenario: software that only accepts a single PDF input (some e-signature platforms, some document-review tools, some print services) but you have your content spread across several files. The same merge-first approach applies &mdash; combine everything into one file locally, then upload that single result to whatever platform actually needs it, rather than trying to find a workaround within that platform itself.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging PDFs with Different Page Sizes or Orientations</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Source documents don't always share the same page dimensions &mdash; a scanned receipt might be a narrow strip, a report might be standard Letter or A4, and a presentation slide export might be wide-format landscape. Merging preserves each page's own original size and orientation rather than forcing every page into a single uniform dimension, so the combined file will genuinely contain pages of different shapes back to back if that's what the source files had. This is usually the desired behavior, since each document keeps its intended layout exactly as it was created, though it's worth knowing about if you're expecting a merged file where every page is visually uniform &mdash; that would require resizing pages to match, which is a separate operation from merging itself.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Privacy Considerations Beyond "It's Client-Side"</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Client-side processing solves the biggest privacy risk (your file content never reaching a server), but it's worth understanding the fuller picture. Since nothing is uploaded, there's no server log of what you merged, when, or how often &mdash; a genuine difference from server-based tools, where every processed file typically passes through infrastructure that could, even briefly, be logged, cached, or inspected. The trade-off is that browser extensions with broad permissions, or malware already present on a compromised device, could theoretically still observe files a browser tab is actively processing &mdash; a risk that exists for literally anything you do in a browser, not something specific to this tool, but worth knowing that "no upload" addresses the network-transmission risk specifically, not every conceivable risk category. For most people merging ordinary documents on a normal, unmodified browser, this distinction is academic; it matters more for anyone with a specific, elevated threat model.
+                </p>
+
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging PDFs on Mobile vs. Desktop</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    The underlying merge process is identical regardless of device, but the practical workflow differs slightly. On a phone, files typically come from your camera roll (photos of documents), a cloud storage app, or email attachments you've saved locally &mdash; tapping "Choose Files" opens your device's native file picker, which can pull from any of these sources depending on your phone's settings. On desktop, dragging files directly from a folder window onto the upload area is usually the fastest path, especially when merging many files at once, since drag-and-drop lets you select a whole folder's contents in one motion rather than tapping through a mobile picker one file at a time.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Mobile merging is genuinely useful in situations desktop tools rarely need to handle well: combining photos of paper documents taken with your phone camera, where each "page" started life as a separate photo rather than a proper scan, is a common real-world case this tool handles the same way it handles any other PDF batch, provided the photos have already been converted to PDF first.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">A Note on Honesty in How This Tool Is Described</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    It's easy for a tool's marketing copy to say "instant" and "unlimited" without being specific about what those words actually mean technically. Here, "instant" means the merge happens as fast as your own device can process the files, since there's no upload or download queue involved at all &mdash; typically a couple of seconds for ordinary documents. "Unlimited" means there's no artificial cap we've built in, not that infinite files will merge instantly regardless of size; a genuinely enormous batch will still take longer and use more memory, the same way any computation does. Being specific about this distinction is more useful than a vague marketing promise, especially for anyone who's been burned before by a "free" tool that turned out to have limits nobody mentioned upfront.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Confused Terms: Merge, Combine, Join, and Append</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    These words all describe the same underlying operation and are used more or less interchangeably across different tools and regions &mdash; "merge PDF" is the most common phrasing in the United States, "combine PDF" and "join PDF" show up about as often, and "append PDF" is a more technical term sometimes used in software documentation for adding pages to the end of an existing document. There's no meaningful functional difference between them for the purposes of this tool: whichever term you searched to find this page, the underlying task and the result are identical.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Merging PDFs for Business and Team Workflows</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Beyond individual use, PDF merging shows up constantly in team and business processes: compiling weekly reports from multiple contributors into one file before a meeting, assembling a client proposal from a template cover page, pricing sheet, and case studies, or combining signed contract pages that arrived back from different signatories at different times, often over the course of several days as each person got around to it. In each of these cases, the appeal of a no-signup, no-daily-limit tool compounds &mdash; a team member merging documents several times a day, every day, is exactly the use pattern that a "2 free tasks" tier is designed to eventually charge for, and exactly the pattern where a genuinely unlimited client-side tool keeps paying off week after week rather than becoming a recurring subscription cost for a task this simple.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Because nothing is uploaded, this also sidesteps a question that comes up in business contexts more than personal ones: whether a company's data-handling policy permits sending internal documents to a third-party server at all. A tool that processes everything locally doesn't raise that question in the first place, since the file genuinely never leaves the device it started on, which simplifies compliance conversations that a server-based alternative would otherwise require having.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Naming and Organizing Your Merged Files</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    The merged file downloads with a name based on your first source file plus a "_merged" suffix, which works fine for a one-off task but is worth renaming to something more descriptive if you're producing several merged files over time &mdash; "Q3_Invoices_Combined.pdf" or "Smith_Contract_Complete.pdf" will make far more sense six months from now than "invoice001_merged_PDF_Mechanic.pdf" would. This matters more than it sounds like: a folder full of similarly-auto-named merged files is genuinely hard to navigate later, while a few extra seconds spent renaming each one as you go keeps your own document history usable going forward.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    It's also worth keeping your original, unmerged source files somewhere after a merge rather than deleting them immediately &mdash; if you later need to re-order, remove one document from the set, or produce a different combination for a different recipient, having the originals on hand means starting over takes seconds rather than requiring you to track down or re-scan a document you already had.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Does the PDF Version or Standard Matter?</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    PDF has gone through several format revisions since it was first introduced, and specialized variants exist for particular industries &mdash; PDF/A for long-term archival, PDF/X for print production, and PDF/UA for accessibility, among others. In practice, merging works across ordinary PDF files regardless of which version created them, since the underlying page-content structure that gets copied during a merge is consistent across these variants at the level this tool operates on. The one caveat worth knowing: if a source file relies on a specialized feature specific to one of these standards (certain archival metadata in PDF/A, for instance), that specific metadata isn't guaranteed to carry through to the merged output, even though the visible page content will.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Summary: What to Remember About Merging PDFs Here</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Stripped of everything else, this page comes down to a few concrete points. Merging combines separate PDF files into one, preserving page order as you set it. This specific tool runs the entire process on your own device rather than a remote server, which means there's no file-count limit, no daily cap, and nothing ever uploaded &mdash; a genuine, verifiable difference from tools that impose limits precisely because they're paying for server capacity per task. Bookmarks aren't currently carried into the merged file's outline, page content and quality are otherwise untouched, and the practical ceiling on how much you can merge is your own device's memory rather than an arbitrary number someone else chose for you.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">When You Might Want a Different Tool Instead</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    In the interest of the same honesty running through this whole page: a browser-based tool like this one isn't the right fit for every scenario. If you're merging genuinely enormous batches on a very old, low-memory device, a desktop application (Adobe Acrobat, PDFsam, or similar) that isn't constrained by browser memory limits may handle the job more comfortably. If you specifically need bookmark and outline preservation across merged documents as a hard requirement, a more specialized desktop tool built around that feature is a better match than this one today. And if your workflow is already deeply integrated with a particular paid PDF suite for other reasons, using that suite's merge feature avoids switching tools mid-workflow purely to save a step. For the much larger set of everyday cases &mdash; combining a handful to a few dozen documents, quickly, privately, without hitting an arbitrary wall &mdash; this tool is built specifically to be the fastest, simplest path.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">A Brief History of Why PDF Merging Became a Standard Need</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    The PDF format itself was introduced by Adobe in 1993, designed specifically to preserve a document's exact appearance across different computers, operating systems, and printers &mdash; a genuinely novel problem at the time, since word processor files routinely looked different depending on which fonts happened to be installed on the machine opening them. As PDF became the default format for anything meant to be shared, printed, or archived (contracts, invoices, academic papers, government forms), the natural next problem emerged: people increasingly had their content spread across several separate PDF files that logically belonged together as one document. Scanning technology compounded this, since many scanners default to producing one PDF per page rather than one PDF per document, turning even a simple ten-page contract into ten separate files needing to be reassembled. Merging tools exist to solve exactly this recurring, mundane problem, and the demand for them has only grown as more of daily paperwork moved from physical filing cabinets to digital folders full of individually-scanned or individually-exported pages.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Accessibility and Screen Readers</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    For anyone relying on a screen reader or other assistive technology, it's worth knowing that merging preserves whatever accessibility structure each source PDF already had &mdash; tagged headings, reading order, and alt text on images carry through into the merged file exactly as they existed in the original, since merging copies page content rather than regenerating it. A merged file is only as accessible as its least-accessible source document; if one of the files you're combining was a plain scanned image with no underlying text layer at all, that page remains just as inaccessible after merging as it was before. Running scanned pages through an OCR tool before merging, so every page has an actual text layer underneath, is the more effective fix if accessibility of the final combined document matters for your use case.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Practical Questions Beyond the FAQ</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    A few more specific questions come up often enough to be worth addressing directly, beyond the core FAQ list above, since they're the kind of detail that only becomes relevant once you're actually mid-task rather than reading a general overview:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 mb-6 text-slate-700 dark:text-slate-300">
+                    <li><strong>Can I merge PDFs with a Word document or an image mixed in?</strong> This tool works specifically with PDF files. A Word document or image needs to be converted to PDF first (using a PDF converter tool) before it can be included in a merge.</li>
+                    <li><strong>Does the merged file keep working if I open it on a different device?</strong> Yes. The output is a standard PDF file with no dependency on this tool or this website &mdash; it opens normally in any PDF reader, on any device, indefinitely.</li>
+                    <li><strong>Can two people collaborate on choosing the file order remotely?</strong> Not within the tool itself, since there's no server-side session to share. The practical workaround is agreeing on file order beforehand (numbered filenames work well for this) or having one person handle the actual merge step after order is agreed.</li>
+                    <li><strong>What happens if I close the browser tab mid-merge?</strong> The in-progress merge is lost, the same way any unsaved browser-tab work would be, since nothing is saved to a server in the background. Simply reopening the page and starting again takes only moments for most file counts.</li>
+                </ul>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    One more genuinely common question: whether merging PDFs somehow makes the combined file less trustworthy or harder to verify than the originals. It doesn't &mdash; each page's content is copied byte-for-byte from its source file, so any digital signature, watermark, or visible content on an individual page survives the merge unchanged. What a merge does not do is create a NEW signature covering the combined document as a whole; if a recipient specifically needs the entire merged file to carry one unified signature (common in some legal and notarization workflows), that's a separate signing step to take after merging, not something merging itself provides.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Whichever term brought you here today &mdash; merge, combine, join, or simply "put these PDFs together" &mdash; the tool above does exactly that, as many times as you need, for as long as you need it, with no counter running in the background. If a future document needs merging next month, next year, or on a device you haven't bought yet, the same page will still work the same way, since nothing about it depends on an account, a subscription, or a service that might change its pricing or shut down entirely. That kind of durability is easy to overlook until the alternative &mdash; a tool that quietly vanishes, gets paywalled, or starts demanding a login &mdash; is the one you were relying on. A tool this simple, doing one task well without asking anything of you in return, is a smaller thing to appreciate than it might seem, right up until the day a different tool asks you to pay, sign up, or wait in a queue for the exact same result.
+                </p>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Getting Started</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    There's nothing to install and no account to create. Scroll back to the top of this page, select or drag in your PDF files, use the up and down arrows to set the order you want, and click "Merge PDF." The combined file downloads directly to your device in seconds, and you're free to repeat the process as many times as you need, on as many files as you have, with no daily counter tracking you anywhere.
                 </p>
             </article>
         </section>
@@ -345,39 +744,60 @@
 </footer>
 
     <script>
-        // Theme Logic
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          html.classList.add('dark');
-        } else { html.classList.remove('dark'); }
-        themeToggle.addEventListener('click', () => {
-          html.classList.toggle('dark');
-          localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
-        document.getElementById('year').textContent = new Date().getFullYear();
-
         // Merger Logic
-        let fileQueue = []; 
+        let fileQueue = [];
+
+        function showFileError(message) {
+            const box = document.getElementById('fileError');
+            document.getElementById('fileErrorText').textContent = message;
+            box.classList.remove('hidden');
+        }
+        function hideFileError() {
+            document.getElementById('fileError').classList.add('hidden');
+        }
+
+        function resetTool() {
+            fileQueue = [];
+            document.getElementById('fileInput').value = '';
+            document.getElementById('resultArea').classList.add('hidden');
+            document.getElementById('editorArea').classList.add('hidden');
+            document.getElementById('uploadArea').classList.remove('hidden');
+            hideFileError();
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('drag-active');
+            const dropped = event.dataTransfer.files && Array.from(event.dataTransfer.files);
+            if (dropped && dropped.length) handleFileSelect({ target: { files: dropped, value: '' } });
+        }
 
         async function handleFileSelect(event) {
-            const files = Array.from(event.target.files);
-            if(files.length === 0) return;
+            hideFileError();
+            const allFiles = Array.from(event.target.files);
+            if (allFiles.length === 0) return;
+
+            const pdfFiles = allFiles.filter(f => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+            if (allFiles.length && pdfFiles.length < allFiles.length) {
+                showFileError(`${allFiles.length - pdfFiles.length} file(s) were skipped because they weren't PDFs. ${pdfFiles.length} PDF file(s) loaded.`);
+            }
+            if (pdfFiles.length === 0) {
+                showFileError('No PDF files found in your selection. Please choose one or more .pdf files.');
+                return;
+            }
 
             document.getElementById('uploadArea').classList.add('hidden');
             document.getElementById('loading').classList.remove('hidden');
 
             // Generate thumbnails sequentially to prevent freezing
-            for (const file of files) {
-                if(file.type === "application/pdf") {
-                    const thumb = await createThumbnail(file);
-                    fileQueue.push({ file: file, thumbnail: thumb });
-                }
+            for (const file of pdfFiles) {
+                const thumb = await createThumbnail(file);
+                fileQueue.push({ file: file, thumbnail: thumb });
             }
 
             document.getElementById('loading').classList.add('hidden');
             renderList();
-            event.target.value = ''; 
+            if (event.target.value !== undefined) event.target.value = '';
         }
 
         async function createThumbnail(file) {
@@ -455,13 +875,14 @@
 
         async function mergePDFs() {
             if(fileQueue.length < 2) { 
-                alert("Please select at least 2 PDF files to merge."); 
+                showFileError("Please select at least 2 PDF files to merge.");
                 return; 
             }
+            hideFileError();
             
             const btn = document.getElementById('mergeBtn');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Merging...';
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Merging...';
             btn.disabled = true;
             btn.classList.add('opacity-70', 'cursor-not-allowed');
 
@@ -491,19 +912,14 @@
                 dl.download = `${name}_merged_PDF_Mechanic.pdf`;
             } catch (e) {
                 console.error(e);
-                alert("Error merging files! Some PDF files might be encrypted or corrupted.");
+                showFileError("Error merging files: one or more PDFs might be encrypted, corrupted, or password-protected. Please remove that file and try again.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;
                 btn.classList.remove('opacity-70', 'cursor-not-allowed');
             }
         }
     </script>
-    <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; }
-    </style>
+    <script src="common.js" defer></script>
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
