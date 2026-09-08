@@ -15,8 +15,8 @@
       })();
     </script>
 
-    <title>Extract Images from PDF Free Online | Save Photos as JPG - The PDF Mechanic</title>
-    <meta name="description" content="Pull every embedded photo out of a PDF and save them as JPG, individually or as a ZIP — entirely in your browser. No upload, free and unlimited." />
+    <title>Extract Images from PDF Online – No Upload, No Signup | The PDF Mechanic</title>
+    <meta name="description" content="Pull every embedded photo out of a PDF and save them as JPG, individually or as a ZIP — entirely in your browser. Nothing is uploaded, and there's no signup or daily limit." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.thepdfmechanic.com/extract-images-from-pdf.html" />
 
@@ -30,13 +30,13 @@
     <meta name="theme-color" content="#2563eb">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Extract Images from PDF Free — Save as JPG, No Upload">
+    <meta property="og:title" content="Extract Images from PDF Online – No Upload, No Signup">
     <meta property="og:description" content="Pull every embedded photo out of a PDF and download as JPG or a ZIP, entirely in your browser.">
     <meta property="og:url" content="https://www.thepdfmechanic.com/extract-images-from-pdf.html">
     <meta property="og:image" content="https://www.thepdfmechanic.com/og-home.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Extract Images from PDF Free — Save as JPG, No Upload">
+    <meta name="twitter:title" content="Extract Images from PDF Online – No Upload, No Signup">
     <meta name="twitter:description" content="Client-side embedded image extraction. Nothing ever uploaded.">
     <meta name="twitter:image" content="https://www.thepdfmechanic.com/og-home.png">
 
@@ -91,8 +91,7 @@
       "operatingSystem": "Web",
       "url": "https://www.thepdfmechanic.com/extract-images-from-pdf.html",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Pull every embedded photo out of a PDF and save as JPG, individually or as a ZIP, entirely in your browser. No uploads, free and unlimited.",
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "270" }
+      "description": "Pull every embedded photo out of a PDF and save as JPG, individually or as a ZIP, entirely in your browser. No uploads, free and unlimited."
     }
     </script>
     <script type="application/ld+json">
@@ -100,13 +99,24 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Will this extract every image at full original quality?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page, so quality matches the original embedded image exactly." } },
+        { "@type": "Question", "name": "Will this extract every image at full original quality?", "acceptedAnswer": { "@type": "Answer", "text": "Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page. It's saved as a high-quality JPG: an already-JPEG source comes out visually identical, while a PNG or other lossless source is re-encoded to JPG, which preserves full detail at high quality but isn't perfectly lossless." } },
         { "@type": "Question", "name": "Why did a chart or diagram on my PDF not get extracted?", "acceptedAnswer": { "@type": "Answer", "text": "This tool extracts raster images (photos, scans, embedded pictures), not vector graphics. A chart or diagram drawn using PDF's own line and shape commands isn't a raster image at all, so there's nothing to extract for it in that form." } },
         { "@type": "Question", "name": "Why are some very small images being skipped?", "acceptedAnswer": { "@type": "Answer", "text": "The minimum-size filter skips tiny decorative icons, bullet graphics, and header logos by default, since these are rarely what someone actually wants when extracting photos. It can be turned off to capture every embedded image regardless of size." } },
         { "@type": "Question", "name": "Why did I get fewer images than pages in my PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Duplicate detection automatically skips an image that's byte-for-byte identical to one already found, which is common for a repeated letterhead, logo, or watermark placed on every page. Turn off deduplication to save every occurrence individually." } },
         { "@type": "Question", "name": "Is it safe to extract images from confidential PDFs here?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The entire extraction process, from reading the PDF to building the ZIP file, runs inside your browser using JavaScript. Your file is never uploaded to a server." } },
         { "@type": "Question", "name": "Can I extract images from a scanned PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, in a specific sense: a scanned page is typically stored as one large raster image covering the whole page, so extraction returns that full-page image rather than separate smaller photos, unless the scan itself contained multiple distinct pictures placed individually." } },
         { "@type": "Question", "name": "Does this work the same way on mobile as on desktop?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Extraction and the ZIP download both run the same way in a mobile browser as on desktop, though very large PDFs with many high-resolution images will naturally take a little longer on a phone's processor." } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thepdfmechanic.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Extract Images from PDF", "item": "https://www.thepdfmechanic.com/extract-images-from-pdf.html" }
       ]
     }
     </script>
@@ -173,6 +183,11 @@
                 </div>
                 <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Click or Drag PDF here</h3>
                 <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">Works best under 50MB &middot; Processed locally</p>
+            </div>
+
+            <div id="libraryLoading" class="hidden text-center py-10">
+                <i class="fa-solid fa-circle-notch fa-spin text-brand-600 text-3xl mb-3" aria-hidden="true"></i>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Preparing the extraction engine&hellip;</p>
             </div>
 
             <div id="settingsArea" class="hidden">
@@ -295,7 +310,7 @@
             <div class="text-slate-600 dark:text-slate-400 leading-relaxed space-y-10">
 
                 <div>
-                    <p>Every image sitting inside a PDF is stored as its own separate object, referenced from whichever page displays it — a scanned photo, a product picture, a logo in a header, a diagram pasted in from somewhere else. Unlike converting a PDF page into a picture, which flattens everything on that page into one new image, extraction reaches into the file's actual structure and pulls out exactly those original embedded objects, at exactly the resolution they were embedded with.</p>
+                    <p>Every image sitting inside a PDF is stored as its own separate object, referenced from whichever page displays it — a scanned photo, a product picture, a logo in a header, a diagram pasted in from somewhere else. Unlike <a href="pdf-to-images.html" class="text-purple-700 dark:text-purple-300 underline font-medium">converting a PDF page into a picture</a>, which flattens everything on that page into one new image, extraction reaches into the file's actual structure and pulls out exactly those original embedded objects, at exactly the resolution they were embedded with.</p>
                     <p class="mt-4">This guide covers how that extraction actually happens, the real difference between a raster image and the vector graphics a PDF can also contain, what the filtering options are doing behind the scenes, and where pulling images back out of a PDF is genuinely the fastest way to get a job done. None of it requires knowing anything about how PDFs are built internally — just enough to know what to expect from the results.</p>
                 </div>
 
@@ -307,7 +322,7 @@
                     <p class="mt-4">When one of those image-placing instructions is found, it points to the actual image object stored inside the file — its raw pixel data, at its original width and height. That data is decoded and painted onto a blank canvas at those exact native dimensions, then saved out as a JPG. Nothing about the page layout, the surrounding text, or the rest of the document is involved at any point; only the image data itself is touched, page by page, until every page has been checked.</p>
                     <div class="callout-box mt-5">
                         <div class="callout-box-title"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Why This Is Different From "Screenshotting" a Page</div>
-                        <p class="mt-2 text-sm">A tool that renders a PDF page and crops out the picture-looking part is working from a flattened, re-rasterized copy of the page — quality depends on the resolution it happened to render at. Reading the image object directly, the way this tool does, retrieves the exact pixels that were embedded originally, with nothing lost or re-sampled in between.</p>
+                        <p class="mt-2 text-sm">A tool that renders a PDF page and crops out the picture-looking part is working from a flattened, re-rasterized copy of the page — quality depends on the resolution it happened to render at. Reading the image object directly, the way this tool does, decodes the exact pixels that were embedded originally, rather than starting from a lower-fidelity page render.</p>
                     </div>
                 </div>
 
@@ -354,7 +369,7 @@
                     <h3 class="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-3 font-display">
                         <i class="fa-solid fa-lock text-purple-600" aria-hidden="true"></i> Privacy for Documents Full of Photos
                     </h3>
-                    <p>PDFs packed with embedded images are frequently the exact kind of document worth being careful with — scanned ID booklets, medical imaging reports, property listings with interior photos, an insurance claim's photo evidence. Reading the file, decoding its images, and building the ZIP archive all happen inside your browser using JavaScript, so none of that content needs to reach a server to come back out as individual files.</p>
+                    <p>PDFs packed with embedded images are frequently the exact kind of document worth being careful with — scanned ID booklets, medical imaging reports, property listings with interior photos, an insurance claim's photo evidence. Reading the file, decoding its images, and building the ZIP archive all happen inside your browser using JavaScript, so none of that content needs to reach a server to come back out as individual files. If you rebuild a new PDF from any of the extracted images afterward, our <a href="protect-pdf.html" class="text-purple-700 dark:text-purple-300 underline font-medium">password-protect tool</a> can keep that new file locked down the same way the original was.</p>
                     <p class="mt-4">You can confirm this directly rather than taking it on trust: open your browser's developer tools, watch the Network tab while extracting, and see that no request carrying your file or its images goes out at any point.</p>
                 </div>
 
@@ -364,11 +379,11 @@
                     </h3>
                     <ul class="mt-4 space-y-2 list-disc pl-5 marker:text-brand-500">
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Real estate listings.</span> Pulling interior and exterior photos back out of a PDF brochure to reuse on a listing site or in a new flyer.</li>
-                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Recovering photos from an old scanned album.</span> A PDF someone made years ago from a stack of printed photos, with the original loose images long since lost.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Recovering photos from an old scanned album.</span> A PDF someone made years ago from a stack of printed photos, with the original loose images long since lost. If any of those pages are scanned documents with text on them rather than plain photos, our <a href="ocr.html" class="text-purple-700 dark:text-purple-300 underline font-medium">OCR tool</a> can additionally make that recovered text searchable and selectable.</li>
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Product catalogues.</span> Getting individual product photos out of a supplier's PDF catalogue for use on a storefront.</li>
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Academic and research use.</span> Pulling figures, photographs, or diagrams out of a paper for citation or further analysis, where the original image files were never separately provided.</li>
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Insurance and legal documentation.</span> Extracting photo evidence attached to a claim or case file into individual images for a separate review process.</li>
-                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Design and marketing handoffs.</span> Recovering source images from a client-approved PDF proof when the original design files aren't available.</li>
+                        <li><span class="font-semibold text-slate-800 dark:text-slate-200">Design and marketing handoffs.</span> Recovering source images from a client-approved PDF proof when the original design files aren't available, then rebuilding a new PDF from just the images you actually need with our <a href="images-to-pdf.html" class="text-purple-700 dark:text-purple-300 underline font-medium">JPG to PDF tool</a>.</li>
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Genealogy and family archives.</span> Pulling individual photographs back out of a PDF someone assembled from a scanned family album years ago.</li>
                         <li><span class="font-semibold text-slate-800 dark:text-slate-200">Journalism and publishing.</span> Recovering original photographs from a press kit or archived PDF layout for reuse in a new article.</li>
                     </ul>
@@ -395,7 +410,7 @@
                                 <span>Will this extract every image at full original quality?</span>
                                 <span class="transition group-open:rotate-180 shrink-0"><i class="fa-solid fa-chevron-down text-brand-600" aria-hidden="true"></i></span>
                             </summary>
-                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Yes. Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page, so quality matches the original embedded image exactly.</p>
+                            <p class="text-slate-600 dark:text-slate-400 mt-3 text-sm leading-relaxed">Each image is pulled out at the exact pixel dimensions it was embedded with, not a re-rendered screenshot of the page. It's saved as a high-quality JPG: an already-JPEG source comes out visually identical, while a PNG or other lossless source is re-encoded to JPG, which preserves full detail at high quality but isn't perfectly lossless.</p>
                         </details>
                         <details class="group bg-white dark:bg-dark-card p-4 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
                             <summary class="flex justify-between items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
@@ -503,14 +518,58 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- pdf.js and JSZip are intentionally NOT loaded here. Both are large libraries the
+         user does not need until they actually select or drop a PDF, so they are loaded
+         on-demand — see ensurePdfJsLoaded() / ensureJsZipLoaded() below. -->
 
     <!-- Shared boilerplate (theme toggle, footer year, service worker) - see common.js -->
     <script src="common.js" defer></script>
 
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        const PDFJS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        const PDFJS_WORKER_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        const JSZIP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+
+        function loadScriptOnce(src) {
+            return new Promise((resolve, reject) => {
+                const existing = document.querySelector(`script[src="${src}"]`);
+                if (existing) {
+                    if (existing.dataset.loaded === 'true') { resolve(); return; }
+                    existing.addEventListener('load', () => resolve());
+                    existing.addEventListener('error', () => reject(new Error('Failed to load ' + src)));
+                    return;
+                }
+                const s = document.createElement('script');
+                s.src = src;
+                s.onload = () => { s.dataset.loaded = 'true'; resolve(); };
+                s.onerror = () => reject(new Error('Failed to load ' + src));
+                document.head.appendChild(s);
+            });
+        }
+
+        // Cached load-promises so a second file / second ZIP click reuses the already-loaded
+        // library instead of re-fetching or re-running setup, and so two near-simultaneous
+        // calls (e.g. a fast double-drop) share one in-flight load rather than racing.
+        let pdfJsLoadPromise = null;
+        function ensurePdfJsLoaded() {
+            if (window.pdfjsLib) return Promise.resolve();
+            if (!pdfJsLoadPromise) {
+                pdfJsLoadPromise = loadScriptOnce(PDFJS_URL)
+                    .then(() => { pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL; })
+                    .catch((err) => { pdfJsLoadPromise = null; throw err; });
+            }
+            return pdfJsLoadPromise;
+        }
+
+        let jsZipLoadPromise = null;
+        function ensureJsZipLoaded() {
+            if (window.JSZip) return Promise.resolve();
+            if (!jsZipLoadPromise) {
+                jsZipLoadPromise = loadScriptOnce(JSZIP_URL)
+                    .catch((err) => { jsZipLoadPromise = null; throw err; });
+            }
+            return jsZipLoadPromise;
+        }
 
         function showFileError(message) {
             const box = document.getElementById('fileError');
@@ -542,10 +601,21 @@
                 showFileError(`"${file.name}" doesn't look like a PDF file. Please choose a .pdf file.`);
                 return;
             }
+
+            selectedFile = file;
+            const needsLibraryLoad = !window.pdfjsLib;
+            if (needsLibraryLoad) {
+                document.getElementById('uploadArea').classList.add('hidden');
+                document.getElementById('libraryLoading').classList.remove('hidden');
+            }
+
+            let pdf = null;
             try {
-                selectedFile = file;
+                await ensurePdfJsLoaded();
+                document.getElementById('libraryLoading').classList.add('hidden');
+
                 const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer.slice()).promise;
+                pdf = await pdfjsLib.getDocument(arrayBuffer.slice()).promise;
 
                 document.getElementById('fileName').textContent = file.name;
                 document.getElementById('pageCount').textContent = `${pdf.numPages} page${pdf.numPages > 1 ? 's' : ''}`;
@@ -556,7 +626,17 @@
             } catch (err) {
                 console.error(err);
                 selectedFile = null;
-                showFileError("This PDF couldn't be opened. It may be corrupted, password-protected, or not a standard PDF file.");
+                document.getElementById('libraryLoading').classList.add('hidden');
+                document.getElementById('uploadArea').classList.remove('hidden');
+                const msg = (err && /Failed to load/.test(err.message))
+                    ? "Couldn't load the PDF engine. Please check your internet connection and try again."
+                    : "This PDF couldn't be opened. It may be corrupted, password-protected, or not a standard PDF file.";
+                showFileError(msg);
+            } finally {
+                // This copy of the document was only opened to read the page count for the
+                // settings screen; the real extraction re-opens the file separately below,
+                // so this one is released immediately rather than held for no reason.
+                if (pdf) pdf.destroy();
             }
         }
 
@@ -641,10 +721,11 @@
             let duplicateCount = 0;
             let tinyCount = 0;
             let failedCount = 0;
+            let pdf = null;
 
             try {
                 const arrayBuffer = await selectedFile.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
                 const totalPages = pdf.numPages;
                 const paintOps = new Set([
                     pdfjsLib.OPS.paintImageXObject,
@@ -720,6 +801,8 @@
                 document.getElementById('progressContainer').classList.add('hidden');
                 document.getElementById('extractBtn').classList.remove('hidden');
                 showFileError("Something went wrong while reading this PDF. It may be corrupted or password-protected. Try a different file, or unlock it first.");
+            } finally {
+                if (pdf) pdf.destroy();
             }
         }
 
@@ -770,6 +853,8 @@
                 btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Building ZIP...';
                 btn.disabled = true;
 
+                await ensureJsZipLoaded();
+
                 const zip = new JSZip();
                 extractedImages.forEach((img, idx) => {
                     zip.file(`image-${String(idx + 1).padStart(3, '0')}.jpg`, img.blob);
@@ -801,6 +886,7 @@
             document.getElementById('fileInput').value = '';
             document.getElementById('imageGallery').innerHTML = '';
             document.getElementById('uploadArea').classList.remove('hidden');
+            document.getElementById('libraryLoading').classList.add('hidden');
             document.getElementById('settingsArea').classList.add('hidden');
             document.getElementById('resultArea').classList.add('hidden');
             document.getElementById('extractBtn').classList.remove('hidden');
